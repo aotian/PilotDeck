@@ -5,6 +5,7 @@ import {
   Bot,
   Database,
   Folder,
+  Loader2,
   PanelLeftOpen,
   Radio,
   Sparkles,
@@ -60,6 +61,8 @@ export default function MainAreaV2(props: MainAreaV2Props) {
   const projectName = selectedProject?.name ?? null;
   const [latestReadyPlanMarker, setLatestReadyPlanMarker] = useState<string | null>(null);
   const [lastViewedReadyPlanMarker, setLastViewedReadyPlanMarker] = useState<string | null>(null);
+  const [launchingCourseware, setLaunchingCourseware] = useState(false);
+  const isCoursewareAssetWorkspace = Boolean(selectedProject?.coursewareAssetWorkspace);
 
   useEffect(() => {
     if (activeTab === 'home') {
@@ -139,6 +142,23 @@ export default function MainAreaV2(props: MainAreaV2Props) {
     latestReadyPlanMarker !== lastViewedReadyPlanMarker,
   );
 
+  const handleLaunchCourseware = async () => {
+    if (!selectedProject || launchingCourseware) return;
+    setLaunchingCourseware(true);
+    try {
+      const response = await api.tongchengCoursewareHandoff(selectedProject.name);
+      const payload = await response.json().catch(() => ({ error: '课程资产交接失败' }));
+      if (!response.ok || !payload?.url) {
+        throw new Error(payload?.error || '课程资产交接失败');
+      }
+      window.open(payload.url, '_blank', 'noopener');
+    } catch (error) {
+      window.alert(error instanceof Error ? error.message : '课程资产交接失败');
+    } finally {
+      setLaunchingCourseware(false);
+    }
+  };
+
   return (
     <div className="flex h-full min-w-0 flex-col bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Header: breadcrumb left, tool switcher right. */}
@@ -172,6 +192,24 @@ export default function MainAreaV2(props: MainAreaV2Props) {
             </span>
           ) : null}
         </div>
+
+        {isCoursewareAssetWorkspace ? (
+          <button
+            type="button"
+            onClick={handleLaunchCourseware}
+            disabled={launchingCourseware}
+            className="mr-2 inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md bg-orange-600 px-3 text-[13px] font-medium text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-60"
+            title="使用当前课程资产生成童澄课件"
+            aria-label="使用当前课程资产生成童澄课件"
+          >
+            {launchingCourseware ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
+            ) : (
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
+            )}
+            <span>生成课件</span>
+          </button>
+        ) : null}
 
         <div
           role="tablist"

@@ -787,6 +787,158 @@ app.get('/api/projects/:projectName/sessions', authenticateToken, async (req, re
     }
 });
 
+function resolveCoursewareSubjectFromAssets(projectPath) {
+    const text = fs.existsSync(path.join(projectPath, 'brief.md'))
+        ? fs.readFileSync(path.join(projectPath, 'brief.md'), 'utf8')
+        : '';
+    if (/GESP|CSP|C\+\+|编程|算法|代码|程序/.test(text)) return 'cpp';
+    if (/数学|方程|几何|代数|函数|数列/.test(text)) return 'math';
+    if (/语文|文言文|古诗|阅读|作文|句读|赏析/.test(text)) return 'chinese';
+    if (/英语|English|词汇|语法|句型|听力|口语/.test(text)) return 'english';
+    if (/物理|力学|电路|光学|压强|浮力/.test(text)) return 'physics';
+    if (/化学|反应|方程式|实验|元素|溶液/.test(text)) return 'chemistry';
+    if (/AI|人工智能|机器学习|大模型/.test(text)) return 'ai';
+    return 'cpp';
+}
+
+function listCoursewareAssetFiles(projectPath) {
+    const expected = [
+        'brief.md',
+        'course-outline.md',
+        'teacher-script.md',
+        'exercises.md',
+        'pitfalls.md',
+        'parent-feedback.md',
+    ];
+    return expected.filter((fileName) => fs.existsSync(path.join(projectPath, fileName)));
+}
+
+function readCoursewareAssetText(projectPath, fileName) {
+    const filePath = path.join(projectPath, fileName);
+    return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : '';
+}
+
+function compactCoursewareTitle(text, fallback) {
+    const heading = String(text || '').match(/^#\s+(.+)$/m)?.[1]?.trim();
+    if (heading) return heading;
+    const firstLine = String(text || '')
+        .split('\n')
+        .map((line) => line.replace(/^[-*#>\s]+/, '').trim())
+        .find(Boolean);
+    return firstLine || fallback;
+}
+
+function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
+    const brief = readCoursewareAssetText(projectPath, 'brief.md');
+    const outline = readCoursewareAssetText(projectPath, 'course-outline.md');
+    const teacherScript = readCoursewareAssetText(projectPath, 'teacher-script.md');
+    const exercises = readCoursewareAssetText(projectPath, 'exercises.md');
+    const pitfalls = readCoursewareAssetText(projectPath, 'pitfalls.md');
+    const parentFeedback = readCoursewareAssetText(projectPath, 'parent-feedback.md');
+    const handoffNotes =
+        readCoursewareAssetText(projectPath, 'generator-notes.md') ||
+        readCoursewareAssetText(projectPath, 'openmaic-handoff.md');
+    const contentHash = crypto
+        .createHash('sha256')
+        .update([brief, outline, teacherScript, exercises, pitfalls, parentFeedback, handoffNotes].join('\n---tc-asset---\n'))
+        .digest('hex');
+    const packageId = `tc-course-${contentHash.slice(0, 16)}`;
+    const subject = resolveCoursewareSubjectFromAssets(projectPath);
+    const title = compactCoursewareTitle(outline || brief || handoffNotes, projectName);
+    const now = new Date().toISOString();
+
+    return {
+        schemaVersion: 'tiku.courseAsset.v1',
+        packageId,
+        sourceSystem: 'tongcheng-courseware-assistant',
+        projectName,
+        subject,
+        topic: title,
+        outputs: ['html', 'ppt', 'candidate_package', 'video_script'],
+        source: {
+            workspaceId: projectName,
+            projectName,
+            sourceFiles: assetFiles,
+            contentHash,
+        },
+        visibility: {
+            teacherOnly: ['teacher-script.md', 'pitfalls.md'],
+            studentVisible: ['brief.md', 'course-outline.md'],
+            parentVisible: parentFeedback ? ['parent-feedback.md'] : [],
+        },
+        assets: {},
+        notes: [
+            '由童澄教研创作台沉淀的课程资产包。',
+            '练习内容为候选，需要在 Tiku 中审核后再进入正式作业或试卷。',
+        ],
+        createdAt: now,
+        updatedAt: now,
+    };
+}
+
+function writeCoursewareHandoffFiles(projectPath, assetPackage) {
+    const json = JSON.stringify(assetPackage, null, 2);
+    fs.writeFileSync(path.join(projectPath, 'generator-handoff.json'), json);
+    fs.writeFileSync(path.join(projectPath, 'courseware-package.json'), json);
+}
+
+function assertCoursewareWorkspacePath(projectPath) {
+    const root = path.resolve(
+        process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
+        path.join(__dirname, '..', '..', 'workspaces'),
+    );
+    const resolved = path.resolve(projectPath);
+    if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) {
+        const error = new Error('课程资产工作区不在允许范围内');
+        error.statusCode = 403;
+        throw error;
+    }
+    return resolved;
+}
+
+app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, async (req, res) => {
+    try {
+        const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
+        const assetFiles = listCoursewareAssetFiles(projectPath);
+        if (assetFiles.length === 0) {
+            return res.status(400).json({
+                error: '当前工作区没有可交接的课程资产文件',
+                expectedFiles: ['brief.md', 'course-outline.md', 'teacher-script.md', 'exercises.md', 'pitfalls.md', 'parent-feedback.md'],
+            });
+        }
+        const assetPackage = createCoursewareAssetPackage(req.params.projectName, projectPath, assetFiles);
+        writeCoursewareHandoffFiles(projectPath, assetPackage);
+
+        const baseUrl = String(
+            req.query.baseUrl ||
+            process.env.TONGCHENG_COURSEWARE_URL ||
+            'http://localhost:3000/courseware-pilot',
+        );
+        const url = new URL(baseUrl);
+        if (!['http:', 'https:'].includes(url.protocol)) {
+            return res.status(400).json({ error: '课程生成入口地址必须使用 http 或 https' });
+        }
+        url.searchParams.set('assetWorkspace', projectPath);
+        url.searchParams.set('subject', String(req.query.subject || resolveCoursewareSubjectFromAssets(projectPath)));
+        url.searchParams.set('from', 'asset-workspace');
+        if (process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN) {
+            url.searchParams.set('handoffToken', process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN);
+        }
+
+        res.json({
+            success: true,
+            url: url.toString(),
+            packageId: assetPackage.packageId,
+            subject: assetPackage.subject,
+            topic: assetPackage.topic,
+            projectPath,
+            assetFiles: [...new Set([...assetFiles, 'generator-handoff.json', 'courseware-package.json'])],
+        });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
 // Rename project endpoint
 app.put('/api/projects/:projectName/rename', authenticateToken, async (req, res) => {
     try {

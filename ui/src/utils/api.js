@@ -95,6 +95,13 @@ export const api = {
     authenticatedFetch(`/api/always-on/cron-jobs/${encodeURIComponent(taskId)}`, { method: 'DELETE' }),
   projectDiscoveryContext: (projectName) =>
     authenticatedFetch(`/api/projects/${encodeURIComponent(projectName)}/discovery-context`),
+  tongchengCoursewareHandoff: (projectName, params = {}) => {
+    const query = new URLSearchParams();
+    if (params.subject) query.set('subject', params.subject);
+    if (params.baseUrl) query.set('baseUrl', params.baseUrl);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return authenticatedFetch(`/api/tongcheng/courseware-handoff/${encodeURIComponent(projectName)}${suffix}`);
+  },
   projectDiscoveryPlans: (projectName) =>
     authenticatedFetch(`/api/projects/${encodeURIComponent(projectName)}/discovery-plans`),
   executeProjectDiscoveryPlan: (projectName, planId, body = {}) =>

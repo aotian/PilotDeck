@@ -72,6 +72,56 @@ function projectDisplayName(fullPath) {
     return path.basename(fullPath) || fullPath;
 }
 
+function coursewareWorkspacesRoot() {
+    return path.resolve(
+        process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
+        path.join(process.cwd(), 'workspaces'),
+    );
+}
+
+function hasCoursewareAssetFiles(fileNames) {
+    const names = new Set(fileNames);
+    return ['brief.md', 'course-outline.md', 'teacher-script.md'].some((fileName) =>
+        names.has(fileName),
+    );
+}
+
+async function listCoursewareAssetProjects() {
+    const root = coursewareWorkspacesRoot();
+    let entries = [];
+    try {
+        entries = await fs.readdir(root, { withFileTypes: true });
+    } catch {
+        return [];
+    }
+
+    const projects = [];
+    for (const entry of entries) {
+        if (!entry.isDirectory()) continue;
+        const fullPath = path.join(root, entry.name);
+        let fileNames = [];
+        try {
+            fileNames = await fs.readdir(fullPath);
+        } catch {
+            continue;
+        }
+        if (!hasCoursewareAssetFiles(fileNames)) continue;
+        projects.push({
+            name: entry.name,
+            displayName: `课程资产 · ${entry.name}`,
+            fullPath,
+            path: fullPath,
+            lastActivity: undefined,
+            sessions: [],
+            sessionMeta: { total: 0, hasMore: false },
+            taskmaster: { hasTaskmaster: false },
+            alwaysOn: { enabled: false },
+            coursewareAssetWorkspace: true,
+        });
+    }
+    return projects;
+}
+
 /**
  * Map a PilotDeck `WebSessionInfo` onto the legacy `ProjectSession`
  * shape the React frontend expects.
@@ -284,6 +334,25 @@ async function getProjects(progressCallback = null) {
         alwaysOn: { enabled: false },
     });
 
+    const coursewareProjects = await listCoursewareAssetProjects();
+    for (const project of coursewareProjects) {
+        rememberProjectDirectory(project.name, project.fullPath);
+        const existingIndex = result.findIndex(
+            (item) =>
+                item.name === project.name ||
+                path.resolve(item.fullPath || item.path || '') === path.resolve(project.fullPath),
+        );
+        if (existingIndex >= 0) {
+            result[existingIndex] = {
+                ...result[existingIndex],
+                displayName: project.displayName,
+                coursewareAssetWorkspace: true,
+            };
+        } else {
+            result.push(project);
+        }
+    }
+
     return result;
 }
 
@@ -347,6 +416,16 @@ async function extractProjectDirectory(projectName) {
     if (marked) {
         rememberProjectDirectory(projectName, marked);
         return marked;
+    }
+    const coursewareCandidate = path.join(coursewareWorkspacesRoot(), projectName);
+    try {
+        const stat = await fs.stat(coursewareCandidate);
+        if (stat.isDirectory()) {
+            rememberProjectDirectory(projectName, coursewareCandidate);
+            return coursewareCandidate;
+        }
+    } catch {
+        // Not a courseware asset workspace; continue with legacy resolution.
     }
     if (projectName.startsWith('-')) {
         // Legacy dash-encoding heuristic: `-Users-foo-foo` → `/Users/foo/foo`.
