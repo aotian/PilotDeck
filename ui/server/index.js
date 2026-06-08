@@ -809,6 +809,14 @@ function listCoursewareAssetFiles(projectPath) {
         'exercises.md',
         'pitfalls.md',
         'parent-feedback.md',
+        'courseware.html',
+        'index.html',
+        'teach-courseware.html',
+        'deck.html',
+        'slides.html',
+        'courseware.pptx',
+        'deck.pptx',
+        'slides.pptx',
     ];
     return expected.filter((fileName) => fs.existsSync(path.join(projectPath, fileName)));
 }
@@ -826,6 +834,10 @@ function compactCoursewareTitle(text, fallback) {
         .map((line) => line.replace(/^[-*#>\s]+/, '').trim())
         .find(Boolean);
     return firstLine || fallback;
+}
+
+function firstExistingCoursewareAsset(assetFiles, candidates) {
+    return candidates.find((fileName) => assetFiles.includes(fileName));
 }
 
 function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
@@ -846,6 +858,19 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const subject = resolveCoursewareSubjectFromAssets(projectPath);
     const title = compactCoursewareTitle(outline || brief || handoffNotes, projectName);
     const now = new Date().toISOString();
+    const htmlAsset = firstExistingCoursewareAsset(assetFiles, [
+        'courseware.html',
+        'teach-courseware.html',
+        'index.html',
+        'deck.html',
+        'slides.html',
+    ]);
+    const deckHtmlAsset = firstExistingCoursewareAsset(assetFiles, ['deck.html', 'slides.html']);
+    const pptxAsset = firstExistingCoursewareAsset(assetFiles, [
+        'courseware.pptx',
+        'deck.pptx',
+        'slides.pptx',
+    ]);
 
     return {
         schemaVersion: 'tiku.courseAsset.v1',
@@ -866,7 +891,11 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
             studentVisible: ['brief.md', 'course-outline.md'],
             parentVisible: parentFeedback ? ['parent-feedback.md'] : [],
         },
-        assets: {},
+        assets: {
+            ...(htmlAsset ? { html: htmlAsset } : {}),
+            ...(deckHtmlAsset ? { deckHtml: deckHtmlAsset } : {}),
+            ...(pptxAsset ? { pptx: pptxAsset } : {}),
+        },
         notes: [
             '由童澄教研创作台沉淀的课程资产包。',
             '练习内容为候选，需要在 Tiku 中审核后再进入正式作业或试卷。',
