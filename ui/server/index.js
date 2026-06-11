@@ -9,12 +9,12 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import net from 'net';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const installMode = fs.existsSync(path.join(__dirname, '..', '.git')) ? 'git' : 'npm';
+const installMode = fs.existsSync(path.join(__dirname, '..', '..', '.git')) ? 'git' : 'npm';
 
 // ANSI color codes for terminal output
 const colors = {
@@ -82,9 +82,11 @@ import commandsRoutes from './routes/commands.js';
 import skillsRoutes from './routes/skills.js';
 import settingsRoutes from './routes/settings.js';
 import configRoutes from './routes/config.js';
+import gatewayRoutes from './routes/gateway.js';
 import { startPilotDeckConfigWatcher, stopPilotDeckConfigWatcher } from './services/pilotdeckConfigWatcher.js';
 import { getAlwaysOnDashboardEvents } from './services/always-on-events.js';
 import agentRoutes from './routes/agent.js';
+import updateRoutes from './routes/update.js';
 import projectsRoutes, { WORKSPACES_ROOT, validateWorkspacePath } from './routes/projects.js';
 import userRoutes from './routes/user.js';
 import pluginsRoutes from './routes/plugins.js';
@@ -139,111 +141,6 @@ const alwaysOnHeartbeat = createAlwaysOnHeartbeatManager({
 });
 registerAlwaysOnNotificationForwarding(connectedClients);
 let isGetProjectsRunning = false; // Flag to prevent reentrant calls
-let pilotDeckProxyProcess = null;
-
-function resolveBunExecutable() {
-    const candidates = [
-        process.env.BUN_BIN,
-        process.env.BUN,
-        process.env.BUN_INSTALL ? path.join(process.env.BUN_INSTALL, 'bin', 'bun') : null,
-        path.join(os.homedir(), '.bun', 'bin', 'bun'),
-        '/opt/homebrew/bin/bun',
-        '/usr/local/bin/bun',
-        'bun',
-    ].filter(Boolean);
-
-    for (const candidate of candidates) {
-        if (candidate === 'bun' || fs.existsSync(candidate)) {
-            return candidate;
-        }
-    }
-
-    return 'bun';
-}
-
-function isLocalPortListening(port, host = '127.0.0.1', timeoutMs = 400) {
-    return new Promise(resolve => {
-        const socket = net.createConnection({ port, host });
-        const finalize = (isOpen) => {
-            socket.destroy();
-            resolve(isOpen);
-        };
-
-        socket.setTimeout(timeoutMs);
-        socket.once('connect', () => finalize(true));
-        socket.once('timeout', () => finalize(false));
-        socket.once('error', () => finalize(false));
-    });
-}
-
-async function waitForLocalPort(port, host = '127.0.0.1', timeoutMs = 4000) {
-    const deadline = Date.now() + timeoutMs;
-    while (Date.now() < deadline) {
-        if (await isLocalPortListening(port, host)) {
-            return true;
-        }
-        await new Promise(resolve => setTimeout(resolve, 120));
-    }
-    return false;
-}
-
-async function ensurePilotDeckProxyRunning() {
-    // The legacy in-process proxy bootstrap was tied to a bundled CCR pipeline
-    // that we removed during the PilotDeck-only migration.
-    // Model traffic now flows through `src/gateway` directly. Returning
-    // immediately keeps any callers happy without touching dead code.
-    return;
-    // The unreachable body below is left as historical scaffolding.
-    // eslint-disable-next-line no-unreachable
-    const proxyPort = parseInt(process.env.PROXY_PORT || process.env.PILOTDECK_PROXY_PORT || '18080', 10);
-    if (!proxyPort) return;
-    if (await isLocalPortListening(proxyPort)) {
-        console.log(`${c.info('[INFO]')} Reusing existing PilotDeck-friendly proxy on http://127.0.0.1:${proxyPort}`);
-        return;
-    }
-
-    console.error(`[ERROR] PilotDeck proxy did not become ready on http://127.0.0.1:${proxyPort}`);
-}
-
-async function stopPilotDeckProxy() {
-    if (!pilotDeckProxyProcess) {
-        return;
-    }
-
-    const proxyProcess = pilotDeckProxyProcess;
-    pilotDeckProxyProcess = null;
-
-    if (proxyProcess.exitCode !== null || proxyProcess.signalCode !== null) {
-        return;
-    }
-
-    await new Promise(resolve => {
-        const timeout = setTimeout(() => {
-            proxyProcess.kill('SIGKILL');
-        }, 2000);
-
-        proxyProcess.once('exit', () => {
-            clearTimeout(timeout);
-            resolve();
-        });
-
-        proxyProcess.kill('SIGTERM');
-    });
-}
-
-process.on('pilotdeck:restart-proxy', async (done) => {
-    try {
-        await stopPilotDeckProxy();
-        await ensurePilotDeckProxyRunning();
-        if (typeof done === 'function') {
-            done(null);
-        }
-    } catch (error) {
-        if (typeof done === 'function') {
-            done(error);
-        }
-    }
-});
 
 // Broadcast progress to all connected WebSocket clients
 function broadcastProgress(progress) {
@@ -549,6 +446,9 @@ app.use('/api/settings', authenticateToken, settingsRoutes);
 // PilotDeck unified YAML config routes (protected)
 app.use('/api/config', authenticateToken, configRoutes);
 
+// Gateway IM channel setup routes (protected)
+app.use('/api/gateway', authenticateToken, gatewayRoutes);
+
 // User API Routes (protected)
 app.use('/api/user', authenticateToken, userRoutes);
 
@@ -560,6 +460,9 @@ app.use('/api/sessions', authenticateToken, messagesRoutes);
 
 // Agent API Routes (uses API key authentication)
 app.use('/api/agent', agentRoutes);
+
+// Self-update API Routes (protected)
+app.use('/api/update', authenticateToken, updateRoutes);
 
 // Legacy four-provider config endpoints have been removed. The runtime
 // model is read from PilotDeck config; fall back to a static stub so any
@@ -2107,6 +2010,8 @@ function handleChatConnection(ws, request) {
         try {
             const data = JSON.parse(message);
 
+            if (data.type === 'ping') return;
+
             if (data.type === 'always-on-presence') {
                 await alwaysOnHeartbeat.handlePresence(ws, data);
             } else if (data.type === 'always-on-presence-clear') {
@@ -2129,10 +2034,7 @@ function handleChatConnection(ws, request) {
                 const provider = data.provider || 'pilotdeck';
                 const success = await abortViaGateway(data.sessionId, provider);
                 writer.send(createNormalizedMessage({ kind: 'complete', exitCode: success ? 0 : 1, aborted: true, success, sessionId: data.sessionId, provider }));
-            } else if (
-                data.type === 'claude-permission-response' ||
-                data.type === 'permission-response'
-            ) {
+            } else if (data.type === 'permission-response') {
                 if (data.requestId) {
                     await decidePermissionViaGateway(
                         data.requestId,
@@ -3122,6 +3024,52 @@ const HOST = process.env.HOST || '0.0.0.0';
 const DISPLAY_HOST = getConnectableHost(HOST);
 const VITE_PORT = process.env.VITE_PORT || 5173;
 
+const PORT_FALLBACK_ATTEMPTS = 5;
+
+// Pick a random high port in the 20000–59999 range. Random (rather than the
+// preferred port + 1) because adjacent ports are frequently held by the same
+// multi-port app that already took the preferred one.
+function pickRandomHighPort() {
+    return 20000 + Math.floor(Math.random() * 40000);
+}
+
+// Listen on `preferredPort`; on EADDRINUSE retry on random high ports up to
+// PORT_FALLBACK_ATTEMPTS times. Resolves with the actually-bound port, or null
+// if every attempt was in use. Non-EADDRINUSE errors reject — real failures
+// (bad host, permissions) must not be silently retried.
+function listenWithPortFallback(srv, preferredPort, host) {
+    let port = preferredPort;
+    let attempt = 0;
+    return new Promise((resolve, reject) => {
+        const tryListen = () => {
+            attempt += 1;
+            const onError = (err) => {
+                srv.removeListener('listening', onListening);
+                if (err && err.code === 'EADDRINUSE') {
+                    if (attempt >= PORT_FALLBACK_ATTEMPTS) {
+                        resolve(null);
+                        return;
+                    }
+                    const nextPort = pickRandomHighPort();
+                    console.log(`${c.warn('[WARN]')} Port ${port} is in use; retrying on random port ${nextPort} (attempt ${attempt}/${PORT_FALLBACK_ATTEMPTS})...`);
+                    port = nextPort;
+                    setImmediate(tryListen);
+                    return;
+                }
+                reject(err);
+            };
+            const onListening = () => {
+                srv.removeListener('error', onError);
+                resolve(srv.address().port);
+            };
+            srv.once('error', onError);
+            srv.once('listening', onListening);
+            srv.listen(port, host);
+        };
+        tryListen();
+    });
+}
+
 async function ensureLocalUserWhenAuthDisabled() {
     if (!DISABLE_LOCAL_AUTH || userDb.hasUsers()) {
         return;
@@ -3151,12 +3099,21 @@ async function startServer() {
                 console.log('');
 
                 if (isProduction) {
-                    console.log(`${c.info('[INFO]')} To run in production mode, go to http://${DISPLAY_HOST}:${SERVER_PORT}`);
+                    console.log(`${c.info('[INFO]')} Starting in production mode...`);
                 } else {
                     console.log(`${c.info('[INFO]')} No production frontend build found; development mode expects Vite at http://${DISPLAY_HOST}:${VITE_PORT}`);
                 }
 
-                server.listen(SERVER_PORT, HOST, async () => {
+                const boundPort = await listenWithPortFallback(server, Number(SERVER_PORT), HOST);
+                if (boundPort === null) {
+                    console.error(`${c.warn('[ERROR]')} Could not bind a port after ${PORT_FALLBACK_ATTEMPTS} attempts (preferred ${SERVER_PORT}). All tried ports were in use. Set SERVER_PORT to a free port and retry.`);
+                    process.exit(1);
+                }
+                // Sync the actually-bound port back to the env so other modules
+                // that self-reference SERVER_PORT (e.g. routes/taskmaster.js) hit
+                // the right port after a fallback.
+                process.env.SERVER_PORT = String(boundPort);
+                {
                     const appInstallPath = path.join(__dirname, '..');
 
                     console.log('');
@@ -3164,7 +3121,7 @@ async function startServer() {
                     console.log(`  ${c.bright('PilotDeck Server - Ready')}`);
                     console.log(c.dim('═'.repeat(63)));
                     console.log('');
-                    console.log(`${c.info('[INFO]')} Server URL:  ${c.bright('http://' + DISPLAY_HOST + ':' + SERVER_PORT)}`);
+                    console.log(`${c.info('[INFO]')} Server URL:  ${c.bright('http://' + DISPLAY_HOST + ':' + boundPort)}`);
                     console.log(`${c.info('[INFO]')} Installed at: ${c.dim(appInstallPath)}`);
                     console.log(`${c.tip('[TIP]')}  Run "pilotdeck status" for full configuration details`);
                     console.log('');
@@ -3175,7 +3132,7 @@ async function startServer() {
                         process.env.PILOTDECK_DESKTOP === '1'
                         || process.env.PILOTDECK_SKIP_BROWSER_OPEN === '1';
                     if (!skipAutoOpen) {
-                        const serverUrl = `http://${DISPLAY_HOST === '0.0.0.0' ? 'localhost' : DISPLAY_HOST}:${SERVER_PORT}`;
+                        const serverUrl = `http://${DISPLAY_HOST === '0.0.0.0' ? 'localhost' : DISPLAY_HOST}:${boundPort}`;
                         const openCmd = process.platform === 'darwin' ? 'open'
                                       : process.platform === 'win32' ? 'start'
                                       : 'xdg-open';
@@ -3184,8 +3141,6 @@ async function startServer() {
 
                     // Start watching the projects folder for changes
                     await setupProjectsWatcher();
-
-                    await ensurePilotDeckProxyRunning();
 
                     // Start background memory scheduler for auto index/dream.
                     startMemoryScheduler();
@@ -3203,7 +3158,7 @@ async function startServer() {
                             process.emit('pilotdeck:config-broadcast', payload);
                         },
                     });
-                });
+                }
             }
         });
 
@@ -3218,7 +3173,6 @@ async function startServer() {
                     stopMemoryScheduler();
                     closeMemoryServices();
                     stopPilotDeckConfigWatcher();
-                    await stopPilotDeckProxy();
                     await stopAllPlugins();
                     // helpers were retired with the four-provider runtime.
                     try {

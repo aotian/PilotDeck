@@ -13,11 +13,11 @@ import {
 import { loadPilotConfig, resolvePilotHome } from "../pilot/index.js";
 import { createLocalGateway } from "./createLocalGateway.js";
 import { startPilotDeckServer } from "./pilotdeckServer.js";
-import { installGlobalProxy } from "./proxy.js";
+import { installGlobalProxy, reinstallGlobalProxy } from "./proxy.js";
 import { createShutdownAndExit } from "./shutdownCoordinator.js";
 import { createTelemetryCollector } from "../telemetry/index.js";
 
-installGlobalProxy();
+await installGlobalProxy();
 
 async function main(argv = process.argv.slice(2)): Promise<void> {
   const command = argv[0];
@@ -26,7 +26,16 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
     const env = process.env;
     const pilotHome = resolvePilotHome(env);
     const snapshot = loadPilotConfig({ projectRoot, env });
-    const telemetry = createTelemetryCollector({ env, pilotHome });
+    const telemetry = createTelemetryCollector({
+      env, pilotHome,
+      enabled: snapshot.config.telemetry?.enabled,
+    });
+
+    // Apply proxy from config (env-based proxy from top-level installGlobalProxy
+    // takes precedence; this fills in when only pilotdeck.yaml has a proxy).
+    if (snapshot.config.proxy?.url) {
+      await installGlobalProxy(snapshot.config.proxy.url);
+    }
 
     let alwaysOn: AlwaysOnManager | undefined;
     let cron: CronRuntime | undefined;
@@ -128,8 +137,30 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
     let reloadChain = Promise.resolve();
 
     configStore.subscribe((event) => {
+      if (event.changedPaths.some((p) => p.startsWith("telemetry."))) {
+        telemetry.setEnabled(event.nextSnapshot.config.telemetry?.enabled ?? false);
+      }
+
       const aoChanged = event.changedPaths.some((p) => p.startsWith("alwaysOn."));
       const cronChanged = event.changedPaths.some((p) => p.startsWith("cron."));
+      const proxyChanged = event.changedPaths.some((p) => p.startsWith("proxy.") || p === "proxy");
+      const adapterChanged = event.changedPaths.some((p) => p.startsWith("adapters."));
+
+      if (proxyChanged) {
+        const proxyConfig = event.nextSnapshot.config.proxy;
+        void reinstallGlobalProxy(proxyConfig?.url, proxyConfig?.noProxy);
+      }
+
+      if (adapterChanged) {
+        reloadChain = reloadChain
+          .then(() => handleAdapterHotReload(event.nextSnapshot.config))
+          .catch((err) =>
+            console.warn(
+              `[pilotdeck] adapter hot-reload failed: ${err instanceof Error ? err.message : String(err)}`,
+            ),
+          );
+      }
+
       if (!aoChanged && !cronChanged) return;
 
       reloadChain = reloadChain
@@ -192,6 +223,39 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
       console.log(`[pilotdeck] Subsystem hot-reload complete: ${parts.join(", ")}`);
     }
 
+    // --- Adapter hot-reload ---
+
+    let serverRef: Awaited<ReturnType<typeof startPilotDeckServer>> | undefined;
+
+    async function handleAdapterHotReload(config: (typeof snapshot)["config"]): Promise<void> {
+      if (!serverRef) return;
+      const parts: string[] = [];
+
+      const fCfg = config.adapters?.feishu;
+      if (fCfg?.enabled === true) {
+        const ch = new FeishuChannel({
+          appId: fCfg.appId,
+          appSecret: fCfg.appSecret,
+          encryptKey: fCfg.encryptKey,
+          verifyToken: fCfg.verifyToken,
+          connectionMode: fCfg.connectionMode,
+          domainName: fCfg.domainName,
+        });
+        await serverRef.hotStartChannel(ch);
+        parts.push("feishu=started");
+      }
+
+      const wCfg = config.adapters?.weixin;
+      if (wCfg?.enabled === true) {
+        await serverRef.hotStartChannel(new WeixinChannel());
+        parts.push("weixin=started");
+      }
+
+      if (parts.length) {
+        console.log(`[pilotdeck] Adapter hot-reload complete: ${parts.join(", ")}`);
+      }
+    }
+
     // --- Server startup ---
 
     const envPort = Number.parseInt(env.PILOTDECK_GATEWAY_PORT ?? "", 10);
@@ -219,6 +283,7 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
       channels: extraChannels,
       config: snapshot.config,
     });
+    serverRef = server;
     bindServer(server);
     deferredBroadcast = (name, payload) => server.broadcastNotification(name, payload);
     console.log(`PilotDeck server listening: ${server.url}`);
@@ -256,8 +321,25 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
     return;
   }
 
+  if (command === "gateway") {
+    const sub = argv[1];
+    if (sub === "setup") {
+      const { runGatewaySetup } = await import("./commands/gatewaySetup.js");
+      await runGatewaySetup(argv.slice(2));
+      return;
+    }
+    console.error("Usage: pilotdeck gateway setup [feishu|weixin]");
+    process.exitCode = 1;
+    return;
+  }
+
   if (command === "cron") {
     await handleCronCommand(argv.slice(1));
+    return;
+  }
+
+  if (command === "update") {
+    await handleUpdateCommand(argv.slice(1));
     return;
   }
 
@@ -297,6 +379,64 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
 
   const { gateway: fallbackGateway } = createLocalGateway({ projectRoot: process.cwd() });
   await new CliChannel({ argv, projectKey: process.cwd() }).start({ gateway: fallbackGateway });
+}
+
+async function handleUpdateCommand(argv: string[]): Promise<void> {
+  const { execFileSync } = await import("node:child_process");
+  const { resolve: resolvePath, dirname } = await import("node:path");
+  const { fileURLToPath } = await import("node:url");
+
+  const __filename = fileURLToPath(import.meta.url);
+  const projectRoot = resolvePath(dirname(__filename), "..", "..", "..");
+  const scriptPath = resolvePath(projectRoot, "scripts", "update.sh");
+
+  const doRestart = argv.includes("--restart");
+  const checkOnly = argv.includes("--check");
+
+  if (checkOnly) {
+    try {
+      const branch = execFileSync("git", ["branch", "--show-current"], { cwd: projectRoot, encoding: "utf-8" }).trim() || "main";
+      execFileSync("git", ["fetch", "origin", branch], { cwd: projectRoot, encoding: "utf-8", stdio: "pipe" });
+      const local = execFileSync("git", ["rev-parse", "HEAD"], { cwd: projectRoot, encoding: "utf-8" }).trim();
+      const remote = execFileSync("git", ["rev-parse", `origin/${branch}`], { cwd: projectRoot, encoding: "utf-8" }).trim();
+
+      if (local === remote) {
+        console.log(`Already up-to-date (${local.slice(0, 8)}) on branch ${branch}`);
+      } else {
+        const countStr = execFileSync("git", ["rev-list", "--count", `HEAD..origin/${branch}`], { cwd: projectRoot, encoding: "utf-8" }).trim();
+        console.log(`Update available: ${countStr} new commit(s) on branch ${branch}`);
+        console.log(`  local:  ${local.slice(0, 8)}`);
+        console.log(`  remote: ${remote.slice(0, 8)}`);
+        const log = execFileSync("git", ["log", "--oneline", `HEAD..origin/${branch}`, "-5"], { cwd: projectRoot, encoding: "utf-8" }).trim();
+        if (log) {
+          console.log("\nRecent commits:");
+          console.log(log);
+        }
+      }
+    } catch (e: unknown) {
+      console.error(`Failed to check for updates: ${e instanceof Error ? e.message : String(e)}`);
+      process.exitCode = 1;
+    }
+    return;
+  }
+
+  const args = doRestart ? [scriptPath, "--restart"] : [scriptPath];
+
+  try {
+    execFileSync("bash", args, {
+      cwd: projectRoot,
+      stdio: "inherit",
+      env: { ...process.env, FORCE_COLOR: "1" },
+    });
+  } catch (e: unknown) {
+    const err = e as { status?: number };
+    if (err.status === 2) {
+      // Already up-to-date — not an error
+      return;
+    }
+    console.error(`Update failed with exit code ${err.status ?? "unknown"}`);
+    process.exitCode = 1;
+  }
 }
 
 async function handleCronCommand(argv: string[]): Promise<void> {

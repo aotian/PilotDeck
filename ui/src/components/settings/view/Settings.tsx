@@ -1,24 +1,32 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import {
+  Activity,
   ArrowUpDown,
   ChevronLeft,
   ChevronRight,
   Code2,
+  Download,
   FileCog,
+  GitCommit,
   Globe2,
   MessageSquare,
   Palette,
+  Radio,
+  RefreshCw,
   Server,
   Shield,
   X,
   type LucideIcon,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { Button } from '../../../shared/view/ui';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { languages } from '../../../i18n/languages';
 import { useUiPreferences } from '../../../hooks/useUiPreferences';
+import { usePilotDeckConfig } from '../../../hooks/usePilotDeckConfig';
 import { useSettingsController } from '../hooks/useSettingsController';
+import { useGitVersion } from '../../../hooks/useGitVersion';
 import type {
   CodeEditorSettingsState,
   ProjectSortOrder,
@@ -32,14 +40,16 @@ import SettingsToggle from './SettingsToggle';
 import PilotDeckConfigTab from './tabs/PilotDeckConfigTab';
 import McpServersTab from './tabs/McpServersTab';
 import PermissionsSettingsTab from './tabs/PermissionsSettingsTab';
+import GatewaySettingsTab from './tabs/GatewaySettingsTab';
 
-type SettingsPage = 'main' | 'config' | 'mcp' | 'permissions' | 'chatInput' | 'codeEditor';
+type SettingsPage = 'main' | 'config' | 'mcp' | 'permissions' | 'chatInput' | 'codeEditor' | 'gateway';
 type ThemeMode = 'system' | 'light' | 'dark';
 
 const pageFromInitialTab = (tab: string): SettingsPage => {
   if (tab === 'config') return 'config';
   if (tab === 'mcp') return 'mcp';
   if (tab === 'permissions') return 'permissions';
+  if (tab === 'gateway') return 'gateway';
   return 'main';
 };
 
@@ -70,6 +80,7 @@ function Settings({ isOpen, onClose, projects = [], initialTab = 'appearance' }:
     permissions: t('mainTabs.permissions'),
     chatInput: t('settingsHome.chatInput.title'),
     codeEditor: t('appearanceSettings.codeEditor.title'),
+    gateway: t('gateway.title'),
   }[page];
 
   const maxWidth = page === 'config' ? 'max-w-[820px]' : 'max-w-[760px]';
@@ -118,6 +129,7 @@ function Settings({ isOpen, onClose, projects = [], initialTab = 'appearance' }:
             {page === 'config' && <PilotDeckConfigTab projects={projects} />}
             {page === 'mcp' && <McpServersTab projects={projects} />}
             {page === 'permissions' && <PermissionsSettingsTab />}
+            {page === 'gateway' && <GatewaySettingsTab />}
             {page === 'chatInput' && <ChatInputSettingsPage />}
             {page === 'codeEditor' && (
               <CodeEditorSettingsPage
@@ -147,6 +159,28 @@ function SettingsHome({ projectSortOrder, onProjectSortOrderChange, onOpenPage }
     themeMode?: ThemeMode;
     setThemeMode?: (mode: ThemeMode) => void;
   };
+  const { raw, setRaw, save, loading } = usePilotDeckConfig();
+
+  const telemetryEnabled = useMemo(() => {
+    try {
+      const config = parseYaml(raw);
+      return config?.telemetry?.enabled === true;
+    } catch {
+      return false;
+    }
+  }, [raw]);
+
+  const handleTelemetryToggle = useCallback((value: boolean) => {
+    try {
+      const config = parseYaml(raw) ?? {};
+      config.telemetry = { ...config.telemetry, enabled: value };
+      const next = stringifyYaml(config, { indent: 2, lineWidth: 0 });
+      setRaw(next);
+      void save();
+    } catch {
+      // YAML parse/stringify failure — ignore silently.
+    }
+  }, [raw, setRaw, save]);
 
   const currentLanguage = languages.some((language) => language.value === i18n.language)
     ? i18n.language
@@ -167,6 +201,12 @@ function SettingsHome({ projectSortOrder, onProjectSortOrderChange, onOpenPage }
             title={t('mcpConfig.title')}
             detail={t('settingsHome.mcp.detail')}
             onClick={() => onOpenPage('mcp')}
+          />
+          <NavigationRow
+            icon={Radio}
+            title={t('gateway.title')}
+            detail={t('settingsHome.gateway.detail')}
+            onClick={() => onOpenPage('gateway')}
           />
         </GroupedCard>
       </SettingsGroup>
@@ -240,15 +280,29 @@ function SettingsHome({ projectSortOrder, onProjectSortOrderChange, onOpenPage }
       </SettingsGroup>
 
       <SettingsGroup title={t('settingsHome.advanced')}>
-        <GroupedCard>
+        <GroupedCard divided>
           <NavigationRow
             icon={Shield}
             title={t('mainTabs.permissions')}
             detail={t('settingsHome.permissions.detail')}
             onClick={() => onOpenPage('permissions')}
           />
+          <MenuRow
+            icon={Activity}
+            title={t('settingsHome.telemetry.title')}
+            detail={t('settingsHome.telemetry.detail')}
+          >
+            <SettingsToggle
+              checked={telemetryEnabled}
+              onChange={handleTelemetryToggle}
+              ariaLabel={t('settingsHome.telemetry.title')}
+              disabled={loading}
+            />
+          </MenuRow>
         </GroupedCard>
       </SettingsGroup>
+
+      <VersionUpdateSection />
     </div>
   );
 }
@@ -490,6 +544,111 @@ function SelectControl({
         </option>
       ))}
     </select>
+  );
+}
+
+function VersionUpdateSection() {
+  const { t } = useTranslation('settings');
+  const { info, loading, triggerUpdate, triggerRestart, fetchVersion } = useGitVersion();
+  const [phase, setPhase] = useState<'idle' | 'updating' | 'success' | 'error'>('idle');
+
+  const handleUpdate = async () => {
+    setPhase('updating');
+    const result = await triggerUpdate();
+    setPhase(result.success ? 'success' : 'error');
+  };
+
+  const handleRestart = async () => {
+    document.title = 'Restarting PilotDeck...';
+    document.body.innerHTML = '';
+    document.body.style.cssText = 'margin:0;background:#0a0a0a;display:flex;align-items:center;justify-content:center;height:100vh';
+    document.body.innerHTML = `
+      <div style="text-align:center;font-family:system-ui,-apple-system,sans-serif">
+        <svg style="width:40px;height:40px;margin-bottom:16px;animation:spin 1s linear infinite" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.22-8.56"/></svg>
+        <p style="color:#ccc;font-size:1.1rem;margin:0 0 8px">Restarting PilotDeck...</p>
+        <p style="color:#666;font-size:0.8rem;margin:0">Page will reload automatically when server is ready.</p>
+      </div>
+      <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
+    triggerRestart().catch(() => {});
+    const poll = setInterval(async () => {
+      try {
+        const res = await fetch('/health');
+        if (res.ok) { clearInterval(poll); window.location.reload(); }
+      } catch { /* still down */ }
+    }, 2000);
+  };
+
+  const statusText = !info
+    ? t('about.checking')
+    : info.hasUpdate
+      ? t('about.updateAvailable')
+      : t('about.upToDate');
+
+  return (
+    <SettingsGroup title={t('about.title')}>
+      <GroupedCard divided>
+        <div className="flex min-h-[66px] items-center gap-3.5 px-5 py-3">
+          <GitCommit className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+          <div className="min-w-0 flex-1">
+            <div className="text-[15px] font-semibold leading-5 text-foreground">{t('about.version')}</div>
+            <div className="mt-0.5 text-xs leading-5 text-muted-foreground">
+              {statusText}
+            </div>
+          </div>
+          {info?.hasUpdate && phase === 'idle' && (
+            <button
+              type="button"
+              onClick={handleUpdate}
+              disabled={loading}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              <Download className="h-3 w-3" />
+              {t('about.updateNow')}
+            </button>
+          )}
+        </div>
+
+        {phase === 'updating' && (
+          <div className="px-5 py-3">
+            <div className="flex items-center gap-2">
+              <RefreshCw className="h-4 w-4 animate-spin text-blue-500" />
+              <span className="text-sm font-medium text-foreground">{t('about.updating')}</span>
+            </div>
+          </div>
+        )}
+
+        {phase === 'success' && (
+          <div className="flex min-h-[56px] items-center gap-3.5 px-5 py-3">
+            <div className="min-w-0 flex-1">
+              <span className="text-sm font-medium text-green-700 dark:text-green-400">{t('about.updateComplete')}</span>
+            </div>
+            <button
+              type="button"
+              onClick={handleRestart}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-green-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
+            >
+              <RefreshCw className="h-3 w-3" />
+              {t('about.restartToApply')}
+            </button>
+          </div>
+        )}
+
+        {phase === 'error' && (
+          <div className="flex min-h-[56px] items-center gap-3.5 px-5 py-3">
+            <div className="min-w-0 flex-1">
+              <span className="text-sm font-medium text-red-700 dark:text-red-400">{t('about.updateFailed')}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => { setPhase('idle'); fetchVersion(); }}
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
+              {t('about.dismiss')}
+            </button>
+          </div>
+        )}
+      </GroupedCard>
+    </SettingsGroup>
   );
 }
 
