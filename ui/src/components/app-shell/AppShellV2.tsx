@@ -727,7 +727,7 @@ function DeleteProjectDialog({
             <Trash2 className="h-5 w-5" strokeWidth={1.75} />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="text-base font-semibold text-foreground">Delete project?</h3>
+            <h3 className="text-base font-semibold text-foreground">删除项目？</h3>
             <p className="mt-1 break-all text-sm text-muted-foreground">
               <span className="font-mono text-xs">{displayName}</span>
             </p>
@@ -736,20 +736,19 @@ function DeleteProjectDialog({
 
         <div className="space-y-3 p-5">
           <p className="text-sm text-foreground">
-            This removes the project from PilotDeck and deletes its session metadata.
+            这会从童澄教研工作台移除此项目，并删除对应的会话元数据。
             {sessionCount > 0 ? (
               <>
                 {' '}
                 <span className="font-medium">
-                  {sessionCount} session{sessionCount === 1 ? '' : 's'}
+                  {sessionCount} 个会话
                 </span>{' '}
-                will also be removed.
+                也会被移除。
               </>
             ) : null}
           </p>
           <p className="text-xs text-muted-foreground">
-            Files on disk are <span className="font-medium text-foreground">not</span> deleted —
-            only PilotDeck&apos;s reference to them.
+            磁盘上的文件<span className="font-medium text-foreground">不会</span>被删除，只移除工作台中的引用。
           </p>
           {error ? (
             <div className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">

@@ -77,6 +77,8 @@ export class AgentSession {
       messages: this.state.messages,
       input,
       maxTurns: submitOptions.maxTurns,
+      maxOutputTokens: submitOptions.maxOutputTokens,
+      metadata: submitOptions.metadata,
       permissionMode: submitOptions.permissionMode,
       basePermissionMode: submitOptions.basePermissionMode,
       permissionRules: submitOptions.permissionRules,

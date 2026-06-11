@@ -6,6 +6,7 @@ import {
   Database,
   Folder,
   Loader2,
+  MessageSquarePlus,
   PanelLeftOpen,
   Radio,
   Sparkles,
@@ -77,6 +78,7 @@ export default function MainAreaV2(props: MainAreaV2Props) {
     selectedSession,
     activeTab,
     setActiveTab,
+    onStartNewSession,
     isSidebarCollapsed,
     onOpenSidebar,
   } = props;
@@ -177,6 +179,22 @@ export default function MainAreaV2(props: MainAreaV2Props) {
     }
   };
 
+  const handleStartCleanCoursewareSession = () => {
+    if (!selectedProject) return;
+    const projectLabel = projectDisplayName(selectedProject);
+    const draft = [
+      `基于当前课程资产工作区「${projectLabel}」继续。`,
+      '请先读取 brief.md、course-outline.md、teacher-script.md、exercises.md、pitfalls.md、parent-feedback.md、courseware-package.json 或 generator-handoff.json 中已存在的内容，',
+      '不要沿用旧会话历史；请用干净上下文总结当前资产、指出可继续改进的课件/PPT/视频脚本方向，并等待我确认下一步。',
+    ].join('');
+    try {
+      window.localStorage.setItem(`draft_input_${selectedProject.name}`, draft);
+    } catch {
+      // Draft prefill is a convenience only; opening a clean session still works.
+    }
+    onStartNewSession(selectedProject);
+  };
+
   return (
     <div className="flex h-full min-w-0 flex-col bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Header: breadcrumb left, tool switcher right. */}
@@ -212,21 +230,33 @@ export default function MainAreaV2(props: MainAreaV2Props) {
         </div>
 
         {isCoursewareAssetWorkspace ? (
-          <button
-            type="button"
-            onClick={handleLaunchCourseware}
-            disabled={launchingCourseware}
-            className="mr-2 inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md bg-orange-600 px-3 text-[13px] font-medium text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-60"
-            title="将当前课程资产交接到童澄发布流程"
-            aria-label="将当前课程资产交接到童澄发布流程"
-          >
-            {launchingCourseware ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
-            ) : (
-              <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
-            )}
-            <span>交接发布</span>
-          </button>
+          <div className="mr-2 flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleStartCleanCoursewareSession}
+              className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-3 text-[13px] font-medium text-neutral-700 shadow-sm transition hover:bg-neutral-50 hover:text-neutral-950 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
+              title="保留当前资产，开启不带旧历史的新对话"
+              aria-label="基于当前资产开启干净会话"
+            >
+              <MessageSquarePlus className="h-3.5 w-3.5" strokeWidth={1.75} />
+              <span>干净会话</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleLaunchCourseware}
+              disabled={launchingCourseware}
+              className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md bg-orange-600 px-3 text-[13px] font-medium text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-60"
+              title="将当前课程资产交接到童澄标准化发布流程"
+              aria-label="将当前课程资产交接到童澄标准化发布流程"
+            >
+              {launchingCourseware ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
+              ) : (
+                <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
+              )}
+              <span>交接发布</span>
+            </button>
+          </div>
         ) : null}
 
         <div

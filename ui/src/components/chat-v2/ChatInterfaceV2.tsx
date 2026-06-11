@@ -82,6 +82,8 @@ function ChatInterfaceV2({
 
   const {
     model,
+    setModel,
+    modelOptions,
     permissionMode,
     setPermissionMode: setPermissionModeRaw,
     pendingPermissionRequests,
@@ -406,6 +408,9 @@ function ChatInterfaceV2({
       canAbortSession={canAbortSession}
       isAbortPending={isAbortPending}
       tokenBudget={tokenBudget}
+      model={model}
+      modelOptions={modelOptions}
+      onModelChange={setModel}
       pendingPermissionRequests={pendingPermissionRequests}
       handlePermissionDecision={handlePermissionDecision}
       handleGrantToolPermission={handleGrantToolPermission}

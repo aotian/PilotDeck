@@ -59,6 +59,8 @@ export type AgentLoopInput = {
   turnId: string;
   messages: CanonicalMessage[];
   maxTurns?: number;
+  maxOutputTokens?: number;
+  metadata?: Record<string, unknown>;
   permissionMode?: PermissionMode;
   /** The user's actual permission preference before plan-mode override. */
   basePermissionMode?: PermissionMode;
@@ -287,7 +289,10 @@ export class AgentLoop {
         request,
         sessionId: input.sessionId,
         isMainAgent: !this.config.isSubagent,
-        metadata: previousTier ? { previousTier } : undefined,
+        metadata: {
+          ...(input.metadata ?? {}),
+          ...(previousTier ? { previousTier } : {}),
+        },
       });
 
       const getMaxCtx = this.dependencies.getModelMaxContextTokens;
@@ -948,7 +953,7 @@ export class AgentLoop {
       systemPrompt: prepared.systemPrompt ?? this.config.systemPrompt,
       tools: prepared.tools,
       toolChoice: this.config.toolChoice,
-      maxOutputTokens: this.config.maxOutputTokens,
+      maxOutputTokens: input.maxOutputTokens ?? this.config.maxOutputTokens,
       temperature: this.config.temperature,
       thinking: this.config.thinking,
       stream: true,

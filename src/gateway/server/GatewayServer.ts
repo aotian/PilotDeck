@@ -51,9 +51,9 @@ export async function startGatewayServer(options: GatewayServerOptions): Promise
     handleUpgrade(request, socket, options, auth.token, connections),
   );
 
-  await listen(server, options.port ?? 18789, host);
+  await listen(server, options.port ?? 18790, host);
   const address = server.address();
-  const port = typeof address === "object" && address ? address.port : options.port ?? 18789;
+  const port = typeof address === "object" && address ? address.port : options.port ?? 18790;
   return {
     url: `http://${host}:${port}`,
     wsUrl: `ws://${host}:${port}/ws`,

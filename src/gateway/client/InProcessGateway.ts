@@ -288,6 +288,7 @@ export class InProcessGateway implements Gateway {
         const permissionMode = input.mode ?? (permissionSettings.skipPermissions ? "bypassPermissions" : undefined);
         const persistedRules = permissionSettingsToRuleSet(permissionSettings);
         const sessionAllowRules = this.sessionPermissionGrants.get(input.sessionKey) ?? [];
+        const explicitModel = parseExplicitModelRef(input.explicitModel);
         this.options.telemetry?.trackFeatureLoopStage({
           module: "session",
           ownerModule: telemetryContext.ownerModule,
@@ -300,6 +301,7 @@ export class InProcessGateway implements Gateway {
             runId,
             channelKey: input.channelKey,
             permissionMode: permissionMode ?? "default",
+            ...(explicitModel ? { explicitModel: `${explicitModel.provider}/${explicitModel.model}` } : {}),
           },
         });
         // Promote a text-only turn to blocks when the host channel attached
@@ -314,6 +316,13 @@ export class InProcessGateway implements Gateway {
           {
             turnId: runId,
             maxTurns: input.maxTurns,
+            maxOutputTokens: input.maxOutputTokens,
+            metadata: explicitModel
+              ? {
+                  explicitProvider: explicitModel.provider,
+                  explicitModel: explicitModel.model,
+                }
+              : undefined,
             permissionMode,
             basePermissionMode: input.basePermissionMode,
             permissionRules: {
@@ -664,6 +673,17 @@ export class InProcessGateway implements Gateway {
 
 function cloneGatewayEvent(event: GatewayEvent): GatewayEvent {
   return JSON.parse(JSON.stringify(event)) as GatewayEvent;
+}
+
+function parseExplicitModelRef(value: unknown): { provider: string; model: string } | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  const slash = trimmed.indexOf("/");
+  if (slash <= 0 || slash >= trimmed.length - 1) return undefined;
+  const provider = trimmed.slice(0, slash).trim();
+  const model = trimmed.slice(slash + 1).trim();
+  if (!provider || !model) return undefined;
+  return { provider, model };
 }
 
 function resolveSubmitTurnTelemetry(input: GatewaySubmitTurnInput): {

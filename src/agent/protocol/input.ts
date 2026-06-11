@@ -8,6 +8,7 @@ export type AgentInput =
 export type AgentSubmitOptions = {
   turnId?: string;
   maxTurns?: number;
+  maxOutputTokens?: number;
   metadata?: Record<string, unknown>;
   permissionMode?: PermissionMode;
   /** The user's actual permission preference before plan-mode override. */

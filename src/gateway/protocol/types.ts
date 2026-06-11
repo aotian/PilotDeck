@@ -71,6 +71,10 @@ export type GatewaySubmitTurnInput = {
   channelKey: GatewayChannelKey;
   message: string;
   projectKey?: string;
+  /** Optional explicit model override in provider/model form for this turn. */
+  explicitModel?: string;
+  /** Optional output cap override for long-form creation turns. */
+  maxOutputTokens?: number;
   /** Override the agent session's working directory for this session. */
   workspaceCwd?: string;
   attachments?: ChannelAttachment[];

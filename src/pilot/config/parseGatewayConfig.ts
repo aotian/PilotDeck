@@ -43,7 +43,7 @@ export function parseGatewayConfig(rawGateway: unknown, diagnostics: PilotConfig
 
   const maxMcp = numberField(rawGateway, "maxPerSessionMcpInstances", 5);
   return {
-    port: numberField(rawGateway, "port", 18789),
+    port: numberField(rawGateway, "port", 18790),
     bindAddress: "127.0.0.1",
     idleSessionTimeoutMinutes: numberField(rawGateway, "idleSessionTimeoutMinutes", 30),
     staticAssetsPath: stringField(rawGateway, "staticAssetsPath"),

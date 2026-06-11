@@ -183,7 +183,7 @@ find_free_port() {
 
 resolve_runtime_ports() {
   local server_base="${SERVER_PORT:-3001}"
-  local gateway_base="${PILOTDECK_GATEWAY_PORT:-18789}"
+  local gateway_base="${PILOTDECK_GATEWAY_PORT:-18790}"
 
   SERVER_PORT="$(find_free_port "$server_base")" || \
     fail "Could not find a free UI port within ${MAX_PORT_TRIES} ports from ${server_base}."
@@ -651,7 +651,7 @@ if [[ "$COMMAND" == "status" ]]; then
 fi
 
 SERVER_BASE="${SERVER_PORT:-3001}"
-GATEWAY_BASE="${PILOTDECK_GATEWAY_PORT:-18789}"
+GATEWAY_BASE="${PILOTDECK_GATEWAY_PORT:-18790}"
 SERVER_PORT="$(find_free_port "$SERVER_BASE")" || fail "could not find a free UI port from ${SERVER_BASE}"
 PILOTDECK_GATEWAY_PORT="$(find_free_port "$GATEWAY_BASE")" || fail "could not find a free gateway port from ${GATEWAY_BASE}"
 PILOTDECK_GATEWAY_URL="ws://127.0.0.1:${PILOTDECK_GATEWAY_PORT}/ws"

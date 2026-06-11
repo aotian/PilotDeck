@@ -366,7 +366,7 @@
         "description": "Google Gemini AI 助手"
       },
       "pilotdeck": {
-        "description": "OpenBMB PilotDeck AI 助手"
+        "description": "童澄模型服务"
       }
     },
     "connectionStatus": "连接状态",

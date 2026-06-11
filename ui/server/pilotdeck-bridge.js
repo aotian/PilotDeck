@@ -3,7 +3,7 @@
  *
  *
  *   1. Connects to the standalone PilotDeck gateway server
- *      (`pilotdeck server`, default ws://127.0.0.1:18789/ws) as a
+ *      (`pilotdeck server`, default ws://127.0.0.1:18790/ws) as a
  *      WebSocket client. We never instantiate an in-process gateway
  *      here — that would create a second, divergent agent runtime that
  *      doesn't share `~/.pilotdeck/projects/<id>/chats/*.jsonl` writes
@@ -23,7 +23,7 @@
  *
  * Two-process launch:
  *
- *   - `pilotdeck server` (port 18789) owns the gateway, agent loop,
+ *   - `pilotdeck server` (port 18790) owns the gateway, agent loop,
  *     model router, MCP runtime, cron daemon, and on-disk session
  *     transcripts. Edit `src/**` then restart this process to pick up
  *     changes — no `npm run build` required when running via `tsx`.
@@ -63,7 +63,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const GENERAL_HOME = resolvePilotHome(process.env);
 
 const GATEWAY_URL =
-    process.env.PILOTDECK_GATEWAY_URL || 'ws://127.0.0.1:18789/ws';
+    process.env.PILOTDECK_GATEWAY_URL || 'ws://127.0.0.1:18790/ws';
 const GATEWAY_TOKEN_PATH =
     process.env.PILOTDECK_GATEWAY_TOKEN_PATH ||
     path.join(GENERAL_HOME, 'server-token');
@@ -97,6 +97,23 @@ function isPlanModeToolDenyText(text) {
     return typeof text === 'string' && /plan mode denies side-effecting tool\b/i.test(text);
 }
 
+function normalizeExplicitModel(value) {
+    if (typeof value !== 'string') return null;
+    const trimmed = value.trim();
+    const slash = trimmed.indexOf('/');
+    if (slash <= 0 || slash >= trimmed.length - 1) return null;
+    const provider = trimmed.slice(0, slash).trim();
+    const model = trimmed.slice(slash + 1).trim();
+    if (!provider || !model) return null;
+    return `${provider}/${model}`;
+}
+
+function normalizeMaxOutputTokens(value) {
+    const parsed = Number.parseInt(String(value ?? '').trim(), 10);
+    if (!Number.isFinite(parsed) || parsed <= 0) return null;
+    return parsed;
+}
+
 function normalizeToolErrorCode(errorCode, resultPreview) {
     if (isPlanModeToolDenyText(resultPreview)) return 'plan_mode_denied';
     return errorCode;
@@ -112,6 +129,10 @@ function normalizeToolErrorCode(errorCode, resultPreview) {
  */
 const WEB_DEFAULT_PERMISSION_MODE =
     process.env.PILOTDECK_WEB_PERMISSION_MODE || 'default';
+const WEB_DEFAULT_MAX_OUTPUT_TOKENS = Number.parseInt(
+    process.env.PILOTDECK_WEB_MAX_OUTPUT_TOKENS || '16384',
+    10,
+);
 
 
 // Resolves to the Gateway returned by `createRemoteGateway`. We express
@@ -737,7 +758,9 @@ export async function runChatViaGateway(
     ];
     const resolvedMode = resolvePermissionMode(options);
     const basePermissionMode = options?.basePermissionMode || undefined;
-    console.log(`[pilotdeck-bridge] submitTurn mode=${resolvedMode} (options.permissionMode=${options?.permissionMode}, options.mode=${options?.mode})`);
+    const explicitModel = normalizeExplicitModel(options?.model);
+    const maxOutputTokens = normalizeMaxOutputTokens(options?.maxOutputTokens) || WEB_DEFAULT_MAX_OUTPUT_TOKENS;
+    console.log(`[pilotdeck-bridge] submitTurn mode=${resolvedMode} model=${explicitModel || 'auto'} maxOutputTokens=${maxOutputTokens} (options.permissionMode=${options?.permissionMode}, options.mode=${options?.mode})`);
 
     try {
         const stream = gw.submitTurn({
@@ -748,6 +771,8 @@ export async function runChatViaGateway(
             mode: resolvedMode,
             runId,
             ...(basePermissionMode ? { basePermissionMode } : {}),
+            ...(explicitModel ? { explicitModel } : {}),
+            ...(Number.isFinite(maxOutputTokens) && maxOutputTokens > 0 ? { maxOutputTokens } : {}),
             ...(attachments.length > 0 ? { attachments } : {}),
             ...(options.workspaceCwd ? { workspaceCwd: options.workspaceCwd } : {}),
         });

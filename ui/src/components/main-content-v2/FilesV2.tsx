@@ -15,6 +15,7 @@ import {
   Loader2,
   Pencil,
   RefreshCw,
+  Sparkles,
   Trash2,
   Upload,
   X,
@@ -88,6 +89,7 @@ export default function FilesV2({ selectedProject, onFileOpen, onClose }: FilesV
   const [inlineEdit, setInlineEdit] = useState<InlineEdit | null>(null);
   const [uploadingProject, setUploadingProject] = useState(false);
   const [downloadingProject, setDownloadingProject] = useState(false);
+  const [launchingCourseware, setLaunchingCourseware] = useState(false);
   const [uploadMenuOpen, setUploadMenuOpen] = useState(false);
   const inlineInputRef = useRef<HTMLInputElement>(null);
   const escapePressedRef = useRef(false);
@@ -417,6 +419,26 @@ export default function FilesV2({ selectedProject, onFileOpen, onClose }: FilesV
     }
   }, [downloadingProject, selectedProject?.displayName, selectedProject?.name]);
 
+  const handleLaunchTongchengCourseware = useCallback(async () => {
+    if (!selectedProject?.name || launchingCourseware) return;
+
+    try {
+      setLaunchingCourseware(true);
+      const response = await api.tongchengCoursewareHandoff(selectedProject.name);
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.url) {
+        throw new Error(payload?.error || `Courseware handoff failed: ${response.status}`);
+      }
+
+      window.open(payload.url, '_blank', 'noopener');
+    } catch (error) {
+      console.error('Failed to launch Tongcheng courseware:', error);
+      window.alert(error instanceof Error ? error.message : '交接童澄课件失败');
+    } finally {
+      setLaunchingCourseware(false);
+    }
+  }, [launchingCourseware, selectedProject?.name]);
+
   const handleOpenHtmlPreview = useCallback(
     (event: ReactMouseEvent<HTMLButtonElement>, node: FileTreeNode) => {
       event.stopPropagation();
@@ -639,6 +661,21 @@ export default function FilesV2({ selectedProject, onFileOpen, onClose }: FilesV
             aria-label={t('fileTree.collapseAll', { defaultValue: 'Collapse all' }) as string}
           >
             <ChevronsDownUp className="h-3.5 w-3.5" strokeWidth={1.75} />
+          </button>
+          <button
+            type="button"
+            onClick={handleLaunchTongchengCourseware}
+            disabled={launchingCourseware}
+            className="ml-auto inline-flex h-7 shrink-0 items-center gap-1.5 rounded-md px-2.5 text-[12px] font-medium text-orange-700 transition hover:bg-orange-50 disabled:opacity-50 dark:text-orange-300 dark:hover:bg-orange-950/30"
+            title="将当前工作区资产交接到童澄标准化发布流程"
+            aria-label="将当前工作区资产交接到童澄标准化发布流程"
+          >
+            {launchingCourseware ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
+            ) : (
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
+            )}
+            <span>交接发布</span>
           </button>
           {onClose ? (
             <button

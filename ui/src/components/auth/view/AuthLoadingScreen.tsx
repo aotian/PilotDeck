@@ -12,7 +12,7 @@ export default function AuthLoadingScreen() {
           </div>
         </div>
 
-        <h1 className="mb-2 text-2xl font-bold text-foreground">PilotDeck</h1>
+        <h1 className="mb-2 text-2xl font-bold text-foreground">童澄教研工作台</h1>
 
         <div className="flex items-center justify-center space-x-2">
           {loadingDotAnimationDelays.map((delay) => (
@@ -24,7 +24,7 @@ export default function AuthLoadingScreen() {
           ))}
         </div>
 
-        <p className="mt-2 text-muted-foreground">Loading...</p>
+        <p className="mt-2 text-muted-foreground">加载中...</p>
       </div>
     </div>
   );

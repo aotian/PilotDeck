@@ -58,7 +58,7 @@ export default function LoginForm() {
     <AuthScreenLayout
       title={t('login.title')}
       description={t('login.description')}
-      footerText="Enter your credentials to access PilotDeck"
+      footerText="请输入账号密码进入童澄教研工作台"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <AuthInputField

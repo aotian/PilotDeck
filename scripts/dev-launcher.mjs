@@ -6,8 +6,9 @@
  * gateway / server / vite all bind/connect to matching numbers.
  *
  * This means a stale leftover process on 3001 (or another team member's tool
- * occupying 18789) no longer breaks `npm run dev` — the launcher just slides
- * over to 3002 / 18790 / etc. and prints the resolved map up top.
+ * occupying 18789) no longer breaks `npm run dev` — the launcher keeps the
+ * gateway away from OpenClaw's reserved 18789 port and prints the resolved map
+ * up top.
  *
  * Port resolution priority (highest wins):
  *   SERVER_PORT / VITE_PORT (env hard-pin, skips probing)
@@ -44,7 +45,7 @@ function readYamlPortConfig() {
 
 const yamlRuntime = readYamlPortConfig();
 const SERVER_PORT_BASE = parsePort(process.env.SERVER_PORT_BASE, yamlRuntime.serverPort ?? 3001);
-const GATEWAY_PORT_BASE = parsePort(process.env.PILOTDECK_GATEWAY_PORT_BASE, 18789);
+const GATEWAY_PORT_BASE = parsePort(process.env.PILOTDECK_GATEWAY_PORT_BASE, 18790);
 const VITE_PORT_BASE = parsePort(process.env.VITE_PORT_BASE, yamlRuntime.vitePort ?? 5173);
 
 const MAX_PORT_TRIES = 20;

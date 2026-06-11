@@ -225,9 +225,9 @@ export default function LlmConfigurationStep({ onSaved }: LlmConfigurationStepPr
   return (
     <div className="mx-auto w-full max-w-xl space-y-8">
       <div>
-        <h2 className="text-lg font-semibold text-foreground">LLM Provider Setup</h2>
+        <h2 className="text-lg font-semibold text-foreground">童澄模型服务配置</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Select your provider and enter your API key. Model capabilities are auto-configured.
+          选择可用模型服务并填写密钥，系统会自动配置课件生成能力。
         </p>
       </div>
 
@@ -236,7 +236,7 @@ export default function LlmConfigurationStep({ onSaved }: LlmConfigurationStepPr
       {/* Provider grid */}
       <div>
         <div className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          Provider
+          模型服务
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {CATALOG_PROVIDERS.map((provider) => (

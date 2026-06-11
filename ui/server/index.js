@@ -53,6 +53,7 @@ import fetch from 'node-fetch';
 import mime from 'mime-types';
 import JSZip from 'jszip';
 import { readPermissionSettings } from './services/permissionSettings.js';
+import { readPilotDeckConfigFile } from './services/pilotdeckConfig.js';
 
 import { getProjects, getProjectCronJobsOverview, getSessions, renameProject, deleteSession, deleteProject, addProjectManually, extractProjectDirectory, clearProjectDirectoryCache, searchConversations } from './projects.js';
 import {
@@ -469,8 +470,37 @@ app.use('/api/update', authenticateToken, updateRoutes);
 // older frontend code paths render without crashing.
 app.get('/api/agents/runtime-config', authenticateToken, (_req, res) => {
     const permSettings = readPermissionSettings();
+    let availableModels = [];
+    let defaultModel = '';
+    try {
+        const record = readPilotDeckConfigFile();
+        const providers = record.config?.model?.providers;
+        if (providers && typeof providers === 'object') {
+            for (const [providerId, provider] of Object.entries(providers)) {
+                const models = provider?.models;
+                if (!models || typeof models !== 'object') continue;
+                for (const [modelId, modelDef] of Object.entries(models)) {
+                    const value = `${providerId}/${modelId}`;
+                    availableModels.push({
+                        value,
+                        label: modelDef?.displayName || value,
+                    });
+                }
+            }
+        }
+        if (typeof record.config?.agent?.model === 'string') {
+            defaultModel = record.config.agent.model.trim();
+        }
+    } catch (error) {
+        console.warn('[runtime-config] failed to read PilotDeck model config:', error?.message || error);
+    }
+
     res.json({
         pilotdeck: { provider: 'pilotdeck' },
+        claude: {
+            defaultModel,
+            availableModels,
+        },
         permissions: {
             skipPermissions: permSettings.skipPermissions,
             effectiveMode: permSettings.skipPermissions ? 'bypassPermissions' : 'default',
@@ -720,8 +750,44 @@ function listCoursewareAssetFiles(projectPath) {
         'courseware.pptx',
         'deck.pptx',
         'slides.pptx',
+        'slides-manifest.json',
+        'video-script.md',
     ];
-    return expected.filter((fileName) => fs.existsSync(path.join(projectPath, fileName)));
+    const files = expected.filter((fileName) => fs.existsSync(path.join(projectPath, fileName)));
+    const nestedHtmlCandidates = [
+        'index.html',
+        'deck.html',
+        'slides.html',
+        'courseware.html',
+        'teach-courseware.html',
+    ];
+    const ignoredDirs = new Set(['node_modules', '.git', '.next', 'dist', 'build']);
+    function scan(dir, depth = 0) {
+        if (depth > 3) return;
+        let entries = [];
+        try {
+            entries = fs.readdirSync(dir, { withFileTypes: true });
+        } catch {
+            return;
+        }
+        for (const entry of entries) {
+            if (entry.name.startsWith('.') || ignoredDirs.has(entry.name)) continue;
+            const absolute = path.join(dir, entry.name);
+            const relative = path.relative(projectPath, absolute).split(path.sep).join('/');
+            if (entry.isDirectory()) {
+                scan(absolute, depth + 1);
+                continue;
+            }
+            if (depth > 0 && nestedHtmlCandidates.includes(entry.name) && !files.includes(relative)) {
+                files.push(relative);
+            }
+            if (entry.name === 'slides-manifest.json' && !files.includes(relative)) {
+                files.push(relative);
+            }
+        }
+    }
+    scan(projectPath);
+    return files;
 }
 
 function readCoursewareAssetText(projectPath, fileName) {
@@ -762,18 +828,25 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const title = compactCoursewareTitle(outline || brief || handoffNotes, projectName);
     const now = new Date().toISOString();
     const htmlAsset = firstExistingCoursewareAsset(assetFiles, [
+        'deck.html',
+        'slides.html',
         'courseware.html',
         'teach-courseware.html',
         'index.html',
+        'word-form-courseware/index.html',
+    ]);
+    const deckHtmlAsset = firstExistingCoursewareAsset(assetFiles, [
         'deck.html',
         'slides.html',
-    ]);
-    const deckHtmlAsset = firstExistingCoursewareAsset(assetFiles, ['deck.html', 'slides.html']);
+        'word-form-courseware/index.html',
+    ]) || (htmlAsset && /(^|\/)(deck|slides|index)\.html$/.test(htmlAsset) ? htmlAsset : undefined);
     const pptxAsset = firstExistingCoursewareAsset(assetFiles, [
         'courseware.pptx',
         'deck.pptx',
         'slides.pptx',
     ]);
+    const slidesManifestAsset = firstExistingCoursewareAsset(assetFiles, ['slides-manifest.json']);
+    const videoScriptAsset = firstExistingCoursewareAsset(assetFiles, ['video-script.md']);
 
     return {
         schemaVersion: 'tiku.courseAsset.v1',
@@ -783,6 +856,8 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         subject,
         topic: title,
         outputs: ['html', 'ppt', 'candidate_package', 'video_script'],
+        creativeSource: htmlAsset || pptxAsset ? 'tongcheng-creative-deck' : 'structured-assets',
+        standardizationMode: htmlAsset ? 'preserve-generated-deck' : 'generate-from-structured-assets',
         source: {
             workspaceId: projectName,
             projectName,
@@ -798,9 +873,14 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
             ...(htmlAsset ? { html: htmlAsset } : {}),
             ...(deckHtmlAsset ? { deckHtml: deckHtmlAsset } : {}),
             ...(pptxAsset ? { pptx: pptxAsset } : {}),
+            ...(slidesManifestAsset ? { slidesManifest: slidesManifestAsset } : {}),
+            ...(videoScriptAsset ? { videoScript: videoScriptAsset } : {}),
         },
         notes: [
             '由童澄教研创作台沉淀的课程资产包。',
+            htmlAsset
+                ? '已包含高质量课件成品，下游应优先校验、索引和发布该成品，不重新创作。'
+                : '当前未检测到课件成品，下游可按结构化资产生成预览。',
             '练习内容为候选，需要在 Tiku 中审核后再进入正式作业或试卷。',
         ],
         createdAt: now,

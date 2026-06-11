@@ -90,6 +90,9 @@ export type ComposerV2Props = {
   isAbortPending?: boolean;
   isSubmitPending?: boolean;
   tokenBudget?: Record<string, unknown> | null;
+  model: string;
+  modelOptions: Array<{ value: string; label: string }>;
+  onModelChange: (model: string) => void;
 
   pendingPermissionRequests: PendingPermissionRequest[];
   handlePermissionDecision: (
@@ -281,6 +284,9 @@ export default function ComposerV2({
   isAbortPending = false,
   isSubmitPending = false,
   tokenBudget,
+  model,
+  modelOptions,
+  onModelChange,
   pendingPermissionRequests,
   handlePermissionDecision,
   handleGrantToolPermission,
@@ -295,6 +301,7 @@ export default function ComposerV2({
   const { t } = useTranslation('chat');
   const [isContextPopoverOpen, setIsContextPopoverOpen] = useState(false);
   const [isRunModeMenuOpen, setIsRunModeMenuOpen] = useState(false);
+  const [isModelMenuOpen, setIsModelMenuOpen] = useState(false);
   const [isPermissionMenuOpen, setIsPermissionMenuOpen] = useState(false);
   const permissionSelectorDisabled = runMode === 'plan';
 
@@ -318,6 +325,16 @@ export default function ComposerV2({
   const selectedRunModeOption =
     RUN_MODE_OPTIONS.find((option) => option.mode === runMode) ||
     RUN_MODE_OPTIONS[0];
+  const normalizedModelOptions = modelOptions.length > 0
+    ? modelOptions
+    : model
+      ? [{ value: model, label: model }]
+      : [];
+  const selectedModelOption =
+    normalizedModelOptions.find((option) => option.value === model) ||
+    normalizedModelOptions[0] ||
+    null;
+  const selectedModelLabel = selectedModelOption?.label || selectedModelOption?.value || '模型';
   const SelectedRunModeIcon = selectedRunModeOption.Icon;
   const selectedRunModeLabel = t(selectedRunModeOption.labelKey, {
     defaultValue: selectedRunModeOption.defaultLabel,
@@ -578,6 +595,78 @@ export default function ComposerV2({
                         </div>
                       ) : null}
                     </div>
+                    {normalizedModelOptions.length > 0 ? (
+                      <div
+                        className="relative mr-1"
+                        onBlur={(event) => {
+                          const nextTarget = event.relatedTarget as Node | null;
+                          if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+                            setIsModelMenuOpen(false);
+                          }
+                        }}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setIsModelMenuOpen((open) => !open)}
+                          className="inline-flex h-7 max-w-[154px] items-center justify-center gap-1.5 rounded-md px-2 text-[12px] font-medium text-neutral-600 transition hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 sm:max-w-[210px]"
+                          title="选择本次对话模型"
+                          aria-haspopup="menu"
+                          aria-expanded={isModelMenuOpen}
+                        >
+                          <Bot className="h-4 w-4 shrink-0" strokeWidth={1.9} />
+                          <span className="truncate">{selectedModelLabel}</span>
+                          <ChevronDown
+                            className={cn(
+                              'h-3.5 w-3.5 shrink-0 transition-transform',
+                              isModelMenuOpen && 'rotate-180',
+                            )}
+                            strokeWidth={2}
+                          />
+                        </button>
+                        {isModelMenuOpen ? (
+                          <div
+                            role="menu"
+                            className="absolute bottom-full left-0 z-50 mb-2 max-h-72 w-72 overflow-y-auto rounded-xl border border-neutral-200 bg-white p-1.5 text-left shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
+                          >
+                            {normalizedModelOptions.map((option) => {
+                              const isSelected = model === option.value;
+                              return (
+                                <button
+                                  key={option.value}
+                                  type="button"
+                                  role="menuitemradio"
+                                  aria-checked={isSelected}
+                                  onMouseDown={(event) => event.preventDefault()}
+                                  onClick={() => {
+                                    onModelChange(option.value);
+                                    setIsModelMenuOpen(false);
+                                  }}
+                                  className={cn(
+                                    'flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left transition',
+                                    isSelected
+                                      ? 'bg-neutral-100 dark:bg-neutral-800'
+                                      : 'hover:bg-neutral-50 dark:hover:bg-neutral-800/70',
+                                  )}
+                                >
+                                  <Bot className="h-4 w-4 shrink-0 text-neutral-500 dark:text-neutral-400" strokeWidth={1.9} />
+                                  <span className="min-w-0 flex-1">
+                                    <span className="block truncate text-[13px] font-medium text-neutral-900 dark:text-neutral-100">
+                                      {option.label || option.value}
+                                    </span>
+                                    <span className="block truncate font-mono text-[11px] text-neutral-500 dark:text-neutral-400">
+                                      {option.value}
+                                    </span>
+                                  </span>
+                                  {isSelected ? (
+                                    <Check className="h-4 w-4 shrink-0 text-neutral-500 dark:text-neutral-300" strokeWidth={2} />
+                                  ) : null}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
                     <button
                       type="button"
                       onClick={openImagePicker}

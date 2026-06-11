@@ -127,6 +127,13 @@ export function useChatProviderState({ selectedSession }: UseChatProviderStateAr
     }
   }, [selectedSession?.id]);
 
+  const selectModel = useCallback((nextModel: string) => {
+    const normalizedModel = nextModel.trim();
+    if (!normalizedModel) return;
+    setModel(normalizedModel);
+    localStorage.setItem('pilotdeck-model', normalizedModel);
+  }, []);
+
   const cyclePermissionMode = useCallback(() => {
     const currentIndex = COMPOSER_PERMISSION_MODES.indexOf(permissionMode);
     const nextIndex = (currentIndex + 1) % COMPOSER_PERMISSION_MODES.length;
@@ -136,7 +143,7 @@ export function useChatProviderState({ selectedSession }: UseChatProviderStateAr
 
   return {
     model,
-    setModel,
+    setModel: selectModel,
     modelOptions,
     permissionMode,
     setPermissionMode,

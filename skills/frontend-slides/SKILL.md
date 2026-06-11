@@ -1,11 +1,22 @@
 ---
 name: frontend-slides
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+description: Create animation-rich standalone HTML presentations from scratch or by converting PowerPoint files for talks, pitches, reports, generic slide decks, and Tongcheng classroom PPT/HTML deck source assets when the user wants high-quality visual courseware. For Tongcheng/Tiku/Teach workflows, generate the deck as a source asset and also preserve the Tongcheng courseware handoff package.
 ---
 
 # Frontend Slides
 
 Create zero-dependency, animation-rich HTML presentations that run entirely in the browser.
+
+## Tongcheng Courseware Integration
+
+Use this skill for Tongcheng teaching courseware when the teacher needs a high-quality classroom deck, PPT-like HTML, visual style selection, or presentation-grade interactive lesson.
+
+For Tongcheng/Tiku/Teach workflows:
+
+1. Generate the presentation as a durable source asset in the workspace, preferably `deck.html` plus optional `slides-manifest.json`.
+2. Keep the deck self-contained or keep relative assets in a sibling folder.
+3. Also preserve/update the Tongcheng courseware handoff package files from `tongcheng-courseware-handoff` so the Tongcheng review and publishing pipeline can standardize, publish, and connect exercises.
+4. Do not ask the downstream courseware pipeline to recreate the visual deck from scratch when a generated `deck.html` already exists. The downstream pipeline should validate, index, and publish the asset.
 
 ## Core Principles
 

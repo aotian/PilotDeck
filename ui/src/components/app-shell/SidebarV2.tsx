@@ -32,8 +32,6 @@ import {
   setSessionCustomTitle,
   useCustomNamesVersion,
 } from '../../lib/customNames';
-import pilotdeckLogoDark from '../../assets/pilotdeck-wordmark-dark.png';
-import pilotdeckLogoLight from '../../assets/pilotdeck-wordmark-light.png';
 
 const asTimestamp = (value: unknown): number => {
   if (typeof value === 'number') return value;
@@ -960,34 +958,26 @@ export default function SidebarV2({
       )}
     >
       <div className="flex h-16 items-center justify-between pl-2 pr-4">
-        <div className="flex min-w-0 shrink items-center gap-2">
-          <button
-            type="button"
-            onClick={() => {
-              if (onDeselectProject) {
-                onDeselectProject();
-              } else {
-                navigate('/');
-              }
-            }}
-            aria-label="PilotDeck"
-            title="PilotDeck"
-            className="flex min-w-0 shrink items-center gap-2 rounded-md p-1 transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 dark:focus-visible:ring-neutral-700"
-          >
-            <img
-              src={pilotdeckLogoLight}
-              alt="PilotDeck"
-              className="h-7 w-auto max-w-[150px] select-none object-contain dark:hidden"
-              draggable={false}
-            />
-            <img
-              src={pilotdeckLogoDark}
-              alt="PilotDeck"
-              className="hidden h-7 w-auto max-w-[150px] select-none object-contain dark:block"
-              draggable={false}
-            />
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => {
+            if (onDeselectProject) {
+              onDeselectProject();
+            } else {
+              navigate('/');
+            }
+          }}
+          aria-label="童澄教研"
+          title="童澄教研"
+          className="flex min-w-0 shrink items-center gap-2 rounded-md p-1 transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 dark:focus-visible:ring-neutral-700"
+        >
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500 text-sm font-bold text-white shadow-sm">
+            童
+          </span>
+          <span className="min-w-0 truncate text-sm font-semibold tracking-normal text-neutral-900 dark:text-neutral-50">
+            童澄教研
+          </span>
+        </button>
         {onCollapse ? (
           <button
             type="button"

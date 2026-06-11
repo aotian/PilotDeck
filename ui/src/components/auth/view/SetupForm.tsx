@@ -1,8 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useAuth } from '../context/AuthContext';
-import pilotdeckLogoDark from '../../../assets/pilotdeck-wordmark-dark.png';
-import pilotdeckLogoLight from '../../../assets/pilotdeck-wordmark-light.png';
 import AuthErrorAlert from './AuthErrorAlert';
 import AuthInputField from './AuthInputField';
 import AuthScreenLayout from './AuthScreenLayout';
@@ -84,25 +82,9 @@ export default function SetupForm() {
 
   return (
     <AuthScreenLayout
-      title="Welcome to PilotDeck"
-      description="Set up your account to get started"
-      footerText="This is a single-user system. Only one account can be created."
-      logo={
-        <div className="flex items-center justify-center gap-2">
-          <img
-            src={pilotdeckLogoLight}
-            alt="PilotDeck"
-            className="h-14 w-auto max-w-72 select-none object-contain dark:hidden"
-            draggable={false}
-          />
-          <img
-            src={pilotdeckLogoDark}
-            alt="PilotDeck"
-            className="hidden h-14 w-auto max-w-72 select-none object-contain dark:block"
-            draggable={false}
-          />
-        </div>
-      }
+      title="欢迎使用童澄教研工作台"
+      description="创建账号后开始整理课程资产与生成智能课件"
+      footerText="这是单用户系统，仅可创建一个管理员账号。"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <AuthInputField

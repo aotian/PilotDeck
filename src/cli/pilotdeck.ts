@@ -275,7 +275,7 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
     const weixinChannel = weixinCfg?.enabled === true ? new WeixinChannel() : undefined;
     const server = await startPilotDeckServer({
       gateway,
-      port: readPort(argv) ?? (Number.isFinite(envPort) ? envPort : 18789),
+      port: readPort(argv) ?? (Number.isFinite(envPort) ? envPort : 18790),
       staticAssetsPath: resolve(projectRoot, "ui/dist"),
       feishu: feishuChannel,
       weixin: weixinChannel,
@@ -355,7 +355,7 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
       return;
     }
     const snapshot = loadPilotConfig({ projectRoot: process.cwd() });
-    const gatewayPort = snapshot.config.gateway?.port ?? 18789;
+    const gatewayPort = snapshot.config.gateway?.port ?? 18790;
     const probeUrl = `http://127.0.0.1:${gatewayPort}`;
     const fallbackGateway = createFallbackGateway();
     try {

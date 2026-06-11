@@ -13,11 +13,11 @@
     "untitledSession": "未命名会话",
     "newSession": "新会话",
     "codexSession": "Codex 会话",
-    "fetchingProjects": "正在获取您的 PilotDeck 项目和会话",
+    "fetchingProjects": "正在获取您的童澄教研项目和会话",
     "projects": "项目",
     "noMatchingProjects": "未找到匹配的项目",
     "tryDifferentSearch": "尝试调整您的搜索词",
-    "runPilotDeckCli": "在项目目录中运行 PilotDeck CLI 以开始使用"
+    "runPilotDeckCli": "请选择或创建一个教研工作区以开始使用"
   },
   "general": {
     "title": "通用",
@@ -32,8 +32,8 @@
     "label": "操作菜单"
   },
   "app": {
-    "title": "PilotDeck",
-    "subtitle": "AI 编程助手"
+    "title": "童澄教研",
+    "subtitle": "智能课件工作台"
   },
   "sessions": {
     "title": "会话",
