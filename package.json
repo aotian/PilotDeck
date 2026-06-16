@@ -31,7 +31,7 @@
   "dependencies": {
     "@larksuiteoapi/node-sdk": "^1.65.0",
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.17",
     "@types/turndown": "^5.0.6",
     "@vscode/ripgrep": "^1.18.0",
     "edgeclaw-memory-core": "file:src/context/memory/edgeclaw-memory-core",
@@ -40,7 +40,7 @@
     "js-tiktoken": "^1.0.21",
     "jsonrepair": "^3.14.0",
     "mupdf": "^1.27.0",
-    "react": "^19.2.6",
+    "react": "^19.2.7",
     "sharp": "^0.34.5",
     "slice-ansi": "^9.0.0",
     "string-width": "^8.2.1",
