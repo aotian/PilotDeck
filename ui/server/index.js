@@ -474,22 +474,50 @@ app.get('/api/agents/runtime-config', authenticateToken, (_req, res) => {
     let defaultModel = '';
     try {
         const record = readPilotDeckConfigFile();
+        if (typeof record.config?.agent?.model === 'string') {
+            defaultModel = record.config.agent.model.trim();
+        }
+        const unavailableModelIds = new Set(
+            String(process.env.TONGCHENG_DISABLED_MODELS || 'tc-premium,tc-coding')
+                .split(',')
+                .map((modelId) => modelId.trim())
+                .filter(Boolean),
+        );
         const providers = record.config?.model?.providers;
         if (providers && typeof providers === 'object') {
+            const defaultProviderId = defaultModel.includes('/') ? defaultModel.split('/')[0] : '';
+            const preferredProviders = new Set([
+                defaultProviderId,
+                'tc-admin',
+            ].filter(Boolean));
+            const byModelId = new Map();
             for (const [providerId, provider] of Object.entries(providers)) {
                 const models = provider?.models;
                 if (!models || typeof models !== 'object') continue;
                 for (const [modelId, modelDef] of Object.entries(models)) {
+                    if (unavailableModelIds.has(modelId)) continue;
                     const value = `${providerId}/${modelId}`;
-                    availableModels.push({
+                    const option = {
                         value,
-                        label: modelDef?.displayName || value,
-                    });
+                        label: modelDef?.displayName || modelId,
+                    };
+                    const current = byModelId.get(modelId);
+                    if (!current || preferredProviders.has(providerId)) {
+                        byModelId.set(modelId, option);
+                    }
                 }
             }
-        }
-        if (typeof record.config?.agent?.model === 'string') {
-            defaultModel = record.config.agent.model.trim();
+            availableModels = Array.from(byModelId.values()).sort((left, right) => {
+                const order = ['tc-main', 'tc-multimodal', 'tc-economy', 'tc-local'];
+                const leftId = left.value.split('/').pop();
+                const rightId = right.value.split('/').pop();
+                const leftIndex = order.indexOf(leftId);
+                const rightIndex = order.indexOf(rightId);
+                if (leftIndex !== -1 || rightIndex !== -1) {
+                    return (leftIndex === -1 ? 999 : leftIndex) - (rightIndex === -1 ? 999 : rightIndex);
+                }
+                return left.label.localeCompare(right.label);
+            });
         }
     } catch (error) {
         console.warn('[runtime-config] failed to read PilotDeck model config:', error?.message || error);
@@ -737,11 +765,21 @@ function resolveCoursewareSubjectFromAssets(projectPath) {
 function listCoursewareAssetFiles(projectPath) {
     const expected = [
         'brief.md',
+        'tiku-context.json',
         'course-outline.md',
         'teacher-script.md',
         'exercises.md',
         'pitfalls.md',
         'parent-feedback.md',
+        'homework.md',
+        'oj-exercises.md',
+        'edu-exercises.md',
+        'ppt-outline.md',
+        'learn-integration.md',
+        'learn整合方案.md',
+        'course-feedback.md',
+        'teacher-feedback.md',
+        'courseware-slides.json',
         'courseware.html',
         'index.html',
         'teach-courseware.html',
@@ -751,7 +789,10 @@ function listCoursewareAssetFiles(projectPath) {
         'deck.pptx',
         'slides.pptx',
         'slides-manifest.json',
+        'courseware-package.json',
+        'generator-handoff.json',
         'video-script.md',
+        'complete-course-package.md',
     ];
     const files = expected.filter((fileName) => fs.existsSync(path.join(projectPath, fileName)));
     const nestedHtmlCandidates = [
@@ -784,6 +825,18 @@ function listCoursewareAssetFiles(projectPath) {
             if (entry.name === 'slides-manifest.json' && !files.includes(relative)) {
                 files.push(relative);
             }
+            if (entry.name === 'courseware-slides.json' && !files.includes(relative)) {
+                files.push(relative);
+            }
+            if (['courseware-package.json', 'generator-handoff.json'].includes(entry.name) && !files.includes(relative)) {
+                files.push(relative);
+            }
+            if (entry.name.endsWith('.pptx') && !files.includes(relative)) {
+                files.push(relative);
+            }
+            if (/learn.*整合.*\.md$/i.test(entry.name) && !files.includes(relative)) {
+                files.push(relative);
+            }
         }
     }
     scan(projectPath);
@@ -809,7 +862,386 @@ function firstExistingCoursewareAsset(assetFiles, candidates) {
     return candidates.find((fileName) => assetFiles.includes(fileName));
 }
 
+const COURSEWARE_STUDENT_FORBIDDEN_TERMS = [
+    '江校',
+    'agent',
+    'Pilot',
+    'OpenMAIC',
+    '内部',
+    '验收',
+    '落库',
+    'metadata',
+    'courseware_jobs',
+    '老师讲稿',
+];
+
+function stripHtmlTags(value) {
+    return String(value || '')
+        .replace(/<script\b[\s\S]*?<\/script>/gi, '')
+        .replace(/<style\b[\s\S]*?<\/style>/gi, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function sanitizeCoursewareStudentHtml(value) {
+    let html = String(value || '');
+    html = html
+        .replace(/<script\b[\s\S]*?<\/script>/gi, '')
+        .replace(/\s+on[a-z]+\s*=\s*"[^"]*"/gi, '')
+        .replace(/\s+on[a-z]+\s*=\s*'[^']*'/gi, '')
+        .replace(/\s+(href|src)\s*=\s*"javascript:[^"]*"/gi, '')
+        .replace(/\s+(href|src)\s*=\s*'javascript:[^']*'/gi, '');
+    for (const term of COURSEWARE_STUDENT_FORBIDDEN_TERMS) {
+        html = html.replace(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '');
+    }
+    return html.trim();
+}
+
+function cleanCoursewareStudentText(value) {
+    let text = String(value || '')
+        .split(/\r?\n/)
+        .filter((line) => !COURSEWARE_STUDENT_FORBIDDEN_TERMS.some((term) => line.includes(term)))
+        .join('\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    for (const term of COURSEWARE_STUDENT_FORBIDDEN_TERMS) {
+        text = text.replace(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '');
+    }
+    return text.trim();
+}
+
+function coursewareMarkdownToHtml(markdown) {
+    const text = cleanCoursewareStudentText(markdown);
+    if (!text) return '<p>本页内容待补充。</p>';
+    return text
+        .split(/\n{2,}/)
+        .map((block) => block.trim())
+        .filter(Boolean)
+        .map((block) => {
+            const lines = block.split(/\n/).map((line) => line.trim()).filter(Boolean);
+            if (lines.length > 1 || lines.every((line) => /^[-*•]\s+/.test(line))) {
+                const items = lines.map((line) => line.replace(/^[-*•]\s+/, '')).filter(Boolean);
+                return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+            }
+            return `<p>${escapeHtml(block)}</p>`;
+        })
+        .join('\n');
+}
+
+function makeCoursewareSlideHtml({ title, kicker, markdown, type }) {
+    const html = [
+        `<section class="tc-slide tc-slide-${escapeHtml(type)}">`,
+        `  <div class="tc-slide-kicker">${escapeHtml(kicker || '课堂课件')}</div>`,
+        `  <h2>${escapeHtml(title)}</h2>`,
+        '  <div class="tc-slide-body">',
+        coursewareMarkdownToHtml(markdown),
+        '  </div>',
+        '</section>',
+    ].join('\n');
+    return sanitizeCoursewareStudentHtml(html);
+}
+
+function normalizeTikuContextQuestion(question, source = 'tiku') {
+    return {
+        source: question?.source || source,
+        question_id: question?.question_id || question?.id || '',
+        knowledge_id: question?.knowledge_id || '',
+        content: cleanCoursewareStudentText(question?.content || question?.title || ''),
+        type: question?.type || 'short_answer',
+        difficulty: question?.difficulty,
+        answer: question?.answer || question?.correct_option || '',
+        explanation: question?.explanation || question?.analysis || '',
+    };
+}
+
+function buildCoursewareSlidesFromTikuContext(tikuContext) {
+    const coursePackage = tikuContext?.coursePackage || {};
+    const lesson = tikuContext?.lesson || {};
+    const knowledge = tikuContext?.knowledge || {};
+    const title = cleanCoursewareStudentText(
+        lesson.title ||
+        coursePackage.lessonTitle ||
+        coursePackage.title ||
+        '课堂课件',
+    );
+    const knowledgeNames = [
+        ...(Array.isArray(knowledge.selectedNodes) ? knowledge.selectedNodes.map((node) => node?.name) : []),
+        ...(Array.isArray(knowledge.descendantNodes) ? knowledge.descendantNodes.slice(0, 5).map((node) => node?.name) : []),
+    ].filter(Boolean);
+    const materials = Array.isArray(tikuContext?.materials) ? tikuContext.materials : [];
+    const questions = [
+        ...(Array.isArray(tikuContext?.questions) ? tikuContext.questions.map((item) => normalizeTikuContextQuestion(item, 'tiku')) : []),
+        ...(Array.isArray(tikuContext?.aiDraftQuestions) ? tikuContext.aiDraftQuestions.map((item) => normalizeTikuContextQuestion(item, 'ai-draft')) : []),
+    ].filter((item) => item.content);
+    const duration = Number(coursePackage.durationMinutes || lesson.durationMinutes || 180);
+    const slides = [];
+    const push = ({ type, title: slideTitle, markdown, notes = '', durationMinutes = 8 }) => {
+        const order = slides.length + 1;
+        const normalizedType = normalizeCoursewareSlideType(type, order);
+        const safeTitle = cleanCoursewareStudentText(slideTitle || `第 ${order} 页`);
+        const safeMarkdown = cleanCoursewareStudentText(markdown);
+        slides.push({
+            id: `slide-${String(order).padStart(2, '0')}`,
+            order,
+            type: normalizedType,
+            title: safeTitle,
+            html: makeCoursewareSlideHtml({
+                title: safeTitle,
+                kicker: normalizedType === 'cover' ? '课程导入' : normalizedType === 'practice' ? '课堂练习' : '核心讲解',
+                markdown: safeMarkdown,
+                type: normalizedType,
+            }),
+            markdown: safeMarkdown,
+            notes: cleanCoursewareStudentText(notes),
+            duration_minutes: durationMinutes,
+            student_visible: true,
+        });
+    };
+
+    push({
+        type: 'cover',
+        title,
+        markdown: [
+            `本节课目标：围绕「${title}」建立解题路径。`,
+            knowledgeNames.length ? `核心知识点：${knowledgeNames.slice(0, 4).join('、')}。` : '',
+            `建议时长：${duration} 分钟。`,
+        ].filter(Boolean).join('\n\n'),
+        durationMinutes: 6,
+    });
+
+    push({
+        type: 'concept',
+        title: '知识地图',
+        markdown: knowledgeNames.length
+            ? knowledgeNames.slice(0, 8).map((name, index) => `${index + 1}. ${name}`).join('\n')
+            : '先明确本课核心概念，再用例题验证理解。',
+        durationMinutes: 10,
+    });
+
+    const materialText = materials
+        .slice(0, 3)
+        .map((item, index) => `${index + 1}. ${cleanCoursewareStudentText(item.content || '')}`)
+        .filter(Boolean)
+        .join('\n');
+    push({
+        type: 'concept',
+        title: '讲解素材',
+        markdown: materialText || '用一个典型问题导入，先读题，再圈出输入、处理和输出。',
+        durationMinutes: 12,
+    });
+
+    questions.slice(0, 4).forEach((question, index) => {
+        push({
+            type: index < 2 ? 'example' : 'practice',
+            title: index < 2 ? `例题 ${index + 1}` : `课堂练习 ${index - 1}`,
+            markdown: [
+                question.content,
+                question.answer ? `参考答案：${question.answer}` : '',
+                question.explanation ? `解析：${question.explanation}` : '',
+            ].filter(Boolean).join('\n\n'),
+            durationMinutes: index < 2 ? 12 : 8,
+        });
+    });
+
+    push({
+        type: 'summary',
+        title: '本课总结',
+        markdown: [
+            '回顾本节课的核心方法，整理容易出错的位置。',
+            questions.length ? '从课堂题目中选 1-2 题复盘：为什么这样做，边界条件是什么。' : '',
+            '记录一个需要课后继续练习的问题。',
+        ].filter(Boolean).join('\n\n'),
+        durationMinutes: 8,
+    });
+
+    return {
+        schemaVersion: 'tiku.coursewareSlides.v1',
+        coursePackageId: coursePackage.id || coursePackage.coursePackageId || null,
+        lessonDbId: coursePackage.lessonDbId || lesson.dbId || lesson.lessonDbId || null,
+        lessonId: coursePackage.lessonId || lesson.lessonId || null,
+        title,
+        knowledgeIds: collectCoursewareKnowledgeIds(tikuContext),
+        slides,
+    };
+}
+
+function normalizeCoursewareSlideType(value, order) {
+    const raw = String(value || '').toLowerCase();
+    if (order === 1 || ['cover', 'title'].includes(raw)) return 'cover';
+    if (['example', 'case', 'code', 'trace', 'model'].includes(raw)) return 'example';
+    if (['practice', 'assessment', 'diagnostic', 'homework', 'quiz'].includes(raw)) return 'practice';
+    if (['summary', 'checklist', 'pitfalls'].includes(raw)) return 'summary';
+    return 'concept';
+}
+
+function collectCoursewareKnowledgeIds(tikuContext) {
+    const ids = new Set();
+    const add = (value) => {
+        if (value === undefined || value === null || value === '') return;
+        ids.add(String(value));
+    };
+    if (Array.isArray(tikuContext?.knowledgeIds)) {
+        tikuContext.knowledgeIds.forEach(add);
+    }
+    if (Array.isArray(tikuContext?.lesson?.knowledgeIds)) {
+        tikuContext.lesson.knowledgeIds.forEach(add);
+    }
+    add(tikuContext?.knowledge?.nodeId);
+    add(tikuContext?.knowledge?.rootNodeId);
+    if (Array.isArray(tikuContext?.knowledge?.descendantNodeIds)) {
+        tikuContext.knowledge.descendantNodeIds.forEach(add);
+    }
+    return [...ids];
+}
+
+function convertPilotTikuInputToContext(projectPath) {
+    const contextPath = path.join(projectPath, 'tiku-context.json');
+    const existing = readJsonFileIfExists(contextPath);
+    if (existing) return existing;
+    const pilotInput = readJsonFileIfExists(path.join(projectPath, 'pilot-tiku-input.json'));
+    if (!pilotInput) return null;
+    const lesson = pilotInput.lesson || {};
+    const knowledgeNode = lesson.knowledgeNode || {};
+    const context = {
+        schemaVersion: 'tiku.courseContext.v1',
+        source: 'tiku',
+        subject: 'cpp',
+        coursePackage: {
+            ...(pilotInput.coursePackage || {}),
+            lessonDbId: lesson.dbId,
+            lessonId: lesson.lessonId,
+            lessonTitle: lesson.title,
+        },
+        lesson: {
+            dbId: lesson.dbId,
+            lessonId: lesson.lessonId,
+            title: lesson.title,
+            status: lesson.status,
+            knowledgeIds: lesson.knowledgeIds || [],
+        },
+        knowledge: {
+            rootNodeId: pilotInput.coursePackage?.rootKnowledgeId,
+            nodeId: knowledgeNode.id || lesson.knowledgeIds?.[0],
+            nodeName: knowledgeNode.name || lesson.title,
+            path: Array.isArray(knowledgeNode.path) ? knowledgeNode.path.join(' / ') : knowledgeNode.path,
+            descendantNodeIds: lesson.knowledgeIds || [],
+        },
+        questionPolicy: {
+            source: 'tiku-first-ai-fill',
+            preferredKinds: ['class_practice', 'homework', 'quiz'],
+            maxCandidates: 12,
+            allowAiDraftForGaps: true,
+        },
+        questions: [],
+        materials: [],
+        eduAssessment: pilotInput.eduAssessment,
+        ojProblems: pilotInput.ojProblems,
+        currentAssets: pilotInput.currentAssets,
+        teacherConstraints: {
+            durationMinutes: 180,
+            mode: 'teacher-led',
+            outputs: ['courseware-slides.json', 'deck.html', 'teacher-script.md', 'video-script.md', 'courseware-package.json'],
+        },
+        legacyPilotInput: {
+            schemaVersion: pilotInput.schemaVersion,
+            createdAt: pilotInput.createdAt,
+            intent: pilotInput.intent,
+            guardrails: pilotInput.guardrails,
+            expectedOutputs: pilotInput.expectedOutputs,
+        },
+    };
+    fs.writeFileSync(contextPath, JSON.stringify(context, null, 2));
+    return context;
+}
+
+function extractDeckSections(deckHtml) {
+    const sections = [];
+    const regex = /<section\b[^>]*>([\s\S]*?)<\/section>/gi;
+    let match;
+    while ((match = regex.exec(deckHtml))) {
+        sections.push(match[1]);
+    }
+    if (sections.length > 0) return sections;
+    const body = deckHtml.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1];
+    return body ? [body] : [];
+}
+
+function buildCoursewareSlidesFromLegacyAssets(projectName, projectPath, assetFiles, tikuContext, title) {
+    const existingAsset = firstExistingCoursewareAsset(assetFiles, ['courseware-slides.json']);
+    if (existingAsset) return existingAsset;
+
+    const manifestAsset = firstExistingCoursewareAsset(assetFiles, ['slides-manifest.json']);
+    const deckAsset = firstExistingCoursewareAsset(assetFiles, [
+        'deck.html',
+        'slides.html',
+        'courseware.html',
+        'teach-courseware.html',
+        'index.html',
+        'word-form-courseware/index.html',
+    ]);
+    if (!manifestAsset && !deckAsset) return undefined;
+
+    const manifest = manifestAsset ? readJsonFileIfExists(path.join(projectPath, manifestAsset)) : null;
+    const deckHtml = deckAsset ? readCoursewareAssetText(projectPath, deckAsset) : '';
+    const sectionHtml = extractDeckSections(deckHtml);
+    const manifestSlides = Array.isArray(manifest?.slides) ? manifest.slides : [];
+    const slideCount = Math.max(sectionHtml.length, manifestSlides.length, 1);
+    const slides = [];
+    for (let index = 0; index < slideCount; index += 1) {
+        const order = index + 1;
+        const manifestSlide = manifestSlides[index] || {};
+        const rawHtml = sectionHtml[index] || `<section><h2>${manifestSlide.title || `${title} ${order}`}</h2></section>`;
+        const safeHtml = sanitizeCoursewareStudentHtml(rawHtml);
+        const text = stripHtmlTags(safeHtml);
+        const slideTitle = manifestSlide.title || stripHtmlTags(rawHtml).slice(0, 32) || `第 ${order} 页`;
+        slides.push({
+            id: manifestSlide.id || `slide-${String(order).padStart(2, '0')}`,
+            order,
+            type: normalizeCoursewareSlideType(manifestSlide.type || manifestSlide.kind, order),
+            title: slideTitle,
+            html: safeHtml || `<section><h2>${slideTitle}</h2></section>`,
+            markdown: manifestSlide.markdown || `## ${slideTitle}\n\n${text}`,
+            notes: manifestSlide.notes || '',
+            duration_minutes: Number(manifestSlide.duration_minutes || manifestSlide.durationMinutes || 3),
+            student_visible: manifestSlide.student_visible !== false,
+        });
+    }
+
+    const coursePackage = tikuContext?.coursePackage || {};
+    const lesson = tikuContext?.lesson || {};
+    const slidesPackage = {
+        schemaVersion: 'tiku.coursewareSlides.v1',
+        coursePackageId: coursePackage.id || coursePackage.coursePackageId || null,
+        lessonDbId: coursePackage.lessonDbId || lesson.dbId || lesson.lessonDbId || null,
+        lessonId: coursePackage.lessonId || lesson.lessonId || manifest?.lessonId || projectName,
+        title: manifest?.title || coursePackage.lessonTitle || lesson.title || title,
+        knowledgeIds: collectCoursewareKnowledgeIds(tikuContext),
+        slides,
+    };
+    const outputName = 'courseware-slides.json';
+    fs.writeFileSync(path.join(projectPath, outputName), JSON.stringify(slidesPackage, null, 2));
+    if (!assetFiles.includes(outputName)) {
+        assetFiles.push(outputName);
+    }
+    return outputName;
+}
+
 function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
+    const tikuContext = convertPilotTikuInputToContext(projectPath) || readJsonFileIfExists(path.join(projectPath, 'tiku-context.json'));
     const brief = readCoursewareAssetText(projectPath, 'brief.md');
     const outline = readCoursewareAssetText(projectPath, 'course-outline.md');
     const teacherScript = readCoursewareAssetText(projectPath, 'teacher-script.md');
@@ -827,6 +1259,7 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const subject = resolveCoursewareSubjectFromAssets(projectPath);
     const title = compactCoursewareTitle(outline || brief || handoffNotes, projectName);
     const now = new Date().toISOString();
+    const coursewareSlidesAsset = buildCoursewareSlidesFromLegacyAssets(projectName, projectPath, assetFiles, tikuContext, title);
     const htmlAsset = firstExistingCoursewareAsset(assetFiles, [
         'deck.html',
         'slides.html',
@@ -855,21 +1288,44 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         projectName,
         subject,
         topic: title,
-        outputs: ['html', 'ppt', 'candidate_package', 'video_script'],
-        creativeSource: htmlAsset || pptxAsset ? 'tongcheng-creative-deck' : 'structured-assets',
-        standardizationMode: htmlAsset ? 'preserve-generated-deck' : 'generate-from-structured-assets',
+        outputs: ['html_slides', 'html_preview', 'ppt_backup', 'candidate_package', 'video_script'],
+        sourceOfTruth: 'metadata.courseware_slides',
+        coursewareSlides: coursewareSlidesAsset || null,
+        derivedAssets: ['deck.html', 'pptx', 'pdf'],
+        creativeSource: coursewareSlidesAsset ? 'tongcheng-html-slides' : htmlAsset || pptxAsset ? 'tongcheng-creative-deck' : 'structured-assets',
+        standardizationMode: coursewareSlidesAsset ? 'write-courseware-slides-to-tiku' : htmlAsset ? 'derive-slides-from-preview' : 'generate-from-structured-assets',
         source: {
+            ...(tikuContext?.source ? { upstream: tikuContext.source } : {}),
             workspaceId: projectName,
             projectName,
             sourceFiles: assetFiles,
             contentHash,
         },
+        ...(tikuContext?.knowledge ? {
+            knowledgeNodeId: tikuContext.knowledge.nodeId || tikuContext.knowledge.rootNodeId,
+            knowledgeNodeName: tikuContext.knowledge.nodeName,
+            knowledgePath: tikuContext.knowledge.path,
+        } : {}),
+        ...(tikuContext?.coursePackage ? {
+            coursePackage: tikuContext.coursePackage,
+        } : {}),
+        ...(Array.isArray(tikuContext?.questions) ? {
+            tikuQuestions: tikuContext.questions.map((question) => ({
+                question_id: question.question_id,
+                knowledge_id: question.knowledge_id,
+                kind: question.kind,
+                type: question.type,
+                difficulty: question.difficulty,
+                tags: question.tags,
+            })).filter((question) => question.question_id),
+        } : {}),
         visibility: {
             teacherOnly: ['teacher-script.md', 'pitfalls.md'],
             studentVisible: ['brief.md', 'course-outline.md'],
             parentVisible: parentFeedback ? ['parent-feedback.md'] : [],
         },
         assets: {
+            ...(coursewareSlidesAsset ? { coursewareSlides: coursewareSlidesAsset } : {}),
             ...(htmlAsset ? { html: htmlAsset } : {}),
             ...(deckHtmlAsset ? { deckHtml: deckHtmlAsset } : {}),
             ...(pptxAsset ? { pptx: pptxAsset } : {}),
@@ -878,9 +1334,9 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         },
         notes: [
             '由童澄教研创作台沉淀的课程资产包。',
-            htmlAsset
-                ? '已包含高质量课件成品，下游应优先校验、索引和发布该成品，不重新创作。'
-                : '当前未检测到课件成品，下游可按结构化资产生成预览。',
+            coursewareSlidesAsset
+                ? '已包含可写入 Tiku metadata.courseware_slides 的 HTML slides 主源；deck/PPT/PDF 仅作预览或导出。'
+                : '当前未检测到 HTML slides 主源，下游可按结构化资产生成预览。',
             '练习内容为候选，需要在 Tiku 中审核后再进入正式作业或试卷。',
         ],
         createdAt: now,
@@ -894,19 +1350,652 @@ function writeCoursewareHandoffFiles(projectPath, assetPackage) {
     fs.writeFileSync(path.join(projectPath, 'courseware-package.json'), json);
 }
 
+function safeSlug(value, fallback = 'course-program') {
+    const slug = String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 80);
+    return slug || fallback;
+}
+
+function readJsonFileIfExists(filePath) {
+    if (!fs.existsSync(filePath)) return null;
+    try {
+        return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch {
+        return null;
+    }
+}
+
+function coursewareProgramManifestPath(projectPath, programId = null, options = {}) {
+    const normalizedProgramId = safeSlug(programId || options.programId || '', '');
+    if (!normalizedProgramId || normalizedProgramId === 'root' || normalizedProgramId === 'default') {
+        return path.join(projectPath, 'course-program.json');
+    }
+    return path.join(projectPath, 'course-programs', normalizedProgramId, 'course-program.json');
+}
+
+function coursewareProgramRoot(projectPath, manifestPath) {
+    return path.dirname(manifestPath);
+}
+
+function listCoursewarePrograms(projectPath, activeProgramId = null) {
+    const programs = [];
+    const seen = new Set();
+    function addProgram(manifestPath, location) {
+        const manifest = readJsonFileIfExists(manifestPath);
+        if (!manifest || manifest.schemaVersion !== 'tiku.courseProgram.v1') return;
+        const programId = String(manifest.programId || safeSlug(manifest.title, location === 'root' ? 'root' : path.basename(path.dirname(manifestPath))));
+        if (seen.has(programId)) return;
+        seen.add(programId);
+        programs.push({
+            programId,
+            title: manifest.title || programId,
+            subject: manifest.subject || 'cpp',
+            level: manifest.level,
+            lessonCount: Number(manifest.lessonCount || manifest.lessons?.length || 0),
+            location,
+            active: activeProgramId ? activeProgramId === programId : programs.length === 0,
+            manifestPath,
+            relativePath: path.relative(projectPath, manifestPath).split(path.sep).join('/'),
+        });
+    }
+
+    addProgram(path.join(projectPath, 'course-program.json'), 'root');
+    const programsDir = path.join(projectPath, 'course-programs');
+    try {
+        for (const entry of fs.readdirSync(programsDir, { withFileTypes: true })) {
+            if (!entry.isDirectory()) continue;
+            addProgram(path.join(programsDir, entry.name, 'course-program.json'), entry.name);
+        }
+    } catch {
+        // Multiple course packages are optional.
+    }
+    return programs.map((program) => ({
+        ...program,
+        active: activeProgramId ? program.programId === activeProgramId : program === programs[0],
+    }));
+}
+
+function scanCoursewareSourceMaterials(projectPath) {
+    const ignoredDirs = new Set(['.git', '.pilotdeck', '.tmp', '.venv', '.venv-pptx', 'node_modules', 'dist', 'build', '.next']);
+    const interestingExt = new Set(['.md', '.docx', '.pptx', '.html', '.json']);
+    const materials = [];
+    const lessonSources = new Map();
+
+    function classify(relativePath, fileName) {
+        if (/parent-feedback|家长|反馈/i.test(relativePath)) return 'feedback';
+        if (/homework|作业/i.test(relativePath)) return 'homework';
+        if (/oj|edu|exercises|题|练习/i.test(relativePath)) return 'question-bank';
+        if (/ppt|slide|deck|演示/i.test(relativePath)) return 'presentation';
+        if (/learn|整合/i.test(relativePath)) return 'learn-integration';
+        if (/course|课程|总表|计划|outline|大纲/i.test(relativePath)) return 'planning';
+        return 'material';
+    }
+
+    function scan(dir, depth = 0) {
+        if (depth > 5 || materials.length >= 240) return;
+        let entries = [];
+        try {
+            entries = fs.readdirSync(dir, { withFileTypes: true });
+        } catch {
+            return;
+        }
+        for (const entry of entries) {
+            if (entry.name.startsWith('.') || ignoredDirs.has(entry.name)) continue;
+            const absolute = path.join(dir, entry.name);
+            const relativePath = path.relative(projectPath, absolute).split(path.sep).join('/');
+            if (entry.isDirectory()) {
+                const lessonMatch = entry.name.match(/^(?:J|j|lesson-)?0?(\d{1,2})\b/);
+                if (lessonMatch && listCoursewareAssetFiles(absolute).length > 0) {
+                    const order = Number(lessonMatch[1]);
+                    if (order > 0 && !lessonSources.has(order)) {
+                        lessonSources.set(order, absolute);
+                    }
+                }
+                scan(absolute, depth + 1);
+                continue;
+            }
+            const ext = path.extname(entry.name).toLowerCase();
+            if (!interestingExt.has(ext)) continue;
+            if (relativePath === 'course-program.json' || relativePath === 'program.md') continue;
+            materials.push({
+                name: entry.name,
+                relativePath,
+                kind: classify(relativePath, entry.name),
+            });
+        }
+    }
+
+    scan(projectPath);
+    return {
+        materials,
+        lessonSources: [...lessonSources.entries()].map(([order, absolutePath]) => ({
+            order,
+            relativePath: path.relative(projectPath, absolutePath).split(path.sep).join('/'),
+        })).sort((a, b) => a.order - b.order),
+    };
+}
+
+function findLinkedLessonSourcePath(projectPath, lesson) {
+    if (lesson.sourcePath) {
+        const absolute = path.resolve(projectPath, lesson.sourcePath);
+        if (absolute.startsWith(path.resolve(projectPath)) && fs.existsSync(absolute) && listCoursewareAssetFiles(absolute).length > 0) return absolute;
+    }
+    const order = Number(lesson.order || 0);
+    if (!order) return null;
+    const candidates = [
+        path.join(projectPath, lesson.lessonId),
+        path.join(projectPath, `lesson-${String(order).padStart(2, '0')}`),
+        path.join(projectPath, `J${String(order).padStart(2, '0')}`),
+        path.join(projectPath, 'csp-summer-plan', 'CSP-J-course-packages', `J${String(order).padStart(2, '0')}`),
+        path.join(projectPath, 'course-packages', `J${String(order).padStart(2, '0')}`),
+        path.join(projectPath, 'packages', `lesson-${String(order).padStart(2, '0')}`),
+    ];
+    return candidates.find((candidate) =>
+        fs.existsSync(candidate) &&
+        fs.statSync(candidate).isDirectory() &&
+        listCoursewareAssetFiles(candidate).length > 0
+    ) || null;
+}
+
+function mergeAssetFiles(primaryFiles, sourceFiles, sourceRelativePrefix) {
+    const merged = [...primaryFiles];
+    for (const fileName of sourceFiles) {
+        const relative = sourceRelativePrefix ? `${sourceRelativePrefix}/${fileName}` : fileName;
+        if (!merged.includes(relative)) merged.push(relative);
+    }
+    return merged;
+}
+
+function hasAsset(assetFiles, exactNames, patterns = []) {
+    return assetFiles.some((fileName) =>
+        exactNames.includes(fileName.split('/').pop()) ||
+        exactNames.includes(fileName) ||
+        patterns.some((pattern) => pattern.test(fileName)),
+    );
+}
+
+function ensureCoursewareProgram(projectName, projectPath, options = {}) {
+    const manifestPath = coursewareProgramManifestPath(projectPath, options.programId, options);
+    const existing = readJsonFileIfExists(manifestPath);
+    const lessonCount = Math.max(1, Math.min(60, Number(options.lessonCount || existing?.lessonCount || 12) || 12));
+    const title = String(options.title || existing?.title || compactCoursewareTitle(readCoursewareAssetText(projectPath, 'program.md'), projectName));
+    const subject = String(options.subject || existing?.subject || resolveCoursewareSubjectFromAssets(projectPath));
+    const level = String(options.level || existing?.level || '').trim();
+    const now = new Date().toISOString();
+    const programRoot = coursewareProgramRoot(projectPath, manifestPath);
+    const lessonsRoot = path.join(programRoot, 'lessons');
+    fs.mkdirSync(programRoot, { recursive: true });
+    fs.mkdirSync(lessonsRoot, { recursive: true });
+
+    const existingLessons = Array.isArray(existing?.lessons) ? existing.lessons : [];
+    const lessons = Array.from({ length: lessonCount }, (_, index) => {
+        const order = index + 1;
+        const lessonId = `lesson-${String(order).padStart(2, '0')}`;
+        const previous = existingLessons.find((lesson) => lesson?.lessonId === lessonId || Number(lesson?.order) === order) || {};
+        const lessonTitle = String(previous.title || `第 ${order} 次课`);
+        const relativePath = path.relative(projectPath, path.join(lessonsRoot, lessonId)).split(path.sep).join('/');
+        fs.mkdirSync(path.join(projectPath, relativePath), { recursive: true });
+        return {
+            lessonId,
+            order,
+            title: lessonTitle,
+            workspacePath: relativePath,
+            packageFile: `${relativePath}/courseware-package.json`,
+            schemaVersion: 'tiku.courseAsset.v1',
+            status: previous.status || 'empty',
+        };
+    });
+    const programId = existing?.programId || options.programId || `tc-program-${safeSlug(projectName)}`;
+
+    const program = {
+        schemaVersion: 'tiku.courseProgram.v1',
+        programId,
+        sourceSystem: 'tongcheng-courseware-assistant',
+        title,
+        subject,
+        ...(level ? { level } : {}),
+        lessonCount,
+        projectName,
+        source: {
+            workspaceId: projectName,
+            sourceFiles: ['program.md', 'course-program.json'],
+        },
+        lessons,
+        createdAt: existing?.createdAt || now,
+        updatedAt: now,
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(program, null, 2));
+    const programDocPath = path.join(programRoot, 'program.md');
+    if (!fs.existsSync(programDocPath)) {
+        fs.writeFileSync(programDocPath, `# ${title}\n\n- 学科：${subject}\n- 课次数：${lessonCount}\n- 状态：课程包草稿\n`);
+    }
+    return program;
+}
+
+function summarizeCoursewareLesson(projectPath, lesson) {
+    const relativePath = String(lesson.workspacePath || `lessons/${lesson.lessonId}`);
+    const lessonPath = path.join(projectPath, relativePath);
+    fs.mkdirSync(lessonPath, { recursive: true });
+    const assetFiles = listCoursewareAssetFiles(lessonPath);
+    const linkedSourcePath = findLinkedLessonSourcePath(projectPath, lesson);
+    const linkedSourceRelativePath = linkedSourcePath
+        ? path.relative(projectPath, linkedSourcePath).split(path.sep).join('/')
+        : null;
+    const sourceAssetFiles = linkedSourcePath ? listCoursewareAssetFiles(linkedSourcePath) : [];
+    const allAssetFiles = mergeAssetFiles(assetFiles, sourceAssetFiles, linkedSourceRelativePath);
+    let packageData = readJsonFileIfExists(path.join(lessonPath, 'courseware-package.json'));
+    if (!packageData && linkedSourcePath) {
+        packageData = readJsonFileIfExists(path.join(linkedSourcePath, 'courseware-package.json'));
+    }
+    if (!packageData && assetFiles.length > 0) {
+        packageData = createCoursewareAssetPackage(lesson.lessonId, lessonPath, assetFiles);
+    }
+    const assets = {
+        brief: hasAsset(allAssetFiles, ['brief.md']),
+        outline: hasAsset(allAssetFiles, ['course-outline.md', 'ppt-outline.md', 'complete-course-package.md'], [/课程包\.md$/, /课程总表\.md$/]),
+        teacherScript: hasAsset(allAssetFiles, ['teacher-script.md']),
+        exercises: hasAsset(allAssetFiles, ['exercises.md', 'edu-exercises.md', 'oj-exercises.md']),
+        pitfalls: hasAsset(allAssetFiles, ['pitfalls.md']),
+        coursewareSlides: hasAsset(allAssetFiles, ['courseware-slides.json']),
+        deck: hasAsset(allAssetFiles, ['deck.html', 'slides.html', 'courseware.html', 'teach-courseware.html', 'index.html']),
+        videoScript: hasAsset(allAssetFiles, ['video-script.md']),
+        package: hasAsset(allAssetFiles, ['courseware-package.json', 'generator-handoff.json']),
+        homework: hasAsset(allAssetFiles, ['homework.md']),
+        ojExercises: hasAsset(allAssetFiles, ['oj-exercises.md']),
+        eduExercises: hasAsset(allAssetFiles, ['edu-exercises.md']),
+        parentFeedback: hasAsset(allAssetFiles, ['parent-feedback.md']),
+        courseFeedback: hasAsset(allAssetFiles, ['course-feedback.md', 'teacher-feedback.md']),
+        learnIntegration: hasAsset(allAssetFiles, ['learn-integration.md'], [/learn.*整合.*\.md$/, /整合方案\.md$/]),
+        pptOutline: hasAsset(allAssetFiles, ['ppt-outline.md', 'slides-manifest.json']),
+        pptx: hasAsset(allAssetFiles, ['courseware.pptx', 'deck.pptx', 'slides.pptx'], [/\.pptx$/]),
+    };
+    const coreAssetKeys = ['brief', 'outline', 'teacherScript', 'exercises', 'coursewareSlides', 'package'];
+    const completion = Math.round((coreAssetKeys.filter((key) => assets[key]).length / coreAssetKeys.length) * 100);
+    const status = packageData?.status || (completion >= 75 ? 'ready' : completion > 0 ? 'draft' : 'empty');
+    return {
+        lessonId: lesson.lessonId,
+        order: Number(lesson.order || 0),
+        title: packageData?.topic || lesson.title || lesson.lessonId,
+        workspacePath: lessonPath,
+        relativePath,
+        status,
+        assetFiles: allAssetFiles,
+        localAssetFiles: assetFiles,
+        sourceAssetFiles,
+        linkedSourcePath,
+        linkedSourceRelativePath,
+        assets,
+        completion,
+        packageId: packageData?.packageId,
+        topic: packageData?.topic,
+        updatedAt: packageData?.updatedAt,
+    };
+}
+
+function getCoursewareProgramStatus(projectName, projectPath, options = {}) {
+    const activeProgramId = options.programId || null;
+    const program = ensureCoursewareProgram(projectName, projectPath, options);
+    const lessons = program.lessons.map((lesson) => summarizeCoursewareLesson(projectPath, lesson));
+    const missing = lessons
+        .filter((lesson) => lesson.completion < 75)
+        .map((lesson) => `${lesson.lessonId}:${lesson.title}`);
+    const readyCount = lessons.filter((lesson) => lesson.completion >= 75).length;
+    const programs = listCoursewarePrograms(projectPath, program.programId || activeProgramId);
+    const sourceScan = scanCoursewareSourceMaterials(projectPath);
+    return {
+        schemaVersion: 'tiku.courseProgram.v1',
+        programId: program.programId,
+        title: program.title,
+        subject: program.subject,
+        level: program.level,
+        lessonCount: program.lessonCount,
+        projectName,
+        projectPath,
+        status: readyCount === 0 ? 'draft' : readyCount === lessons.length ? 'ready' : 'in_progress',
+        lessons,
+        missing,
+        programs,
+        sourceMaterials: sourceScan.materials,
+        lessonSources: sourceScan.lessonSources,
+        updatedAt: new Date().toISOString(),
+    };
+}
+
+function getCoursewareProgramProgress(projectName, projectPath, options = {}) {
+    const status = getCoursewareProgramStatus(projectName, projectPath, options);
+    const expectedCore = ['brief', 'outline', 'teacherScript', 'exercises', 'deck', 'package'];
+    const expectedTotal = Math.max(1, status.lessons.length * expectedCore.length);
+    const readyTotal = status.lessons.reduce((sum, lesson) => {
+        return sum + expectedCore.filter((key) => lesson.assets?.[key]).length;
+    }, 0);
+    const percent = Math.round((readyTotal / expectedTotal) * 100);
+    const activeLesson = status.lessons.find((lesson) => lesson.completion > 0 && lesson.completion < 100) ||
+        status.lessons.find((lesson) => lesson.completion === 0) ||
+        status.lessons[status.lessons.length - 1] ||
+        null;
+    const missingCore = activeLesson
+        ? expectedCore.filter((key) => !activeLesson.assets?.[key])
+        : [];
+    const stage = percent >= 100
+        ? '已完成基础资产'
+        : activeLesson
+            ? `第 ${activeLesson.order} 次课待补齐：${missingCore.join(' / ') || '标准包验收'}`
+            : '等待初始化课程包';
+
+    return {
+        schemaVersion: 'tiku.coursewareProgress.v1',
+        projectName,
+        programId: status.programId,
+        title: status.title,
+        percent,
+        readyTotal,
+        expectedTotal,
+        status: percent >= 100 ? 'ready' : readyTotal > 0 ? 'in_progress' : 'draft',
+        stage,
+        activeLesson: activeLesson ? {
+            lessonId: activeLesson.lessonId,
+            order: activeLesson.order,
+            title: activeLesson.title,
+            completion: activeLesson.completion,
+            relativePath: activeLesson.relativePath,
+            missing: missingCore,
+        } : null,
+        updatedAt: status.updatedAt,
+    };
+}
+
+function refreshCoursewareProgramPackages(projectName, projectPath, options = {}) {
+    const program = ensureCoursewareProgram(projectName, projectPath, options);
+    const refreshed = [];
+    for (const lesson of program.lessons) {
+        const lessonPath = path.join(projectPath, lesson.workspacePath);
+        let assetPath = lessonPath;
+        let assetFiles = listCoursewareAssetFiles(assetPath);
+        const linkedSourcePath = findLinkedLessonSourcePath(projectPath, lesson);
+        if (assetFiles.length === 0 && linkedSourcePath) {
+            assetPath = linkedSourcePath;
+            assetFiles = listCoursewareAssetFiles(assetPath);
+        }
+        if (assetFiles.length === 0) {
+            refreshed.push({ lessonId: lesson.lessonId, skipped: true, reason: 'empty' });
+            continue;
+        }
+        const assetPackage = createCoursewareAssetPackage(`${projectName}-${lesson.lessonId}`, assetPath, assetFiles);
+        writeCoursewareHandoffFiles(assetPath, assetPackage);
+        refreshed.push({
+            lessonId: lesson.lessonId,
+            packageId: assetPackage.packageId,
+            assetFiles,
+            relativePath: path.relative(projectPath, assetPath).split(path.sep).join('/'),
+        });
+    }
+    const status = getCoursewareProgramStatus(projectName, projectPath, options);
+    fs.writeFileSync(path.join(projectPath, 'generator-handoff.json'), JSON.stringify(status, null, 2));
+    return { status, refreshed };
+}
+
 function assertCoursewareWorkspacePath(projectPath) {
     const root = path.resolve(
         process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
         path.join(__dirname, '..', '..', 'workspaces'),
     );
     const resolved = path.resolve(projectPath);
-    if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) {
+    const isAssetWorkspace = resolved === root || resolved.startsWith(`${root}${path.sep}`);
+    const hasCoursewareMarker = [
+        'course-program.json',
+        'tiku-context.json',
+        'courseware-slides.json',
+        'courseware-package.json',
+        'generator-handoff.json',
+        'brief.md',
+        'course-outline.md',
+        'teacher-script.md',
+    ].some((fileName) => fs.existsSync(path.join(resolved, fileName)));
+    if (!isAssetWorkspace && !hasCoursewareMarker) {
         const error = new Error('课程资产工作区不在允许范围内');
         error.statusCode = 403;
         throw error;
     }
     return resolved;
 }
+
+function requireTongchengServiceToken(req, res, next) {
+    const expected =
+        process.env.PILOTDECK_TIKU_BRIDGE_TOKEN ||
+        process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN ||
+        '';
+    if (!expected) return next();
+    const provided =
+        req.headers['x-tongcheng-handoff-token'] ||
+        req.headers['x-pilotdeck-bridge-token'] ||
+        req.headers.authorization?.replace(/^Bearer\s+/i, '');
+    if (provided !== expected) {
+        return res.status(401).json({ error: 'Invalid Tongcheng courseware bridge token' });
+    }
+    return next();
+}
+
+function resolveCoursewareLessonWorkspaceName(tikuContext) {
+    const coursePackage = tikuContext?.coursePackage || {};
+    const lesson = tikuContext?.lesson || {};
+    const lessonId = coursePackage.lessonId || lesson.lessonId || lesson.dbId || 'lesson';
+    const title = coursePackage.title || coursePackage.lessonTitle || lesson.title || 'courseware';
+    return safeSlug(`${coursePackage.id || coursePackage.coursePackageId || 'tiku'}-${lessonId}-${title}`, 'tiku-courseware');
+}
+
+function buildTikuCoursewareAgentPrompt(projectPath, tikuContext) {
+    const coursePackage = tikuContext?.coursePackage || {};
+    const lesson = tikuContext?.lesson || {};
+    const title = coursePackage.lessonTitle || lesson.title || coursePackage.title || '本课课堂课件';
+    return [
+        '读取并遵守 skills/tongcheng-courseware-handoff/courseware-agent-protocol.md。',
+        '这是来自 Tiku 的自动课堂课件生成任务，不要等待三套风格预览，不要向用户提问。',
+        `工作区：${projectPath}`,
+        '统一输入文件：tiku-context.json',
+        `课程主题：${title}`,
+        '',
+        '请作为主协调 agent 完成：',
+        '1. 调用 agent 工具，参数只能使用 description、prompt、subagent_type。',
+        '2. 第一次调用 subagent_type="courseware-deck"，生成 Tiku-ready 的 courseware-slides.json、deck.html、slides-manifest.json、courseware-agent-report.json。',
+        '3. 第二次调用 subagent_type="courseware-review"，检查学生可见 html、刷新 courseware-package.json 和 generator-handoff.json。',
+        '4. 不要在聊天正文粘贴完整 HTML 或 JSON，只输出简短状态和文件路径。',
+        '',
+        'courseware-deck 子代理 prompt 必须包含：',
+        '- 读取 tiku-context.json。',
+        '- 直接产出 schemaVersion=tiku.coursewareSlides.v1 的 courseware-slides.json。',
+        '- 每页必须有 html 字段，html 是学生可见主内容。',
+        '- notes 只放老师提示，不进入学生可见 html。',
+        '- 学生可见 html 不得出现：江校、agent、Pilot、OpenMAIC、内部、验收、落库、metadata、courseware_jobs、老师讲稿。',
+        '',
+        '完成标准：courseware-slides.json 存在，slides 数组非空，每页都有 html。',
+    ].join('\n');
+}
+
+async function runTikuCoursewareAgentPipeline(projectPath, tikuContext, options = {}) {
+    const sessionKey = `web:s_${crypto.randomUUID()}`;
+    const frames = [];
+    const writer = {
+        send(frame) {
+            frames.push(frame);
+        },
+    };
+    const timeoutMs = Number.parseInt(
+        String(options.timeoutMs || process.env.TONGCHENG_COURSEWARE_AGENT_TIMEOUT_MS || '300000'),
+        10,
+    );
+    const command = buildTikuCoursewareAgentPrompt(projectPath, tikuContext);
+    const runPromise = runChatViaGateway(command, {
+        sessionKey,
+        sessionId: sessionKey,
+        projectPath,
+        cwd: projectPath,
+        workspaceCwd: projectPath,
+        permissionMode: 'bypassPermissions',
+        maxOutputTokens: 20000,
+    }, writer, 'pilotdeck');
+
+    const timed = await Promise.race([
+        runPromise.then(() => ({ timedOut: false })),
+        new Promise((resolve) => setTimeout(() => resolve({ timedOut: true }), timeoutMs)),
+    ]);
+
+    const errorFrame = frames.find((frame) => frame?.kind === 'error' || frame?.type === 'error');
+    if (timed.timedOut) {
+        const error = new Error('教研创作任务仍在运行，请稍后刷新查看结果');
+        error.statusCode = 202;
+        error.sessionKey = sessionKey;
+        throw error;
+    }
+    if (errorFrame) {
+        const message = errorFrame.content || errorFrame.text || '教研创作任务失败';
+        const error = new Error(message);
+        error.sessionKey = sessionKey;
+        throw error;
+    }
+
+    const slidesPath = path.join(projectPath, 'courseware-slides.json');
+    const slidesPackage = readJsonFileIfExists(slidesPath);
+    const slides = Array.isArray(slidesPackage?.slides) ? slidesPackage.slides : [];
+    if (!slides.length || slides.some((slide) => !String(slide?.html || '').trim())) {
+        const error = new Error('教研创作任务未产出有效 HTML slides');
+        error.sessionKey = sessionKey;
+        throw error;
+    }
+
+    return { sessionKey, frames, slidesPackage };
+}
+
+function buildTikuCoursewareStatus(projectPath, { workspaceName, sessionKey } = {}) {
+    const slidesPath = path.join(projectPath, 'courseware-slides.json');
+    const slidesPackage = readJsonFileIfExists(slidesPath);
+    const slides = Array.isArray(slidesPackage?.slides) ? slidesPackage.slides : [];
+    const htmlMissingCount = slides.filter((slide) => !String(slide?.html || '').trim()).length;
+    const active = sessionKey ? isSessionActiveViaGateway(sessionKey) : false;
+
+    if (slides.length && htmlMissingCount === 0) {
+        const assetFiles = listCoursewareAssetFiles(projectPath);
+        const assetPackage = createCoursewareAssetPackage(workspaceName || path.basename(projectPath), projectPath, assetFiles);
+        writeCoursewareHandoffFiles(projectPath, assetPackage);
+        return {
+            success: true,
+            status: 'ready',
+            progress: 100,
+            stage: '课堂课件已生成',
+            workspaceName: workspaceName || path.basename(projectPath),
+            projectPath,
+            sessionKey: sessionKey || '',
+            studioUrl: `/p/${encodeURIComponent(workspaceName || path.basename(projectPath))}`,
+            coursewareSlides: slidesPackage,
+            package: assetPackage,
+            assetFiles: listCoursewareAssetFiles(projectPath),
+        };
+    }
+
+    return {
+        success: true,
+        status: active ? 'running' : 'pending',
+        progress: active ? 65 : 45,
+        stage: active ? '教研创作仍在进行' : '等待教研创作结果',
+        workspaceName: workspaceName || path.basename(projectPath),
+        projectPath,
+        sessionKey: sessionKey || '',
+        studioUrl: `/p/${encodeURIComponent(workspaceName || path.basename(projectPath))}`,
+        html_missing_count: htmlMissingCount,
+        slide_count: slides.length,
+    };
+}
+
+app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, async (req, res) => {
+    try {
+        const tikuContext = req.body?.tikuContext || req.body?.context || req.body?.payload;
+        if (!tikuContext || tikuContext.schemaVersion !== 'tiku.courseContext.v1') {
+            return res.status(400).json({ error: '需要提供 tiku.courseContext.v1 上下文' });
+        }
+        const workspaceRoot = path.resolve(
+            process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
+            path.join(__dirname, '..', '..', 'workspaces'),
+        );
+        const workspaceName = safeSlug(req.body?.workspaceName || resolveCoursewareLessonWorkspaceName(tikuContext), 'tiku-courseware');
+        const projectPath = path.join(workspaceRoot, workspaceName);
+        fs.mkdirSync(projectPath, { recursive: true });
+        fs.writeFileSync(path.join(projectPath, 'tiku-context.json'), JSON.stringify(tikuContext, null, 2));
+
+        let sessionKey = '';
+        let mode = 'agent-courseware-slides';
+        let slidesPackage;
+        try {
+            const result = await runTikuCoursewareAgentPipeline(projectPath, tikuContext, {
+                timeoutMs: req.body?.timeoutMs,
+            });
+            sessionKey = result.sessionKey;
+            slidesPackage = result.slidesPackage;
+        } catch (error) {
+            if (error.statusCode === 202) {
+                return res.status(202).json({
+                    success: true,
+                    mode,
+                    status: 'running',
+                    workspaceName,
+                    projectPath,
+                    sessionKey: error.sessionKey || sessionKey,
+                    message: error.message,
+                });
+            }
+            if (req.body?.allowTemplateFallback === true) {
+                mode = 'template-fallback-courseware-slides';
+                slidesPackage = buildCoursewareSlidesFromTikuContext(tikuContext);
+                fs.writeFileSync(path.join(projectPath, 'courseware-slides.json'), JSON.stringify(slidesPackage, null, 2));
+            } else {
+                throw error;
+            }
+        }
+
+        const assetFiles = listCoursewareAssetFiles(projectPath);
+        const assetPackage = createCoursewareAssetPackage(workspaceName, projectPath, assetFiles);
+        writeCoursewareHandoffFiles(projectPath, assetPackage);
+
+        res.json({
+            success: true,
+            mode,
+            workspaceName,
+            projectPath,
+            sessionKey,
+            studioUrl: `/p/${encodeURIComponent(workspaceName)}`,
+            coursewareSlides: slidesPackage,
+            package: assetPackage,
+            assetFiles: listCoursewareAssetFiles(projectPath),
+        });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.get('/api/tongcheng/tiku/courseware-slides/status', requireTongchengServiceToken, async (req, res) => {
+    try {
+        const workspaceName = safeSlug(req.query.workspaceName || req.query.workspace || '', '');
+        if (!workspaceName) {
+            return res.status(400).json({ error: '缺少 workspaceName' });
+        }
+        const workspaceRoot = path.resolve(
+            process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
+            path.join(__dirname, '..', '..', 'workspaces'),
+        );
+        const projectPath = path.join(workspaceRoot, workspaceName);
+        if (!fs.existsSync(projectPath)) {
+            return res.status(404).json({ error: '未找到教研创作工作区' });
+        }
+        res.json(buildTikuCoursewareStatus(projectPath, {
+            workspaceName,
+            sessionKey: String(req.query.sessionKey || req.query.session || ''),
+        }));
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
 
 app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, async (req, res) => {
     try {
@@ -915,7 +2004,7 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
         if (assetFiles.length === 0) {
             return res.status(400).json({
                 error: '当前工作区没有可交接的课程资产文件',
-                expectedFiles: ['brief.md', 'course-outline.md', 'teacher-script.md', 'exercises.md', 'pitfalls.md', 'parent-feedback.md'],
+            expectedFiles: ['brief.md', 'course-outline.md', 'teacher-script.md', 'exercises.md', 'pitfalls.md', 'courseware-slides.json', 'parent-feedback.md'],
             });
         }
         const assetPackage = createCoursewareAssetPackage(req.params.projectName, projectPath, assetFiles);
@@ -924,7 +2013,7 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
         const baseUrl = String(
             req.query.baseUrl ||
             process.env.TONGCHENG_COURSEWARE_URL ||
-            'http://localhost:3000/courseware-pilot',
+            'http://localhost:3002/courseware-pilot',
         );
         const url = new URL(baseUrl);
         if (!['http:', 'https:'].includes(url.protocol)) {
@@ -944,8 +2033,57 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
             subject: assetPackage.subject,
             topic: assetPackage.topic,
             projectPath,
-            assetFiles: [...new Set([...assetFiles, 'generator-handoff.json', 'courseware-package.json'])],
+            assetFiles: [...new Set([...assetFiles, 'courseware-slides.json', 'generator-handoff.json', 'courseware-package.json'])],
         });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.get('/api/tongcheng/courseware-program/:projectName', authenticateToken, async (req, res) => {
+    try {
+        const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
+        const status = getCoursewareProgramStatus(req.params.projectName, projectPath, {
+            programId: req.query.programId,
+        });
+        res.json({ success: true, program: status });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.get('/api/tongcheng/courseware-progress/:projectName', authenticateToken, async (req, res) => {
+    try {
+        const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
+        const progress = getCoursewareProgramProgress(req.params.projectName, projectPath, {
+            programId: req.query.programId,
+        });
+        res.json({ success: true, progress });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.post('/api/tongcheng/courseware-program/:projectName/initialize', authenticateToken, async (req, res) => {
+    try {
+        const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
+        const program = ensureCoursewareProgram(req.params.projectName, projectPath, req.body || {});
+        const status = getCoursewareProgramStatus(req.params.projectName, projectPath, {
+            programId: program.programId,
+        });
+        res.json({ success: true, program: status, manifest: program });
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.post('/api/tongcheng/courseware-program/:projectName/refresh-packages', authenticateToken, async (req, res) => {
+    try {
+        const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
+        const result = refreshCoursewareProgramPackages(req.params.projectName, projectPath, {
+            programId: req.query.programId,
+        });
+        res.json({ success: true, ...result });
     } catch (error) {
         res.status(error.statusCode || 500).json({ error: error.message });
     }
