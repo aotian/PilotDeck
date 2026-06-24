@@ -1808,6 +1808,50 @@ function resolveCoursewareLessonWorkspaceName(tikuContext) {
     return safeSlug(`${coursePackage.id || coursePackage.coursePackageId || 'tiku'}-${lessonId}-${title}`, 'tiku-courseware');
 }
 
+function writeTikuGenerationBrief(projectPath, tikuContext) {
+    const coursePackage = tikuContext?.coursePackage || {};
+    const request = tikuContext?.generationRequest || {};
+    const knowledgeNames = Array.isArray(tikuContext?.knowledge?.selectedNodes)
+        ? tikuContext.knowledge.selectedNodes.map((node) => node.name).filter(Boolean).slice(0, 12)
+        : [];
+    const questionCount = Array.isArray(tikuContext?.questions) ? tikuContext.questions.length : 0;
+    const aiDraftCount = Array.isArray(tikuContext?.aiDraftQuestions) ? tikuContext.aiDraftQuestions.length : 0;
+    const title = request.lessonTitle || coursePackage.lessonTitle || coursePackage.title || '课堂课件';
+    const lines = [
+        `# ${title}`,
+        '',
+        '## 课程目标',
+        request.objectives || '按当前课次目标生成可上课课件。',
+        '',
+        '## 知识点范围',
+        request.knowledgeScope || (knowledgeNames.length ? knowledgeNames.join('、') : '按 Tiku 当前课次知识点范围。'),
+        '',
+        '## 题目范围',
+        request.questionScope || '优先使用 Tiku 已审核题目；AI 题只作为草稿候选。',
+        '',
+        '## 课堂风格',
+        request.classroomStyle || '讲一点、练一点、复盘一点。',
+        '',
+        '## 题量控制',
+        request.questionLimit || '课堂精讲 6-8 道，随堂练习 12-16 道。',
+        '',
+        '## 生成选项',
+        `- 互动 HTML 知识点页：${request.generateInteractiveHtml === false ? '否' : '是'}`,
+        `- AI 同类题入口：${request.includeSimilarQuestionPrompt === false ? '否' : '是'}`,
+        `- 生成模式：${request.rebuildMode === 'rebuild' ? '重建课件' : '生成课件'}`,
+        '',
+        '## 当前题源摘要',
+        `- 已传入 Tiku 正式题：${questionCount} 道`,
+        `- AI 草稿候选：${aiDraftCount} 道`,
+        `- 选中知识点：${knowledgeNames.length ? knowledgeNames.join('、') : '未指定'}`,
+        '',
+        '## 发布约束',
+        '- 没有真实 Tiku question_id 的题目只能标记为 ai-draft 或 manual，不能伪装成正式题。',
+        '- 学生可见 HTML 不得出现生产系统、审核、内部路径或技术元数据。',
+    ];
+    fs.writeFileSync(path.join(projectPath, 'brief.md'), lines.join('\n'), 'utf8');
+}
+
 function normalizeTikuGeneratedSlide(slide, index) {
     const order = Number(slide?.order || index + 1);
     return {
@@ -1940,11 +1984,11 @@ function buildTikuCoursewareDeckPrompt(projectPath, tikuContext) {
         '读取并遵守 skills/tongcheng-courseware-handoff/courseware-agent-protocol.md。',
         '这是来自 Tiku 的自动课堂课件生成任务，不要等待三套风格预览，不要向用户提问。',
         `工作区：${projectPath}`,
-        '统一输入文件：tiku-context.json',
+        '统一输入文件：tiku-context.json；老师生成要求：brief.md',
         `课程主题：${title}`,
         '',
         '请直接按 courseware-deck 职责生成课件主产物，不要调用 review，不要只写检查报告。',
-        '- 读取 tiku-context.json。',
+        '- 读取 tiku-context.json 和 brief.md。',
         '- 直接产出 schemaVersion=tiku.coursewareSlides.v1 的 courseware-slides.json。',
         '- 每页必须有 html 字段，html 是学生可见主内容。',
         '- notes 只放老师提示，不进入学生可见 html。',
@@ -2127,6 +2171,7 @@ app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, 
             fs.rmSync(path.join(projectPath, fileName), { force: true });
         }
         fs.writeFileSync(path.join(projectPath, 'tiku-context.json'), JSON.stringify(tikuContext, null, 2));
+        writeTikuGenerationBrief(projectPath, tikuContext);
 
         let sessionKey = '';
         let mode = 'agent-courseware-slides';
