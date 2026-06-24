@@ -1242,10 +1242,13 @@ function buildCoursewareSlidesFromLegacyAssets(projectName, projectPath, assetFi
 
 function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const tikuContext = convertPilotTikuInputToContext(projectPath) || readJsonFileIfExists(path.join(projectPath, 'tiku-context.json'));
+    const existingPackage = readJsonFileIfExists(path.join(projectPath, 'courseware-package.json')) || {};
+    const existingHandoff = readJsonFileIfExists(path.join(projectPath, 'generator-handoff.json')) || {};
     const brief = readCoursewareAssetText(projectPath, 'brief.md');
     const outline = readCoursewareAssetText(projectPath, 'course-outline.md');
     const teacherScript = readCoursewareAssetText(projectPath, 'teacher-script.md');
     const exercises = readCoursewareAssetText(projectPath, 'exercises.md');
+    const homework = readCoursewareAssetText(projectPath, 'homework.md');
     const pitfalls = readCoursewareAssetText(projectPath, 'pitfalls.md');
     const parentFeedback = readCoursewareAssetText(projectPath, 'parent-feedback.md');
     const handoffNotes =
@@ -1253,11 +1256,15 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         readCoursewareAssetText(projectPath, 'openmaic-handoff.md');
     const contentHash = crypto
         .createHash('sha256')
-        .update([brief, outline, teacherScript, exercises, pitfalls, parentFeedback, handoffNotes].join('\n---tc-asset---\n'))
+        .update([brief, outline, teacherScript, exercises, homework, pitfalls, parentFeedback, handoffNotes].join('\n---tc-asset---\n'))
         .digest('hex');
-    const packageId = `tc-course-${contentHash.slice(0, 16)}`;
+    const packageId = existingPackage.packageId || existingHandoff.packageId || `tc-course-${contentHash.slice(0, 16)}`;
     const subject = resolveCoursewareSubjectFromAssets(projectPath);
-    const title = compactCoursewareTitle(outline || brief || handoffNotes, projectName);
+    const title =
+        existingHandoff.topic ||
+        existingHandoff.title ||
+        existingPackage.title ||
+        compactCoursewareTitle(outline || brief || handoffNotes, projectName);
     const now = new Date().toISOString();
     const coursewareSlidesAsset = buildCoursewareSlidesFromLegacyAssets(projectName, projectPath, assetFiles, tikuContext, title);
     const htmlAsset = firstExistingCoursewareAsset(assetFiles, [
@@ -1284,12 +1291,16 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     return {
         schemaVersion: 'tiku.courseAsset.v1',
         packageId,
+        coursePackageId: existingPackage.coursePackageId || existingHandoff.coursePackageId || tikuContext?.coursePackage?.id,
+        lessonId: existingPackage.lessonId || existingHandoff.lessonId || projectName,
+        title,
         sourceSystem: 'tongcheng-courseware-assistant',
         projectName,
         subject,
+        gradeLevel: existingPackage.gradeLevel || existingHandoff.gradeLevel || tikuContext?.gradeLevel || 'CSP-J',
         topic: title,
         outputs: ['html_slides', 'html_preview', 'ppt_backup', 'candidate_package', 'video_script'],
-        sourceOfTruth: 'metadata.courseware_slides',
+        sourceOfTruth: coursewareSlidesAsset || 'courseware-slides.json',
         coursewareSlides: coursewareSlidesAsset || null,
         derivedAssets: ['deck.html', 'pptx', 'pdf'],
         creativeSource: coursewareSlidesAsset ? 'tongcheng-html-slides' : htmlAsset || pptxAsset ? 'tongcheng-creative-deck' : 'structured-assets',
@@ -1330,8 +1341,18 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
             ...(deckHtmlAsset ? { deckHtml: deckHtmlAsset } : {}),
             ...(pptxAsset ? { pptx: pptxAsset } : {}),
             ...(slidesManifestAsset ? { slidesManifest: slidesManifestAsset } : {}),
+            ...(brief ? { brief: 'brief.md' } : {}),
+            ...(outline ? { courseOutline: 'course-outline.md' } : {}),
+            ...(teacherScript ? { teacherScript: 'teacher-script.md' } : {}),
+            ...(exercises ? { exercises: 'exercises.md' } : {}),
+            ...(homework ? { homework: 'homework.md' } : {}),
+            ...(pitfalls ? { pitfalls: 'pitfalls.md' } : {}),
             ...(videoScriptAsset ? { videoScript: videoScriptAsset } : {}),
         },
+        entryPolicy: 'students_enter_from_learn_class',
+        teacherEntry: existingPackage.teacherEntry || 'https://teach.tongchengweilai.com/admin-classes.html',
+        studentEntry: existingPackage.studentEntry || 'https://learn.tongchengweilai.com',
+        tikuEntry: existingPackage.tikuEntry || 'https://tiku.tongchengweilai.com/teacher',
         notes: [
             '由童澄教研创作台沉淀的课程资产包。',
             coursewareSlidesAsset
@@ -2195,8 +2216,10 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
 
         const baseUrl = String(
             req.query.baseUrl ||
+            process.env.TONGCHENG_OPENMAIC_COURSEWARE_URL ||
+            process.env.TONGCHENG_OPENMAIC_URL ||
             process.env.TONGCHENG_COURSEWARE_URL ||
-            'http://localhost:3002/courseware-pilot',
+            'http://localhost:3000/courseware-pilot',
         );
         const url = new URL(baseUrl);
         if (!['http:', 'https:'].includes(url.protocol)) {
@@ -2205,6 +2228,14 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
         url.searchParams.set('assetWorkspace', projectPath);
         url.searchParams.set('subject', String(req.query.subject || resolveCoursewareSubjectFromAssets(projectPath)));
         url.searchParams.set('from', 'asset-workspace');
+        const coursePackageId = req.query.coursePackageId || assetPackage.coursePackageId;
+        const lessonId = req.query.lessonId || assetPackage.lessonId;
+        const teachLessonId = req.query.teachLessonId || req.query.teach_lesson_id;
+        const tikuLessonId = req.query.tikuLessonId || req.query.tiku_lesson_id;
+        if (coursePackageId) url.searchParams.set('coursePackageId', String(coursePackageId));
+        if (lessonId) url.searchParams.set('lessonId', String(lessonId));
+        if (teachLessonId) url.searchParams.set('teachLessonId', String(teachLessonId));
+        if (tikuLessonId) url.searchParams.set('tikuLessonId', String(tikuLessonId));
         if (process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN) {
             url.searchParams.set('handoffToken', process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN);
         }
