@@ -144,6 +144,7 @@ export class AgentLoop {
      */
     const MAX_OUTPUT_RECOVERY_LIMIT = 3;
     let maxOutputRecoveryCount = 0;
+    let emptyAssistantRecoveryCount = 0;
     const MAX_JSON_SELF_CORRECT_RETRIES = 3;
     let jsonSelfCorrectCount = 0;
     const largeFileRepair = new LargeFileRepair();
@@ -393,6 +394,44 @@ export class AgentLoop {
       }
 
       const assembled = assembleAssistantMessage(assembler);
+      if (!assembled.error && assembled.message.content.length === 0 && assembled.toolCalls.length === 0) {
+        if (emptyAssistantRecoveryCount < 1) {
+          emptyAssistantRecoveryCount++;
+          messages.push({
+            role: "user",
+            content: [{
+              type: "text",
+              text: "Your previous assistant response was empty. Continue the task now with a concise visible answer. "
+                + "If the context is too large, say exactly what is blocking progress and suggest the smallest next step.",
+            }],
+            metadata: { synthetic: true, purpose: "empty_assistant_recovery" },
+          });
+          yield {
+            type: "turn_continued",
+            sessionId: input.sessionId,
+            turnId: input.turnId,
+            reason: "model_error",
+          };
+          continue;
+        }
+
+        const result = this.createTurnResult(input, {
+          type: "error",
+          stopReason: "model_error",
+          usage,
+          permissionDenials,
+          turns: turnCount,
+          startedAt,
+          errors: [agentError(
+            "agent_model_error",
+            "Model completed without returning any visible assistant content.",
+          )],
+        });
+        yield { type: "turn_failed", sessionId: input.sessionId, turnId: input.turnId, error: result.errors![0]! };
+        await captureTurn(result.type === "error");
+        yield { type: "turn_completed", sessionId: input.sessionId, turnId: input.turnId, result };
+        return { result, messages };
+      }
       usage = mergeUsage(usage, assembled.usage);
       finalMessage = assembled.message;
       messages.push(assembled.message);

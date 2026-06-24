@@ -130,7 +130,9 @@ function normalizeToolErrorCode(errorCode, resultPreview) {
 const WEB_DEFAULT_PERMISSION_MODE =
     process.env.PILOTDECK_WEB_PERMISSION_MODE || 'default';
 const WEB_DEFAULT_MAX_OUTPUT_TOKENS = Number.parseInt(
-    process.env.PILOTDECK_WEB_MAX_OUTPUT_TOKENS || '16384',
+    process.env.PILOTDECK_WEB_MAX_OUTPUT_TOKENS
+        || process.env.PILOTDECK_MAX_OUTPUT_TOKENS
+        || '8192',
     10,
 );
 
@@ -360,6 +362,22 @@ export function gatewayEventToFrames(event, sessionId, provider) {
                     ...base,
                     kind: 'status',
                     text: 'started',
+                }),
+            ];
+        case 'agent_activity':
+            return [
+                createNormalizedMessage({
+                    ...base,
+                    kind: 'agent_activity',
+                    activityId: event.activityId,
+                    title: event.title,
+                    detail: event.detail,
+                    state: event.state,
+                    phase: event.phase,
+                    severity: event.severity,
+                    toolName: event.toolName,
+                    startedAt: event.startedAt,
+                    endedAt: event.endedAt,
                 }),
             ];
         case 'assistant_text_delta':
@@ -789,6 +807,7 @@ export async function runChatViaGateway(
                             code: event.code,
                             message: event.message,
                             recoverable: event.recoverable,
+                            details: summarizeErrorDetails(event.details),
                         },
                         null,
                         2,
@@ -840,6 +859,29 @@ export async function runChatViaGateway(
         );
     } finally {
         clearActiveRunIfCurrent(state, runId);
+    }
+}
+
+function summarizeErrorDetails(details) {
+    if (!details || typeof details !== 'object') return undefined;
+    try {
+        const raw = details.raw && typeof details.raw === 'object' ? details.raw : undefined;
+        const rawError = raw && typeof raw.error === 'object' ? raw.error : undefined;
+        return {
+            provider: details.provider,
+            protocol: details.protocol,
+            code: details.code,
+            status: details.status,
+            message: details.message,
+            rawError: rawError ? {
+                code: rawError.code,
+                type: rawError.type,
+                request_id: rawError.request_id || rawError.requestId,
+                message: rawError.message,
+            } : undefined,
+        };
+    } catch {
+        return { summary: String(details).slice(0, 500) };
     }
 }
 

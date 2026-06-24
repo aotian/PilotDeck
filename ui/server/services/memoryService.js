@@ -25,6 +25,9 @@ const workspaceTaskChains = new Map();
 
 let schedulerTimer = null;
 let schedulerCyclePromise = null;
+const schedulerFailureState = new Map();
+const MAX_SCHEDULER_FAILURES_BEFORE_BACKOFF = 3;
+const SCHEDULER_FAILURE_BACKOFF_MS = 30 * 60 * 1000;
 
 function normalizePath(projectPath) {
   return typeof projectPath === 'string' && projectPath.trim()
@@ -405,9 +408,27 @@ export async function runMemorySchedulerCycle() {
   schedulerCyclePromise = (async () => {
     const workspaceDataDirs = await listWorkspaceDataDirs();
     for (const dataDir of workspaceDataDirs) {
+      const failureState = schedulerFailureState.get(dataDir);
+      if (failureState?.skipUntil && failureState.skipUntil > Date.now()) {
+        continue;
+      }
       try {
         await executeScheduledMaintenanceForDataDir(dataDir);
+        schedulerFailureState.delete(dataDir);
       } catch (error) {
+        const failures = (failureState?.failures ?? 0) + 1;
+        if (failures >= MAX_SCHEDULER_FAILURES_BEFORE_BACKOFF) {
+          schedulerFailureState.set(dataDir, {
+            failures,
+            skipUntil: Date.now() + SCHEDULER_FAILURE_BACKOFF_MS,
+          });
+          console.error(
+            `[memory-scheduler] scheduled maintenance failed for ${dataDir}; backing off for 30 minutes:`,
+            error,
+          );
+          continue;
+        }
+        schedulerFailureState.set(dataDir, { failures, skipUntil: 0 });
         console.error(`[memory-scheduler] scheduled maintenance failed for ${dataDir}:`, error);
       }
     }

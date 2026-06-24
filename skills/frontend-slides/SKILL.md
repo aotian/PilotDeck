@@ -1,6 +1,6 @@
 ---
 name: frontend-slides
-description: Create animation-rich standalone HTML presentations from scratch or by converting PowerPoint files for talks, pitches, reports, generic slide decks, and Tongcheng classroom PPT/HTML deck source assets when the user wants high-quality visual courseware. For Tongcheng/Tiku/Teach workflows, generate the deck as a source asset and also preserve the Tongcheng courseware handoff package.
+description: Create animation-rich standalone HTML presentations from scratch or by converting PowerPoint files for talks, pitches, reports, generic slide decks, and Tongcheng classroom PPT/HTML assets when the user wants high-quality visual courseware. For Tongcheng/Tiku/Teach workflows, generate Tiku-ready HTML slides as the source asset and preserve rendered deck/export handoff package files.
 ---
 
 # Frontend Slides
@@ -13,10 +13,34 @@ Use this skill for Tongcheng teaching courseware when the teacher needs a high-q
 
 For Tongcheng/Tiku/Teach workflows:
 
-1. Generate the presentation as a durable source asset in the workspace, preferably `deck.html` plus optional `slides-manifest.json`.
+1. Generate the presentation as a durable source asset in the workspace, preferably `courseware-slides.json` using schema `tiku.coursewareSlides.v1`; `deck.html` plus optional `slides-manifest.json` are derived previews/exports.
 2. Keep the deck self-contained or keep relative assets in a sibling folder.
 3. Also preserve/update the Tongcheng courseware handoff package files from `tongcheng-courseware-handoff` so the Tongcheng review and publishing pipeline can standardize, publish, and connect exercises.
-4. Do not ask the downstream courseware pipeline to recreate the visual deck from scratch when a generated `deck.html` already exists. The downstream pipeline should validate, index, and publish the asset.
+4. Do not ask the downstream courseware pipeline to recreate slides from scratch when `courseware-slides.json` already exists. The downstream pipeline should validate, index, and publish the slide source.
+5. Student-facing slide copy must be written for learners. Do not include teacher operation notes, internal workflow names, model/tool details, or platform implementation names such as OpenMAIC/Pilot/agent. Put teacher-only guidance in `slides[].notes` or `teacher-script.md` instead.
+6. If the slides contain exercises from Tiku, preserve the source identifiers in nearby metadata or `slides-manifest.json`; if the exercise is AI-created, mark it as a draft in the handoff package rather than presenting it as an official Tiku item.
+
+### Tongcheng Deck Workflow Guardrails
+
+For Tongcheng classroom courseware, never generate a complete long deck in one model response unless the user explicitly asks for a very short deck under 5 slides. The preferred flow is staged:
+
+1. Confirm the course topic, audience, lesson count or slide count, content readiness, and whether the teacher wants browser editing.
+2. Generate three visual style previews first: `style-a.html`, `style-b.html`, `style-c.html`. Keep each preview small, self-contained, and under 100 lines.
+3. Wait for the user to choose A/B/C or describe a mix. Do not skip this choice for interactive/free-design courseware decks; for Tiku automatic generation, use the selected subject template and generate `courseware-slides.json` directly.
+4. Create a concise `deck-plan.md` with slide titles, visual intent, and source materials before writing the final deck.
+5. Generate the final deck in safe chunks:
+   - First write the complete shell: HTML head, CSS variables, layout system, navigation controller, and empty slide sections.
+   - Then fill slide content in batches of 2-3 slides.
+   - Then run a quick self-check for missing closing tags, duplicate navigation, overflowing text, and broken asset paths.
+
+Hard reliability rules:
+
+- Do not print full `courseware-slides.json`, `deck.html`, large CSS, or slide HTML in the chat response. The chat response should contain only a short progress note, generated file paths, preview links, and the next decision needed from the teacher.
+- For decks over 8 slides, never create or replace the whole file in one operation. Create a shell file first, then append or patch 2-3 slides per operation.
+- Do not promise "I will write the whole deck now" unless the next action is a file operation. If the file operation cannot happen, stop and explain the blocker.
+- Do not read the full generated `courseware-slides.json` or `deck.html` back into context after writing it. Validate with targeted checks such as file size, slide count, closing tag count, and browser screenshot paths.
+- Browser screenshots, PDF page renders, and other visual tool results should be treated as external artifacts. Summarize them by file path and dimensions; do not feed large base64 image payloads back into the model context.
+- If the model or stream fails mid-generation, resume from the last written slide number rather than restarting the entire deck.
 
 ## Core Principles
 

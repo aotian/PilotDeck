@@ -102,6 +102,31 @@ export const api = {
     const suffix = query.toString() ? `?${query.toString()}` : '';
     return authenticatedFetch(`/api/tongcheng/courseware-handoff/${encodeURIComponent(projectName)}${suffix}`);
   },
+  tongchengCoursewareProgram: (projectName, params = {}) => {
+    const query = new URLSearchParams();
+    if (params.programId) query.set('programId', params.programId);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return authenticatedFetch(`/api/tongcheng/courseware-program/${encodeURIComponent(projectName)}${suffix}`);
+  },
+  tongchengCoursewareProgress: (projectName, params = {}) => {
+    const query = new URLSearchParams();
+    if (params.programId) query.set('programId', params.programId);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return authenticatedFetch(`/api/tongcheng/courseware-progress/${encodeURIComponent(projectName)}${suffix}`);
+  },
+  initializeTongchengCoursewareProgram: (projectName, body = {}) =>
+    authenticatedFetch(`/api/tongcheng/courseware-program/${encodeURIComponent(projectName)}/initialize`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    }),
+  refreshTongchengCoursewareProgramPackages: (projectName, params = {}) => {
+    const query = new URLSearchParams();
+    if (params.programId) query.set('programId', params.programId);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return authenticatedFetch(`/api/tongcheng/courseware-program/${encodeURIComponent(projectName)}/refresh-packages${suffix}`, {
+      method: 'POST',
+    });
+  },
   projectDiscoveryPlans: (projectName) =>
     authenticatedFetch(`/api/projects/${encodeURIComponent(projectName)}/discovery-plans`),
   executeProjectDiscoveryPlan: (projectName, planId, body = {}) =>

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { MessageSquare } from 'lucide-react';
+import tongchengLogo from '../../../assets/tongcheng-logo.png';
 
 type AuthScreenLayoutProps = {
   title: string;
@@ -23,9 +23,12 @@ export default function AuthScreenLayout({
           <div className="text-center">
             <div className="mb-4 flex justify-center">
               {logo ?? (
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-primary shadow-sm">
-                  <MessageSquare className="h-8 w-8 text-primary-foreground" />
-                </div>
+                <img
+                  src={tongchengLogo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-16 w-16 rounded-2xl object-cover shadow-sm"
+                />
               )}
             </div>
             <h1 className="text-2xl font-bold text-foreground">{title}</h1>

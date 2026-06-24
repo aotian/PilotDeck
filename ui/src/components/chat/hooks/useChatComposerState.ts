@@ -187,6 +187,7 @@ export function useChatComposerState({
     ((event: FormEvent<HTMLFormElement> | MouseEvent | TouchEvent | KeyboardEvent<HTMLTextAreaElement>) => Promise<void>) | null
   >(null);
   const inputValueRef = useRef(input);
+  const hiddenInstructionPrefixRef = useRef('');
 
   // One-shot flag set by `handleCustomCommand` when re-submitting passthrough
   // slash content (e.g. `/projects` for bundled stubs, `/canvas` for skills).
@@ -660,6 +661,10 @@ export function useChatComposerState({
       if (selectedThinkingMode && selectedThinkingMode.prefix) {
         messageContent = `${selectedThinkingMode.prefix}: ${userVisibleInput}`;
       }
+      const hiddenInstructionPrefix = hiddenInstructionPrefixRef.current.trim();
+      if (hiddenInstructionPrefix) {
+        messageContent = `${hiddenInstructionPrefix}\n\n老师可见需求：${messageContent}`;
+      }
 
       // Pin the target session before any await so attachment upload cannot
       // race with a sidebar session switch and leak the optimistic bubble.
@@ -800,6 +805,7 @@ export function useChatComposerState({
 
       setInput('');
       inputValueRef.current = '';
+      hiddenInstructionPrefixRef.current = '';
       resetCommandMenuState();
       setAttachedImages([]);
       setUploadingImages(new Map());
@@ -844,6 +850,20 @@ export function useChatComposerState({
   useEffect(() => {
     handleSubmitRef.current = handleSubmit;
   }, [handleSubmit]);
+
+  const submitProgrammaticMessage = useCallback(
+    async (visibleInput: string, hiddenInstructionPrefix?: string) => {
+      const nextInput = visibleInput.trim();
+      if (!nextInput || isLoading || !selectedProject) {
+        return;
+      }
+      hiddenInstructionPrefixRef.current = hiddenInstructionPrefix?.trim() || '';
+      setInput(nextInput);
+      inputValueRef.current = nextInput;
+      await handleSubmitRef.current?.(createFakeSubmitEvent());
+    },
+    [isLoading, selectedProject],
+  );
 
   useEffect(() => {
     inputValueRef.current = input;
@@ -1011,6 +1031,7 @@ export function useChatComposerState({
   const handleClearInput = useCallback(() => {
     setInput('');
     inputValueRef.current = '';
+    hiddenInstructionPrefixRef.current = '';
     resetCommandMenuState();
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -1176,6 +1197,7 @@ export function useChatComposerState({
   return {
     input,
     setInput,
+    submitProgrammaticMessage,
     textareaRef,
     inputHighlightRef,
     isTextareaExpanded,

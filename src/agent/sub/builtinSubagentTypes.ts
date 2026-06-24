@@ -17,7 +17,18 @@
  * sync legacy parity tests when changing.
  */
 
-export type SubagentDefinitionId = "general-purpose" | "explore" | "plan" | "verify";
+export type SubagentDefinitionId =
+  | "general-purpose"
+  | "explore"
+  | "plan"
+  | "verify"
+  | "courseware-requirement"
+  | "courseware-outline"
+  | "courseware-script"
+  | "courseware-exercise"
+  | "courseware-deck"
+  | "courseware-video"
+  | "courseware-review";
 
 export type SubagentDefinition = {
   /** Stable identifier exposed via `agent` tool's `subagent_type` input. */
@@ -65,6 +76,7 @@ Guidelines:
 10. If the directive is impossible with the allowed tools, say so explicitly in the report.
 11. Prefer fewer tool calls. Do not use web_fetch unless the directive explicitly requires full page content.
 12. When the directive provides specific file paths, trust them and use them directly. Do not spend turns searching for or verifying file paths that are already given.
+13. For Tongcheng courseware tasks, follow the assigned role protocol strictly: read only required inputs, write only assigned files, and always write a courseware-agent-report.json handoff report.
 
 Output format (mandatory; missing any field fails the run):
 Scope: <one sentence describing what you did>
@@ -72,6 +84,9 @@ Result: <findings, in markdown if helpful>
 Key files: <comma-separated absolute paths or "none">
 Files changed: <list with rationale, or "none">
 Issues: <list of caveats / blockers, or "none">`;
+
+const COURSEWARE_WRITE_TOOLS = ["read_file", "grep", "glob", "bash", "write_file", "edit_file"] as const;
+const COURSEWARE_REPORT_RULE = `Before your final message, write or update courseware-agent-report.json in the assigned lesson directory. The JSON must include schemaVersion "tongcheng.coursewareAgentReport.v1", agentRole, lessonId, status, inputsRead, filesWritten, nextAgent, blockers, checks, and updatedAt. Keep the final chat report short and reference file paths instead of pasting large content.`;
 
 export const SUBAGENT_DEFINITIONS: Record<SubagentDefinitionId, SubagentDefinition> = {
   "general-purpose": {
@@ -130,6 +145,194 @@ Output your findings as a structured verdict:
 - FAIL: critical issues found (list them with file paths and descriptions).
 
 Be rigorous. A silent pass when issues exist is worse than a false alarm.`,
+  },
+  "courseware-requirement": {
+    id: "courseware-requirement",
+    description:
+      "Tongcheng courseware requirement agent. Turns teacher intent and source materials into a concise lesson brief.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Requirement mode: produce only the requirement handoff for one assigned lesson or a small assigned batch.
+
+Write:
+- brief.md
+- courseware-agent-report.json
+
+Exit criteria:
+- subject, grade/level, topic, duration, outputs, teaching mode, style preference, and acceptance criteria are explicit.
+- unknowns are listed as blockers instead of guessed.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-outline": {
+    id: "courseware-outline",
+    description:
+      "Tongcheng courseware outline agent. Produces structured lesson outline and pitfalls from a brief.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Outline mode: read the assigned brief and source summaries, then produce the teaching structure.
+
+Write:
+- course-outline.md
+- pitfalls.md
+- courseware-agent-report.json
+
+Exit criteria:
+- sections, timing, learning path, examples, interactions, and mistakes are structured.
+- do not write deck.html, exercises.md, or video-script.md.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-script": {
+    id: "courseware-script",
+    description:
+      "Tongcheng courseware teaching-script agent. Creates concise teacher-facing lesson flow.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Teaching script mode: convert the brief, outline, and pitfalls into a classroom-usable teacher script.
+
+Write:
+- teacher-script.md
+- courseware-agent-report.json
+
+Exit criteria:
+- teacher language is practical and concise.
+- student-facing HTML should not include internal teacher notes.
+- do not write deck.html, exercises.md, or video-script.md.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-exercise": {
+    id: "courseware-exercise",
+    description:
+      "Tongcheng courseware exercise agent. Builds Tiku-first candidate exercises and gap notes.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Exercise mode: produce candidate practice materials from Tiku/source files first and AI draft only for gaps.
+
+Write:
+- exercises.md
+- optional homework.md, oj-exercises.md, edu-exercises.md
+- courseware-agent-report.json
+
+Exit criteria:
+- every item is labeled source: tiku, ai-draft, or manual.
+- missing Tiku coverage is explicit.
+- do not mark candidates as final official homework or exam items.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-deck": {
+    id: "courseware-deck",
+    description:
+      "Tongcheng courseware HTML slides agent. Creates Tiku-ready editable HTML slides and derived classroom deck previews in safe chunks.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "high",
+    systemPromptSuffix: `HTML slides mode: create presentation-grade, Tiku-ready editable classroom slides, not a free-form long answer.
+
+Write:
+- courseware-slides.json using schemaVersion "tiku.coursewareSlides.v1"
+- style-previews/style-a.html, style-previews/style-b.html, style-previews/style-c.html only for interactive/free-design tasks where no style has been chosen
+- deck-plan.md
+- deck.html as a derived preview/backup rendered from courseware-slides.json
+- slides-manifest.json as derived navigation/export metadata
+- courseware-agent-report.json
+
+courseware-slides.json shape:
+{
+  "schemaVersion": "tiku.coursewareSlides.v1",
+  "coursePackageId": "...",
+  "lessonDbId": "...",
+  "lessonId": "...",
+  "title": "...",
+  "knowledgeIds": ["..."],
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover|concept|example|practice|summary",
+      "title": "...",
+      "html": "<section>student-visible editable HTML</section>",
+      "markdown": "...",
+      "notes": "teacher-only reminder",
+      "duration_minutes": 3,
+      "student_visible": true
+    }
+  ]
+}
+
+Hard rules:
+- in Tiku automatic generation mode, do not stop for three style previews; use the selected subject template and generate courseware-slides.json directly.
+- if the teacher explicitly asks for style discovery, stop after writing three small previews and report that the user must choose.
+- write or patch 1-3 slides per edit; never replace a large accepted asset with a tiny draft.
+- never paste full slide HTML or deck HTML in chat.
+- do not read full deck.html or courseware-slides.json back into context; validate with targeted checks.
+- student-facing slides[].html must not contain: 江校, agent, Pilot, OpenMAIC, 内部, 验收, 落库, metadata, courseware_jobs, 老师讲稿.
+- teacher-only guidance belongs in slides[].notes or teacher-script.md, not slides[].html.
+- preserve math expressions in standard forms that the platform renderer understands: $...$, \\(...\\), $$...$$, _{base}, ^{power}, \\times, \\frac{}, \\ge, \\le, \\ne, \\sum, \\log.
+- AI similar-practice buttons must carry the full prompt in data-copy and open ai.tongchengweilai.com through prompt handoff when deck.html includes button behavior; never rely on a bare link only.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-video": {
+    id: "courseware-video",
+    description:
+      "Tongcheng courseware video agent. Drafts Tutor-style video scripts from approved lesson assets.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Video mode: draft a Tutor-style teaching video script from brief, outline, teacher script, and slide manifest when available.
+
+Write:
+- video-script.md
+- courseware-agent-report.json
+
+Exit criteria:
+- script includes scene, narration, board/action notes, and optional asset suggestions.
+- do not block deck generation; video is an independent asset.
+
+${COURSEWARE_REPORT_RULE}`,
+  },
+  "courseware-review": {
+    id: "courseware-review",
+    description:
+      "Tongcheng courseware review/package agent. Validates lesson assets and writes standard handoff packages.",
+    allowedTools: COURSEWARE_WRITE_TOOLS,
+    omitProjectInstructions: false,
+    omitGitStatus: true,
+    isReadOnly: false,
+    effort: "medium",
+    systemPromptSuffix: `Review and package mode: validate generated assets and prepare standard handoff files.
+
+Write:
+- courseware-package.json
+- generator-handoff.json
+- courseware-agent-report.json
+
+Exit criteria:
+- required fields are present.
+- courseware-slides.json checks include schema, slide count, required html, dangerous links/scripts, and mobile/desktop notes.
+- deck.html/PPT/PDF are treated as derived preview/export assets.
+- publish readiness is blocked, draft, or ready with reasons.
+
+${COURSEWARE_REPORT_RULE}`,
   },
 };
 

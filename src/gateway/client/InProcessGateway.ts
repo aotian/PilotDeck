@@ -1061,16 +1061,51 @@ function inferToolErrorCategory(code: string | undefined):
 export function mapAgentEvent(event: AgentEvent, runId: string): GatewayEvent[] {
   switch (event.type) {
     case "turn_started":
-      return [{ type: "turn_started", runId }];
+      return [
+        { type: "turn_started", runId },
+        {
+          type: "agent_activity",
+          activityId: `${runId}:turn`,
+          title: "开始处理",
+          detail: "已收到请求，正在准备上下文",
+          state: "running",
+          phase: "start",
+          startedAt: new Date().toISOString(),
+        },
+      ];
+    case "model_request_started":
+      return [
+        {
+          type: "agent_activity",
+          activityId: `${runId}:model:${event.provider}:${event.model}`,
+          title: "正在请求模型",
+          detail: `${event.provider}/${event.model}`,
+          state: "running",
+          phase: "model",
+          startedAt: new Date().toISOString(),
+        },
+      ];
     case "model_event":
       return mapModelEvent(event.event);
     case "tool_calls_detected":
-      return event.calls.map((call) => ({
-        type: "tool_call_started",
-        toolCallId: call.id,
-        name: call.name,
-        argsPreview: previewUnknown(call.input),
-      }));
+      return event.calls.flatMap((call) => [
+        {
+          type: "agent_activity",
+          activityId: `${runId}:tool:${call.id}`,
+          title: `正在执行 ${call.name}`,
+          detail: previewUnknown(call.input)?.slice(0, 220),
+          state: "running",
+          phase: "tool",
+          toolName: call.name,
+          startedAt: new Date().toISOString(),
+        },
+        {
+          type: "tool_call_started",
+          toolCallId: call.id,
+          name: call.name,
+          argsPreview: previewUnknown(call.input),
+        },
+      ]);
     case "tool_result": {
       const fullText = event.result.content.map(contentToText).join("\n");
       const lines = fullText.split("\n");
@@ -1109,6 +1144,19 @@ export function mapAgentEvent(event: AgentEvent, runId: string): GatewayEvent[] 
 
       return [
         {
+          type: "agent_activity",
+          activityId: `${runId}:tool:${event.result.toolCallId}`,
+          title: event.result.type === "success"
+            ? `${event.result.toolName} 完成`
+            : `${event.result.toolName} 失败`,
+          detail: preview || undefined,
+          state: event.result.type === "success" ? "completed" : "failed",
+          phase: "tool",
+          toolName: event.result.toolName,
+          severity: event.result.type === "success" ? "info" : "error",
+          endedAt: new Date().toISOString(),
+        },
+        {
           type: "tool_call_finished",
           toolCallId: event.result.toolCallId,
           ok: event.result.type === "success",
@@ -1128,9 +1176,31 @@ export function mapAgentEvent(event: AgentEvent, runId: string): GatewayEvent[] 
     case "mode_change_requested":
       return [{ type: "plan_mode_changed", mode: event.mode }];
     case "turn_completed":
-      return mapTurnCompleted(event.result);
+      return [
+        {
+          type: "agent_activity",
+          activityId: `${runId}:turn`,
+          title: event.result.type === "success" ? "处理完成" : "处理结束",
+          detail: event.result.stopReason,
+          state: event.result.type === "success" ? "completed" : "failed",
+          phase: "done",
+          severity: event.result.type === "success" ? "info" : "error",
+          endedAt: new Date().toISOString(),
+        },
+        ...mapTurnCompleted(event.result),
+      ];
     case "turn_failed":
       return [
+        {
+          type: "agent_activity",
+          activityId: `${runId}:turn`,
+          title: "处理失败",
+          detail: event.error.message,
+          state: "failed",
+          phase: "error",
+          severity: "error",
+          endedAt: new Date().toISOString(),
+        },
         {
           type: "error",
           code: event.error.code,

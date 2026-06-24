@@ -30,6 +30,7 @@ import MainContentStateView from './subcomponents/MainContentStateView';
 import ErrorBoundary from './ErrorBoundary';
 import MemoryPanel from './memory/MemoryPanel';
 import SkillsV2 from '../../main-content-v2/SkillsV2';
+import CoursewareProgramV2 from '../../main-content-v2/CoursewareProgramV2';
 
 type TaskMasterContextValue = {
   currentProject?: Project | null;
@@ -358,6 +359,7 @@ function MainContent({
           processingSessions={processingSessions}
           onReplaceTemporarySession={onReplaceTemporarySession}
           onNavigateToSession={onNavigateToSession}
+          onStartNewSession={onStartNewSession}
           onShowSettings={onShowSettings}
           externalMessageUpdate={externalMessageUpdate}
           autoExpandTools={autoExpandTools}
@@ -433,6 +435,7 @@ type SplitBodyProps = {
   processingSessions: any;
   onReplaceTemporarySession: any;
   onNavigateToSession: (sessionId: string) => void;
+  onStartNewSession?: MainContentProps['onStartNewSession'];
   onShowSettings: any;
   externalMessageUpdate: any;
   autoExpandTools: any;
@@ -471,6 +474,7 @@ function SplitBody(props: SplitBodyProps) {
     processingSessions,
     onReplaceTemporarySession,
     onNavigateToSession,
+    onStartNewSession,
     onShowSettings,
     externalMessageUpdate,
     autoExpandTools,
@@ -502,6 +506,7 @@ function SplitBody(props: SplitBodyProps) {
     'shell',
     'git',
     'always-on',
+    'courseware',
     'dashboard',
     'memory',
     'skills',
@@ -595,6 +600,14 @@ function SplitBody(props: SplitBodyProps) {
           onSubTabChange={onAlwaysOnSubTabChange ?? (() => undefined)}
           onApplyWorkCycle={applyAndLaunchCycle}
           onOpenExecutionSession={handleOpenExecutionSession}
+        />
+      );
+    }
+    if (activeTab === 'courseware') {
+      return (
+        <CoursewareProgramV2
+          selectedProject={selectedProject}
+          onStartNewSession={onStartNewSession}
         />
       );
     }

@@ -36,6 +36,7 @@ import {
   type InProcessGatewayOptions,
   SessionRouter,
   type Gateway,
+  type GatewayEvent,
   type GatewayCronController,
   type GatewayProjectStorageOptions,
   type GatewaySessionContext,
@@ -431,11 +432,16 @@ class ProjectRuntimeRegistry {
         renameSync(oldPath, eventsPath);
       }
     } catch { /* best-effort migration */ }
+    const registry = this;
     return {
       emit(event: RouterEvent) {
         try {
           appendFileSync(eventsPath, JSON.stringify(event) + "\n");
         } catch { /* best-effort, never crash the agent loop */ }
+        const activity = routerEventToGatewayActivity(event);
+        if (activity) {
+          registry.gateway?.emitForSession(event.sessionId, activity);
+        }
       },
     };
   }
@@ -1218,4 +1224,81 @@ function buildDefaultAutoOrchestrate() {
     allowedTools: [...DEFAULT_ALLOWED_TOOLS],
     subagentMaxTokens: DEFAULT_SUBAGENT_MAX_TOKENS,
   };
+}
+
+function routerEventToGatewayActivity(event: RouterEvent): GatewayEvent | null {
+  const baseId = `router:${event.turnId ?? "turn"}:${event.type}`;
+  switch (event.type) {
+    case "pilotdeck_router_decision":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:decision`,
+        title: "已选择模型",
+        detail: `${event.decision.provider}/${event.decision.model}`,
+        state: "completed",
+        phase: "router",
+      };
+    case "pilotdeck_router_fallback":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:${event.attempt}`,
+        title: "模型请求失败，正在切换",
+        detail: `${event.fromProvider}/${event.fromModel} -> ${event.toProvider}/${event.toModel}: ${event.error.message}`,
+        state: "running",
+        phase: "router",
+        severity: "warning",
+      };
+    case "pilotdeck_router_transient_retry":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:${event.attempt}`,
+        title: "模型暂时不可用，等待重试",
+        detail: `${event.provider}/${event.model}，${Math.ceil(event.delayMs / 1000)} 秒后重试：${event.errorCode}`,
+        state: "running",
+        phase: "router",
+        severity: "warning",
+      };
+    case "pilotdeck_router_execute_failed":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:failed`,
+        title: "模型请求失败",
+        detail: `${event.provider}/${event.model}: ${event.error.message}`,
+        state: "failed",
+        phase: "router",
+        severity: "error",
+      };
+    case "pilotdeck_router_zero_usage_retry":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:${event.attempt}`,
+        title: "模型返回为空，正在重试",
+        detail: `${event.provider}/${event.model}`,
+        state: "running",
+        phase: "router",
+        severity: "warning",
+      };
+    case "pilotdeck_router_token_saver_failed":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:token-saver`,
+        title: "模型分流判断失败",
+        detail: `原因：${event.reason}，改用 ${event.fallbackTier}`,
+        state: "completed",
+        phase: "router",
+        severity: "warning",
+      };
+    case "pilotdeck_router_custom_failed":
+      return {
+        type: "agent_activity",
+        activityId: `${baseId}:custom`,
+        title: "自定义路由失败",
+        detail: event.reason,
+        state: "completed",
+        phase: "router",
+        severity: "warning",
+      };
+    default:
+      return null;
+  }
 }

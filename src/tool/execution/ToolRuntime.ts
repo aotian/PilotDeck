@@ -14,6 +14,7 @@ import { validateToolInput } from "./validateToolInput.js";
 import { formatValidationError } from "./formatValidationError.js";
 import { normalizeToolError } from "../protocol/errors.js";
 import type { AgentEventEmitter } from "../../agent/protocol/events.js";
+import { preflightToolSafetyPolicy } from "./toolSafetyPolicy.js";
 
 export class ToolRuntime {
   constructor(
@@ -91,6 +92,18 @@ export class ToolRuntime {
           { issues: updatedValidation.issues },
         );
       }
+    }
+
+    const preflightRejection = preflightToolSafetyPolicy(tool.name, executeInput);
+    if (preflightRejection) {
+      return this.errorResult(
+        call.id,
+        tool.name,
+        "permission_denied",
+        preflightRejection,
+        startedAt,
+        context,
+      );
     }
 
     const toolValidation = await tool.validateInput?.(executeInput, context);
@@ -183,6 +196,18 @@ export class ToolRuntime {
     }
 
     executeInput = decision.updatedInput ?? executeInput;
+    const finalPreflightRejection = preflightToolSafetyPolicy(tool.name, executeInput);
+    if (finalPreflightRejection) {
+      return this.errorResult(
+        call.id,
+        tool.name,
+        "permission_denied",
+        finalPreflightRejection,
+        startedAt,
+        context,
+      );
+    }
+
     const executeContext: PilotDeckToolRuntimeContext = context.progress
       ? {
           ...context,

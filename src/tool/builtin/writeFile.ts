@@ -3,6 +3,7 @@ import type { PilotDeckToolDefinition } from "../protocol/types.js";
 import { PilotDeckToolRuntimeError } from "../protocol/errors.js";
 import { resolvePilotDeckWorkspacePath } from "./filesystem/pathSafety.js";
 import { writeTextFile } from "./filesystem/writeTextFile.js";
+import { buildCoursewareWriteRejection } from "./filesystem/coursewareSafety.js";
 import {
   buildStructuredPatch,
   buildUnifiedDiff,
@@ -119,6 +120,21 @@ export function createWriteFileTool(): PilotDeckToolDefinition<WriteFileInput, W
 
       try {
         await validateWriteSnapshotFresh(context, resolved.absolutePath);
+        const coursewareRejection = buildCoursewareWriteRejection({
+          filePath: resolved.absolutePath,
+          nextContent: input.content,
+          previousContent: null,
+        });
+        if (coursewareRejection) {
+          return {
+            ok: false,
+            issues: [{
+              path: "content",
+              code: "invalid_schema",
+              message: coursewareRejection,
+            }],
+          };
+        }
       } catch (error) {
         const normalized = error instanceof PilotDeckToolRuntimeError ? error.message : String(error);
         if (normalized === "File has not been read yet. Read it first before writing to it."
@@ -144,6 +160,14 @@ export function createWriteFileTool(): PilotDeckToolDefinition<WriteFileInput, W
       }
 
       const freshness = await ensureWriteSnapshotFresh(context, resolved.absolutePath);
+      const coursewareRejection = buildCoursewareWriteRejection({
+        filePath: resolved.absolutePath,
+        nextContent: input.content,
+        previousContent: freshness.previousContent,
+      });
+      if (coursewareRejection) {
+        throw new PilotDeckToolRuntimeError("invalid_tool_input", coursewareRejection);
+      }
       if (context.fileHistory) {
         await context.fileHistory.trackEdit(
           resolved.absolutePath,

@@ -1,6 +1,16 @@
 packages:
   - 'ui'
 
+allowBuilds:
+  bcrypt: set this to true or false
+  better-sqlite3: set this to true or false
+  esbuild: set this to true or false
+  node-pty: set this to true or false
+  protobufjs: set this to true or false
+  sharp: set this to true or false
+  sqlite3: set this to true or false
+  unrs-resolver: set this to true or false
+
 # Native/build-time packages that are allowed to run lifecycle scripts during
 # pnpm install. Keeping this at the workspace root makes Docker/CI installs
 # deterministic and prevents ERR_PNPM_IGNORED_BUILDS failures.

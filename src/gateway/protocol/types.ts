@@ -165,6 +165,18 @@ export type GatewayEvent =
       state: "ok" | "warning" | "blocking";
     }
   | { type: "turn_completed"; usage: TurnUsage; finishReason: AgentTurnResult["stopReason"] | string }
+  | {
+      type: "agent_activity";
+      activityId: string;
+      title: string;
+      detail?: string;
+      state: "running" | "completed" | "failed" | "cancelled";
+      phase?: string;
+      severity?: "info" | "warning" | "error";
+      toolName?: string;
+      startedAt?: string;
+      endedAt?: string;
+    }
   | { type: "agent_status"; event: string; detail?: Record<string, unknown> }
   | { type: "error"; message: string; code?: string; recoverable: boolean };
 

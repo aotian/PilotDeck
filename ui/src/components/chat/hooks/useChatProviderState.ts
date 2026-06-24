@@ -23,6 +23,21 @@ const COMPOSER_PERMISSION_MODES: PermissionMode[] = [
   'bypassPermissions',
 ];
 
+function normalizeModelOptions(options: ModelOption[]): ModelOption[] {
+  const seen = new Set<string>();
+  const normalized: ModelOption[] = [];
+  for (const option of options) {
+    const value = option.value.trim();
+    if (!value || seen.has(value)) continue;
+    seen.add(value);
+    normalized.push({
+      value,
+      label: (option.label.trim() || value).replace(/^tc-admin\//, '').replace(/^tc-main\//, ''),
+    });
+  }
+  return normalized;
+}
+
 function readStoredPermissionMode(key: string): PermissionMode | null {
   const stored = localStorage.getItem(key);
   if (!stored) return null;
@@ -69,7 +84,7 @@ export function useChatProviderState({ selectedSession }: UseChatProviderStateAr
           return;
         }
 
-        const availableModels = Array.isArray(data?.claude?.availableModels)
+        const availableModels = normalizeModelOptions(Array.isArray(data?.claude?.availableModels)
           ? data.claude.availableModels
             .filter((option: unknown): option is ModelOption => (
               typeof option === 'object'
@@ -82,7 +97,7 @@ export function useChatProviderState({ selectedSession }: UseChatProviderStateAr
               label: option.label.trim() || option.value.trim(),
             }))
             .filter((option: ModelOption) => option.value.length > 0)
-          : [];
+          : []);
         const runtimeOptions = availableModels.length > 0 ? availableModels : DEFAULT_MODEL_OPTIONS;
         const runtimeDefaultModel = typeof data?.claude?.defaultModel === 'string' && data.claude.defaultModel.trim()
           ? data.claude.defaultModel.trim()

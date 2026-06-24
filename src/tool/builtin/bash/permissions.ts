@@ -1,4 +1,5 @@
 import type { PermissionResult } from "../../../permission/index.js";
+import { isCoursewareAssetPath } from "../filesystem/coursewareSafety.js";
 
 const DENY_PATTERNS: RegExp[] = [
   // Unix
@@ -63,6 +64,14 @@ const SAFE_READ_PATTERNS: RegExp[] = [
 ];
 
 export function classifyBashPermission(command: string): PermissionResult {
+  if (looksLikeCoursewareDeletion(command)) {
+    return {
+      type: "deny",
+      reason: { type: "safety", message: "Refusing to delete or truncate courseware asset files from shell." },
+      message: "Refusing to delete or truncate courseware asset files from shell. Patch or replace through write_file/edit_file with validation instead.",
+    };
+  }
+
   if (DENY_PATTERNS.some((pattern) => pattern.test(command))) {
     return {
       type: "deny",
@@ -90,6 +99,30 @@ export function classifyBashPermission(command: string): PermissionResult {
       ],
     },
   };
+}
+
+function looksLikeCoursewareDeletion(command: string): boolean {
+  const lowered = command.toLowerCase();
+  if (!/\b(rm|unlink|truncate|:>|>|tee|cat)\b/.test(lowered)) {
+    return false;
+  }
+
+  if (/\brm\b|\bunlink\b|\btruncate\b|:>/.test(lowered)) {
+    return extractLikelyPaths(command).some(isCoursewareAssetPath);
+  }
+
+  if (/(^|[^>])>\s*["']?[^"'\s;&|]+/.test(command) || /\btee\s+["']?[^"'\s;&|]+/.test(lowered)) {
+    return extractLikelyPaths(command).some(isCoursewareAssetPath);
+  }
+
+  return false;
+}
+
+function extractLikelyPaths(command: string): string[] {
+  return command
+    .split(/[\s;&|]+/)
+    .map((part) => part.trim().replace(/^['"]|['"]$/g, ""))
+    .filter((part) => part.length > 0 && /[./\\]/.test(part));
 }
 
 export function isReadOnlyShellCommand(command: string): boolean {

@@ -32,6 +32,7 @@ import {
   setSessionCustomTitle,
   useCustomNamesVersion,
 } from '../../lib/customNames';
+import tongchengLogo from '../../assets/tongcheng-logo.png';
 
 const asTimestamp = (value: unknown): number => {
   if (typeof value === 'number') return value;
@@ -498,8 +499,11 @@ export default function SidebarV2({
     (project: Project) => {
       if (renamingProject === project.name) return;
       toggleProjectExpanded(project);
+      onResetProjectSessionPreview?.(project.name);
+      onSelectProject(project);
+      navToProject(project.name);
     },
-    [renamingProject, toggleProjectExpanded],
+    [navToProject, onResetProjectSessionPreview, onSelectProject, renamingProject, toggleProjectExpanded],
   );
 
   const handleSessionClick = useCallback(
@@ -971,9 +975,12 @@ export default function SidebarV2({
           title="童澄教研"
           className="flex min-w-0 shrink items-center gap-2 rounded-md p-1 transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 dark:focus-visible:ring-neutral-700"
         >
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500 text-sm font-bold text-white shadow-sm">
-            童
-          </span>
+          <img
+            src={tongchengLogo}
+            alt=""
+            aria-hidden="true"
+            className="h-8 w-8 rounded-lg object-cover shadow-sm"
+          />
           <span className="min-w-0 truncate text-sm font-semibold tracking-normal text-neutral-900 dark:text-neutral-50">
             童澄教研
           </span>

@@ -5,6 +5,7 @@ import { isNotebookPath } from "./filesystem/fileTypeSafety.js";
 import { resolvePilotDeckWorkspacePath } from "./filesystem/pathSafety.js";
 import { readTextFile } from "./filesystem/readTextFile.js";
 import { writeTextFile } from "./filesystem/writeTextFile.js";
+import { buildCoursewareEditRejection } from "./filesystem/coursewareSafety.js";
 import {
   ensureWriteSnapshotFresh,
   invalidateReadFileState,
@@ -89,6 +90,21 @@ export function createEditFileTool(): PilotDeckToolDefinition<EditFileInput> {
         };
       }
 
+      const coursewareRejection = buildCoursewareEditRejection({
+        filePath: resolved.absolutePath,
+        insertedContent: input.new_string,
+      });
+      if (coursewareRejection) {
+        return {
+          ok: false,
+          issues: [{
+            path: "new_string",
+            code: "invalid_schema",
+            message: coursewareRejection,
+          }],
+        };
+      }
+
       let freshness: { exists: boolean };
       try {
         freshness = await validateWriteSnapshotFresh(context, resolved.absolutePath);
@@ -149,6 +165,13 @@ export function createEditFileTool(): PilotDeckToolDefinition<EditFileInput> {
       }
 
       const freshness = await ensureWriteSnapshotFresh(context, resolved.absolutePath);
+      const coursewareRejection = buildCoursewareEditRejection({
+        filePath: resolved.absolutePath,
+        insertedContent: input.new_string,
+      });
+      if (coursewareRejection) {
+        throw new PilotDeckToolRuntimeError("invalid_tool_input", coursewareRejection);
+      }
       if (context.fileHistory) {
         await context.fileHistory.trackEdit(
           resolved.absolutePath,

@@ -390,7 +390,7 @@
     "nextTaskPrompt": "Start the next task"
   },
   "composer": {
-    "placeholder": "Tell PilotDeck what you want to get done…",
-    "welcomePlaceholder": "Tell PilotDeck what you want to get done…"
+    "placeholder": "Tell Tongcheng Assistant what you want to get done…",
+    "welcomePlaceholder": "Tell Tongcheng Assistant what you want to get done…"
   }
 }

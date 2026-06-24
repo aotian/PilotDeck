@@ -21,6 +21,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
 import {
     getPilotDeckGateway,
@@ -33,6 +34,9 @@ import {
     sanitizeSessionIdForPath,
 } from './utils/pilotPaths.js';
 import { mapCronRunOutcome } from '../../src/cron/protocol/types.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import sessionManager from './sessionManager.js';
 import { applyCustomSessionNames } from './database/db.js';
 
@@ -75,19 +79,41 @@ function projectDisplayName(fullPath) {
 function coursewareWorkspacesRoot() {
     return path.resolve(
         process.env.TONGCHENG_ASSET_WORKSPACES_ROOT ||
-        path.join(process.cwd(), 'workspaces'),
+        path.join(__dirname, '..', '..', 'workspaces'),
     );
 }
 
 function hasCoursewareAssetFiles(fileNames) {
     const names = new Set(fileNames);
-    return ['brief.md', 'course-outline.md', 'teacher-script.md'].some((fileName) =>
+    return ['brief.md', 'course-outline.md', 'teacher-script.md', 'courseware-slides.json', 'courseware-package.json', 'generator-handoff.json', 'course-program.json'].some((fileName) =>
         names.has(fileName),
     );
 }
 
+async function inspectCoursewareProjectFlags(fullPath) {
+    try {
+        const fileNames = await fs.readdir(fullPath);
+        if (!hasCoursewareAssetFiles(fileNames)) {
+            return {
+                coursewareAssetWorkspace: false,
+                coursewareProgramWorkspace: false,
+            };
+        }
+        return {
+            coursewareAssetWorkspace: true,
+            coursewareProgramWorkspace: fileNames.includes('course-program.json'),
+        };
+    } catch {
+        return {
+            coursewareAssetWorkspace: false,
+            coursewareProgramWorkspace: false,
+        };
+    }
+}
+
 async function listCoursewareAssetProjects() {
     const root = coursewareWorkspacesRoot();
+    const gateway = await getPilotDeckGateway().catch(() => null);
     let entries = [];
     try {
         entries = await fs.readdir(root, { withFileTypes: true });
@@ -106,17 +132,37 @@ async function listCoursewareAssetProjects() {
             continue;
         }
         if (!hasCoursewareAssetFiles(fileNames)) continue;
+        let sessions = [];
+        let total = 0;
+        let lastActivity;
+        if (gateway) {
+            const [sessionsResult, summary] = await Promise.all([
+                gateway
+                    .listSessions({ projectKey: fullPath, limit: 5 })
+                    .catch(() => ({ sessions: [] })),
+                gateway
+                    .describeProject({ projectKey: fullPath })
+                    .catch(() => null),
+            ]);
+            sessions = (sessionsResult.sessions || []).map((session) =>
+                toLegacySession(session, entry.name),
+            );
+            applyCustomSessionNames(sessions, 'claude');
+            total = typeof summary?.sessionCount === 'number' ? summary.sessionCount : sessions.length;
+            lastActivity = summary?.lastActivity;
+        }
         projects.push({
             name: entry.name,
-            displayName: `课程资产 · ${entry.name}`,
+            displayName: fileNames.includes('course-program.json') ? `课程包 · ${entry.name}` : `课程资产 · ${entry.name}`,
             fullPath,
             path: fullPath,
-            lastActivity: undefined,
-            sessions: [],
-            sessionMeta: { total: 0, hasMore: false },
+            lastActivity,
+            sessions,
+            sessionMeta: { total, hasMore: total > sessions.length },
             taskmaster: { hasTaskmaster: false },
             alwaysOn: { enabled: false },
             coursewareAssetWorkspace: true,
+            coursewareProgramWorkspace: fileNames.includes('course-program.json'),
         });
     }
     return projects;
@@ -258,6 +304,7 @@ async function getProjects(progressCallback = null) {
         const taskmaster = await detectTaskMaster(fullPath).catch(() => ({
             hasTaskmaster: false,
         }));
+        const coursewareFlags = await inspectCoursewareProjectFlags(fullPath);
 
         result.push({
             name,
@@ -272,6 +319,7 @@ async function getProjects(progressCallback = null) {
             },
             taskmaster,
             alwaysOn: { enabled: false },
+            ...coursewareFlags,
         });
     }
 
@@ -347,6 +395,7 @@ async function getProjects(progressCallback = null) {
                 ...result[existingIndex],
                 displayName: project.displayName,
                 coursewareAssetWorkspace: true,
+                coursewareProgramWorkspace: project.coursewareProgramWorkspace,
             };
         } else {
             result.push(project);

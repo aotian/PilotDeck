@@ -118,6 +118,23 @@ export function normalizeOpenAIStreamEvent(
   const chunk = asRecord(raw);
   const events: CanonicalModelEvent[] = [];
 
+  const streamError = asRecord(chunk.error);
+  if (Object.keys(streamError).length > 0) {
+    const message = describeOpenAIStreamError(streamError, chunk);
+    events.push({
+      type: "error",
+      error: {
+        provider: "openai",
+        protocol: "openai",
+        code: readNonEmptyString(streamError.code) ?? "stream_error",
+        message,
+        retryable: true,
+        raw,
+      },
+    });
+    return events;
+  }
+
   if (!state.started) {
     state.started = true;
     events.push({ type: "message_start", role: "assistant", raw });
@@ -165,6 +182,48 @@ export function normalizeOpenAIStreamEvent(
   }
 
   return events;
+}
+
+function describeOpenAIStreamError(
+  streamError: Record<string, unknown>,
+  chunk: Record<string, unknown>,
+): string {
+  const nestedError = asRecord(streamError.error);
+  const data = asRecord(streamError.data);
+  const candidates = [
+    streamError.message,
+    nestedError.message,
+    data.message,
+    streamError.detail,
+    streamError.details,
+    chunk.message,
+  ];
+  for (const candidate of candidates) {
+    const text = readNonEmptyString(candidate);
+    if (text !== undefined) {
+      return text;
+    }
+  }
+
+  const code = readNonEmptyString(streamError.code)
+    ?? readNonEmptyString(nestedError.code)
+    ?? readNonEmptyString(data.code);
+  const type = readNonEmptyString(streamError.type)
+    ?? readNonEmptyString(nestedError.type)
+    ?? readNonEmptyString(data.type);
+  const requestId = readNonEmptyString(streamError.request_id)
+    ?? readNonEmptyString(streamError.requestId)
+    ?? readNonEmptyString(chunk.request_id)
+    ?? readNonEmptyString(chunk.requestId);
+  const parts = [
+    code ? `code=${code}` : undefined,
+    type ? `type=${type}` : undefined,
+    requestId ? `request_id=${requestId}` : undefined,
+  ].filter(Boolean);
+
+  return parts.length > 0
+    ? `OpenAI-compatible stream error (${parts.join(", ")}).`
+    : "OpenAI-compatible stream returned an error event.";
 }
 
 function toolCallEvents(

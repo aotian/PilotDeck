@@ -227,7 +227,7 @@ router.post('/test-connection', async (req, res) => {
     let fetchOptions;
 
     if (isAnthropic) {
-      url = `${normalizedBaseUrl}/v1/messages`;
+      url = buildAnthropicMessagesUrl(normalizedBaseUrl);
       fetchOptions = {
         method: 'POST',
         headers: {
@@ -303,6 +303,14 @@ router.post('/test-connection', async (req, res) => {
     return res.json({ ok: false, error: err.message || String(err) });
   }
 });
+
+function buildAnthropicMessagesUrl(baseUrl) {
+  const normalized = String(baseUrl || '').trim().replace(/\/+$/, '');
+  if (/\/v1$/i.test(normalized)) {
+    return `${normalized}/messages`;
+  }
+  return `${normalized}/v1/messages`;
+}
 
 /**
  * Probe the configured web-search provider. Mirrors

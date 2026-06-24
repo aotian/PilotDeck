@@ -193,5 +193,10 @@ test-results/
 # Auto-Research-Skills (local-only)
 Auto-Research-Skills/
 
+# Local Tongcheng run notes and screenshot artifacts
+/TONGCHENG_NOTES.md
+/tongcheng-run.sh
+/*.png
+
 # Local agent notes
 CLAUDE.md

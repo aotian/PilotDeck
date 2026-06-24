@@ -20,6 +20,7 @@
   "tabs": {
     "home": "Home",
     "chat": "Agent",
+    "courseware": "Courseware",
     "alwaysOn": "Always-On",
     "shell": "Shell",
     "files": "Files",

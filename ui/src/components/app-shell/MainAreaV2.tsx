@@ -5,6 +5,7 @@ import {
   Bot,
   Database,
   Folder,
+  Layers3,
   Loader2,
   MessageSquarePlus,
   PanelLeftOpen,
@@ -37,6 +38,7 @@ type Tab = { id: AppTab; labelKey: string; icon: LucideIcon };
 // future feature needs them, but they were noisy in the day-to-day flow.
 const TABS: Tab[] = [
   { id: 'chat',      labelKey: 'tabs.chat',      icon: Bot },
+  { id: 'courseware', labelKey: 'tabs.courseware', icon: Layers3 },
   { id: 'files',     labelKey: 'tabs.files',     icon: Folder },
   { id: 'skills',    labelKey: 'tabs.skills',    icon: Sparkles },
   { id: 'dashboard', labelKey: 'tabs.dashboard', icon: BarChart3 },
@@ -89,12 +91,21 @@ export default function MainAreaV2(props: MainAreaV2Props) {
   );
   const [launchingCourseware, setLaunchingCourseware] = useState(false);
   const isCoursewareAssetWorkspace = Boolean(selectedProject?.coursewareAssetWorkspace);
+  const visibleTabs = isCoursewareAssetWorkspace
+    ? TABS
+    : TABS.filter((tab) => tab.id !== 'courseware');
 
   useEffect(() => {
     if (activeTab === 'home') {
       setActiveTab('chat');
     }
   }, [activeTab, setActiveTab]);
+
+  useEffect(() => {
+    if (activeTab === 'courseware' && !isCoursewareAssetWorkspace) {
+      setActiveTab('chat');
+    }
+  }, [activeTab, isCoursewareAssetWorkspace, setActiveTab]);
 
   useEffect(() => {
     let cancelled = false;
@@ -179,16 +190,10 @@ export default function MainAreaV2(props: MainAreaV2Props) {
     }
   };
 
-  const handleStartCleanCoursewareSession = () => {
+  const handleStartCleanSession = () => {
     if (!selectedProject) return;
-    const projectLabel = projectDisplayName(selectedProject);
-    const draft = [
-      `基于当前课程资产工作区「${projectLabel}」继续。`,
-      '请先读取 brief.md、course-outline.md、teacher-script.md、exercises.md、pitfalls.md、parent-feedback.md、courseware-package.json 或 generator-handoff.json 中已存在的内容，',
-      '不要沿用旧会话历史；请用干净上下文总结当前资产、指出可继续改进的课件/PPT/视频脚本方向，并等待我确认下一步。',
-    ].join('');
     try {
-      window.localStorage.setItem(`draft_input_${selectedProject.name}`, draft);
+      window.localStorage.removeItem(`draft_input_${selectedProject.name}`);
     } catch {
       // Draft prefill is a convenience only; opening a clean session still works.
     }
@@ -229,33 +234,35 @@ export default function MainAreaV2(props: MainAreaV2Props) {
           ) : null}
         </div>
 
-        {isCoursewareAssetWorkspace ? (
+        {selectedProject ? (
           <div className="mr-2 flex shrink-0 items-center gap-1.5">
             <button
               type="button"
-              onClick={handleStartCleanCoursewareSession}
+              onClick={handleStartCleanSession}
               className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-3 text-[13px] font-medium text-neutral-700 shadow-sm transition hover:bg-neutral-50 hover:text-neutral-950 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-white"
-              title="保留当前资产，开启不带旧历史的新对话"
-              aria-label="基于当前资产开启干净会话"
+              title={isCoursewareAssetWorkspace ? '保留当前资产，开启不带旧历史的新对话' : '开启不带旧历史的新对话'}
+              aria-label="开启干净会话"
             >
               <MessageSquarePlus className="h-3.5 w-3.5" strokeWidth={1.75} />
               <span>干净会话</span>
             </button>
-            <button
-              type="button"
-              onClick={handleLaunchCourseware}
-              disabled={launchingCourseware}
-              className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md bg-orange-600 px-3 text-[13px] font-medium text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-60"
-              title="将当前课程资产交接到童澄标准化发布流程"
-              aria-label="将当前课程资产交接到童澄标准化发布流程"
-            >
-              {launchingCourseware ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
-              ) : (
-                <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
-              )}
-              <span>交接发布</span>
-            </button>
+            {isCoursewareAssetWorkspace ? (
+              <button
+                type="button"
+                onClick={handleLaunchCourseware}
+                disabled={launchingCourseware}
+                className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-md bg-orange-600 px-3 text-[13px] font-medium text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-60"
+                title="将当前课程资产交接到童澄标准化发布流程"
+                aria-label="将当前课程资产交接到童澄标准化发布流程"
+              >
+                {launchingCourseware ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={1.75} />
+                ) : (
+                  <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
+                )}
+                <span>交接发布</span>
+              </button>
+            ) : null}
           </div>
         ) : null}
 
@@ -264,7 +271,7 @@ export default function MainAreaV2(props: MainAreaV2Props) {
           aria-label="Tools"
           className="scrollbar-thin ml-4 flex h-9 max-w-[70%] shrink-0 items-center gap-1 overflow-x-auto"
         >
-          {TABS.map((tab) => {
+          {visibleTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = displayActiveTab === tab.id;
             return (

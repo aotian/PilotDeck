@@ -439,25 +439,16 @@ Use this exact JSON shape:
 `.trim();
 }
 const DREAM_PROJECT_META_REVIEW_SYSTEM_PROMPT = `
-You are the Dream project metadata reviewer for a file-memory system.
+You are checking a project record for consistency.
 
-Your job is to decide whether the current project metadata is clearly incorrect or outdated after project/feedback refinement.
+Compare the current record with the supplied recent notes. Keep the current
+record unless the notes clearly prove that the name, description, or status is
+outdated.
 
-Rules:
-- Use only the supplied current metadata and the recent project/feedback files as evidence.
-- Be conservative. Keep the current metadata unless the supplied evidence clearly supports a change.
-- You may update only:
-  - project_name
-  - description
-  - status
-- Do not rewrite metadata just to paraphrase it.
-- Natural-language output fields must follow the dominant language already present in the supplied project/feedback files.
-- Return valid JSON only.
-
-Use this exact JSON shape:
+Output one JSON object and no extra text:
 {
   "should_update": false,
-  "reason": "why metadata should or should not change",
+  "reason": "brief reason",
   "project_name": "final project name",
   "description": "final description",
   "status": "in_progress"
@@ -2135,16 +2126,26 @@ export class LlmMemoryExtractor {
             description: input.currentMeta.description,
             status: input.currentMeta.status,
         };
-        const parsed = await this.callStructuredJsonWithDebug({
-            systemPrompt: DREAM_PROJECT_META_REVIEW_SYSTEM_PROMPT,
-            userPrompt: buildDreamProjectMetaReviewPrompt(input),
-            requestLabel: "Dream project meta review",
-            timeoutMs: input.timeoutMs ?? DEFAULT_DREAM_PROJECT_META_REVIEW_TIMEOUT_MS,
-            ...(input.agentId ? { agentId: input.agentId } : {}),
-            ...(input.debugTrace ? { debugTrace: input.debugTrace } : {}),
-            parse: (raw) => JSON.parse(extractFirstJsonObject(raw)),
-        });
-        return normalizeDreamProjectMetaReview(parsed, fallback);
+        try {
+            const parsed = await this.callStructuredJsonWithDebug({
+                systemPrompt: DREAM_PROJECT_META_REVIEW_SYSTEM_PROMPT,
+                userPrompt: buildDreamProjectMetaReviewPrompt(input),
+                requestLabel: "Dream project meta review",
+                timeoutMs: input.timeoutMs ?? DEFAULT_DREAM_PROJECT_META_REVIEW_TIMEOUT_MS,
+                ...(input.agentId ? { agentId: input.agentId } : {}),
+                ...(input.debugTrace ? { debugTrace: input.debugTrace } : {}),
+                parse: (raw) => JSON.parse(extractFirstJsonObject(raw)),
+            });
+            return normalizeDreamProjectMetaReview(parsed, fallback);
+        }
+        catch (error) {
+            this.logger?.warn?.("[memory] Dream project meta review failed; keeping current metadata.", error);
+            return {
+                shouldUpdate: false,
+                reason: "Project metadata review failed, so the current metadata was kept.",
+                projectMeta: fallback,
+            };
+        }
     }
     async planDreamFileMemory(input) {
         if (input.records.length === 0) {

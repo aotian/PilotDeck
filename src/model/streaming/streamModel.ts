@@ -248,10 +248,18 @@ function forwardAbort(source: AbortSignal, target: AbortController): () => void 
 
 function buildEndpoint(provider: ProviderConfig, _stream: boolean): string {
   if (provider.protocol === "anthropic") {
-    return joinUrl(provider.url, "v1/messages");
+    return joinAnthropicMessagesUrl(provider.url);
   }
 
   return joinUrl(provider.url, "chat/completions");
+}
+
+function joinAnthropicMessagesUrl(baseUrl: string): string {
+  const normalized = baseUrl.replace(/\/+$/, "");
+  if (/\/v1$/i.test(normalized)) {
+    return joinUrl(normalized, "messages");
+  }
+  return joinUrl(normalized, "v1/messages");
 }
 
 function buildHeaders(provider: ProviderConfig): HeadersInit {

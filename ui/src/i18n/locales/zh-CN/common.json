@@ -20,6 +20,7 @@
   "tabs": {
     "home": "主页",
     "chat": "教研助手",
+    "courseware": "课程包",
     "alwaysOn": "常驻",
     "shell": "终端",
     "files": "文件",

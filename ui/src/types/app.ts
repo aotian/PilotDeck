@@ -1,7 +1,7 @@
 export type SessionProvider = 'claude' | 'cursor' | 'codex' | 'gemini' | 'pilotdeck';
 export type ProjectSessionKind = 'background_task';
 
-export type AppTab = 'home' | 'chat' | 'always-on' | 'files' | 'shell' | 'git' | 'tasks' | 'memory' | 'skills' | 'preview' | 'dashboard' | `plugin:${string}`;
+export type AppTab = 'home' | 'chat' | 'courseware' | 'always-on' | 'files' | 'shell' | 'git' | 'tasks' | 'memory' | 'skills' | 'preview' | 'dashboard' | `plugin:${string}`;
 
 export type AlwaysOnSessionTarget =
   | {
@@ -253,7 +253,86 @@ export interface Project {
   sessionMeta?: ProjectSessionMeta;
   taskmaster?: ProjectTaskmasterInfo;
   alwaysOn?: ProjectAlwaysOnInfo;
+  coursewareAssetWorkspace?: boolean;
+  coursewareProgramWorkspace?: boolean;
   [key: string]: unknown;
+}
+
+export type CoursewareLessonAssetKey =
+  | 'brief'
+  | 'outline'
+  | 'teacherScript'
+  | 'exercises'
+  | 'pitfalls'
+  | 'deck'
+  | 'videoScript'
+  | 'package'
+  | 'homework'
+  | 'ojExercises'
+  | 'eduExercises'
+  | 'parentFeedback'
+  | 'courseFeedback'
+  | 'learnIntegration'
+  | 'pptOutline'
+  | 'pptx';
+
+export interface CoursewareProgramOption {
+  programId: string;
+  title: string;
+  subject: string;
+  level?: string;
+  lessonCount: number;
+  location: string;
+  active: boolean;
+  relativePath: string;
+}
+
+export interface CoursewareSourceMaterial {
+  name: string;
+  relativePath: string;
+  kind: string;
+}
+
+export interface CoursewareLessonSource {
+  order: number;
+  relativePath: string;
+}
+
+export interface CoursewareProgramLessonStatus {
+  lessonId: string;
+  order: number;
+  title: string;
+  workspacePath: string;
+  relativePath: string;
+  status: 'empty' | 'planning' | 'draft' | 'ready' | 'published';
+  assetFiles: string[];
+  localAssetFiles?: string[];
+  sourceAssetFiles?: string[];
+  linkedSourcePath?: string | null;
+  linkedSourceRelativePath?: string | null;
+  assets: Record<CoursewareLessonAssetKey, boolean>;
+  completion: number;
+  packageId?: string;
+  topic?: string;
+  updatedAt?: string;
+}
+
+export interface CoursewareProgramStatus {
+  schemaVersion: 'tiku.courseProgram.v1';
+  programId: string;
+  title: string;
+  subject: string;
+  level?: string;
+  lessonCount: number;
+  projectName: string;
+  projectPath: string;
+  status: 'draft' | 'in_progress' | 'ready' | 'published';
+  lessons: CoursewareProgramLessonStatus[];
+  missing: string[];
+  programs?: CoursewareProgramOption[];
+  sourceMaterials?: CoursewareSourceMaterial[];
+  lessonSources?: CoursewareLessonSource[];
+  updatedAt: string;
 }
 
 export interface LoadingProgress {
