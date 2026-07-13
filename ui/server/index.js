@@ -7,7 +7,7 @@ installGlobalProxy();
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname } from 'path';
 
 
@@ -846,6 +846,88 @@ function listCoursewareAssetFiles(projectPath) {
 function readCoursewareAssetText(projectPath, fileName) {
     const filePath = path.join(projectPath, fileName);
     return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : '';
+}
+
+let tongchengCoursewareValidatorPromise = null;
+
+async function loadTongchengCoursewareValidator() {
+    if (tongchengCoursewareValidatorPromise) return tongchengCoursewareValidatorPromise;
+    const defaultValidatorPath = path.resolve(__dirname, '..', '..', '..', 'AI-practice', 'lib', 'courseware-validator', 'index.js');
+    const validatorPath = path.resolve(process.env.TIKU_COURSEWARE_VALIDATOR || defaultValidatorPath);
+    tongchengCoursewareValidatorPromise = (async () => {
+        if (!fs.existsSync(validatorPath)) {
+            return {
+                missing: true,
+                validatorPath,
+                validateCourseware: () => ({
+                    ok: false,
+                    issues: [{
+                        code: 'validator.missing',
+                        message: `未找到共享课件校验器：${validatorPath}`,
+                    }],
+                    warnings: [],
+                    checks: [{
+                        status: 'failed',
+                        code: 'validator.missing',
+                        message: `未找到共享课件校验器：${validatorPath}`,
+                    }],
+                    stats: {},
+                }),
+            };
+        }
+        return {
+            missing: false,
+            validatorPath,
+            ...(await import(pathToFileURL(validatorPath).href)),
+        };
+    })();
+    return tongchengCoursewareValidatorPromise;
+}
+
+async function validateTongchengCoursewareWorkspace(projectPath, options = {}) {
+    const validator = await loadTongchengCoursewareValidator();
+    const result = validator.validateCourseware({
+        workspacePath: projectPath,
+        publishTarget: options.publishTarget || 'learn',
+    }, {
+        publishTarget: options.publishTarget || 'learn',
+    });
+    const reportPath = path.join(projectPath, 'courseware-agent-report.json');
+    const existingReport = readJsonFileIfExists(reportPath) || {};
+    fs.writeFileSync(reportPath, JSON.stringify({
+        ...existingReport,
+        validator: {
+            name: 'tiku-courseware-validator',
+            source: validator.validatorPath,
+            missing: Boolean(validator.missing),
+            checkedAt: new Date().toISOString(),
+            ok: result.ok,
+            issues: result.issues,
+            warnings: result.warnings,
+            checks: result.checks,
+            stats: result.stats,
+        },
+        blockers: [
+            ...(Array.isArray(existingReport.blockers) ? existingReport.blockers : []),
+            ...result.issues.map((item) => item.message),
+        ],
+        checks: [
+            ...(Array.isArray(existingReport.checks) ? existingReport.checks : []),
+            ...(result.checks || []).map((item) => ({
+                name: item.code,
+                status: item.status,
+                detail: item.message,
+            })),
+        ],
+        updatedAt: new Date().toISOString(),
+    }, null, 2));
+    if (!result.ok) {
+        const error = new Error(`课件质量校验未通过：${result.issues.map((item) => item.message).slice(0, 3).join('；')}`);
+        error.statusCode = 422;
+        error.validation = result;
+        throw error;
+    }
+    return result;
 }
 
 function compactCoursewareTitle(text, fallback) {
@@ -1729,7 +1811,7 @@ function getCoursewareProgramProgress(projectName, projectPath, options = {}) {
     };
 }
 
-function refreshCoursewareProgramPackages(projectName, projectPath, options = {}) {
+async function refreshCoursewareProgramPackages(projectName, projectPath, options = {}) {
     const program = ensureCoursewareProgram(projectName, projectPath, options);
     const refreshed = [];
     for (const lesson of program.lessons) {
@@ -1747,9 +1829,15 @@ function refreshCoursewareProgramPackages(projectName, projectPath, options = {}
         }
         const assetPackage = createCoursewareAssetPackage(`${projectName}-${lesson.lessonId}`, assetPath, assetFiles);
         writeCoursewareHandoffFiles(assetPath, assetPackage);
+        const validation = await validateTongchengCoursewareWorkspace(assetPath, { publishTarget: 'learn' });
         refreshed.push({
             lessonId: lesson.lessonId,
             packageId: assetPackage.packageId,
+            validation: {
+                ok: validation.ok,
+                issueCount: validation.issues.length,
+                warningCount: validation.warnings.length,
+            },
             assetFiles,
             relativePath: path.relative(projectPath, assetPath).split(path.sep).join('/'),
         });
@@ -2206,6 +2294,7 @@ app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, 
         const assetFiles = listCoursewareAssetFiles(projectPath);
         const assetPackage = createCoursewareAssetPackage(workspaceName, projectPath, assetFiles);
         writeCoursewareHandoffFiles(projectPath, assetPackage);
+        const validation = await validateTongchengCoursewareWorkspace(projectPath, { publishTarget: 'learn' });
 
         res.json({
             success: true,
@@ -2216,6 +2305,7 @@ app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, 
             studioUrl: `/p/${encodeURIComponent(workspaceName)}`,
             coursewareSlides: slidesPackage,
             package: assetPackage,
+            validation,
             assetFiles: listCoursewareAssetFiles(projectPath),
         });
     } catch (error) {
@@ -2258,6 +2348,7 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
         }
         const assetPackage = createCoursewareAssetPackage(req.params.projectName, projectPath, assetFiles);
         writeCoursewareHandoffFiles(projectPath, assetPackage);
+        const validation = await validateTongchengCoursewareWorkspace(projectPath, { publishTarget: 'learn' });
 
         const baseUrl = String(
             req.query.baseUrl ||
@@ -2292,6 +2383,7 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
             subject: assetPackage.subject,
             topic: assetPackage.topic,
             projectPath,
+            validation,
             assetFiles: [...new Set([...assetFiles, 'courseware-slides.json', 'generator-handoff.json', 'courseware-package.json'])],
         });
     } catch (error) {
@@ -2339,7 +2431,7 @@ app.post('/api/tongcheng/courseware-program/:projectName/initialize', authentica
 app.post('/api/tongcheng/courseware-program/:projectName/refresh-packages', authenticateToken, async (req, res) => {
     try {
         const projectPath = assertCoursewareWorkspacePath(await extractProjectDirectory(req.params.projectName));
-        const result = refreshCoursewareProgramPackages(req.params.projectName, projectPath, {
+        const result = await refreshCoursewareProgramPackages(req.params.projectName, projectPath, {
             programId: req.query.programId,
         });
         res.json({ success: true, ...result });
