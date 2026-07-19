@@ -1,0 +1,20 @@
+{
+  "command": "node scripts/validate-courseware.mjs --workspace /tmp/pilotdeck-final-real-e2e.5dWmsL/real-gateway-7-agent-hq-final --json",
+  "workingDirectory": "/Users/tongcheng/Projects/AI-practice",
+  "exitCode": 0,
+  "ok": true,
+  "errors": 0,
+  "warnings": 0,
+  "checks": [
+    {"status":"pass","code":"courseware.quality_gate","message":"通过"}
+  ],
+  "stats": {
+    "slide_count": 11,
+    "question_count": 16,
+    "tiku_question_count": 8,
+    "question_ref_count": 8,
+    "html_bytes": 56061,
+    "issue_count": 0,
+    "warning_count": 0
+  }
+}

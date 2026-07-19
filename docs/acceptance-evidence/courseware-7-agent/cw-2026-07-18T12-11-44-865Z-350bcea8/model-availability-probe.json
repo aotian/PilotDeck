@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "tongcheng.gatewayModelAvailabilityProbe.v1",
+  "probedAt": "2026-07-18T16:47:10.000Z",
+  "probeWorkspace": "/tmp/pilotdeck-model-probe",
+  "productionApisCalled": false,
+  "publishApisCalled": false,
+  "probes": [
+    {
+      "model": "tc-admin/tc-main",
+      "status": "available",
+      "evidence": "Real Deck produce and repair subagents completed after quota recovery"
+    },
+    {
+      "model": "tc-admin/tc-economy",
+      "status": "unavailable",
+      "error": "HTTP 429 Token Plan usage limit (2056)"
+    },
+    {
+      "model": "tc-admin/tc-multimodal",
+      "status": "unavailable",
+      "error": "HTTP 429 Token Plan usage limit (2056)"
+    },
+    {
+      "model": "tc-admin/tc-premium",
+      "status": "unavailable",
+      "error": "Model completed without returning any visible assistant content",
+      "attemptedMaxOutputTokens": [128, 1024]
+    },
+    {
+      "model": "minimax/MiniMax-M2.5",
+      "status": "unavailable",
+      "configuration": "isolated temporary PILOT_HOME using MINIMAX_API_KEY",
+      "error": "Token Plan usage limit (2056)"
+    }
+  ],
+  "fallbackConfiguration": ["tc-admin/tc-main", "tc-admin/tc-multimodal"],
+  "conclusion": "Quota recovered for tc-admin/tc-main. The configured fallback is not an independent quota path because both aliases use the same tc-admin gateway/account; no second provider credential is configured.",
+  "secretsIncluded": false
+}

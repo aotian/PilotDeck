@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "tongcheng.pilotdeckPptxExport.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "engine": "pilotdeck",
+  "sourceOfTruth": "courseware-slides.json",
+  "approvedStyleSource": "approved-style.json",
+  "renderer": "pilotdeck-slide-screenshots",
+  "openmaicRendererUsed": false,
+  "slideCount": 11,
+  "slides": [
+    {
+      "slideId": "slide-01",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-01.png"
+    },
+    {
+      "slideId": "slide-02",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-02.png"
+    },
+    {
+      "slideId": "slide-03",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-03.png"
+    },
+    {
+      "slideId": "slide-04",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-04.png"
+    },
+    {
+      "slideId": "slide-05",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-05.png"
+    },
+    {
+      "slideId": "slide-06",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-06.png"
+    },
+    {
+      "slideId": "slide-07",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-07.png"
+    },
+    {
+      "slideId": "slide-08",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-08.png"
+    },
+    {
+      "slideId": "slide-09",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-09.png"
+    },
+    {
+      "slideId": "slide-10",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-10.png"
+    },
+    {
+      "slideId": "slide-11",
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-11.png"
+    }
+  ],
+  "output": "courseware.pptx",
+  "generatedAt": "2026-07-18T18:23:08.452Z"
+}

@@ -1,0 +1,973 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "phaseId": "review",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "agentRole": "courseware-review",
+  "subagentType": "courseware-review",
+  "lessonId": "fixture-current-lesson",
+  "status": "ready",
+  "startedAt": "2026-07-18T18:23:10.896Z",
+  "completedAt": "2026-07-18T18:25:06.341Z",
+  "inputsRead": [
+    "brief.md",
+    "course-outline.md",
+    "pitfalls.md",
+    "teacher-script.md",
+    "exercises.md",
+    "courseware-slides.json",
+    "video-script.md",
+    "tiku-context.json",
+    "asset-request.json",
+    "source-lock.json",
+    "agent-run.json",
+    "visual-quality-report.json"
+  ],
+  "filesWritten": [
+    "courseware-package.json",
+    "generator-handoff.json"
+  ],
+  "coordinatorWritesObserved": [],
+  "concurrentWritesObserved": [],
+  "nextAgent": "teacher-approval",
+  "blockers": [],
+  "checks": [
+    {
+      "name": "subagent-started",
+      "status": "pass",
+      "detail": "f5dbdc09-5793-4587-a613-8d690f901d0a"
+    },
+    {
+      "name": "subagent-completed",
+      "status": "pass",
+      "detail": "success"
+    },
+    {
+      "name": "required-outputs",
+      "status": "pass",
+      "detail": "present and valid"
+    },
+    {
+      "name": "write-scope",
+      "status": "pass",
+      "detail": "within role contract"
+    },
+    {
+      "name": "coordinator-write-isolation",
+      "status": "pass",
+      "detail": "No concurrent coordinator writes observed"
+    },
+    {
+      "name": "shared-courseware-validator",
+      "status": "pass",
+      "detail": "Shared validator passed"
+    }
+  ],
+  "model": "tc-admin/tc-main",
+  "sessionId": "web:s_d6da7f42-d9f7-48e2-9e9a-77bc76248ecb",
+  "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+  "lifecycleEvents": [
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 2008,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 4013,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 6019,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 7524,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 7524,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 9529,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 9529,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 9529,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 9529,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 11539,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 12039,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 12040,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 14044,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 15550,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 15550,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 15551,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 15551,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 17559,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 19563,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 20066,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 20066,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 20066,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 20066,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 22071,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 23573,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 25581,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 26587,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 26587,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 26587,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 26587,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 28592,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 30599,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 32606,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 34611,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 36616,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 38630,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 39130,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 39130,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 39130,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 39130,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 41138,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 43144,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44647,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44648,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44648,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44648,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44648,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 44648,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 46656,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 48665,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 50669,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 52174,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 54182,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 56191,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 56693,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 58701,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 60707,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 61210,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 63219,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 65227,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 67236,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 69245,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 71253,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 73261,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 75267,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 77276,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 79284,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 81291,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 83299,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 85307,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 87315,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 89322,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 90890,
+      "success": false
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 92893,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 94898,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 96905,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 96905,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 96905,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 97408,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 99414,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 100419,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 102426,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 104435,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 104937,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": null,
+      "durationMs": 105072,
+      "success": true
+    },
+    {
+      "state": "completed",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "startedAt": "2026-07-18T18:23:21.184Z",
+      "completedAt": "2026-07-18T18:25:06.256Z",
+      "durationMs": 105569,
+      "success": true
+    }
+  ],
+  "agentToolCallCount": 1,
+  "gatewayDiagnosticPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/diagnostics/courseware-review-produce-83a34de6.json",
+  "action": "produce",
+  "invocations": [
+    {
+      "action": "produce",
+      "subagentType": "courseware-review",
+      "subagentId": "4e34428a-22af-403b-b338-b394ddbab38a",
+      "sessionId": "web:s_1141e0a7-de3b-4706-8d7f-6286ccbf1115",
+      "startedAt": "2026-07-18T18:18:38.909Z",
+      "completedAt": "2026-07-18T18:20:41.267Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-review",
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "sessionId": "web:s_d6da7f42-d9f7-48e2-9e9a-77bc76248ecb",
+      "startedAt": "2026-07-18T18:23:10.896Z",
+      "completedAt": "2026-07-18T18:25:06.341Z",
+      "status": "ready"
+    }
+  ],
+  "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-review.json",
+  "coordinatorSessionId": "web:s_f5b0fbfe-026d-4554-ab0b-14baea21db4f",
+  "validation": {
+    "ok": true,
+    "issueCount": 0
+  },
+  "archivedAt": "2026-07-18T18:25:06.389Z"
+}

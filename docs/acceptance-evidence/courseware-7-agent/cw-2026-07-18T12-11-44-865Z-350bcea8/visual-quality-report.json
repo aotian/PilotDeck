@@ -1,0 +1,5091 @@
+{
+  "schemaVersion": "tongcheng.coursewareVisualQuality.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "status": "pass",
+  "checks": [
+    {
+      "name": "visual-metrics",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "hierarchy",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "readability",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "overflow",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "contrast",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "css-validity",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "density",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "layout-variety",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "diagram-quality",
+      "status": "warning",
+      "slideIds": [
+        "slide-05"
+      ]
+    },
+    {
+      "name": "code-readability",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "question-fidelity",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "projection-legibility",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "template-repetition",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "student-visible-wording",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "mobile-desktop-compatibility",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "math-rendering",
+      "status": "pass",
+      "slideIds": []
+    },
+    {
+      "name": "unsafe-links-scripts",
+      "status": "pass",
+      "slideIds": []
+    }
+  ],
+  "slides": [
+    {
+      "slideId": "slide-01",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-01.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>span:nth-child(1)",
+            "text": "C++ 编程入门",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>span:nth-child(2)",
+            "text": "CSP-J 方向",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(1)",
+            "text": "先算右侧，再写回左侧",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(2)",
+            "text": "旧值要保留",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(3)",
+            "text": "预测 → 揭示 → 状态表",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(1)",
+            "text": "学段：七年级",
+            "size": 20
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(2)",
+            "text": "课时：45 分钟",
+            "size": 20
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(3)",
+            "text": "班级：24 人",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(1)",
+            "text": "本课只做两件事",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(2)",
+            "text": "读懂赋值 · 逐行追踪变量值",
+            "size": 28
+          },
+          {
+            "selector": "h1",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>h1:nth-child(2)",
+            "text": "变量状态追踪：\n赋值与顺序执行",
+            "size": 52
+          }
+        ],
+        "minContrast": 4.65624530309684,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>span:nth-child(2)",
+            "text": "CSP-J 方向",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 0, 110)",
+            "ratio": 4.65624530309684
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>span:nth-child(1)",
+            "text": "C++ 编程入门",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(1)",
+            "text": "本课只做两件事",
+            "foreground": "rgb(179, 0, 72)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.9760093509913395
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(1)",
+            "text": "先算右侧，再写回左侧",
+            "foreground": "rgb(51, 65, 85)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.981875329762431
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(2)",
+            "text": "旧值要保留",
+            "foreground": "rgb(51, 65, 85)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.981875329762431
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(3)>div:nth-child(3)",
+            "text": "预测 → 揭示 → 状态表",
+            "foreground": "rgb(51, 65, 85)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.981875329762431
+          },
+          {
+            "selector": "h1",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>h1:nth-child(2)",
+            "text": "变量状态追踪：\n赋值与顺序执行",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(1)",
+            "text": "学段：七年级",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(2)",
+            "text": "课时：45 分钟",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(3)>span:nth-child(3)",
+            "text": "班级：24 人",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:nth-child(2)",
+            "text": "读懂赋值 · 逐行追踪变量值",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 111,
+        "textNodeCount": 11,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide cover:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-02",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-02.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "核心概念",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "不是方程，不反向传播；左侧变量在右侧被求值时仍保持旧值。",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1)",
+            "text": "← 新值 5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "读旧：a = 2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "算右：2 + 3 = 5",
+            "size": 18
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(3)",
+            "text": "a旧=2",
+            "size": 18
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(5)",
+            "text": "a新=5",
+            "size": 18
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(8)",
+            "text": "下一行读\"新\"5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "① 读旧",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "a = 2",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "② 算右",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2+3=5",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)>b:nth-child(1)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(1)",
+            "text": "③ 写回",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)",
+            "text": "a = 5",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)>b:nth-child(1)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(1)",
+            "text": "心法 1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(2)",
+            "text": "先算右，再写左",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(1)",
+            "text": "心法 2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(2)",
+            "text": "不反向传播",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(6)>div:nth-child(1)",
+            "text": "心法 3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(6)>div:nth-child(2)",
+            "text": "查状态表",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)",
+            "text": "左侧旧值 → 右侧新值",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "1&nbsp;&nbsp;int a = 2;",
+            "size": 22
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "2&nbsp;&nbsp;a = a + 3;&nbsp;← 新值 5",
+            "size": 22
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "3&nbsp;&nbsp;cout << a;",
+            "size": 22
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "2",
+            "size": 22
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1)",
+            "text": "5",
+            "size": 22
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "`=` 是单向箭头：先算右侧 → 再写回左侧",
+            "size": 28
+          }
+        ],
+        "minContrast": 5.129583334676166,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "核心概念",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1)",
+            "text": "← 新值 5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 92, 154)",
+            "ratio": 6.162930772810937
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)>b:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(11, 110, 79)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.2546458540835905
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(179, 0, 59)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.793461273771388
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(179, 0, 59)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 7.047229283592226
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(11, 61, 145)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.683277346655371
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)>b:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(11, 61, 145)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 10.044993697389753
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "`=` 是单向箭头：先算右侧 → 再写回左侧",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "不是方程，不反向传播；左侧变量在右侧被求值时仍保持旧值。",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "读旧：a = 2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "算右：2 + 3 = 5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "1&nbsp;&nbsp;int a = 2;",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "2&nbsp;&nbsp;a = a + 3;&nbsp;← 新值 5",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "3&nbsp;&nbsp;cout << a;",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)",
+            "text": "左侧旧值 → 右侧新值",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(3)",
+            "text": "a旧=2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(5)",
+            "text": "a新=5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "text",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>svg:nth-child(1)>text:nth-child(8)",
+            "text": "下一行读\"新\"5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "① 读旧",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "a = 2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "② 算右",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2+3=5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(1)",
+            "text": "③ 写回",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)",
+            "text": "a = 5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(1)",
+            "text": "心法 1",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(2)",
+            "text": "先算右，再写左",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(1)",
+            "text": "心法 2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(2)",
+            "text": "不反向传播",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(6)>div:nth-child(1)",
+            "text": "心法 3",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(6)>div:nth-child(2)",
+            "text": "查状态表",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 227,
+        "textNodeCount": 30,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide concept:0:0:1:0"
+      }
+    },
+    {
+      "slideId": "slide-03",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-03.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)",
+            "text": "a",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ① · ea y",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "状态轨迹：2 → 5 → 输出 5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "1",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(6)",
+            "text": "int a = 2;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(7)",
+            "text": "2",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(8)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(9)",
+            "text": "2",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(10)",
+            "text": "a = a + 3;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(11)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(12)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(13)",
+            "text": "3",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(14)",
+            "text": "cout << a;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(15)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(16)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "公布答案：5　·　口诀：右侧用旧值，写回是新值。",
+            "size": 20
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>b:nth-child(1)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int a = 2;",
+            "size": 22
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; a = a + 3;",
+            "size": 22
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; cout << a;",
+            "size": 22
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "单变量自更新：先读旧，再写新",
+            "size": 28
+          }
+        ],
+        "minContrast": 5.984934612252126,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ① · ea y",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(0, 95, 204)",
+            "ratio": 5.984934612252126
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(16)",
+            "text": "5",
+            "foreground": "rgb(0, 95, 204)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 5.984934612252126
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(11)",
+            "text": "5",
+            "foreground": "rgb(194, 0, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(15)",
+            "text": "5",
+            "foreground": "rgb(194, 0, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>b:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(194, 0, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(7)",
+            "text": "2",
+            "foreground": "rgb(64, 64, 64)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 10.368377760269818
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(8)",
+            "text": "—",
+            "foreground": "rgb(64, 64, 64)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 10.368377760269818
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(12)",
+            "text": "—",
+            "foreground": "rgb(64, 64, 64)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 10.368377760269818
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "单变量自更新：先读旧，再写新",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int a = 2;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; a = a + 3;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; cout << a;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "状态轨迹：2 → 5 → 输出 5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)",
+            "text": "a",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(6)",
+            "text": "int a = 2;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(9)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(10)",
+            "text": "a = a + 3;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(13)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(14)",
+            "text": "cout << a;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "公布答案：5　·　口诀：右侧用旧值，写回是新值。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 175,
+        "textNodeCount": 24,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide example:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-04",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-04.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)",
+            "text": "x",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)",
+            "text": "y",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ② · ea y",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "依赖轨迹：x=4 → y=6 → x=5 → 输出5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(6)",
+            "text": "1",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(7)",
+            "text": "int x = 4;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(8)",
+            "text": "4",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(9)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(10)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(11)",
+            "text": "2",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(12)",
+            "text": "int y = x + 2;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(13)",
+            "text": "4",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(14)",
+            "text": "6",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(15)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(16)",
+            "text": "3",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(17)",
+            "text": "x = y - 1;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(18)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(19)",
+            "text": "6",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(20)",
+            "text": "—",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(21)",
+            "text": "4",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(22)",
+            "text": "cout << x;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(23)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(24)",
+            "text": "6",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(25)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "公布答案：5　·　关键点：第 2 行的 x 是旧值 4；第 3 行的 y 已经是新值 6。",
+            "size": 20
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>b:nth-child(1)",
+            "text": "5",
+            "size": 20
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "双变量顺序依赖：后写者能读到新值",
+            "size": 28
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int x = 4;",
+            "size": 40
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; int y = x + 2;",
+            "size": 40
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; x = y - 1;",
+            "size": 40
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << x;",
+            "size": 40
+          }
+        ],
+        "minContrast": 5.129583334676166,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ② · ea y",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int x = 4;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; int y = x + 2;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; x = y - 1;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << x;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "双变量顺序依赖：后写者能读到新值",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(6)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(9)",
+            "text": "—",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(10)",
+            "text": "—",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(11)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(15)",
+            "text": "—",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(16)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(20)",
+            "text": "—",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(21)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(8)",
+            "text": "4",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(13)",
+            "text": "4",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(14)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(18)",
+            "text": "5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(19)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(23)",
+            "text": "5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(24)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(25)",
+            "text": "5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "依赖轨迹：x=4 → y=6 → x=5 → 输出5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)",
+            "text": "x",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)",
+            "text": "y",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(26, 26, 26)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(7)",
+            "text": "int x = 4;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(12)",
+            "text": "int y = x + 2;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(17)",
+            "text": "x = y - 1;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(22)",
+            "text": "cout << x;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "公布答案：5　·　关键点：第 2 行的 x 是旧值 4；第 3 行的 y 已经是新值 6。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>b:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 257,
+        "textNodeCount": 34,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide example:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-05",
+      "status": "pass",
+      "issues": [
+        {
+          "check": "diagram-quality",
+          "severity": "warning",
+          "detail": "Concept/example page has no explicit knowledge diagram or visual trace"
+        }
+      ],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-05.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ③ · medium",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "三步顺序：t = x → x = y → y = t",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(3)",
+            "text": "x",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(4)",
+            "text": "y",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)",
+            "text": "t",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(6)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(7)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(8)",
+            "text": "int x = 2, y = 7;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(9)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(10)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(11)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(12)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(13)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(14)",
+            "text": "int t = x;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(15)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(16)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(17)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(18)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(19)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(20)",
+            "text": "x = y;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(21)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(22)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(23)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(24)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(25)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(26)",
+            "text": "y = t;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(27)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(28)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(29)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(30)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(31)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(32)",
+            "text": "cout << x << y;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(33)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(34)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(35)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(36)",
+            "text": "72",
+            "size": 18
+          },
+          {
+            "selector": "strong",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>strong:nth-child(1)",
+            "text": "视觉追踪：",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "视觉追踪：旧值 x=2 → t=2 → x=7；旧值 y=7 → y=2。t 像备忘录，先保存再覆盖。",
+            "size": 18
+          }
+        ],
+        "minContrast": 5.129583334676166,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "精讲 ③ · medium",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(11)",
+            "text": "—",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(12)",
+            "text": "—",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(22)",
+            "text": "7",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(23)",
+            "text": "2",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(24)",
+            "text": "—",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(33)",
+            "text": "7",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(34)",
+            "text": "2",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(35)",
+            "text": "2",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(15)",
+            "text": "2",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(16)",
+            "text": "7",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(18)",
+            "text": "—",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(27)",
+            "text": "7",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(29)",
+            "text": "2",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(30)",
+            "text": "—",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int x = 2, y = 7;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; int t = x;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; x = y;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+            "text": "4 &nbsp; y = t;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(5)",
+            "text": "5 &nbsp; cout << x << y;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "strong",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>strong:nth-child(1)",
+            "text": "视觉追踪：",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(238, 244, 255)",
+            "ratio": 15.763101110784794
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "视觉追踪：旧值 x=2 → t=2 → x=7；旧值 y=7 → y=2。t 像备忘录，先保存再覆盖。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(238, 244, 255)",
+            "ratio": 15.763101110784794
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)>code:nth-child(1)",
+            "text": "t = x",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 245, 249)",
+            "ratio": 15.886859287196392
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)>code:nth-child(2)",
+            "text": "x = y",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 245, 249)",
+            "ratio": 15.886859287196392
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)>code:nth-child(3)",
+            "text": "y = t",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 245, 249)",
+            "ratio": 15.886859287196392
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)>code:nth-child(2)",
+            "text": "x = y; y = x;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 245, 249)",
+            "ratio": 15.886859287196392
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)>code:nth-child(3)",
+            "text": "77",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 245, 249)",
+            "ratio": 15.886859287196392
+          },
+          {
+            "selector": "strong",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)>strong:nth-child(1)",
+            "text": "常见错：",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 247, 237)",
+            "ratio": 16.392548221788317
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "常见错：删除 t 直接 x = y; y = x; 会得到 77，因为 y 的旧值已被覆盖。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 247, 237)",
+            "ratio": 16.392548221788317
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "要交换，先借 t：临时变量保留旧值",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "三步顺序：t = x → x = y → y = t",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(7)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(8)",
+            "text": "int x = 2, y = 7;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(19)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(20)",
+            "text": "x = y;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(31)",
+            "text": "5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(32)",
+            "text": "cout << x << y;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(9)",
+            "text": "2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(10)",
+            "text": "7",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(21)",
+            "text": "7",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 362,
+        "textNodeCount": 53,
+        "headingCount": 1,
+        "codeMinFontPx": 20,
+        "layoutSignature": "slide example:0:0:0:5"
+      }
+    },
+    {
+      "slideId": "slide-06",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-06.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ① · ea y",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：赋值是「快照」，不是「订阅」。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)",
+            "text": "第 3 行读到的新 a 是 5，所以 b 变成 7；输出 57。",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>b:nth-child(1)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>b:nth-child(2)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "a",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(4)",
+            "text": "b",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(6)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(8)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(9)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(10)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(11)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(13)",
+            "text": "3 → 5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(14)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(15)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(16)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(18)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(19)",
+            "text": "5 → 7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(20)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(21)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(23)",
+            "text": "5",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(24)",
+            "text": "7",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(25)",
+            "text": "57",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测：a = b; b = a + 2; 之后 a、b 分别是几？",
+            "size": 20
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>code:nth-child(1)",
+            "text": "a = b; b = a + 2;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "1&nbsp; int a = 3, b = 5;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "2&nbsp; a = b;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(3)",
+            "text": "3&nbsp; b = a + 2;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(4)",
+            "text": "4&nbsp; cout << a << b;",
+            "size": 20
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>code:nth-child(3)",
+            "text": "57",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(7)",
+            "text": "int a=3,b=5;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(12)",
+            "text": "a = b;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(17)",
+            "text": "b = a + 2;",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(22)",
+            "text": "cout << a << b;",
+            "size": 20
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "旧值混淆陷阱：`a = b` 之后再读 a",
+            "size": 28
+          }
+        ],
+        "minContrast": 6.037383634404429,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ① · ea y",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(196, 0, 85)",
+            "ratio": 6.037383634404429
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>b:nth-child(2)",
+            "text": "7",
+            "foreground": "rgb(0, 107, 80)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.523936520878495
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(10)",
+            "text": "—",
+            "foreground": "rgb(85, 85, 85)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 7.455177810447525
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(15)",
+            "text": "—",
+            "foreground": "rgb(85, 85, 85)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 7.455177810447525
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(20)",
+            "text": "—",
+            "foreground": "rgb(85, 85, 85)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 7.455177810447525
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>b:nth-child(1)",
+            "text": "5",
+            "foreground": "rgb(156, 0, 68)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 8.409906958735538
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)>code:nth-child(3)",
+            "text": "57",
+            "foreground": "rgb(156, 0, 68)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 8.409906958735538
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(25)",
+            "text": "57",
+            "foreground": "rgb(156, 0, 68)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 8.409906958735538
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：赋值是「快照」，不是「订阅」。",
+            "foreground": "rgb(51, 51, 51)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 12.179685312127464
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(51, 51, 51)",
+            "ratio": 12.63465434445799
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(51, 51, 51)",
+            "ratio": 12.63465434445799
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "a",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(51, 51, 51)",
+            "ratio": 12.63465434445799
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(4)",
+            "text": "b",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(51, 51, 51)",
+            "ratio": 12.63465434445799
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(51, 51, 51)",
+            "ratio": 12.63465434445799
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(6)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 241, 235)",
+            "ratio": 15.350538066071747
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(11)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 241, 235)",
+            "ratio": 15.350538066071747
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(16)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 241, 235)",
+            "ratio": 15.350538066071747
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(21)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(241, 241, 235)",
+            "ratio": 15.350538066071747
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "旧值混淆陷阱：`a = b` 之后再读 a",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "1&nbsp; int a = 3, b = 5;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "2&nbsp; a = b;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(3)",
+            "text": "3&nbsp; b = a + 2;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(4)",
+            "text": "4&nbsp; cout << a << b;",
+            "foreground": "rgb(248, 250, 252)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 17.062933971317335
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测：a = b; b = a + 2; 之后 a、b 分别是几？",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "code",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>code:nth-child(1)",
+            "text": "a = b; b = a + 2;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)",
+            "text": "第 3 行读到的新 a 是 5，所以 b 变成 7；输出 57。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(7)",
+            "text": "int a=3,b=5;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(8)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(9)",
+            "text": "5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(12)",
+            "text": "a = b;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(13)",
+            "text": "3 → 5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(14)",
+            "text": "5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(17)",
+            "text": "b = a + 2;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(18)",
+            "text": "5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(19)",
+            "text": "5 → 7",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(22)",
+            "text": "cout << a << b;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(23)",
+            "text": "5",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>div:nth-child(24)",
+            "text": "7",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 288,
+        "textNodeCount": 38,
+        "headingCount": 1,
+        "codeMinFontPx": 20,
+        "layoutSignature": "slide practice:0:0:0:2"
+      }
+    },
+    {
+      "slideId": "slide-07",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-07.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ② · medium",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：每一行的右侧都从「上一行写回的新值」出发。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(3)",
+            "text": "x",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(4)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(5)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(6)",
+            "text": "int x = 1;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(7)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(8)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(9)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(10)",
+            "text": "x = x + 1;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)>span:nth-child(1)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)>span:nth-child(2)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(12)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(13)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(14)",
+            "text": "x = x * 3;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)>span:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)>span:nth-child(2)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(16)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(17)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(18)",
+            "text": "cout << x;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(19)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(20)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "下一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "重置",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "公布答案",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测，再揭示：第三行右侧的 x 是 1 还是 2？",
+            "size": 19
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "第三行右侧的 x 是 1 还是 2？",
+            "size": 19
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "链式自更新：x = x + 1; x = x * 3;",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "1 &nbsp; int x = 1;",
+            "size": 28.16
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)",
+            "text": "2 &nbsp; x = x + 1;",
+            "size": 28.16
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "3 &nbsp; x = x * 3;",
+            "size": 28.16
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << x;",
+            "size": 28.16
+          }
+        ],
+        "minContrast": 4.65624530309684,
+        "lowestContrastSamples": [
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(20)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 0, 110)",
+            "ratio": 4.65624530309684
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "公布答案",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 0, 110)",
+            "ratio": 4.65624530309684
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(8)",
+            "text": "—",
+            "foreground": "rgb(100, 116, 139)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 4.758842787868666
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(12)",
+            "text": "—",
+            "foreground": "rgb(100, 116, 139)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 4.758842787868666
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(16)",
+            "text": "—",
+            "foreground": "rgb(100, 116, 139)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 4.758842787868666
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "下一行",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)>span:nth-child(2)",
+            "text": "2",
+            "foreground": "rgb(29, 78, 216)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 6.307885306694777
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)>span:nth-child(2)",
+            "text": "6",
+            "foreground": "rgb(29, 78, 216)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 6.307885306694777
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：每一行的右侧都从「上一行写回的新值」出发。",
+            "foreground": "rgb(55, 65, 81)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.936192054713985
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(55, 65, 81)",
+            "ratio": 10.307355969735845
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(55, 65, 81)",
+            "ratio": 10.307355969735845
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(3)",
+            "text": "x",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(55, 65, 81)",
+            "ratio": 10.307355969735845
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(4)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(55, 65, 81)",
+            "ratio": 10.307355969735845
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ② · medium",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 209, 102)",
+            "ratio": 12.070354934393064
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "1 &nbsp; int x = 1;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)",
+            "text": "2 &nbsp; x = x + 1;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "3 &nbsp; x = x * 3;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << x;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(5)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(9)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(13)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(17)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(19)",
+            "text": "6",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "链式自更新：x = x + 1; x = x * 3;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)>span:nth-child(1)",
+            "text": "1",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 16.803663866750465
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)>span:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 16.803663866750465
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测，再揭示：第三行右侧的 x 是 1 还是 2？",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(6)",
+            "text": "int x = 1;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(7)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(10)",
+            "text": "x = x + 1;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(14)",
+            "text": "x = x * 3;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(18)",
+            "text": "cout << x;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "重置",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "第三行右侧的 x 是 1 还是 2？",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 249,
+        "textNodeCount": 34,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide practice:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-08",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-08.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ③ · medium",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：b 是「快照」，不是「订阅」。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(3)",
+            "text": "a",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(4)",
+            "text": "b",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(6)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(7)",
+            "text": "int a = 10;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(8)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(9)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(10)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(12)",
+            "text": "int b = a;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(13)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(14)>span:nth-child(1)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(16)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(17)",
+            "text": "a = 4;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(18)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(19)>span:nth-child(1)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(20)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(21)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(22)",
+            "text": "cout << b;",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(23)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(24)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(25)",
+            "text": "10",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "下一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "重置",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "公布答案",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测，再揭示：a = 4 之后，b 会跟着变成 4 吗？",
+            "size": 20
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "a = 4 之后，b 会跟着变成 4 吗？",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "1 &nbsp; int a = 10;",
+            "size": 25.6
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)",
+            "text": "2 &nbsp; int b = a;",
+            "size": 25.6
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "3 &nbsp; a = 4;",
+            "size": 25.6
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << b;",
+            "size": 25.6
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "值快照：b 拿到的是当时 a 的值",
+            "size": 26
+          }
+        ],
+        "minContrast": 5.984934612252126,
+        "lowestContrastSamples": [
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "下一行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(0, 95, 204)",
+            "ratio": 5.984934612252126
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>b:nth-child(1)",
+            "text": "a = 4 之后，b 会跟着变成 4 吗？",
+            "foreground": "rgb(194, 0, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(25)",
+            "text": "10",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(194, 0, 90)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "公布答案",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(194, 0, 90)",
+            "ratio": 6.101983585130153
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：b 是「快照」，不是「订阅」。",
+            "foreground": "rgb(55, 65, 81)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 9.936192054713985
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "互动 ③ · medium",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(76, 29, 149)",
+            "ratio": 10.954438999106296
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "1 &nbsp; int a = 10;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)",
+            "text": "2 &nbsp; int b = a;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)",
+            "text": "3 &nbsp; a = 4;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << b;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(31, 41, 55)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(31, 41, 55)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(3)",
+            "text": "a",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(31, 41, 55)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(4)",
+            "text": "b",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(31, 41, 55)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(31, 41, 55)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "重置",
+            "foreground": "rgb(31, 41, 55)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 14.67911847763172
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(14)>span:nth-child(1)",
+            "text": "10",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 232, 255)",
+            "ratio": 14.750235862210527
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(19)>span:nth-child(1)",
+            "text": "10",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 232, 255)",
+            "ratio": 14.750235862210527
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "值快照：b 拿到的是当时 a 的值",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(6)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(11)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(16)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(21)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)",
+            "text": "先预测，再揭示：a = 4 之后，b 会跟着变成 4 吗？",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(7)",
+            "text": "int a = 10;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(8)",
+            "text": "10",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(12)",
+            "text": "int b = a;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(13)",
+            "text": "10",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(17)",
+            "text": "a = 4;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(18)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(22)",
+            "text": "cout << b;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(23)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(24)",
+            "text": "10",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(9)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(10)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(15)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>div:nth-child(20)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 244,
+        "textNodeCount": 37,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide practice:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-09",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-09.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "小结 ·  ummary",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "心法 1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "`=` 是单向箭头，从右指向左；不要把它当方程。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)",
+            "text": "心法 2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)",
+            "text": "右侧求值时左侧仍是旧值；下一行才能读到上一行的新值。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)",
+            "text": "心法 3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(3)",
+            "text": "每道题按这三步推进，把行级轨迹落到实处。",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "本课所有题目都围绕这三条心法展开；下节课将进入「分支结构 if / el e」。",
+            "size": 20
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "先算右侧，再写回左侧",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)",
+            "text": "旧值要保留",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)",
+            "text": "预测 → 揭示 → 状态表",
+            "size": 26
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "三条心法，回到一行一状态",
+            "size": 36
+          }
+        ],
+        "minContrast": 5.129583334676166,
+        "lowestContrastSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "小结 ·  ummary",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "本课所有题目都围绕这三条心法展开；下节课将进入「分支结构 if / el e」。",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(3)",
+            "text": "`=` 是单向箭头，从右指向左；不要把它当方程。",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)",
+            "text": "右侧求值时左侧仍是旧值；下一行才能读到上一行的新值。",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(3)",
+            "text": "每道题按这三步推进，把行级轨迹落到实处。",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "三条心法，回到一行一状态",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)",
+            "text": "先算右侧，再写回左侧",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)",
+            "text": "旧值要保留",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)",
+            "text": "预测 → 揭示 → 状态表",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+            "text": "心法 1",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)",
+            "text": "心法 2",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)",
+            "text": "心法 3",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 187,
+        "textNodeCount": 12,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide summary:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-10",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-10.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "巩固 ① · medium",
+            "size": 18
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：每行开始时所有变量都已更新到上一行最新值。",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(3)",
+            "text": "p",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(4)",
+            "text": "q",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "int p = 8, q = 2;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)>span:nth-child(1)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)>span:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)",
+            "text": "p = p - q;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(4)>span:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(5)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(1)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(2)",
+            "text": "q = p + q;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(4)>span:nth-child(1)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(5)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(1)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(2)",
+            "text": "cout << p << q;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(1)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(5)",
+            "text": "68",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)",
+            "text": "答案：68 · 第 3 行的 p 用的是新值 6，不是旧值 8",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>b:nth-child(1)",
+            "text": "68",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "上一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "下一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "重置",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(4)",
+            "text": "公布答案",
+            "size": 18
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "双变量互相依赖：第 2 行更新后，第 3 行要用新值",
+            "size": 22
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int p = 8, q = 2;",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; p = p - q;",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; q = p + q;",
+            "size": 26
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << p << q;",
+            "size": 26
+          }
+        ],
+        "minContrast": 4.65624530309684,
+        "lowestContrastSamples": [
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(4)",
+            "text": "公布答案",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 0, 110)",
+            "ratio": 4.65624530309684
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(239, 71, 111)",
+            "ratio": 4.931532579293617
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(239, 71, 111)",
+            "ratio": 4.931532579293617
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+            "text": "巩固 ① · medium",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(3)>span:nth-child(1)",
+            "text": "6",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(2)",
+            "text": "下一行",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "p",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>p:nth-child(3)",
+            "text": "预测口诀：每行开始时所有变量都已更新到上一行最新值。",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)",
+            "text": "答案：68 · 第 3 行的 p 用的是新值 6，不是旧值 8",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(90, 90, 90)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(90, 90, 90)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(3)",
+            "text": "p",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(90, 90, 90)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(4)",
+            "text": "q",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(90, 90, 90)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(5)",
+            "text": "输出",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(90, 90, 90)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(3)",
+            "text": "重置",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(4)>span:nth-child(1)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(6, 214, 160)",
+            "ratio": 9.465230046779476
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(1)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(6, 214, 160)",
+            "ratio": 9.465230046779476
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(3)>span:nth-child(1)",
+            "text": "8",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(203, 213, 225)",
+            "ratio": 11.722436574056417
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(4)>span:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(203, 213, 225)",
+            "ratio": 11.722436574056417
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(4)>span:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(203, 213, 225)",
+            "ratio": 11.722436574056417
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1 &nbsp; int p = 8, q = 2;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+            "text": "2 &nbsp; p = p - q;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+            "text": "3 &nbsp; q = p + q;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+            "text": "4 &nbsp; cout << p << q;",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(2)",
+            "text": "cout << p << q;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 16.381789493381607
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(5)",
+            "text": "68",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 248, 225)",
+            "ratio": 16.381789493381607
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(2)",
+            "text": "双变量互相依赖：第 2 行更新后，第 3 行要用新值",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(1)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(5)>div:nth-child(1)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(1)>b:nth-child(1)",
+            "text": "68",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(2)",
+            "text": "int p = 8, q = 2;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(2)",
+            "text": "p = p - q;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(2)",
+            "text": "q = p + q;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(5)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(5)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(4)>div:nth-child(5)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>div:nth-child(2)>button:nth-child(1)",
+            "text": "上一行",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 290,
+        "textNodeCount": 38,
+        "headingCount": 1,
+        "codeMinFontPx": null,
+        "layoutSignature": "slide practice:0:0:0:0"
+      }
+    },
+    {
+      "slideId": "slide-11",
+      "status": "pass",
+      "issues": [],
+      "revisionRequired": false,
+      "screenshot": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/slide-11.png",
+      "metrics": {
+        "minFontPx": 18,
+        "smallestFontSamples": [
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(2)",
+            "text": "课后巩固 · 4 min",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "代码（连续自更新）：",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "状态表（每行开始前 n 已更新）",
+            "size": 18
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(1)",
+            "text": "行",
+            "size": 18
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(2)",
+            "text": "代码",
+            "size": 18
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(3)",
+            "text": "n",
+            "size": 18
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(4)",
+            "text": "输出",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(1)",
+            "text": "1",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(2)",
+            "text": "int n = 3;",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(3)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(4)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(1)",
+            "text": "2",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(2)",
+            "text": "n = n * n;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(1)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(2)",
+            "text": "→",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(3)",
+            "text": "9",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(4)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(1)",
+            "text": "3",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(2)",
+            "text": "n = n - 1;",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(1)",
+            "text": "9",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(2)",
+            "text": "→",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(3)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(4)",
+            "text": "—",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(1)",
+            "text": "4",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(2)",
+            "text": "cout << n;",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(3)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(4)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)",
+            "text": "口诀：右读旧 · 左写新 · 行行接力。第 2 行 n*n 读旧 3 得 9；第 3 行再读这个新 9 得 8。",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>b:nth-child(1)",
+            "text": "右读旧 · 左写新 · 行行接力",
+            "size": 18
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(1)",
+            "text": "答案：8 · 第 3 行 n-1 中的 n 是上一步写回的新值 9",
+            "size": 18
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(1)>b:nth-child(1)",
+            "text": "8",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(1)",
+            "text": "上一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(2)",
+            "text": "下一行",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(3)",
+            "text": "重置",
+            "size": 18
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(4)",
+            "text": "公布答案",
+            "size": 18
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(1)",
+            "text": "// 第 1 行：先初始化",
+            "size": 20
+          },
+          {
+            "selector": "pre",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)",
+            "text": "// 第 1 行：先初始化\nint n = 3;\n\nn = n * n;   // ← 新值 9（读旧值 3）\nn = n - 1;   // ← 新值 8（读",
+            "size": 20
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(2)",
+            "text": "n = n * n;   // ← 新值 9（读旧值 3）",
+            "size": 20
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(2)>span:nth-child(1)",
+            "text": "// ← 新值 9（读旧值 3）",
+            "size": 20
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(3)",
+            "text": "n = n - 1;   // ← 新值 8（读上一步的 9）",
+            "size": 20
+          }
+        ],
+        "minContrast": 4.65624530309684,
+        "lowestContrastSamples": [
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(4)",
+            "text": "公布答案",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 0, 110)",
+            "ratio": 4.65624530309684
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(3)",
+            "text": "9",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(239, 71, 111)",
+            "ratio": 4.931532579293617
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(3)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(2)",
+            "text": "下一行",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(58, 134, 255)",
+            "ratio": 5.129583334676166
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(2)",
+            "text": "→",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 6.607737135172626
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(1)",
+            "text": "答案：8 · 第 3 行 n-1 中的 n 是上一步写回的新值 9",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 6.648570561039543
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+            "text": "代码（连续自更新）：",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+            "text": "状态表（每行开始前 n 已更新）",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(2)",
+            "text": "→",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "button",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(2)>button:nth-child(3)",
+            "text": "重置",
+            "foreground": "rgb(90, 90, 90)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 6.896926215312931
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(1)",
+            "text": "// 第 1 行：先初始化",
+            "foreground": "rgb(148, 163, 184)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 6.9626547485416275
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>span:nth-child(2)",
+            "text": "课后巩固 · 4 min",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(6, 214, 160)",
+            "ratio": 9.465230046779476
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(2)>span:nth-child(1)",
+            "text": "// ← 新值 9（读旧值 3）",
+            "foreground": "rgb(255, 209, 102)",
+            "background": "rgb(30, 41, 59)",
+            "ratio": 10.145397408819665
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(3)>span:nth-child(1)",
+            "text": "// ← 新值 8（读上一步的 9）",
+            "foreground": "rgb(255, 209, 102)",
+            "background": "rgb(30, 41, 59)",
+            "ratio": 10.145397408819665
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(3)>span:nth-child(1)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(203, 213, 225)",
+            "ratio": 11.722436574056417
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(3)>span:nth-child(1)",
+            "text": "9",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(203, 213, 225)",
+            "ratio": 11.722436574056417
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(2)",
+            "text": "n = n * n;   // ← 新值 9（读旧值 3）",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(30, 41, 59)",
+            "ratio": 11.866432560279284
+          },
+          {
+            "selector": "span",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)>span:nth-child(3)",
+            "text": "n = n - 1;   // ← 新值 8（读上一步的 9）",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(30, 41, 59)",
+            "ratio": 11.866432560279284
+          },
+          {
+            "selector": "pre",
+            "domPath": "section:nth-child(1)>div:nth-child(2)>pre:nth-child(2)",
+            "text": "// 第 1 行：先初始化\nint n = 3;\n\nn = n * n;   // ← 新值 9（读旧值 3）\nn = n - 1;   // ← 新值 8（读",
+            "foreground": "rgb(226, 232, 240)",
+            "background": "rgb(15, 23, 42)",
+            "ratio": 14.481508292066573
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(1)",
+            "text": "行",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(2)",
+            "text": "代码",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 15.814711506887704
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(3)",
+            "text": "n",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 16.221982123426454
+          },
+          {
+            "selector": "th",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>thead:nth-child(2)>tr:nth-child(1)>th:nth-child(4)",
+            "text": "输出",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(243, 244, 246)",
+            "ratio": 16.221982123426454
+          },
+          {
+            "selector": "div",
+            "domPath": "section:nth-child(1)>div:nth-child(4)",
+            "text": "口诀：右读旧 · 左写新 · 行行接力。第 2 行 n*n 读旧 3 得 9；第 3 行再读这个新 9 得 8。",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 247, 237)",
+            "ratio": 16.392548221788317
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(1)",
+            "text": "2",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 16.674561646820514
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(2)",
+            "text": "n = n * n;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 16.674561646820514
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(1)",
+            "text": "4",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 16.674561646820514
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(2)",
+            "text": "cout << n;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 16.674561646820514
+          },
+          {
+            "selector": "h2",
+            "domPath": "section:nth-child(1)>div:nth-child(1)>h2:nth-child(1)",
+            "text": "巩固 ② 表达式重赋值链",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 16.77760440759326
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(4)>b:nth-child(1)",
+            "text": "右读旧 · 左写新 · 行行接力",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 247, 237)",
+            "ratio": 16.814699660846895
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(2)>td:nth-child(4)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 17.103975676880832
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(3)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 17.103975676880832
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(4)>td:nth-child(4)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(250, 250, 250)",
+            "ratio": 17.103975676880832
+          },
+          {
+            "selector": "b",
+            "domPath": "section:nth-child(1)>div:nth-child(5)>div:nth-child(1)>b:nth-child(1)",
+            "text": "8",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(251, 251, 247)",
+            "ratio": 17.209672061065646
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(1)",
+            "text": "1",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(2)",
+            "text": "int n = 3;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(1)",
+            "text": "3",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(3)>td:nth-child(2)",
+            "text": "n = n - 1;",
+            "foreground": "rgb(26, 26, 26)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.40432753274219
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(3)",
+            "text": "3",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          },
+          {
+            "selector": "td",
+            "domPath": "section:nth-child(1)>div:nth-child(3)>table:nth-child(2)>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(4)",
+            "text": "—",
+            "foreground": "rgb(15, 23, 42)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 17.85253496299567
+          }
+        ],
+        "overflowing": [],
+        "rootOverflow": false,
+        "textLength": 342,
+        "textNodeCount": 42,
+        "headingCount": 1,
+        "codeMinFontPx": 20,
+        "layoutSignature": "slide practice:0:0:0:1"
+      }
+    }
+  ],
+  "revisedSlideIds": [
+    "slide-01",
+    "slide-02",
+    "slide-03",
+    "slide-04",
+    "slide-05",
+    "slide-06",
+    "slide-07",
+    "slide-08",
+    "slide-09",
+    "slide-10",
+    "slide-11"
+  ],
+  "contactSheet": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/contact-sheet.png",
+  "checkedAt": "2026-07-18T18:29:25.680Z"
+}

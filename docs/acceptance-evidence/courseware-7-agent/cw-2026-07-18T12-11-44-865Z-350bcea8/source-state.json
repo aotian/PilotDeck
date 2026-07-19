@@ -1,0 +1,12 @@
+{
+  "gitHead": "ff20288cb48248d19351c19cee8cf295a966ea42",
+  "committed": false,
+  "keyFileSha256": {
+    "src/agent/loop/AgentLoop.ts": "6eb34b64425a1f16ff9f5af6a0ec57ac00227dc949296afdea344af1a27da310",
+    "src/agent/sub/builtinSubagentTypes.ts": "02172b58a759ad4ce0454a64a463aa30ad155e4f6db749f9ffe83131c4e45d9d",
+    "ui/server/courseware-agent-runner.js": "a21f01df89631ae0b05eb3119e13b3d2e256abc27fce6932c67b6c50ebb9c940",
+    "ui/server/courseware-agent-orchestrator.js": "20d74879e4cda5b84344eb4dcfc37cf5ce51104131129c60dab25dd59a951a92",
+    "ui/server/courseware-visual-quality.js": "6062825ce935d848af67d88994df347fb0bcb9e2174c191b580e151ec4e29fde",
+    "tests/agent/agent-loop-subagent-token-budget.test.ts": "4ce3bec3b2f1c082ec00f668c66cee0bccc4817df4761ed23630618cb45a3e04"
+  }
+}

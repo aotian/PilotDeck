@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "tongcheng.coursewareApprovedStyle.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "lessonId": "fixture-current-lesson",
+  "teacherApprovedStyleId": "style-b",
+  "approvedAt": "2026-07-18T12:31:00.089Z",
+  "designTokens": {
+    "colorSurface": "#fbfbf7",
+    "colorSurfaceAlt": "#ffffff",
+    "colorInk": "#1a1a1a",
+    "colorInkSoft": "#5a5a5a",
+    "colorAccent": "#3a86ff",
+    "colorAccentStrong": "#ff006e",
+    "colorOldValue": "#cbd5e1",
+    "colorNewValue": "#3a86ff",
+    "colorVariableA": "#ef476f",
+    "colorVariableB": "#06d6a0",
+    "colorVariableC": "#ffd166",
+    "colorVariableT": "#9b5de5",
+    "colorCodeBg": "#0f172a",
+    "colorCodeInk": "#e2e8f0",
+    "colorRule": "#e5e7eb",
+    "fontDisplay": "\"Source Han Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+    "fontMono": "ui-monospace, Menlo, Consolas, \"Liberation Mono\", monospace",
+    "fontSizeCode": "clamp(28px, 3.2vw, 40px)",
+    "fontSizeBody": "clamp(18px, 1.8vw, 22px)",
+    "radius": "14px",
+    "space": "20px",
+    "codeBlockPadding": "24px",
+    "cellPadding": "12px"
+  },
+  "layouts": {
+    "cover": "白底大标题 + 彩色色块点缀 + 学段 / 课时元信息",
+    "concept": "上方一句口诀 + 中部代码卡 + 右侧单变量徽章色块图例",
+    "example": "顶部代码卡 + 下部状态表（按行卡片，便签阴影）",
+    "practice": "代码 + 状态表 + 底部按钮（带 emoji-less 图形按钮）"
+  },
+  "illustration": {
+    "mode": "极简几何：圆形徽章 + 矩形色块，无拟人插画；底部按钮使用线性图标（无填色）"
+  },
+  "codeBlocks": {
+    "mode": "深色代码块；当前行用左侧 4px 强彩色边条高亮；行末添加「← 新值」箭头徽章"
+  },
+  "questionCards": {
+    "revealMode": null
+  },
+  "teacherNotes": "Use style-b systems-map structure, large code, explicit state traces, and no countdown or internal workflow wording."
+}

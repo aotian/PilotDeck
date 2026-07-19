@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "tongcheng.gatewayDiagnosticSummary.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "gateway": "real PilotDeck Gateway",
+  "model": "tc-admin/tc-main",
+  "finalStatus": "awaiting-teacher-approval",
+  "agentToolCallCountPerFinalRole": 1,
+  "finalRoleLifecycleEvidence": {
+    "requirement": "ready",
+    "outline": "ready",
+    "script": "ready",
+    "exercise": "ready",
+    "deck": "ready",
+    "video": "ready",
+    "review": "ready"
+  },
+  "historicalQuotaEvent": {
+    "httpStatus": 429,
+    "providerCode": 2056,
+    "message": "Token Plan usage limit reached",
+    "resolvedBeforeFinalResume": true
+  },
+  "fallbackTriggeredAfterRecovery": false,
+  "fallbackExplanation": "The primary route succeeded. Configured fallback aliases share the same gateway/account and are not independent capacity.",
+  "secretsIncluded": false
+}

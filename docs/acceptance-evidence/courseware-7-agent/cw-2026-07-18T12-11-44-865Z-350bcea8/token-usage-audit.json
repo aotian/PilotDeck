@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "tongcheng.pilotdeckTokenUsageAudit.v1",
+  "captureScope": "historical interim audit before final Video/Review completion",
+  "finalRunTotalsIncluded": false,
+  "source": "/Users/tongcheng/.pilotdeck/router/stats.jsonl",
+  "periodUtc": {
+    "from": "2026-07-18T00:00:00Z",
+    "to": "2026-07-19T00:00:00Z"
+  },
+  "allPilotDeckUsage": {
+    "requests": 1011,
+    "inputTokens": 16420768,
+    "outputTokens": 497457,
+    "totalTokens": 16918225,
+    "routerEstimatedCost": 8.9565695
+  },
+  "coursewareE2EWorkspaces": [
+    {
+      "workspace": "/tmp/pilotdeck-final-real-e2e.5dWmsL/real-gateway-7-agent-hq-final",
+      "requests": 616,
+      "totalTokens": 10423088,
+      "shareOfDailyTotalPercent": 61.61
+    },
+    {
+      "workspace": "/var/folders/m4/nd3l5kgx57xcc_gxb99543wh0000gn/T/pilotdeck-final-real-e2e-lNH75c/real-gateway-7-agent-hq-final-v2",
+      "requests": 241,
+      "totalTokens": 4429471,
+      "shareOfDailyTotalPercent": 28.52
+    },
+    {
+      "workspace": "/tmp/pilotdeck-final-current-e2e.6eY2I2/real-gateway-7-agent-hq-current",
+      "requests": 75,
+      "totalTokens": 1352357,
+      "shareOfDailyTotalPercent": 8.71
+    },
+    {
+      "workspace": "/tmp/pilotdeck-real-courseware-e2e.ZTbu0I/real-gateway-7-agent-hq-complete",
+      "requests": 56,
+      "totalTokens": 655150,
+      "shareOfDailyTotalPercent": 4.22
+    }
+  ],
+  "currentRunBreakdown": {
+    "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+    "requests": 616,
+    "inputTokens": 10151521,
+    "outputTokens": 271567,
+    "totalTokens": 10423088,
+    "groups": [
+      {"stage":"courseware-deck produce","requests":234,"totalTokens":4814967,"sharePercent":46.2},
+      {"stage":"courseware-deck repair","requests":249,"totalTokens":3941954,"sharePercent":37.8},
+      {"stage":"courseware-deck style-preview","requests":43,"totalTokens":845231,"sharePercent":8.1},
+      {"stage":"courseware-exercise produce","requests":17,"totalTokens":330404,"sharePercent":3.2},
+      {"stage":"courseware-script produce","requests":13,"totalTokens":274330,"sharePercent":2.6},
+      {"stage":"courseware-outline produce","requests":9,"totalTokens":127277,"sharePercent":1.2},
+      {"stage":"courseware-requirement produce","requests":7,"totalTokens":32909,"sharePercent":0.3},
+      {"stage":"coordinator calls","requests":44,"totalTokens":56016,"sharePercent":0.5}
+    ],
+    "deckSharePercent": 92.1,
+    "quotaRecoveryContinuation": {
+      "requests": 81,
+      "totalTokens": 1389117,
+      "successfulContentCheckpoint": true,
+      "questionReferenceCount": 8,
+      "boundedRepairRuns": [
+        {"subagentId":"f32294dd-0ef5-4c9b-bda7-200fdbdb2bde","requests":13,"totalTokens":148130,"outcome":"effective edit, visual still failed"},
+        {"subagentId":"f73b4c18-56f8-46ab-a0e1-e76782e1679e","requests":3,"totalTokens":13911,"outcome":"no-op correctly blocked"},
+        {"subagentId":"5c11bdd2-a218-4e76-a115-e5c81909400b","requests":20,"totalTokens":487730,"outcome":"one contrast offender fixed, one remained"}
+      ]
+    },
+    "deckDiagnostics": {
+      "produce": {"diagnostics":16,"startedSubagents":14,"blockedDiagnostics":6},
+      "repair": {"diagnostics":24,"startedSubagents":22,"blockedDiagnostics":14},
+      "stylePreview": {"diagnostics":4,"startedSubagents":4,"blockedDiagnostics":3}
+    }
+  },
+  "interpretation": [
+    "This file explains the earlier Token Plan exhaustion and is not the final total after Video/Review retries.",
+    "Router stats contain one usage record per model request, including repeated requests within the same subagent turn as its context grows.",
+    "The current E2E's Deck stage generated 92.1 percent of its recorded token volume.",
+    "The provider dashboard remains authoritative for plan quota and billing; local totals may differ because provider-side caching, retries, or accounting rules are not visible here."
+  ],
+  "secretsIncluded": false
+}

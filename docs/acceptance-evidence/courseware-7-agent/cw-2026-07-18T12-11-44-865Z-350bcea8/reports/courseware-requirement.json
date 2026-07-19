@@ -1,0 +1,476 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "agentRole": "courseware-requirement",
+  "subagentType": "courseware-requirement",
+  "lessonId": "fixture-current-lesson",
+  "status": "ready",
+  "startedAt": "2026-07-18T12:11:44.895Z",
+  "completedAt": "2026-07-18T12:12:47.929Z",
+  "inputsRead": [
+    "teacher-request.md",
+    "tiku-context.json",
+    "asset-request.json",
+    "source-lock.json"
+  ],
+  "filesWritten": [
+    "brief.md",
+    "courseware-agent-report.json"
+  ],
+  "coordinatorWritesObserved": [],
+  "concurrentWritesObserved": [],
+  "nextAgent": "courseware-outline",
+  "blockers": [],
+  "checks": [
+    {
+      "name": "subagent-started",
+      "status": "pass",
+      "detail": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2"
+    },
+    {
+      "name": "subagent-completed",
+      "status": "pass",
+      "detail": "success"
+    },
+    {
+      "name": "required-outputs",
+      "status": "pass",
+      "detail": "present and valid"
+    },
+    {
+      "name": "write-scope",
+      "status": "pass",
+      "detail": "within role contract"
+    },
+    {
+      "name": "coordinator-write-isolation",
+      "status": "pass",
+      "detail": "No concurrent coordinator writes observed"
+    }
+  ],
+  "model": "tc-admin/tc-main",
+  "sessionId": "web:s_52cffcd5-7ff2-49f4-ae93-482825d7e98a",
+  "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+  "lifecycleEvents": [
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 2006,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 4013,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 5519,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 5519,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7527,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 7528,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 9537,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 11545,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 13554,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 14055,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 14055,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 16064,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 18072,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 20080,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 22088,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 24096,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 26102,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 28110,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 30119,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 32127,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 34135,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 36144,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 38158,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 40168,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 42177,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 43683,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 45691,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 46695,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 46695,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 48704,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 50712,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": null,
+      "durationMs": 52722,
+      "success": true
+    },
+    {
+      "state": "completed",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "startedAt": "2026-07-18T12:11:53.303Z",
+      "completedAt": "2026-07-18T12:12:47.924Z",
+      "durationMs": 55126,
+      "success": true
+    }
+  ],
+  "agentToolCallCount": 1,
+  "gatewayDiagnosticPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/diagnostics/courseware-requirement-produce-334749be.json",
+  "action": "produce",
+  "invocations": [
+    {
+      "action": "produce",
+      "subagentType": "courseware-requirement",
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "sessionId": "web:s_52cffcd5-7ff2-49f4-ae93-482825d7e98a",
+      "startedAt": "2026-07-18T12:11:44.895Z",
+      "completedAt": "2026-07-18T12:12:47.929Z",
+      "status": "ready"
+    }
+  ],
+  "archivedAt": "2026-07-18T12:12:47.932Z"
+}

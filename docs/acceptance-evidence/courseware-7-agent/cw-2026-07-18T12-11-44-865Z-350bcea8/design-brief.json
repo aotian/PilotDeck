@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "tiku.coursewareDesignBrief.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "lessonId": "fixture-current-lesson",
+  "lessonTitle": "变量状态追踪：赋值与顺序执行",
+  "subject": "cpp",
+  "grade": "七年级",
+  "audience": {
+    "level": "CSP-J 入门",
+    "classSize": 24,
+    "deliveryMode": "教师主讲 + 学生先预测 + 教师逐行揭示"
+  },
+  "lessonDurationMinutes": 45,
+  "totalSlides": 11,
+  "slideComposition": [
+    { "order": 1, "type": "cover", "title": "课题卡片", "estimatedMinutes": 1 },
+    { "order": 2, "type": "concept", "title": "赋值语义图解", "estimatedMinutes": 6 },
+    { "order": 3, "type": "example", "title": "精讲 ① fixture-final-q-1", "estimatedMinutes": 6 },
+    { "order": 4, "type": "example", "title": "精讲 ② fixture-final-q-2", "estimatedMinutes": 6 },
+    { "order": 5, "type": "example", "title": "精讲 ③ fixture-final-q-7", "estimatedMinutes": 7 },
+    { "order": 6, "type": "practice", "title": "互动 ① fixture-final-q-3", "estimatedMinutes": 3 },
+    { "order": 7, "type": "practice", "title": "互动 ② fixture-final-q-4", "estimatedMinutes": 3 },
+    { "order": 8, "type": "practice", "title": "互动 ③ fixture-final-q-6", "estimatedMinutes": 3 },
+    { "order": 9, "type": "summary", "title": "三条心法小结", "estimatedMinutes": 3 },
+    { "order": 10, "type": "practice", "title": "巩固 ① fixture-final-q-5", "estimatedMinutes": 3 },
+    { "order": 11, "type": "practice", "title": "巩固 ② fixture-final-q-8", "estimatedMinutes": 4 }
+  ],
+  "designGoals": [
+    "投影高对比：背景纯色（无渐变、无装饰图），代码 28–40px 等宽，状态表行高 ≥ 56px，列对齐严格。",
+    "三段式节奏固定：每道题都按「预测 → 揭示 → 状态表」推进；教师手控「上一行 / 下一行 / 重置 / 公布答案」，无自动计时。",
+    "状态表以「行号 / 代码 / 各变量当前值 / 输出」四列为主；变量列用「旧值 → 新值」两段标识读旧写新语义。",
+    "代码与状态表视觉上强弱分明：代码用实色填充卡，状态表用细边框网格，避免被装饰元素抢戏。",
+    "学生可见 HTML 不出现：Tiku ID、生产路径、内部审核、teacher-script.md、agent-run.json 等元数据。",
+    "教师讲解只入 teacher-only notes（slide.notes / teacher-script.md），不进入学生可见 HTML。"
+  ],
+  "mustHaveComponents": [
+    "CodeBlock：等宽字体、≥28px、行号、可逐行高亮。",
+    "TraceTable：行号 / 代码 / 各变量列 / 输出列；支持逐行点亮与重置。",
+    "PredictPanel：学生先口头预测的口诀卡（不记录具体学生答案），教师点击进入揭示阶段。",
+    "AnswerReveal：公布答案与解析，由教师手控触发，不自动展示。",
+    "AntiPatternCard：精讲 ③ 演示「无 t 错误版本」对比开关（77 vs 72）。"
+  ],
+  "mustAvoid": [
+    "倒计时、自动提交、到时锁定、自动批改。",
+    "积分、连击、勋章、答对+1 等后台游戏化话术。",
+    "if/else、for/while、数组、指针/引用、cin 复杂用法、类型强转。",
+    "把 fixture 题改成 AI 草稿题或同类题；不新增、不替换、不改答案。",
+    "在学生可见 HTML 内出现 teacher-script.md 任何片段、内部路径、Tiku ID、运行元数据。"
+  ],
+  "stylePreviewDeliverable": "三个结构性不同的方向（style-a / style-b / style-c），每个提供 cover.html、concept.html、example.html、practice.html，并各自一份 style.json。"
+}

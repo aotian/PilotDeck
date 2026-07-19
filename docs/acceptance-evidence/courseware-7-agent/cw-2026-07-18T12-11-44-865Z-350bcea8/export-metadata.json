@@ -1,0 +1,10 @@
+{
+  "sourceEngine": "pilotdeck",
+  "sourceOfTruth": "courseware-slides.json",
+  "approvedStyleSource": "approved-style.json",
+  "openmaicRendererUsed": false,
+  "pptx": {"status":"generated","file":"courseware.pptx","bytes":680379,"slideCount":11},
+  "pdf": {"status":"generated","file":"courseware.pdf","bytes":915327,"pageCount":11,"pageSize":"960 x 540 pts"},
+  "unzipTest": {"status":"pass","detail":"No errors detected in compressed data"},
+  "pdfinfo": {"status":"pass","pages":11}
+}

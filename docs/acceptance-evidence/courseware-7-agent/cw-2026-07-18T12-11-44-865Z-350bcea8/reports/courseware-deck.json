@@ -1,0 +1,1083 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "agentRole": "courseware-deck",
+  "subagentType": "courseware-deck",
+  "lessonId": "fixture-current-lesson",
+  "status": "ready",
+  "startedAt": "2026-07-18T18:10:48.425Z",
+  "completedAt": "2026-07-18T18:12:26.330Z",
+  "inputsRead": [
+    "brief.md",
+    "course-outline.md",
+    "pitfalls.md",
+    "teacher-script.md",
+    "exercises.md",
+    "tiku-context.json",
+    "courseware-slides.json",
+    "approved-style.json",
+    "visual-quality-report.json"
+  ],
+  "filesWritten": [
+    "courseware-slides.json"
+  ],
+  "coordinatorWritesObserved": [],
+  "concurrentWritesObserved": [],
+  "nextAgent": "courseware-video",
+  "blockers": [],
+  "checks": [
+    {
+      "name": "subagent-started",
+      "status": "pass",
+      "detail": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee"
+    },
+    {
+      "name": "subagent-completed",
+      "status": "pass",
+      "detail": "success"
+    },
+    {
+      "name": "required-outputs",
+      "status": "pass",
+      "detail": "present and valid"
+    },
+    {
+      "name": "write-scope",
+      "status": "pass",
+      "detail": "within role contract"
+    },
+    {
+      "name": "coordinator-write-isolation",
+      "status": "pass",
+      "detail": "No concurrent coordinator writes observed"
+    }
+  ],
+  "model": "tc-admin/tc-main",
+  "sessionId": "web:s_c6b1abe3-787f-4c47-b83a-38ff980522c2",
+  "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+  "lifecycleEvents": [
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 2005,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 4011,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 6019,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 7020,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 7020,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 9027,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 10033,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 10033,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 12041,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 12041,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 14049,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 16050,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 18055,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 20060,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 22064,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 24065,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 26068,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 28071,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 30072,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 32074,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 34078,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 36079,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 38088,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 38589,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 38593,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 40602,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 42608,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 44615,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 46623,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 48632,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 50640,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 52646,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 52646,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 54653,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 56656,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 58659,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 59662,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 59662,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 59662,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 59662,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 61666,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 62167,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 62167,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 64170,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 65172,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 65172,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 67177,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 67177,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 69183,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 71187,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 71689,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 71689,
+      "success": false
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 73695,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 75700,
+      "success": true
+    },
+    {
+      "state": "running",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": null,
+      "durationMs": 77706,
+      "success": true
+    },
+    {
+      "state": "completed",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "startedAt": "2026-07-18T18:11:08.087Z",
+      "completedAt": "2026-07-18T18:12:26.249Z",
+      "durationMs": 78660,
+      "success": true
+    }
+  ],
+  "agentToolCallCount": 1,
+  "gatewayDiagnosticPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/diagnostics/courseware-deck-repair-9625034b.json",
+  "action": "repair",
+  "invocations": [
+    {
+      "action": "style-preview",
+      "subagentType": "courseware-deck",
+      "subagentId": "806c99ce-d2a4-438f-9b28-db91f9add7c4",
+      "sessionId": "web:s_474b8c05-8654-4d07-b80c-6895e7a8c302",
+      "startedAt": "2026-07-18T12:17:03.337Z",
+      "completedAt": "2026-07-18T12:19:18.084Z",
+      "status": "failed"
+    },
+    {
+      "action": "style-preview",
+      "subagentType": "courseware-deck",
+      "subagentId": "fa40419d-3a95-4a21-a116-f8e2452fb2ab",
+      "sessionId": "web:s_7adf3d70-ff06-4a2c-a8c7-a830c6d494db",
+      "startedAt": "2026-07-18T12:20:51.756Z",
+      "completedAt": "2026-07-18T12:22:11.052Z",
+      "status": "failed"
+    },
+    {
+      "action": "style-preview",
+      "subagentType": "courseware-deck",
+      "subagentId": "0b895c19-eff1-462a-a2aa-9a7d5c348a5b",
+      "sessionId": "web:s_d3f2529a-8e64-4c25-a537-66906c04a245",
+      "startedAt": "2026-07-18T12:23:41.063Z",
+      "completedAt": "2026-07-18T12:23:57.831Z",
+      "status": "failed"
+    },
+    {
+      "action": "style-preview",
+      "subagentType": "courseware-deck",
+      "subagentId": "bf9bfc1d-8397-4000-b98b-bf534b95659c",
+      "sessionId": "web:s_55bf9406-92be-4058-8cd3-7b01b710f891",
+      "startedAt": "2026-07-18T12:25:14.578Z",
+      "completedAt": "2026-07-18T12:28:53.146Z",
+      "status": "ready"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "aa01f3fe-4219-4b74-9a00-f1de91ccc7c0",
+      "sessionId": "web:s_e903b515-02f1-440f-93da-c170b4c78985",
+      "startedAt": "2026-07-18T12:31:00.105Z",
+      "completedAt": "2026-07-18T12:34:52.709Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "0e372d27-a94b-40a6-98dd-19e9259fb552",
+      "sessionId": "web:s_8615c37c-499f-442d-9d1d-cec0110ecd23",
+      "startedAt": "2026-07-18T12:37:40.677Z",
+      "completedAt": "2026-07-18T12:42:04.752Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "df5735e2-764e-4d9e-908b-5816b18e40d4",
+      "sessionId": "web:s_81280820-0655-4ada-b42d-baf2c8f88f83",
+      "startedAt": "2026-07-18T12:47:18.145Z",
+      "completedAt": "2026-07-18T12:48:11.425Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "09d37ecd-260a-4a15-bfda-f37df8ff3f0f",
+      "sessionId": "web:s_e91bbeb9-b339-41f6-8bee-6e4e0ecd5144",
+      "startedAt": "2026-07-18T12:51:06.577Z",
+      "completedAt": "2026-07-18T12:55:40.776Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "e63e8bf5-14e5-479c-ad37-6fd5a13d6c63",
+      "sessionId": "web:s_45f92be6-b36b-419e-8e21-cd3136a44b98",
+      "startedAt": "2026-07-18T12:56:30.203Z",
+      "completedAt": "2026-07-18T12:57:25.653Z",
+      "status": "ready"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "3d70e172-d0af-48a2-b73c-7019de354f56",
+      "sessionId": "web:s_23541708-14f0-4837-b1e0-d65c6ef78dff",
+      "startedAt": "2026-07-18T13:01:04.832Z",
+      "completedAt": "2026-07-18T13:02:54.672Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "f505e403-b516-4ca4-bc48-cbd17c23828d",
+      "sessionId": "web:s_fb64ba72-90cd-47b3-8d65-6fec32c53cbe",
+      "startedAt": "2026-07-18T13:03:43.666Z",
+      "completedAt": "2026-07-18T13:04:10.672Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": null,
+      "sessionId": "web:s_7a888b84-883d-489c-8404-07ca059546a2",
+      "startedAt": "2026-07-18T13:06:18.635Z",
+      "completedAt": "2026-07-18T13:06:18.672Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "51638f59-1a29-46d6-b1ec-090d55f0f2ba",
+      "sessionId": "web:s_b5af65b6-080a-4f4a-8414-be5ccd281ddd",
+      "startedAt": "2026-07-18T13:07:03.242Z",
+      "completedAt": "2026-07-18T13:07:20.538Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "60a287bb-a4cf-4646-9e8f-39dc4e919ea6",
+      "sessionId": "web:s_d9b010d6-2be5-4ad8-b285-f8cfe8ca7cf1",
+      "startedAt": "2026-07-18T13:08:09.226Z",
+      "completedAt": "2026-07-18T13:08:38.516Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "9e4ea75e-f889-466c-8c85-e300c0846911",
+      "sessionId": "web:s_fac590f2-ba61-4076-8b2f-2402504cc191",
+      "startedAt": "2026-07-18T13:10:52.632Z",
+      "completedAt": "2026-07-18T13:11:10.762Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "04bf1eac-2671-4f5a-8dd1-c641637ab1a9",
+      "sessionId": "web:s_59b4c0ee-21c7-4e1d-9024-a668236a6e44",
+      "startedAt": "2026-07-18T13:11:59.722Z",
+      "completedAt": "2026-07-18T13:14:18.877Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "c3113638-ffa3-4db9-8a87-ce85408fac03",
+      "sessionId": "web:s_86738278-cd4c-4c81-a18d-7853e5647bae",
+      "startedAt": "2026-07-18T13:14:18.905Z",
+      "completedAt": "2026-07-18T13:14:52.311Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "076a2ca8-d688-4c7e-bc86-7c2503b4a835",
+      "sessionId": "web:s_b6302fd8-efa0-415a-a099-121eee121e91",
+      "startedAt": "2026-07-18T13:15:47.376Z",
+      "completedAt": "2026-07-18T13:16:20.255Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "45e312db-b880-48d5-9e74-214ba4999911",
+      "sessionId": "web:s_7d5fad95-8d32-4299-8f3f-8f71c3ce860a",
+      "startedAt": "2026-07-18T13:17:08.737Z",
+      "completedAt": "2026-07-18T13:17:51.948Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "be8efb1d-3743-4ab3-9d80-dfb0df6dbf01",
+      "sessionId": "web:s_06415be7-d776-4b98-a63f-74d4a652db7d",
+      "startedAt": "2026-07-18T13:20:39.595Z",
+      "completedAt": "2026-07-18T13:21:04.705Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "f8412b49-a8e4-41a4-8b49-909d405cb280",
+      "sessionId": "web:s_4c9497c7-6810-469c-b87f-c5a32bb1890a",
+      "startedAt": "2026-07-18T13:21:53.238Z",
+      "completedAt": "2026-07-18T13:22:18.889Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "1611bab0-95cb-46f6-a8b3-6dcf850936d9",
+      "sessionId": "web:s_38c358b7-bab0-44ef-9fcd-1180539b92b5",
+      "startedAt": "2026-07-18T13:23:27.883Z",
+      "completedAt": "2026-07-18T13:25:50.404Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "0c817e37-7b8c-46c4-bc10-ba909532f083",
+      "sessionId": "web:s_23ef0e9e-22f2-403e-89a4-b064682eec1d",
+      "startedAt": "2026-07-18T13:28:49.098Z",
+      "completedAt": "2026-07-18T13:30:28.562Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "c71fee8a-a462-4d49-b21f-d7fcd79aa51a",
+      "sessionId": "web:s_4556abcd-6c67-4b90-8098-c033b855af51",
+      "startedAt": "2026-07-18T13:31:19.519Z",
+      "completedAt": "2026-07-18T13:33:23.806Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "1343ea27-a248-4ef2-9cc2-650693b1fbce",
+      "sessionId": "web:s_68c7833b-899d-464d-844c-c81192444ec3",
+      "startedAt": "2026-07-18T13:33:23.844Z",
+      "completedAt": "2026-07-18T13:33:55.645Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "77179667-038f-4f78-84be-93637e929ce2",
+      "sessionId": "web:s_8b976e9f-1529-4a63-a02e-fc4b9b816652",
+      "startedAt": "2026-07-18T13:34:14.996Z",
+      "completedAt": "2026-07-18T13:35:01.167Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "3974e63b-c14d-4645-aa94-c6ecd16a2904",
+      "sessionId": "web:s_ed19c816-0ff3-45ac-b2df-f9874da92446",
+      "startedAt": "2026-07-18T13:35:50.203Z",
+      "completedAt": "2026-07-18T13:36:28.050Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "fbc1deda-5677-4b63-aa44-6a6c9bab4693",
+      "sessionId": "web:s_a36f08aa-65f1-4e00-851f-87d1e9d4d7c6",
+      "startedAt": "2026-07-18T13:38:35.067Z",
+      "completedAt": "2026-07-18T13:40:07.663Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "fa891220-4a5e-433f-91a7-524f407467de",
+      "sessionId": "web:s_03e944e6-7ded-4157-b370-8b5059eb954c",
+      "startedAt": "2026-07-18T13:40:57.106Z",
+      "completedAt": "2026-07-18T13:41:15.842Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "83d306bf-a6bc-44ac-b745-467c7b2af1c3",
+      "sessionId": "web:s_9607c11f-f590-49b7-ba2d-94d4283b408a",
+      "startedAt": "2026-07-18T13:41:15.860Z",
+      "completedAt": "2026-07-18T13:42:43.955Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "aee1ea81-29ca-426d-b302-5a704de2621e",
+      "sessionId": "web:s_eaabcfd7-ea59-408c-8e6f-4d2b174f29cb",
+      "startedAt": "2026-07-18T13:43:54.989Z",
+      "completedAt": "2026-07-18T13:45:25.670Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "7ec06cd1-2af0-4afe-bacd-108144b89611",
+      "sessionId": "web:s_5021af4a-c2ad-4736-93b7-f3bfe8ebbc7a",
+      "startedAt": "2026-07-18T13:46:13.944Z",
+      "completedAt": "2026-07-18T13:48:18.717Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "949eef87-07d8-4c46-822c-e9e4ee65cf46",
+      "sessionId": "web:s_8d9e0a50-3018-4dde-9c3d-4aa9025ebfb8",
+      "startedAt": "2026-07-18T13:48:18.735Z",
+      "completedAt": "2026-07-18T13:50:57.649Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "a1673753-95f6-4d09-b6d6-9bdaf389cd88",
+      "sessionId": "web:s_3bdeb3a5-d3d0-45ff-94d1-ff93e7d9e38a",
+      "startedAt": "2026-07-18T13:50:57.668Z",
+      "completedAt": "2026-07-18T13:51:45.106Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "0054ec96-cba4-4c1b-af8c-58df218993a9",
+      "sessionId": "web:s_dd88ecce-2c9a-4c71-a025-02df03b8aaee",
+      "startedAt": "2026-07-18T13:51:45.124Z",
+      "completedAt": "2026-07-18T13:54:45.403Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "52604214-f15e-422c-8dad-4836dd9d56b2",
+      "sessionId": "web:s_ab3189a5-bb4d-48e3-8e58-38f4b8f8352b",
+      "startedAt": "2026-07-18T13:54:45.427Z",
+      "completedAt": "2026-07-18T13:55:16.104Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "c519ceee-f580-4a22-b4a2-2326c614c2f8",
+      "sessionId": "web:s_99a89414-923b-4ffb-a6f9-e52ad7834eea",
+      "startedAt": "2026-07-18T13:55:16.122Z",
+      "completedAt": "2026-07-18T13:57:01.863Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "519419a6-9b7d-4708-874a-d6d6f199e60b",
+      "sessionId": "web:s_a955200b-1f88-43ae-8d3b-229697ae85c1",
+      "startedAt": "2026-07-18T13:57:01.882Z",
+      "completedAt": "2026-07-18T13:58:16.842Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "b2354cfb-a303-4bee-8ad8-057cb92af428",
+      "sessionId": "web:s_4d16cacf-2295-4642-8812-25c2c44bdc4d",
+      "startedAt": "2026-07-18T13:58:16.861Z",
+      "completedAt": "2026-07-18T13:59:49.763Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "7caa9e91-4081-46de-937f-6f6b8019bcc9",
+      "sessionId": "web:s_b830d6f8-141c-4291-bdc6-f5d6394cc089",
+      "startedAt": "2026-07-18T13:59:49.803Z",
+      "completedAt": "2026-07-18T14:02:10.824Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "ba98848d-d61e-480c-a827-902a423a65d7",
+      "sessionId": "web:s_52149772-acf2-4a0d-b68f-6bb7e7edc507",
+      "startedAt": "2026-07-18T14:02:10.862Z",
+      "completedAt": "2026-07-18T14:04:01.737Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": null,
+      "sessionId": "web:s_66281737-ee46-458d-8617-231ccd54ef03",
+      "startedAt": "2026-07-18T14:04:01.758Z",
+      "completedAt": "2026-07-18T14:04:47.061Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": null,
+      "sessionId": "web:s_d331eea6-0aba-4521-8ee0-e406aea49e8e",
+      "startedAt": "2026-07-18T14:04:47.080Z",
+      "completedAt": "2026-07-18T14:05:33.843Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": null,
+      "sessionId": "web:s_9df15eab-f5ad-4176-82b5-27904c7f25a4",
+      "startedAt": "2026-07-18T14:06:07.083Z",
+      "completedAt": "2026-07-18T14:06:52.791Z",
+      "status": "failed"
+    },
+    {
+      "action": "produce",
+      "subagentType": "courseware-deck",
+      "subagentId": "730b5f5b-815c-4d33-9e21-a3234c7b104c",
+      "sessionId": "web:s_f1aa0a6f-06b6-402b-8a87-92e911380559",
+      "startedAt": "2026-07-18T16:25:28.992Z",
+      "completedAt": "2026-07-18T16:28:11.891Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "f32294dd-0ef5-4c9b-bda7-200fdbdb2bde",
+      "sessionId": "web:s_07f3088d-796a-4325-84db-2da5989454f9",
+      "startedAt": "2026-07-18T16:35:19.483Z",
+      "completedAt": "2026-07-18T16:36:54.862Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "f73b4c18-56f8-46ab-a0e1-e76782e1679e",
+      "sessionId": "web:s_f01b865d-6b76-4655-b2fe-37df65a32cbd",
+      "startedAt": "2026-07-18T16:41:15.576Z",
+      "completedAt": "2026-07-18T16:41:34.729Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "5c11bdd2-a218-4e76-a115-e5c81909400b",
+      "sessionId": "web:s_ff9cdccd-d460-4ae9-8df6-45910ca09032",
+      "startedAt": "2026-07-18T16:44:01.501Z",
+      "completedAt": "2026-07-18T16:46:21.786Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "15bed657-bf2a-4777-9a1a-d194aa4a7ad0",
+      "sessionId": "web:s_915d0c77-d8b4-4fb8-a5af-b944c88ea586",
+      "startedAt": "2026-07-18T17:30:34.618Z",
+      "completedAt": "2026-07-18T17:31:06.795Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "860ccd4e-ab0c-4d92-88ef-f0b64a59c443",
+      "sessionId": "web:s_0da1e830-5f75-4537-a18a-5f26c86e8b10",
+      "startedAt": "2026-07-18T17:35:13.965Z",
+      "completedAt": "2026-07-18T17:38:04.476Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "398402dd-e8b6-41a5-ba27-116051852593",
+      "sessionId": "web:s_6dfbf79f-35cd-4c80-9f81-dc7ce7b43fee",
+      "startedAt": "2026-07-18T17:40:37.897Z",
+      "completedAt": "2026-07-18T17:42:08.675Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "c09987b2-1ae5-4a74-8936-c34b8486fe9e",
+      "sessionId": "web:s_e4002dc1-c0af-4b45-bb24-bd3f960884f0",
+      "startedAt": "2026-07-18T17:46:07.476Z",
+      "completedAt": "2026-07-18T17:48:19.083Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "eddefba3-2abe-45f2-a157-9274c465d1e1",
+      "sessionId": "web:s_ee2f875d-298a-4aa6-9895-8f4d61393d3d",
+      "startedAt": "2026-07-18T17:52:08.807Z",
+      "completedAt": "2026-07-18T17:53:18.642Z",
+      "status": "failed"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "e6ec51bc-f50b-427f-82af-86b61426ff80",
+      "sessionId": "web:s_aa37b8a8-eee3-48f4-86ad-fdcdf9de7e11",
+      "startedAt": "2026-07-18T17:54:30.046Z",
+      "completedAt": "2026-07-18T17:58:08.840Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "fc5f8aac-d1e5-4378-8c36-076383cdb06d",
+      "sessionId": "web:s_103053bb-631b-487f-8a5a-926c66e9972f",
+      "startedAt": "2026-07-18T18:02:06.587Z",
+      "completedAt": "2026-07-18T18:06:26.086Z",
+      "status": "ready"
+    },
+    {
+      "action": "repair",
+      "subagentType": "courseware-deck",
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "sessionId": "web:s_c6b1abe3-787f-4c47-b83a-38ff980522c2",
+      "startedAt": "2026-07-18T18:10:48.425Z",
+      "completedAt": "2026-07-18T18:12:26.330Z",
+      "status": "ready"
+    }
+  ],
+  "archivedAt": "2026-07-18T18:12:26.374Z"
+}

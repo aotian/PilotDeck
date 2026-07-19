@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "tongcheng.coursewareAcceptanceEvidence.v1",
+  "capturedAt": "2026-07-19T02:29:00+08:00",
+  "repository": "/Users/tongcheng/Projects/PilotDeck",
+  "workspace": "/tmp/pilotdeck-final-real-e2e.5dWmsL/real-gateway-7-agent-hq-final",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "generationMode": "high-quality",
+  "operationMode": "new-asset",
+  "engine": "pilotdeck",
+  "productionApisCalled": false,
+  "publishAllowed": false,
+  "finalStatus": "awaiting-teacher-approval",
+  "currentPhase": "teacher-approval",
+  "degraded": false,
+  "styleApproval": {
+    "pausedBeforeFullSlides": true,
+    "selectedStyleId": "style-b",
+    "resumedSameRunId": true,
+    "upstreamAttemptsAfterResume": {
+      "requirement": 1,
+      "outline": 1,
+      "script": 1,
+      "exercise": 1
+    }
+  },
+  "visualQuality": {
+    "status": "pass",
+    "slideCount": 11,
+    "metricsNullCount": 0,
+    "failedSlideIds": [],
+    "revisedSlideIds": [
+      "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06",
+      "slide-07", "slide-08", "slide-09", "slide-10", "slide-11"
+    ]
+  },
+  "validator": {
+    "ok": true,
+    "errors": 0,
+    "reviewCheck": "shared-courseware-validator: pass"
+  },
+  "exports": {
+    "pptx": {"file": "courseware.pptx", "bytes": 680379, "slideCount": 11, "unzipTest": "pass"},
+    "pdf": {"file": "courseware.pdf", "bytes": 915327, "pageCount": 11, "pageSize": "960 x 540 pts"},
+    "sourceOfTruth": "courseware-slides.json",
+    "approvedStyleSource": "approved-style.json",
+    "openmaicRendererUsed": false
+  },
+  "quotaRecovery": {
+    "status": "restored",
+    "realGatewayCallsSucceeded": true,
+    "fallbackTriggered": false,
+    "fallbackWasIndependent": false,
+    "reason": "The primary route succeeded. Configured fallback aliases share the same tc-admin gateway and MiniMax plan, so they are not independent capacity."
+  },
+  "releaseDecision": "ready-for-independent-acceptance-and-teacher-review"
+}

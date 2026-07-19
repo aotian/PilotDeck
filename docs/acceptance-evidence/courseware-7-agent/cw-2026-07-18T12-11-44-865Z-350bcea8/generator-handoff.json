@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "tongcheng.generatorHandoff.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "fromAgent": "courseware-review",
+  "toAgent": "teacher-approval",
+  "lessonId": "fixture-current-lesson",
+  "lessonDbId": "fixture-current-lesson-db",
+  "coursePackageId": "fixture-current-package",
+  "status": "ready-for-teacher-review",
+  "publish": {
+    "allowed": false,
+    "requested": false,
+    "approvalRequired": true
+  },
+  "deliverables": {
+    "coursewareSlides": "courseware-slides.json",
+    "deckHtml": "deck.html",
+    "coursewarePdf": "courseware.pdf",
+    "coursewarePptx": "courseware.pptx",
+    "slidesManifest": "slides-manifest.json",
+    "visualQualityReport": "visual-quality-report.json",
+    "approvedStyle": "approved-style.json",
+    "coursewarePackage": "courseware-package.json"
+  },
+  "validation": {
+    "schemaOk": true,
+    "slideCount": 11,
+    "expectedSlideCount": 11,
+    "dangerousContent": false,
+    "missingRequiredHtml": false,
+    "mobileDesktopCompatible": true,
+    "approvedStylePreserved": true,
+    "visualQualityStatus": "pass",
+    "nonBlockingWarnings": [
+      "diagram-quality warning on slide-05"
+    ]
+  },
+  "constraints": {
+    "operationMode": "new-asset",
+    "generationMode": "high-quality",
+    "sourceLock": "source-lock.json",
+    "tikuContext": "tiku-context.json"
+  },
+  "notes": [
+    "Courseware package and generator handoff finalized; downstream teacher-approval may proceed.",
+    "publish.allowed remains false; teacher approval required before any production binding."
+  ],
+  "generatedAt": "2026-07-18T18:23:30.000Z"
+}

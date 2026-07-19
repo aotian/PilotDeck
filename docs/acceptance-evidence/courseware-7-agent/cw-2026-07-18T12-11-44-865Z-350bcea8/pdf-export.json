@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "tongcheng.pilotdeckPdfExport.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "engine": "pilotdeck",
+  "sourceOfTruth": "courseware-slides.json",
+  "htmlSource": "deck.html",
+  "openmaicRendererUsed": false,
+  "output": "courseware.pdf",
+  "generatedAt": "2026-07-18T18:23:10.861Z"
+}

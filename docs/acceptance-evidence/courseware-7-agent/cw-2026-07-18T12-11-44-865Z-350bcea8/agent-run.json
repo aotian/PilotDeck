@@ -1,0 +1,2535 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentRun.v2",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "createdAt": "2026-07-18T12:11:44.867Z",
+  "updatedAt": "2026-07-18T18:29:25.682Z",
+  "status": "awaiting-teacher-approval",
+  "currentPhase": "teacher-approval",
+  "operationMode": "new-asset",
+  "generationMode": "high-quality",
+  "engine": "pilotdeck",
+  "coordinatorSessionId": "web:s_f5b0fbfe-026d-4554-ab0b-14baea21db4f",
+  "target": {
+    "coursePackageId": "fixture-current-package",
+    "lessonDbId": "fixture-current-lesson-db",
+    "lessonId": "fixture-current-lesson",
+    "lessonTitle": "变量状态追踪：赋值与顺序执行",
+    "knowledgeIds": []
+  },
+  "phases": [
+    {
+      "id": "requirement",
+      "owner": "courseware-requirement",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T12:11:44.889Z",
+      "completedAt": "2026-07-18T12:12:47.933Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-requirement.json",
+      "blockers": [],
+      "attempts": 1,
+      "subagentId": "9e528fb0-7fd6-4a16-b147-068d3edf0cf2",
+      "sessionId": "web:s_52cffcd5-7ff2-49f4-ae93-482825d7e98a",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "outline",
+      "owner": "courseware-outline",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T12:12:47.933Z",
+      "completedAt": "2026-07-18T12:14:52.440Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-outline.json",
+      "blockers": [],
+      "attempts": 1,
+      "subagentId": "1e229229-6824-4e77-8ba9-2dd4f61e70c4",
+      "sessionId": "web:s_0e811be6-1bfa-4771-a496-c08edb469645",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "script",
+      "owner": "courseware-script",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T12:14:52.441Z",
+      "completedAt": "2026-07-18T12:16:29.449Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-script.json",
+      "blockers": [],
+      "attempts": 1,
+      "subagentId": "e5f46546-6afe-4531-9657-432601b5108c",
+      "sessionId": "web:s_dffb7bea-5219-4a58-a2a8-629c07205568",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "exercise",
+      "owner": "courseware-exercise",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T12:14:52.442Z",
+      "completedAt": "2026-07-18T12:17:03.335Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-exercise.json",
+      "blockers": [],
+      "attempts": 1,
+      "subagentId": "74fecec7-3194-49e6-8afc-ccb9e95e260d",
+      "sessionId": "web:s_24e68952-d368-4977-9631-04dcf34b2396",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "deck",
+      "owner": "courseware-deck",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T12:17:03.336Z",
+      "completedAt": "2026-07-18T18:13:13.973Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-deck.json",
+      "blockers": [],
+      "attempts": 58,
+      "subagentId": "2f633edc-c1d8-4e3c-b7c6-cfa97642d1ee",
+      "sessionId": "web:s_c6b1abe3-787f-4c47-b83a-38ff980522c2",
+      "model": "tc-admin/tc-main",
+      "action": "repair",
+      "checkpoint": "deck-content-ready"
+    },
+    {
+      "id": "video",
+      "owner": "courseware-video",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T18:16:19.893Z",
+      "completedAt": "2026-07-18T18:18:38.896Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-video.json",
+      "blockers": [],
+      "attempts": 1,
+      "subagentId": "6f93ae43-c737-4576-832c-000f475163a1",
+      "sessionId": "web:s_02200ce4-2851-4431-820d-72be57542ed7",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "review",
+      "owner": "courseware-review",
+      "required": true,
+      "status": "ready",
+      "startedAt": "2026-07-18T18:18:38.897Z",
+      "completedAt": "2026-07-18T18:25:06.380Z",
+      "reportPath": "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/courseware-review.json",
+      "blockers": [],
+      "attempts": 2,
+      "subagentId": "f5dbdc09-5793-4587-a613-8d690f901d0a",
+      "sessionId": "web:s_d6da7f42-d9f7-48e2-9e9a-77bc76248ecb",
+      "model": "tc-admin/tc-main",
+      "action": "produce"
+    },
+    {
+      "id": "teacher-approval",
+      "owner": "teacher",
+      "required": true,
+      "status": "pending",
+      "startedAt": null,
+      "completedAt": null,
+      "reportPath": null,
+      "blockers": [],
+      "attempts": 0
+    },
+    {
+      "id": "publish",
+      "owner": "tiku",
+      "required": false,
+      "status": "pending",
+      "startedAt": null,
+      "completedAt": null,
+      "reportPath": null,
+      "blockers": [],
+      "attempts": 0
+    }
+  ],
+  "style": {
+    "approvalRequired": true,
+    "teacherApprovedStyleId": "style-b",
+    "approvedStylePath": "approved-style.json",
+    "previewPaths": [
+      "style-previews/style-a/preview.png",
+      "style-previews/style-b/preview.png",
+      "style-previews/style-c/preview.png"
+    ]
+  },
+  "visualQuality": {
+    "status": "pass",
+    "reportPath": "visual-quality-report.json",
+    "failedSlideIds": [],
+    "revisedSlideIds": [
+      "slide-01",
+      "slide-02",
+      "slide-03",
+      "slide-04",
+      "slide-05",
+      "slide-06",
+      "slide-07",
+      "slide-08",
+      "slide-09",
+      "slide-10",
+      "slide-11"
+    ]
+  },
+  "patch": {
+    "patchScope": null,
+    "allowedWrites": [
+      "teacher-request.md",
+      "brief.md",
+      "course-outline.md",
+      "teacher-script.md",
+      "exercises.md",
+      "pitfalls.md",
+      "homework.md",
+      "oj-exercises.md",
+      "edu-exercises.md",
+      "video-script.md",
+      "design-brief.json",
+      "approved-style.json",
+      "deck-plan.md",
+      "visual-quality-report.json",
+      "courseware.pptx",
+      "courseware.pdf",
+      "pptx-export.json",
+      "pdf-export.json",
+      "courseware-slides.json",
+      "deck.html",
+      "slides-manifest.json",
+      "courseware-package.json",
+      "generator-handoff.json",
+      "courseware-agent-report.json",
+      "reports/cw-2026-07-18T12-11-44-865Z-350bcea8/*.json",
+      ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/**",
+      "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/*.png",
+      "style-previews/**"
+    ],
+    "targetSlideIds": [],
+    "history": [
+      {
+        "patchId": "visual-480b1299",
+        "patchScope": "Repair visual-quality failures for slide-01, slide-02, slide-03, slide-04, slide-05, slide-06, slide-07, slide-08, slide-09, slide-10, slide-11",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-01",
+          "slide-02",
+          "slide-03",
+          "slide-04",
+          "slide-05",
+          "slide-06",
+          "slide-07",
+          "slide-08",
+          "slide-09",
+          "slide-10",
+          "slide-11"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-480b1299/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [],
+        "blockers": [
+          "Patch produced no effective changes in the requested target slides"
+        ],
+        "validationResult": "failed",
+        "completedAt": "2026-07-18T12:58:14.703Z"
+      },
+      {
+        "patchId": "visual-f92bd012",
+        "patchScope": "Repair visual-quality failures for batch 1/4: slide-01, slide-02, slide-03",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-01",
+          "slide-02",
+          "slide-03"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-f92bd012/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-01",
+          "slide-02",
+          "slide-03"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:14:18.899Z"
+      },
+      {
+        "patchId": "visual-1a308339",
+        "patchScope": "Rejected visual repair writes outside role contract",
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json",
+          "slide_slide-02_dump.html",
+          "slide_slide-03_dump.html",
+          "slide_slide-04_dump.html",
+          "slide_slide-05_dump.html",
+          "slide_slide-06_dump.html",
+          "slide_slide-07_dump.html",
+          "slide_slide-08_dump.html",
+          "slide_slide-09_dump.html",
+          "slide_slide-10_dump.html",
+          "slide_slide-11_dump.html"
+        ],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-02_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-03_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-04_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-05_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-06_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-07_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-08_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-09_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-10_dump.html",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1a308339/rejected/slide_slide-11_dump.html"
+        ],
+        "completedAt": "2026-07-18T13:27:49.328Z"
+      },
+      {
+        "patchId": "visual-a366d1ed",
+        "patchScope": "Repair visual-quality failures for batch 1/4: slide-02, slide-03, slide-04",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-02",
+          "slide-03",
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-a366d1ed/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-02",
+          "slide-03",
+          "slide-04"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:33:23.837Z"
+      },
+      {
+        "patchId": "visual-813350e4",
+        "patchScope": "Repair visual-quality failures for batch 2/4: slide-05, slide-06, slide-07",
+        "targetSlideIds": [
+          "slide-05",
+          "slide-06",
+          "slide-07"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-813350e4/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:33:55.654Z"
+      },
+      {
+        "patchId": "visual-a054f103",
+        "patchScope": "Repair visual-quality failures for batch 1/4: slide-02, slide-03, slide-04",
+        "targetSlideIds": [
+          "slide-02",
+          "slide-03",
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-a054f103/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:36:28.059Z"
+      },
+      {
+        "patchId": "visual-520c9588",
+        "patchScope": "Repair visual-quality failures for batch 1/4, attempt 1/2: slide-02, slide-03, slide-04",
+        "targetSlideIds": [
+          "slide-02",
+          "slide-03",
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-520c9588/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:41:15.853Z"
+      },
+      {
+        "patchId": "visual-a68ffe71",
+        "patchScope": "Repair visual-quality failures for batch 1/4, attempt 2/2: slide-02, slide-03, slide-04",
+        "targetSlideIds": [
+          "slide-02",
+          "slide-03",
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-a68ffe71/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:42:43.972Z"
+      },
+      {
+        "patchId": "visual-82a464fe",
+        "patchScope": "Repair visual-quality failures for batch 1/10, attempt 1/2: slide-02",
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-82a464fe/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:48:18.727Z"
+      },
+      {
+        "patchId": "visual-19d747b8",
+        "patchScope": "Repair visual-quality failures for batch 1/10, attempt 2/2: slide-02",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-19d747b8/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-02"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:50:57.660Z"
+      },
+      {
+        "patchId": "visual-0a7f3f2e",
+        "patchScope": "Repair visual-quality failures for batch 2/10, attempt 1/2: slide-03",
+        "targetSlideIds": [
+          "slide-03"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-0a7f3f2e/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:51:45.116Z"
+      },
+      {
+        "patchId": "visual-4d35e8c2",
+        "patchScope": "Repair visual-quality failures for batch 2/10, attempt 2/2: slide-03",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-03"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-4d35e8c2/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-03"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:54:45.418Z"
+      },
+      {
+        "patchId": "visual-5ead5284",
+        "patchScope": "Repair visual-quality failures for batch 3/10, attempt 1/2: slide-04",
+        "targetSlideIds": [
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-5ead5284/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T13:55:16.113Z"
+      },
+      {
+        "patchId": "visual-57946439",
+        "patchScope": "Repair visual-quality failures for batch 3/10, attempt 2/2: slide-04",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-57946439/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-04"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:57:01.874Z"
+      },
+      {
+        "patchId": "visual-1d63a95c",
+        "patchScope": "Repair visual-quality failures for batch 4/10, attempt 1/2: slide-05",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1d63a95c/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-05"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:58:16.853Z"
+      },
+      {
+        "patchId": "visual-66af62af",
+        "patchScope": "Repair visual-quality failures for batch 5/10, attempt 1/2: slide-06",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-06"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-66af62af/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-06"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T13:59:49.794Z"
+      },
+      {
+        "patchId": "visual-43c197e5",
+        "patchScope": "Repair visual-quality failures for batch 6/10, attempt 1/2: slide-07",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-07"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-43c197e5/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-07"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T14:02:10.852Z"
+      },
+      {
+        "patchId": "visual-52b59005",
+        "patchScope": "Repair visual-quality failures for batch 7/10, attempt 1/2: slide-08",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-08"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-52b59005/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-08"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T14:04:01.749Z"
+      },
+      {
+        "patchId": "visual-074440b3",
+        "patchScope": "Repair visual-quality failures for batch 8/10, attempt 1/2: slide-09",
+        "targetSlideIds": [
+          "slide-09"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-074440b3/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T14:04:47.071Z"
+      },
+      {
+        "patchId": "visual-9e219b80",
+        "patchScope": "Repair visual-quality failures for batch 8/10, attempt 2/2: slide-09",
+        "targetSlideIds": [
+          "slide-09"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-9e219b80/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T14:05:33.853Z"
+      },
+      {
+        "patchId": "visual-ec512052",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-02",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-ec512052/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-02"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T16:36:54.894Z"
+      },
+      {
+        "patchId": "visual-c5e7f14c",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-02",
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-c5e7f14c/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T16:41:34.739Z"
+      },
+      {
+        "patchId": "visual-d00dab4e",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-02",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-d00dab4e/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-02"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T16:46:21.823Z"
+      },
+      {
+        "patchId": "visual-b57585ee",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-02 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-02"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-b57585ee/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-02"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-02",
+            "check": "css-validity",
+            "before": "#0f172afff",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-02",
+            "check": "css-validity",
+            "before": "#1a1a1afff",
+            "after": "#1a1a1a"
+          },
+          {
+            "slideId": "slide-02",
+            "check": "contrast",
+            "selector": "span",
+            "text": "← 新值 5",
+            "before": "rgb(26, 26, 26)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:18:33.353Z"
+      },
+      {
+        "patchId": "visual-868fa14e",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-04 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-868fa14e/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-04"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-04",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(15, 23, 42)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(15, 23, 42)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "5",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "4",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "4",
+            "before": "rgb(15, 23, 42)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "5",
+            "before": "rgb(15, 23, 42)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "5",
+            "before": "rgb(15, 23, 42)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "b",
+            "text": "5",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:20:52.701Z"
+      },
+      {
+        "patchId": "visual-868fa14e-agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-04",
+        "targetSlideIds": [
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-868fa14e-agent/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T17:20:57.847Z"
+      },
+      {
+        "patchId": "visual-4bfb175e",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-04 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-04"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-4bfb175e/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-04"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "5",
+            "before": "rgb(58, 134, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "span",
+            "text": "精讲 ② · ea y",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "4",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-04",
+            "check": "contrast",
+            "selector": "div",
+            "text": "5",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:23:34.678Z"
+      },
+      {
+        "patchId": "visual-3cde6416",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-07 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-07"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-3cde6416/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-07"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "span",
+            "text": "1",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "span",
+            "text": "2",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "button",
+            "text": "下一行",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "b",
+            "text": "第三行右侧的 x 是 1 还是 2？",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "div",
+            "text": "6",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-07",
+            "check": "contrast",
+            "selector": "button",
+            "text": "公布答案",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:25:23.218Z"
+      },
+      {
+        "patchId": "visual-27a6daae",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-09 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-09"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-27a6daae/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-09"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-09",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "contrast",
+            "selector": "div",
+            "text": "心法 2",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "contrast",
+            "selector": "span",
+            "text": "小结 ·  ummary",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "contrast",
+            "selector": "div",
+            "text": "心法 1",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-09",
+            "check": "contrast",
+            "selector": "div",
+            "text": "心法 3",
+            "before": "rgb(155, 93, 229)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:27:21.623Z"
+      },
+      {
+        "patchId": "visual-1714ee6d",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1714ee6d/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-05"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "span",
+            "text": "精讲 ③ · medium",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "72",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:30:29.479Z"
+      },
+      {
+        "patchId": "visual-1714ee6d-agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05",
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-1714ee6d-agent/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T17:31:06.832Z"
+      },
+      {
+        "patchId": "visual-cd9f6755",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-cd9f6755/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-05"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-05",
+            "check": "code-readability",
+            "selector": "code",
+            "before": "18px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "code-readability",
+            "selector": "code",
+            "before": "18px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "code-readability",
+            "selector": "code",
+            "before": "18px computed",
+            "after": "20px"
+          }
+        ],
+        "completedAt": "2026-07-18T17:35:08.891Z"
+      },
+      {
+        "patchId": "visual-cd9f6755-agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05",
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-cd9f6755-agent/before/courseware-slides.json",
+        "changedFiles": [
+          ".repair-slide05-diagram.js",
+          "courseware-agent-report.json",
+          "courseware-slides.json"
+        ],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-cd9f6755-agent/rejected/.repair-slide05-diagram.js",
+          ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-cd9f6755-agent/rejected/courseware-agent-report.json"
+        ],
+        "completedAt": "2026-07-18T17:38:04.510Z"
+      },
+      {
+        "patchId": "visual-e8568423",
+        "repairEngine": "agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-e8568423/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-05"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T17:42:08.713Z"
+      },
+      {
+        "patchId": "visual-3d02b697",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-05 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-05"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-3d02b697/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-05"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-05",
+            "check": "code-readability",
+            "selector": "code",
+            "before": "18px",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "code-readability",
+            "selector": "code",
+            "before": "18px",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "7",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "2",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "2",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "7",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-05",
+            "check": "contrast",
+            "selector": "div",
+            "text": "2",
+            "before": "rgb(155, 93, 229)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:44:10.905Z"
+      },
+      {
+        "patchId": "visual-dd68080b",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-08 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-08"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-dd68080b/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-08"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-08",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(148, 163, 184)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "contrast",
+            "selector": "span",
+            "text": "互动 ③ · medium",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:46:02.238Z"
+      },
+      {
+        "patchId": "visual-dd68080b-agent",
+        "repairEngine": "agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-08",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-08"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-dd68080b-agent/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-08"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T17:48:19.122Z"
+      },
+      {
+        "patchId": "visual-65de6c8f",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-08 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-08"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-65de6c8f/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-08"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-08",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-08",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          }
+        ],
+        "completedAt": "2026-07-18T17:50:15.344Z"
+      },
+      {
+        "patchId": "visual-2f3ebab5",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-10 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-10"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-2f3ebab5/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-10"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "8",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "8",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "div",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "巩固 ① · medium",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "6",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "button",
+            "text": "上一行",
+            "before": "rgb(58, 134, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "button",
+            "text": "下一行",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "6",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "span",
+            "text": "6",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "b",
+            "text": "68",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "contrast",
+            "selector": "button",
+            "text": "公布答案",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          }
+        ],
+        "completedAt": "2026-07-18T17:52:03.862Z"
+      },
+      {
+        "patchId": "visual-2f3ebab5-agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-10",
+        "targetSlideIds": [
+          "slide-10"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-2f3ebab5-agent/before/courseware-slides.json",
+        "changedFiles": [],
+        "validationResult": "failed",
+        "rolledBack": true,
+        "quarantinedFiles": [],
+        "completedAt": "2026-07-18T17:53:18.677Z"
+      },
+      {
+        "patchId": "visual-ea43ef8f",
+        "repairEngine": "agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-10",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-10"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-ea43ef8f/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-10"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T17:58:08.875Z"
+      },
+      {
+        "patchId": "visual-05c427fe",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-10 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-10"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-05c427fe/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-10"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "p",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-10",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px computed",
+            "after": "18px"
+          }
+        ],
+        "completedAt": "2026-07-18T18:00:08.033Z"
+      },
+      {
+        "patchId": "visual-71d6a05b",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-11 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-11"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-71d6a05b/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-11"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "17px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "th",
+            "text": "输出",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "8",
+            "before": "rgb(6, 214, 160)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "span",
+            "text": "课后巩固 · 4 min",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "—",
+            "before": "rgb(156, 163, 175)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "th",
+            "text": "n",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "8",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "span",
+            "text": "8",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "button",
+            "text": "上一行",
+            "before": "rgb(58, 134, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "button",
+            "text": "下一行",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "b",
+            "text": "右读旧 · 左写新 · 行行接力",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "td",
+            "text": "3",
+            "before": "rgb(239, 71, 111)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "span",
+            "text": "9",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "b",
+            "text": "8",
+            "before": "rgb(255, 0, 110)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "span",
+            "text": "// ← 新值 9（读旧值 3）",
+            "before": "rgb(255, 0, 110)",
+            "after": "#ffffff"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "button",
+            "text": "公布答案",
+            "before": "rgb(255, 255, 255)",
+            "after": "#0f172a"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "contrast",
+            "selector": "span",
+            "text": "// ← 新值 8（读上一步的 9）",
+            "before": "rgb(58, 134, 255)",
+            "after": "#ffffff"
+          }
+        ],
+        "completedAt": "2026-07-18T18:02:01.521Z"
+      },
+      {
+        "patchId": "visual-71d6a05b-agent",
+        "repairEngine": "agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-11",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-11"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-71d6a05b-agent/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-11"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T18:06:26.106Z"
+      },
+      {
+        "patchId": "visual-6b17f77c",
+        "repairEngine": "agent",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-11",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-11"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-6b17f77c/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-11"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "completedAt": "2026-07-18T18:12:26.380Z"
+      },
+      {
+        "patchId": "visual-67e154dd",
+        "patchScope": "Repair visual-quality failures for batch 1/1, attempt 1/1: slide-11 [deterministic]",
+        "allowedWrites": [
+          "courseware-slides.json"
+        ],
+        "targetSlideIds": [
+          "slide-11"
+        ],
+        "beforeSnapshot": ".courseware-runs/cw-2026-07-18T12-11-44-865Z-350bcea8/patches/visual-67e154dd/before/courseware-slides.json",
+        "changedFiles": [
+          "courseware-slides.json"
+        ],
+        "changedSlideIds": [
+          "slide-11"
+        ],
+        "blockers": [],
+        "validationResult": "pass",
+        "repairEngine": "deterministic",
+        "fixes": [
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "pre",
+            "before": "14px",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "table",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "15px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "div",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "b",
+            "before": "16px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "button",
+            "before": "14px",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "code-readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "20px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "th",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "th",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "th",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "th",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "span",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "td",
+            "before": "14px computed",
+            "after": "18px"
+          },
+          {
+            "slideId": "slide-11",
+            "check": "readability",
+            "selector": "b",
+            "before": "14px computed",
+            "after": "18px"
+          }
+        ],
+        "completedAt": "2026-07-18T18:15:25.485Z"
+      }
+    ]
+  },
+  "degraded": false,
+  "degradedReason": null,
+  "publish": {
+    "allowed": false,
+    "reason": "Shared validator passed; teacher approval and Tiku canonical publish are still required."
+  },
+  "contracts": {
+    "request": "asset-request.json",
+    "sourceLock": "source-lock.json"
+  }
+}

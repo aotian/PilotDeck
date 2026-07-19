@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "tongcheng.coursewarePackage.v1",
+  "runId": "cw-2026-07-18T12-11-44-865Z-350bcea8",
+  "reviewStatus": "draft",
+  "publish": {
+    "allowed": false,
+    "requested": false,
+    "approvalRequired": true
+  },
+  "package": {
+    "coursePackageId": "fixture-current-package",
+    "lessonDbId": "fixture-current-lesson-db",
+    "lessonId": "fixture-current-lesson",
+    "lessonTitle": "变量状态追踪：赋值与顺序执行",
+    "grade": "七年级",
+    "audience": {
+      "level": "CSP-J 入门",
+      "classSize": 24
+    },
+    "knowledgeIds": ["fixture-final-k-1"],
+    "operationMode": "new-asset",
+    "generationMode": "high-quality",
+    "approvedStyleId": "style-b",
+    "approvedStyleSource": "approved-style.json"
+  },
+  "artifacts": {
+    "slides": {
+      "file": "courseware-slides.json",
+      "schemaVersion": "tiku.coursewareSlides.v1",
+      "slideCount": 11,
+      "studentVisibleCount": 11,
+      "slideIds": [
+        "slide-01",
+        "slide-02",
+        "slide-03",
+        "slide-04",
+        "slide-05",
+        "slide-06",
+        "slide-07",
+        "slide-08",
+        "slide-09",
+        "slide-10",
+        "slide-11"
+      ],
+      "manifestFile": "slides-manifest.json"
+    },
+    "deck": {
+      "htmlFile": "deck.html",
+      "pdfFile": "courseware.pdf",
+      "pptxFile": "courseware.pptx",
+      "pdfExportManifest": "pdf-export.json",
+      "pptxExportManifest": "pptx-export.json"
+    },
+    "screenshots": {
+      "directory": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8",
+      "slideImageCount": 11,
+      "contactSheet": "screenshots/cw-2026-07-18T12-11-44-865Z-350bcea8/contact-sheet.png"
+    },
+    "visualQualityReport": "visual-quality-report.json"
+  },
+  "checks": {
+    "schema": {
+      "status": "pass",
+      "detail": "courseware-slides.json schemaVersion=tiku.coursewareSlides.v1; 11 slides present"
+    },
+    "slideCount": {
+      "status": "pass",
+      "detail": "11 slides match slides-manifest.json"
+    },
+    "requiredHtml": {
+      "status": "pass",
+      "detail": "All slides have non-empty html field; student_visible=true"
+    },
+    "dangerousLinks": {
+      "status": "pass",
+      "detail": "No <script> tags or javascript: URLs found in slide HTML"
+    },
+    "mobileDesktopNotes": {
+      "status": "pass",
+      "detail": "Slides use clamp() font sizing and responsive grid layouts consistent with approved style-b"
+    },
+    "previewExportAssets": {
+      "status": "pass",
+      "detail": "deck.html, courseware.pdf, courseware.pptx present; pdf-export.json and pptx-export.json reference them"
+    },
+    "visualQuality": {
+      "status": "pass",
+      "detail": "visual-quality-report.json status=pass; only one warning on diagram-quality for slide-05 (non-blocking)"
+    },
+    "approvedStyleTokens": {
+      "status": "pass",
+      "detail": "approved-style.json style-b tokens preserved across slides"
+    },
+    "publishGating": {
+      "status": "pass",
+      "detail": "publish.allowed=false; awaiting teacher approval"
+    }
+  },
+  "notes": [
+    "Review covers courseware-slides.json, deck.html, pdf/pptx exports, and visual-quality-report.json.",
+    "No new production bindings created; package remains in draft for teacher review.",
+    "One diagram-quality warning on slide-05 noted as non-blocking."
+  ],
+  "reviewedAt": "2026-07-18T18:23:30.000Z"
+}
