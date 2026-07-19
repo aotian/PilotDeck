@@ -105,6 +105,21 @@ import { validateApiKey, authenticateToken, authenticateWebSocket } from './midd
 import { DISABLE_LOCAL_AUTH, IS_PLATFORM } from './constants/config.js';
 import { getConnectableHost } from '../shared/networkHosts.js';
 import { contentDispositionAttachment } from './utils/downloadHeaders.js';
+import {
+    COURSEWARE_PRIMARY_FILES,
+    listExistingCoursewareFiles,
+    prepareCoursewareFullRebuild,
+    resolveCoursewareOperationMode,
+    updateCoursewareAgentRun,
+    writeCoursewareRunContracts,
+} from './courseware-run-policy.js';
+import { createGatewayCoursewareAgentRunner } from './courseware-agent-runner.js';
+import { createCoursewareAgentOrchestrator } from './courseware-agent-orchestrator.js';
+import { readCoursewareAgentRun, summarizeCoursewareAgentRun } from './courseware-agent-state.js';
+import { exportPilotDeckPdf, exportPilotDeckPptx } from './courseware-derived-assets.js';
+import { createTongchengBridgeAuth, registerCoursewareHttpRoutes } from './courseware-http-routes.js';
+import { createOpenMaicCoursewareLaunchUrl } from './openmaic-courseware-handoff.js';
+import { readCoursewareDeliveryAssets } from './courseware-delivery-assets.js';
 
 // PilotDeck-only mode: chat execution always goes through src/gateway via
 // cursor-cli, openai-codex, gemini-cli) has been removed.
@@ -1326,6 +1341,8 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const tikuContext = convertPilotTikuInputToContext(projectPath) || readJsonFileIfExists(path.join(projectPath, 'tiku-context.json'));
     const existingPackage = readJsonFileIfExists(path.join(projectPath, 'courseware-package.json')) || {};
     const existingHandoff = readJsonFileIfExists(path.join(projectPath, 'generator-handoff.json')) || {};
+    const sourceLock = readJsonFileIfExists(path.join(projectPath, 'source-lock.json')) || {};
+    const agentRun = readJsonFileIfExists(path.join(projectPath, 'agent-run.json')) || {};
     const brief = readCoursewareAssetText(projectPath, 'brief.md');
     const outline = readCoursewareAssetText(projectPath, 'course-outline.md');
     const teacherScript = readCoursewareAssetText(projectPath, 'teacher-script.md');
@@ -1336,9 +1353,18 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
     const handoffNotes =
         readCoursewareAssetText(projectPath, 'generator-notes.md') ||
         readCoursewareAssetText(projectPath, 'openmaic-handoff.md');
+    const versionedAssetContents = [
+        'courseware-slides.json',
+        'slides-manifest.json',
+        'tiku-context.json',
+    ].map((fileName) => {
+        const filePath = path.join(projectPath, fileName);
+        return fs.existsSync(filePath) ? fs.readFileSync(filePath) : Buffer.alloc(0);
+    });
     const contentHash = crypto
         .createHash('sha256')
         .update([brief, outline, teacherScript, exercises, homework, pitfalls, parentFeedback, handoffNotes].join('\n---tc-asset---\n'))
+        .update(Buffer.concat(versionedAssetContents))
         .digest('hex');
     const packageId = existingPackage.packageId || existingHandoff.packageId || `tc-course-${contentHash.slice(0, 16)}`;
     const subject = resolveCoursewareSubjectFromAssets(projectPath);
@@ -1374,6 +1400,7 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         schemaVersion: 'tiku.courseAsset.v1',
         packageId,
         coursePackageId: existingPackage.coursePackageId || existingHandoff.coursePackageId || tikuContext?.coursePackage?.id,
+        lessonDbId: existingPackage.lessonDbId || existingHandoff.lessonDbId || tikuContext?.coursePackage?.lessonDbId || tikuContext?.lesson?.dbId,
         lessonId: existingPackage.lessonId || existingHandoff.lessonId || projectName,
         title,
         sourceSystem: 'tongcheng-courseware-assistant',
@@ -1387,6 +1414,9 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
         derivedAssets: ['deck.html', 'pptx', 'pdf'],
         creativeSource: coursewareSlidesAsset ? 'tongcheng-html-slides' : htmlAsset || pptxAsset ? 'tongcheng-creative-deck' : 'structured-assets',
         standardizationMode: coursewareSlidesAsset ? 'write-courseware-slides-to-tiku' : htmlAsset ? 'derive-slides-from-preview' : 'generate-from-structured-assets',
+        status: agentRun.status || existingPackage.status || existingHandoff.status || 'reviewing',
+        runId: agentRun.runId || sourceLock.runId || null,
+        operationMode: agentRun.operationMode || null,
         source: {
             ...(tikuContext?.source ? { upstream: tikuContext.source } : {}),
             workspaceId: projectName,
@@ -1430,6 +1460,9 @@ function createCoursewareAssetPackage(projectName, projectPath, assetFiles) {
             ...(homework ? { homework: 'homework.md' } : {}),
             ...(pitfalls ? { pitfalls: 'pitfalls.md' } : {}),
             ...(videoScriptAsset ? { videoScript: videoScriptAsset } : {}),
+            ...(fs.existsSync(path.join(projectPath, 'source-lock.json')) ? { sourceLock: 'source-lock.json' } : {}),
+            ...(fs.existsSync(path.join(projectPath, 'agent-run.json')) ? { agentRun: 'agent-run.json' } : {}),
+            ...(fs.existsSync(path.join(projectPath, 'asset-request.json')) ? { assetRequest: 'asset-request.json' } : {}),
         },
         entryPolicy: 'students_enter_from_learn_class',
         teacherEntry: existingPackage.teacherEntry || 'https://teach.tongchengweilai.com/admin-classes.html',
@@ -1719,6 +1752,8 @@ function summarizeCoursewareLesson(projectPath, lesson) {
     const coreAssetKeys = ['brief', 'outline', 'teacherScript', 'exercises', 'coursewareSlides', 'package'];
     const completion = Math.round((coreAssetKeys.filter((key) => assets[key]).length / coreAssetKeys.length) * 100);
     const status = packageData?.status || (completion >= 75 ? 'ready' : completion > 0 ? 'draft' : 'empty');
+    const agentRunData = readCoursewareAgentRun(lessonPath);
+    const agentRun = agentRunData ? summarizeCoursewareAgentRun(agentRunData, lessonPath) : null;
     return {
         lessonId: lesson.lessonId,
         order: Number(lesson.order || 0),
@@ -1736,6 +1771,7 @@ function summarizeCoursewareLesson(projectPath, lesson) {
         packageId: packageData?.packageId,
         topic: packageData?.topic,
         updatedAt: packageData?.updatedAt,
+        agentRun,
     };
 }
 
@@ -1776,7 +1812,8 @@ function getCoursewareProgramProgress(projectName, projectPath, options = {}) {
         return sum + expectedCore.filter((key) => lesson.assets?.[key]).length;
     }, 0);
     const percent = Math.round((readyTotal / expectedTotal) * 100);
-    const activeLesson = status.lessons.find((lesson) => lesson.completion > 0 && lesson.completion < 100) ||
+    const activeLesson = status.lessons.find((lesson) => lesson.agentRun && !['ready', 'cancelled'].includes(lesson.agentRun.status)) ||
+        status.lessons.find((lesson) => lesson.completion > 0 && lesson.completion < 100) ||
         status.lessons.find((lesson) => lesson.completion === 0) ||
         status.lessons[status.lessons.length - 1] ||
         null;
@@ -1806,6 +1843,7 @@ function getCoursewareProgramProgress(projectName, projectPath, options = {}) {
             completion: activeLesson.completion,
             relativePath: activeLesson.relativePath,
             missing: missingCore,
+            agentRun: activeLesson.agentRun || null,
         } : null,
         updatedAt: status.updatedAt,
     };
@@ -1872,21 +1910,7 @@ function assertCoursewareWorkspacePath(projectPath) {
     return resolved;
 }
 
-function requireTongchengServiceToken(req, res, next) {
-    const expected =
-        process.env.PILOTDECK_TIKU_BRIDGE_TOKEN ||
-        process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN ||
-        '';
-    if (!expected) return next();
-    const provided =
-        req.headers['x-tongcheng-handoff-token'] ||
-        req.headers['x-pilotdeck-bridge-token'] ||
-        req.headers.authorization?.replace(/^Bearer\s+/i, '');
-    if (provided !== expected) {
-        return res.status(401).json({ error: 'Invalid Tongcheng courseware bridge token' });
-    }
-    return next();
-}
+const requireTongchengServiceToken = createTongchengBridgeAuth();
 
 function resolveCoursewareLessonWorkspaceName(tikuContext) {
     const coursePackage = tikuContext?.coursePackage || {};
@@ -1896,7 +1920,7 @@ function resolveCoursewareLessonWorkspaceName(tikuContext) {
     return safeSlug(`${coursePackage.id || coursePackage.coursePackageId || 'tiku'}-${lessonId}-${title}`, 'tiku-courseware');
 }
 
-function writeTikuGenerationBrief(projectPath, tikuContext) {
+function writeTikuGenerationRequest(projectPath, tikuContext) {
     const coursePackage = tikuContext?.coursePackage || {};
     const request = tikuContext?.generationRequest || {};
     const knowledgeNames = Array.isArray(tikuContext?.knowledge?.selectedNodes)
@@ -1937,11 +1961,14 @@ function writeTikuGenerationBrief(projectPath, tikuContext) {
         '- 没有真实 Tiku question_id 的题目只能标记为 ai-draft 或 manual，不能伪装成正式题。',
         '- 学生可见 HTML 不得出现生产系统、审核、内部路径或技术元数据。',
     ];
-    fs.writeFileSync(path.join(projectPath, 'brief.md'), lines.join('\n'), 'utf8');
+    fs.writeFileSync(path.join(projectPath, 'teacher-request.md'), lines.join('\n'), 'utf8');
 }
 
 function normalizeTikuGeneratedSlide(slide, index) {
     const order = Number(slide?.order || index + 1);
+    const rawDuration = slide?.duration_minutes ?? slide?.durationMinutes ?? (
+        slide?.durationSec == null ? null : Math.max(1, Math.round(Number(slide.durationSec) / 60))
+    );
     return {
         ...slide,
         id: String(slide?.id || `slide-${String(order).padStart(2, '0')}`),
@@ -1951,7 +1978,7 @@ function normalizeTikuGeneratedSlide(slide, index) {
         html: sanitizeCoursewareStudentHtml(String(slide?.html || '')),
         markdown: cleanCoursewareStudentText(slide?.markdown || ''),
         notes: String(slide?.notes || '').trim(),
-        duration_minutes: Number(slide?.duration_minutes || slide?.durationMinutes || (slide?.durationSec ? Math.max(1, Math.round(Number(slide.durationSec) / 60)) : 5)),
+        duration_minutes: rawDuration == null ? null : Number(rawDuration),
         student_visible: slide?.student_visible !== false,
     };
 }
@@ -2000,6 +2027,13 @@ function buildCoursewareDeckHtmlFromSlides(slidesPackage, title = '课堂课件'
       .grid.two, .row { grid-template-columns: 1fr; }
       h1 { font-size: 34px; } h2 { font-size: 28px; } p, li, td, th { font-size: 17px; }
     }
+    @media print {
+      @page { size: 13.333in 7.5in; margin: 0; }
+      body { background: white; }
+      .tc-deck { display: block; padding: 0; }
+      .tc-deck-page { width: 13.333in; min-height: 7.5in; height: 7.5in; margin: 0; border: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
+      .tc-deck-page:last-child { break-after: auto; page-break-after: auto; }
+    }
   </style>
 </head>
 <body>
@@ -2010,7 +2044,7 @@ ${body}
 </html>`;
 }
 
-function writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext = {}) {
+function writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext = {}, options = {}) {
     const coursePackage = tikuContext?.coursePackage || {};
     const lesson = tikuContext?.lesson || {};
     const title = slidesPackage?.title || coursePackage.lessonTitle || lesson.title || coursePackage.title || '课堂课件';
@@ -2025,7 +2059,9 @@ function writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext
         slides,
     };
 
-    fs.writeFileSync(path.join(projectPath, 'courseware-slides.json'), JSON.stringify(normalizedPackage, null, 2));
+    if (options.persistSource !== false) {
+        fs.writeFileSync(path.join(projectPath, 'courseware-slides.json'), JSON.stringify(normalizedPackage, null, 2));
+    }
     fs.writeFileSync(path.join(projectPath, 'deck.html'), buildCoursewareDeckHtmlFromSlides(normalizedPackage, title));
     fs.writeFileSync(path.join(projectPath, 'slides-manifest.json'), JSON.stringify({
         schemaVersion: 'tiku.slidesManifest.v1',
@@ -2043,137 +2079,72 @@ function writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext
         })),
         updatedAt: new Date().toISOString(),
     }, null, 2));
-    fs.writeFileSync(path.join(projectPath, 'courseware-agent-report.json'), JSON.stringify({
-        schemaVersion: 'tongcheng.coursewareAgentReport.v1',
-        agentRole: 'deck',
-        lessonId: normalizedPackage.lessonId,
-        coursePackageId: normalizedPackage.coursePackageId,
-        status: 'ready',
-        inputsRead: ['tiku-context.json'],
-        filesWritten: ['courseware-slides.json', 'deck.html', 'slides-manifest.json', 'courseware-agent-report.json'],
-        nextAgent: 'review-package',
-        blockers: [],
-        checks: [
-            { name: 'schema-version', status: normalizedPackage.schemaVersion === 'tiku.coursewareSlides.v1' ? 'pass' : 'warn', detail: normalizedPackage.schemaVersion },
-            { name: 'slide-count', status: slides.length > 0 ? 'pass' : 'fail', detail: `${slides.length} slides` },
-            { name: 'html-present', status: slides.every((slide) => String(slide.html || '').trim()) ? 'pass' : 'fail', detail: 'every slide requires html' },
-            { name: 'derived-assets', status: 'pass', detail: 'deck.html and slides-manifest.json generated by service' },
-        ],
-        updatedAt: new Date().toISOString(),
-    }, null, 2));
     return normalizedPackage;
 }
 
-function buildTikuCoursewareDeckPrompt(projectPath, tikuContext) {
-    const coursePackage = tikuContext?.coursePackage || {};
-    const lesson = tikuContext?.lesson || {};
-    const title = coursePackage.lessonTitle || lesson.title || coursePackage.title || '本课课堂课件';
-    return [
-        '读取并遵守 skills/tongcheng-courseware-handoff/courseware-agent-protocol.md。',
-        '这是来自 Tiku 的自动课堂课件生成任务，不要等待三套风格预览，不要向用户提问。',
-        `工作区：${projectPath}`,
-        '统一输入文件：tiku-context.json；老师生成要求：brief.md',
-        `课程主题：${title}`,
-        '',
-        '请直接按 courseware-deck 职责生成课件主产物，不要调用 review，不要只写检查报告。',
-        '- 读取 tiku-context.json 和 brief.md。',
-        '- 直接产出 schemaVersion=tiku.coursewareSlides.v1 的 courseware-slides.json。',
-        '- 每页必须有 html 字段，html 是学生可见主内容。',
-        '- notes 只放老师提示，不进入学生可见 html。',
-        '- 不要生成 deck.html、slides-manifest.json、courseware-package.json、generator-handoff.json；这些派生资产由服务端从 courseware-slides.json 自动生成。',
-        '- 学生可见 html 不得出现：江校、agent、Pilot、OpenMAIC、内部、验收、落库、metadata、courseware_jobs、老师讲稿。',
-        '',
-        '完成标准：courseware-slides.json 存在，slides 数组非空，每页都有 html。完成后直接结束。',
-    ].join('\n');
+let tikuCoursewareOrchestrator = null;
+
+function getTikuCoursewareOrchestrator() {
+    if (!tikuCoursewareOrchestrator) {
+        tikuCoursewareOrchestrator = createCoursewareAgentOrchestrator({
+            runner: createGatewayCoursewareAgentRunner(),
+            validateWorkspace: validateTongchengCoursewareWorkspace,
+            deriveAssets: async ({ projectPath }) => {
+                const slidesPackage = readJsonFileIfExists(path.join(projectPath, 'courseware-slides.json'));
+                const tikuContext = readJsonFileIfExists(path.join(projectPath, 'tiku-context.json')) || {};
+                if (!slidesPackage) throw new Error('courseware-slides.json is required before deriving assets');
+                return writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext, { persistSource: false });
+            },
+            exportPptx: exportPilotDeckPptx,
+            exportPdf: exportPilotDeckPdf,
+        });
+    }
+    return tikuCoursewareOrchestrator;
 }
 
-function buildTikuCoursewareReviewPrompt(projectPath) {
-    return [
-        '读取并遵守 skills/tongcheng-courseware-handoff/courseware-agent-protocol.md。',
-        '这是来自 Tiku 的自动课堂课件 review/package 阶段，不要向用户提问。',
-        `工作区：${projectPath}`,
-        '',
-        '请直接按 courseware-review 职责检查并刷新交接包：',
-        '- 读取 courseware-slides.json、deck.html、slides-manifest.json、tiku-context.json。',
-        '- 检查 courseware-slides.json schemaVersion=tiku.coursewareSlides.v1。',
-        '- 检查每页 slides[].html 非空，学生可见 html 不包含：江校、agent、Pilot、OpenMAIC、内部、验收、落库、metadata、courseware_jobs、老师讲稿。',
-        '- 刷新 courseware-package.json 和 generator-handoff.json。',
-        '- package/handoff 必须标明 coursewareSlides=courseware-slides.json、sourceOfTruth=metadata.courseware_slides，deck/PPT/PDF/slides-manifest 仅为 derivedAssets。',
-        '- 不要在聊天正文粘贴完整 HTML 或 JSON，只输出简短状态和文件路径。',
-    ].join('\n');
+function resolveCoursewareGenerationMode(value) {
+    const mode = String(value || 'automatic-draft').trim().toLowerCase();
+    if (!['automatic-draft', 'high-quality'].includes(mode)) {
+        throw Object.assign(new Error(`不支持的课件生成模式：${mode}`), { statusCode: 400 });
+    }
+    return mode;
 }
 
-async function runTikuCoursewareAgentPipeline(projectPath, tikuContext, options = {}) {
-    const sessionKey = `web:s_${crypto.randomUUID()}`;
-    const frames = [];
-    const writer = {
-        send(frame) {
-            frames.push(frame);
-        },
+function writeRequestedApprovedStyle(projectPath, { runId, lessonId, teacherApprovedStyleId, designTokens, teacherNotes }) {
+    if (!teacherApprovedStyleId) return null;
+    const approved = {
+        schemaVersion: 'tongcheng.coursewareApprovedStyle.v1',
+        runId,
+        lessonId: lessonId || null,
+        teacherApprovedStyleId: String(teacherApprovedStyleId),
+        approvedAt: new Date().toISOString(),
+        designTokens: designTokens && typeof designTokens === 'object' ? designTokens : {},
+        teacherNotes: String(teacherNotes || ''),
+        source: 'teacher-request',
     };
-    const timeoutMs = Number.parseInt(
-        String(options.timeoutMs || process.env.TONGCHENG_COURSEWARE_AGENT_TIMEOUT_MS || '300000'),
-        10,
-    );
-    const runOptions = {
-        sessionKey,
-        sessionId: sessionKey,
+    fs.writeFileSync(path.join(projectPath, 'approved-style.json'), `${JSON.stringify(approved, null, 2)}\n`, 'utf8');
+    return approved;
+}
+
+function coursewareApiPayload(projectPath, workspaceName, extra = {}) {
+    const run = readCoursewareAgentRun(projectPath);
+    const summary = run ? summarizeCoursewareAgentRun(run, projectPath) : {};
+    const slidesPackage = readJsonFileIfExists(path.join(projectPath, 'courseware-slides.json'));
+    const packageData = readJsonFileIfExists(path.join(projectPath, 'courseware-package.json'));
+    const deliveryAssets = readCoursewareDeliveryAssets(projectPath);
+    return {
+        success: !['blocked', 'failed'].includes(summary.status),
+        ...summary,
+        workspaceName,
+        workspacePath: projectPath,
         projectPath,
-        cwd: projectPath,
-        workspaceCwd: projectPath,
-        permissionMode: 'bypassPermissions',
-        model: process.env.TONGCHENG_COURSEWARE_AGENT_MODEL || 'tc-admin/tc-main',
-        maxOutputTokens: 20000,
+        studioUrl: `/p/${encodeURIComponent(workspaceName)}`,
+        coursewareSlides: slidesPackage || null,
+        package: packageData || null,
+        ...deliveryAssets,
+        assetFiles: listCoursewareAssetFiles(projectPath),
+        ...extra,
     };
-    const runPromise = (async () => {
-        await runChatViaGateway(buildTikuCoursewareDeckPrompt(projectPath, tikuContext), runOptions, writer, 'pilotdeck');
-
-        const slidesPath = path.join(projectPath, 'courseware-slides.json');
-        const deckSlidesPackage = readJsonFileIfExists(slidesPath);
-        const deckSlides = Array.isArray(deckSlidesPackage?.slides) ? deckSlidesPackage.slides : [];
-        if (!deckSlides.length || deckSlides.some((slide) => !String(slide?.html || '').trim())) {
-            throw new Error('教研创作 deck 阶段未产出有效 HTML slides');
-        }
-        writeTikuCoursewareDerivedFiles(projectPath, deckSlidesPackage, tikuContext);
-    })();
-
-    const timed = await Promise.race([
-        runPromise.then(
-            () => ({ timedOut: false }),
-            (error) => ({ timedOut: false, error }),
-        ),
-        new Promise((resolve) => setTimeout(() => resolve({ timedOut: true }), timeoutMs)),
-    ]);
-
-    const errorFrame = frames.find((frame) => frame?.kind === 'error' || frame?.type === 'error');
-    if (timed.timedOut) {
-        const error = new Error('教研创作任务仍在运行，请稍后刷新查看结果');
-        error.statusCode = 202;
-        error.sessionKey = sessionKey;
-        throw error;
-    }
-    if (timed.error) {
-        const error = timed.error instanceof Error ? timed.error : new Error(String(timed.error));
-        error.sessionKey = sessionKey;
-        throw error;
-    }
-    if (errorFrame) {
-        const message = errorFrame.content || errorFrame.text || '教研创作任务失败';
-        const error = new Error(message);
-        error.sessionKey = sessionKey;
-        throw error;
-    }
-
-    const slidesPath = path.join(projectPath, 'courseware-slides.json');
-    const slidesPackage = readJsonFileIfExists(slidesPath);
-    const slides = Array.isArray(slidesPackage?.slides) ? slidesPackage.slides : [];
-    if (!slides.length || slides.some((slide) => !String(slide?.html || '').trim())) {
-        const error = new Error('教研创作任务未产出有效 HTML slides');
-        error.sessionKey = sessionKey;
-        throw error;
-    }
-
-    return { sessionKey, frames, slidesPackage };
 }
 
 function buildTikuCoursewareStatus(projectPath, { workspaceName, sessionKey } = {}) {
@@ -2235,7 +2206,25 @@ function buildTikuCoursewareStatus(projectPath, { workspaceName, sessionKey } = 
     };
 }
 
-app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, async (req, res) => {
+registerCoursewareHttpRoutes(app, {
+    auth: requireTongchengServiceToken,
+    workspaceRoot: process.env.TONGCHENG_ASSET_WORKSPACES_ROOT || path.join(__dirname, '..', '..', 'workspaces'),
+    safeSlug,
+    resolveWorkspaceName: resolveCoursewareLessonWorkspaceName,
+    resolveGenerationMode: resolveCoursewareGenerationMode,
+    listAssetFiles: listCoursewareAssetFiles,
+    createAssetPackage: createCoursewareAssetPackage,
+    validateWorkspace: validateTongchengCoursewareWorkspace,
+    writeGenerationRequest: writeTikuGenerationRequest,
+    writeApprovedStyle: writeRequestedApprovedStyle,
+    getOrchestrator: getTikuCoursewareOrchestrator,
+    apiPayload: coursewareApiPayload,
+    buildFallbackSlides: buildCoursewareSlidesFromTikuContext,
+    writeDerivedFiles: writeTikuCoursewareDerivedFiles,
+    buildLegacyStatus: buildTikuCoursewareStatus,
+});
+
+app.post('/api/internal/legacy/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, async (req, res) => {
     try {
         const tikuContext = req.body?.tikuContext || req.body?.context || req.body?.payload;
         if (!tikuContext || tikuContext.schemaVersion !== 'tiku.courseContext.v1') {
@@ -2248,72 +2237,187 @@ app.post('/api/tongcheng/tiku/courseware-slides', requireTongchengServiceToken, 
         const workspaceName = safeSlug(req.body?.workspaceName || resolveCoursewareLessonWorkspaceName(tikuContext), 'tiku-courseware');
         const projectPath = path.join(workspaceRoot, workspaceName);
         fs.mkdirSync(projectPath, { recursive: true });
-        for (const fileName of [
-            'courseware-slides.json',
-            'deck.html',
-            'slides-manifest.json',
-            'courseware-agent-report.json',
-            'courseware-package.json',
-            'generator-handoff.json',
-        ]) {
-            fs.rmSync(path.join(projectPath, fileName), { force: true });
-        }
-        fs.writeFileSync(path.join(projectPath, 'tiku-context.json'), JSON.stringify(tikuContext, null, 2));
-        writeTikuGenerationBrief(projectPath, tikuContext);
+        const generationMode = resolveCoursewareGenerationMode(
+            req.body?.generationMode || tikuContext?.generationRequest?.generationMode,
+        );
+        const requestedRunId = String(req.body?.runId || '').trim();
 
-        let sessionKey = '';
-        let mode = 'agent-courseware-slides';
-        let slidesPackage;
-        try {
-            const result = await runTikuCoursewareAgentPipeline(projectPath, tikuContext, {
-                timeoutMs: req.body?.timeoutMs,
-            });
-            sessionKey = result.sessionKey;
-            slidesPackage = result.slidesPackage;
-        } catch (error) {
-            if (error.statusCode === 202) {
-                return res.status(202).json({
-                    success: true,
-                    mode,
-                    status: 'running',
+        if (requestedRunId) {
+            const existingRun = readCoursewareAgentRun(projectPath);
+            if (!existingRun || existingRun.runId !== requestedRunId) {
+                return res.status(404).json({
+                    error: '未找到可恢复的课件运行',
+                    runId: requestedRunId,
                     workspaceName,
-                    projectPath,
-                    sessionKey: error.sessionKey || sessionKey,
-                    message: error.message,
                 });
             }
-            if (req.body?.allowTemplateFallback === true) {
-                mode = 'template-fallback-courseware-slides';
-                slidesPackage = buildCoursewareSlidesFromTikuContext(tikuContext);
-                fs.writeFileSync(path.join(projectPath, 'courseware-slides.json'), JSON.stringify(slidesPackage, null, 2));
-            } else {
-                throw error;
-            }
+            const result = await getTikuCoursewareOrchestrator().run({
+                projectPath,
+                runId: requestedRunId,
+                model: req.body?.model,
+                maxOutputTokens: req.body?.maxOutputTokens,
+                maxVisualRepairSlides: req.body?.maxVisualRepairSlides,
+                countResume: true,
+            });
+            return res.status(result.status === 'blocked' ? 422 : 200).json(
+                coursewareApiPayload(projectPath, workspaceName, { ...result, resumed: true }),
+            );
         }
 
-        const assetFiles = listCoursewareAssetFiles(projectPath);
-        const assetPackage = createCoursewareAssetPackage(workspaceName, projectPath, assetFiles);
-        writeCoursewareHandoffFiles(projectPath, assetPackage);
-        const validation = await validateTongchengCoursewareWorkspace(projectPath, { publishTarget: 'learn' });
-
-        res.json({
-            success: true,
-            mode,
-            workspaceName,
-            projectPath,
-            sessionKey,
-            studioUrl: `/p/${encodeURIComponent(workspaceName)}`,
-            coursewareSlides: slidesPackage,
-            package: assetPackage,
-            validation,
-            assetFiles: listCoursewareAssetFiles(projectPath),
+        const existingPrimaryFiles = listExistingCoursewareFiles(projectPath, COURSEWARE_PRIMARY_FILES);
+        const operationMode = resolveCoursewareOperationMode({
+            requestedMode: req.body?.operationMode || tikuContext?.generationRequest?.operationMode,
+            rebuildMode: tikuContext?.generationRequest?.rebuildMode,
+            hasExistingAssets: existingPrimaryFiles.length > 0,
         });
+
+        if (operationMode === 'audit-only' || operationMode === 'reuse-existing') {
+            const slidesPackage = readJsonFileIfExists(path.join(projectPath, 'courseware-slides.json'));
+            const slides = Array.isArray(slidesPackage?.slides) ? slidesPackage.slides : [];
+            if (!slides.length) {
+                return res.status(409).json({
+                    success: false,
+                    code: 'COURSEWARE_EXISTING_ASSET_REQUIRED',
+                    error: `${operationMode} 需要已有 courseware-slides.json；当前工作区没有可复用主资产`,
+                    operationMode,
+                    workspaceName,
+                    projectPath,
+                });
+            }
+            const assetFiles = listCoursewareAssetFiles(projectPath);
+            const assetPackage = createCoursewareAssetPackage(workspaceName, projectPath, assetFiles);
+            const validation = await validateTongchengCoursewareWorkspace(projectPath, { publishTarget: 'learn' });
+            return res.status(validation.ok ? 200 : 422).json({
+                success: validation.ok,
+                runId: null,
+                coordinatorSessionId: null,
+                currentPhase: 'review',
+                completedAgents: [],
+                runningAgents: [],
+                blockedAgents: validation.ok ? [] : ['courseware-review'],
+                reportPaths: {},
+                mode: operationMode,
+                operationMode,
+                generationMode,
+                engine: 'pilotdeck',
+                degraded: false,
+                degradedReason: null,
+                styleApprovalRequired: false,
+                teacherApprovedStyleId: null,
+                visualQualityStatus: 'not-run',
+                reusedExisting: true,
+                status: validation.ok ? 'reviewing' : 'blocked',
+                workspaceName,
+                workspacePath: projectPath,
+                projectPath,
+                studioUrl: `/p/${encodeURIComponent(workspaceName)}`,
+                coursewareSlides: slidesPackage,
+                package: assetPackage,
+                validation,
+                assetFiles,
+            });
+        }
+
+        if (operationMode === 'new-asset' && existingPrimaryFiles.length > 0) {
+            return res.status(409).json({
+                success: false,
+                code: 'COURSEWARE_ALREADY_EXISTS',
+                error: '当前课次已有主课件；请使用 audit-only/reuse-existing，或由老师显式选择 full-rebuild',
+                operationMode,
+                existingFiles: existingPrimaryFiles,
+                workspaceName,
+                projectPath,
+            });
+        }
+
+        if (operationMode === 'incremental-update') {
+            return res.status(409).json({
+                success: false,
+                code: 'COURSEWARE_PATCH_SCOPE_REQUIRED',
+                error: '增量修改必须提供经老师确认的 allowedWrites/patchScope；本接口不会把增量请求降级为整套重建',
+                operationMode,
+                workspaceName,
+                projectPath,
+            });
+        }
+
+        const runId = `cw-${new Date().toISOString().replace(/[:.]/g, '-')}-${crypto.randomUUID().slice(0, 8)}`;
+        const snapshot = operationMode === 'full-rebuild'
+            ? prepareCoursewareFullRebuild(projectPath, runId)
+            : { snapshotPath: null, files: [] };
+        fs.writeFileSync(path.join(projectPath, 'tiku-context.json'), `${JSON.stringify(tikuContext, null, 2)}\n`);
+        writeTikuGenerationRequest(projectPath, tikuContext);
+        const teacherApprovedStyleId = req.body?.teacherApprovedStyleId || tikuContext?.generationRequest?.teacherApprovedStyleId || null;
+        const outputTargets = req.body?.outputTargets || tikuContext?.generationRequest?.outputTargets || ['html', 'pptx'];
+        const audience = req.body?.audience || tikuContext?.generationRequest?.audience || 'student';
+        const budgetLimits = req.body?.budgetLimits || tikuContext?.generationRequest?.budgetLimits || null;
+        writeCoursewareRunContracts({
+            projectPath,
+            runId,
+            operationMode,
+            generationMode,
+            teacherApprovedStyleId,
+            tikuContext,
+            sourceLock: req.body?.sourceLock,
+            snapshot,
+            outputTargets,
+            audience,
+            budgetLimits,
+        });
+        writeRequestedApprovedStyle(projectPath, {
+            runId,
+            lessonId: tikuContext?.coursePackage?.lessonId || tikuContext?.lesson?.lessonId,
+            teacherApprovedStyleId,
+            designTokens: req.body?.designTokens || tikuContext?.generationRequest?.designTokens,
+            teacherNotes: req.body?.teacherNotes,
+        });
+
+        const pipelinePromise = getTikuCoursewareOrchestrator().run({
+            projectPath,
+            runId,
+            model: req.body?.model,
+            maxOutputTokens: req.body?.maxOutputTokens,
+            maxVisualRepairSlides: req.body?.maxVisualRepairSlides,
+        });
+        const timeoutMs = Math.max(1000, Number(req.body?.timeoutMs || process.env.TONGCHENG_COURSEWARE_AGENT_TIMEOUT_MS || 300000));
+        const outcome = await Promise.race([
+            pipelinePromise.then((result) => ({ result }), (error) => ({ error })),
+            new Promise((resolve) => setTimeout(() => resolve({ timedOut: true }), timeoutMs)),
+        ]);
+        if (outcome.timedOut) {
+            return res.status(202).json(coursewareApiPayload(projectPath, workspaceName, {
+                status: 'running',
+                message: '7-Agent 课件任务仍在运行，可通过状态接口读取真实阶段进度',
+            }));
+        }
+        if (outcome.error) throw outcome.error;
+        const result = outcome.result;
+        if (result.status === 'blocked' && req.body?.allowTemplateFallback === true && generationMode === 'automatic-draft') {
+            const slidesPackage = buildCoursewareSlidesFromTikuContext(tikuContext);
+            fs.writeFileSync(path.join(projectPath, 'courseware-slides.json'), `${JSON.stringify(slidesPackage, null, 2)}\n`);
+            writeTikuCoursewareDerivedFiles(projectPath, slidesPackage, tikuContext, { persistSource: false });
+            updateCoursewareAgentRun(projectPath, {
+                status: 'draft',
+                degraded: true,
+                degradedReason: 'PilotDeck 7-Agent pipeline was blocked; explicit automatic-draft template fallback was requested.',
+                publish: { allowed: false, reason: 'Degraded template draft requires teacher review and cannot auto-publish.' },
+            });
+            return res.status(200).json(coursewareApiPayload(projectPath, workspaceName, {
+                mode: 'template-fallback',
+                status: 'draft',
+                degraded: true,
+                degradedReason: 'PilotDeck 7-Agent pipeline was blocked; explicit automatic-draft template fallback was requested.',
+            }));
+        }
+        return res.status(result.status === 'blocked' ? 422 : 200).json(
+            coursewareApiPayload(projectPath, workspaceName, result),
+        );
     } catch (error) {
         res.status(error.statusCode || 500).json({ error: error.message });
     }
 });
 
-app.get('/api/tongcheng/tiku/courseware-slides/status', requireTongchengServiceToken, async (req, res) => {
+app.get('/api/internal/legacy/tongcheng/tiku/courseware-slides/status', requireTongchengServiceToken, async (req, res) => {
     try {
         const workspaceName = safeSlug(req.query.workspaceName || req.query.workspace || '', '');
         if (!workspaceName) {
@@ -2327,10 +2431,54 @@ app.get('/api/tongcheng/tiku/courseware-slides/status', requireTongchengServiceT
         if (!fs.existsSync(projectPath)) {
             return res.status(404).json({ error: '未找到教研创作工作区' });
         }
-        res.json(buildTikuCoursewareStatus(projectPath, {
-            workspaceName,
-            sessionKey: String(req.query.sessionKey || req.query.session || ''),
-        }));
+        const run = readCoursewareAgentRun(projectPath);
+        if (!run) {
+            return res.json(buildTikuCoursewareStatus(projectPath, {
+                workspaceName,
+                sessionKey: String(req.query.sessionKey || req.query.session || ''),
+            }));
+        }
+        const payload = coursewareApiPayload(projectPath, workspaceName);
+        res.status(payload.status === 'blocked' ? 422 : 200).json(payload);
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.post('/api/internal/legacy/tongcheng/tiku/courseware-slides/style-approval', requireTongchengServiceToken, async (req, res) => {
+    try {
+        const workspaceName = safeSlug(req.body?.workspaceName || '', '');
+        if (!workspaceName) return res.status(400).json({ error: '缺少 workspaceName' });
+        const workspaceRoot = path.resolve(process.env.TONGCHENG_ASSET_WORKSPACES_ROOT || path.join(__dirname, '..', '..', 'workspaces'));
+        const projectPath = path.join(workspaceRoot, workspaceName);
+        const result = await getTikuCoursewareOrchestrator().approveStyle({
+            projectPath,
+            runId: String(req.body?.runId || ''),
+            styleId: req.body?.styleId,
+            teacherNotes: req.body?.teacherNotes,
+            model: req.body?.model,
+        });
+        return res.status(result.status === 'blocked' ? 422 : 200).json(coursewareApiPayload(projectPath, workspaceName, result));
+    } catch (error) {
+        res.status(error.statusCode || 500).json({ error: error.message });
+    }
+});
+
+app.post('/api/internal/legacy/tongcheng/tiku/courseware-slides/patch', requireTongchengServiceToken, async (req, res) => {
+    try {
+        const workspaceName = safeSlug(req.body?.workspaceName || '', '');
+        if (!workspaceName) return res.status(400).json({ error: '缺少 workspaceName' });
+        const workspaceRoot = path.resolve(process.env.TONGCHENG_ASSET_WORKSPACES_ROOT || path.join(__dirname, '..', '..', 'workspaces'));
+        const projectPath = path.join(workspaceRoot, workspaceName);
+        const result = await getTikuCoursewareOrchestrator().patchSlides({
+            projectPath,
+            runId: String(req.body?.runId || ''),
+            patchScope: req.body?.patchScope,
+            allowedWrites: req.body?.allowedWrites,
+            targetSlideIds: req.body?.targetSlideIds,
+            model: req.body?.model,
+        });
+        return res.status(result.status === 'blocked' ? 422 : 200).json(coursewareApiPayload(projectPath, workspaceName, result));
     } catch (error) {
         res.status(error.statusCode || 500).json({ error: error.message });
     }
@@ -2357,28 +2505,28 @@ app.get('/api/tongcheng/courseware-handoff/:projectName', authenticateToken, asy
             process.env.TONGCHENG_COURSEWARE_URL ||
             'http://localhost:3000/courseware-pilot',
         );
-        const url = new URL(baseUrl);
-        if (!['http:', 'https:'].includes(url.protocol)) {
-            return res.status(400).json({ error: '课程生成入口地址必须使用 http 或 https' });
-        }
-        url.searchParams.set('assetWorkspace', projectPath);
-        url.searchParams.set('subject', String(req.query.subject || resolveCoursewareSubjectFromAssets(projectPath)));
-        url.searchParams.set('from', 'asset-workspace');
         const coursePackageId = req.query.coursePackageId || assetPackage.coursePackageId;
         const lessonId = req.query.lessonId || assetPackage.lessonId;
         const teachLessonId = req.query.teachLessonId || req.query.teach_lesson_id;
         const tikuLessonId = req.query.tikuLessonId || req.query.tiku_lesson_id;
-        if (coursePackageId) url.searchParams.set('coursePackageId', String(coursePackageId));
-        if (lessonId) url.searchParams.set('lessonId', String(lessonId));
-        if (teachLessonId) url.searchParams.set('teachLessonId', String(teachLessonId));
-        if (tikuLessonId) url.searchParams.set('tikuLessonId', String(tikuLessonId));
-        if (process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN) {
-            url.searchParams.set('handoffToken', process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN);
-        }
+        const url = await createOpenMaicCoursewareLaunchUrl({
+            baseUrl,
+            query: {
+                assetWorkspace: projectPath,
+                subject: String(req.query.subject || resolveCoursewareSubjectFromAssets(projectPath)),
+                from: 'asset-workspace',
+                coursePackageId,
+                lessonId,
+                teachLessonId,
+                tikuLessonId,
+            },
+            handoffToken: process.env.TONGCHENG_COURSEWARE_HANDOFF_TOKEN,
+            fetchImpl: fetch,
+        });
 
         res.json({
             success: true,
-            url: url.toString(),
+            url,
             packageId: assetPackage.packageId,
             subject: assetPackage.subject,
             topic: assetPackage.topic,
@@ -4589,7 +4737,7 @@ async function getFileTree(dirPath, maxDepth = 3, currentDepth = 0, showHidden =
 }
 
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
-const HOST = process.env.HOST || '0.0.0.0';
+const HOST = process.env.HOST || '127.0.0.1';
 const DISPLAY_HOST = getConnectableHost(HOST);
 const VITE_PORT = process.env.VITE_PORT || 5173;
 

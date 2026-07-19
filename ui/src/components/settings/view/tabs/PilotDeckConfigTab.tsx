@@ -188,6 +188,9 @@ type PilotDeckConfig = {
   };
 };
 
+type WebSearchConfig = NonNullable<NonNullable<PilotDeckConfig['tools']>['webSearch']>;
+type CustomWebSearchProvider = NonNullable<WebSearchConfig['customProvider']>;
+
 type SectionId = 'models' | 'agents' | 'memory' | 'tools' | 'router' | 'gateway' | 'customEnv' | 'alwaysOn' | 'cron' | 'advanced';
 
 const SECTIONS: Array<{ id: SectionId; labelKey: string; descriptionKey: string }> = [
@@ -1909,22 +1912,23 @@ function ToolsSection({ config, onChange }: { config: PilotDeckConfig; onChange:
   };
 
   const setCustomField = (
-    field: keyof NonNullable<NonNullable<PilotDeckConfig['tools']>['webSearch']>['customProvider'],
+    field: keyof CustomWebSearchProvider,
     value: string,
   ) => {
-    const nextWs: NonNullable<PilotDeckConfig['tools']>['webSearch'] = {
+    const nextWs: WebSearchConfig = {
       ...ws,
       provider: 'custom',
       customProvider: { ...(ws.customProvider ?? {}) },
     };
     if (value === '') {
       delete nextWs.customProvider?.[field];
-    } else if (field === 'auth') {
-      nextWs.customProvider![field] = value as 'bearer' | 'bodyApiKey' | 'queryApiKey' | 'none';
-    } else if (field === 'method') {
-      nextWs.customProvider![field] = value as 'GET' | 'POST';
     } else {
-      nextWs.customProvider![field] = value;
+      if (field === 'auth' && !['bearer', 'bodyApiKey', 'queryApiKey', 'none'].includes(value)) return;
+      if (field === 'method' && !['GET', 'POST'].includes(value)) return;
+      nextWs.customProvider = {
+        ...nextWs.customProvider,
+        [field]: value,
+      } as CustomWebSearchProvider;
     }
     if (Object.keys(nextWs.customProvider ?? {}).length === 0) {
       delete nextWs.customProvider;
@@ -2432,7 +2436,9 @@ function TokenSaverTierEditor({ config, onChange }: { config: PilotDeckConfig; o
   const addTier = () => {
     const key = newKey.trim();
     if (!key || tiers[key]) return;
-    const preset = DEFAULT_TIERS[key];
+    const preset = ROUTER_TIER_KEYS.includes(key as RouterTierKey)
+      ? DEFAULT_TIERS[key as RouterTierKey]
+      : undefined;
     const model = modelOpts[0]?.value ?? '';
     onChange(patch(ensureModelRefConfigured(config, model), ['router', 'tokenSaver', 'tiers', key], {
       model,

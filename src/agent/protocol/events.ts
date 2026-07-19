@@ -1,4 +1,4 @@
-import type { CanonicalMessage, CanonicalModelEvent, CanonicalToolCall } from "../../model/index.js";
+import type { CanonicalMessage, CanonicalModelEvent, CanonicalToolCall, CanonicalUsage } from "../../model/index.js";
 import type { PilotDeckToolResult } from "../../tool/index.js";
 import type { AgentError } from "./errors.js";
 import type { AgentTurnResult } from "./result.js";
@@ -30,7 +30,17 @@ export type AgentEvent =
   | { type: "compact_completed"; sessionId: string; turnId: string; status: string; preTokens: number; postTokens?: number }
   | { type: "context_budget"; sessionId: string; turnId: string; snapshot: TokenBudgetSnapshot }
   | { type: "subagent_started"; sessionId: string; turnId: string; subagentId: string; subagentType: string }
-  | { type: "subagent_completed"; sessionId: string; turnId: string; subagentId: string; subagentType: string; success: boolean; durationMs: number }
+  | {
+      type: "subagent_completed";
+      sessionId: string;
+      turnId: string;
+      subagentId: string;
+      subagentType: string;
+      success: boolean;
+      durationMs: number;
+      usage?: CanonicalUsage;
+      turns?: number;
+    }
   | {
       type: "subagent_status";
       sessionId: string;

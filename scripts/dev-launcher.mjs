@@ -112,12 +112,14 @@ async function main() {
 
   const env = {
     ...process.env,
+    HOST: process.env.HOST ?? '127.0.0.1',
     SERVER_PORT: String(server.port),
     PILOTDECK_GATEWAY_PORT: String(gateway.port),
     PILOTDECK_GATEWAY_URL:
       process.env.PILOTDECK_GATEWAY_URL ?? `ws://127.0.0.1:${gateway.port}/ws`,
     VITE_PORT: String(vite.port),
     PILOTDECK_SKIP_DEFAULT_PROJECT: '1',
+    PILOTDECK_ALLOW_LOCAL_UNAUTHENTICATED_BRIDGE: '1',
   };
 
   const child = spawn(

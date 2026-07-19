@@ -37,6 +37,8 @@ Use strong presentation design where useful. When the user asks for PPT/HTML cla
 
 ## Workflow
 
+Before producing or changing assets, read `courseware-production-workflow-v2.md` and declare exactly one operation mode: `audit-only`, `reuse-existing`, `new-asset`, `incremental-update`, or `full-rebuild`. An ambiguous “generate” request must resolve to `reuse-existing` when `courseware-slides.json` already exists. A full rebuild requires explicit teacher intent and a pre-change snapshot.
+
 1. Clarify the teacher's intent only when essential. Prefer concise choices:
    - subject/template
    - grade/level

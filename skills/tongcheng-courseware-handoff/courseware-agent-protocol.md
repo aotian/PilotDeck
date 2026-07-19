@@ -7,6 +7,11 @@ required upstream files and reports, never the full chat transcript.
 
 ## Shared Rules
 
+- Read `courseware-production-workflow-v2.md` before any write. The coordinator must create `asset-request.json`, `source-lock.json`, and `agent-run.json` for every mutating run.
+- Existing `courseware-slides.json` is protected. An ambiguous generate request means `reuse-existing`; only an explicit `full-rebuild` may replace it, and only after a `.courseware-runs/<runId>/before/` snapshot exists.
+- `audit-only` and background tasks are read-only. They may write a separate audit report but must not overwrite, publish, or trigger a rebuild.
+- `incremental-update` requires explicit `allowedWrites` and a patch scope. If either is missing, report `blocked` instead of regenerating the lesson.
+
 - Production must start from a Tiku course package when the final asset is meant for Tiku/Teach/Learn. Local files are workspaces, not the source of truth for official knowledge nodes or official questions.
 - A program workspace can contain many lesson workspaces. Do not hand off a program workspace when the user asks to publish one lesson; hand off `lessons/lesson-xx` instead.
 - Work inside one lesson directory unless the coordinator explicitly assigns a program-level file.
@@ -22,6 +27,22 @@ required upstream files and reports, never the full chat transcript.
 - A generated student-facing slide package cannot be marked `ready` until it passes: every slide has `html`, no internal terms, no teacher-only operations in student HTML, no unsafe external scripts, no missing slide order, and no obvious desktop/mobile overflow.
 
 ## Coordinator SOP
+
+The production coordinator is deterministic and implemented in `ui/server/courseware-agent-orchestrator.js`. It owns the dependency graph and uses `ui/server/courseware-agent-runner.js` to require one real Agent Tool full-fork with the exact `subagent_type` for each role. A role is not accepted without matching `subagent_started` and successful `subagent_completed` evidence, required output files, and a role-scoped report under `reports/<runId>/`.
+
+The fixed phase graph is:
+
+```text
+requirement -> outline -> script ----\
+                       -> exercise ---+-> deck -> video -> review -> teacher-approval -> publish
+```
+
+- Script and Exercise use independent parent sessions and may run concurrently only after Outline is ready.
+- A blocked or failed required phase marks dependent phases skipped; the coordinator never asks a later role to guess missing inputs.
+- `agent-run.json` is the recovery source. Ready phases are not repeated after restart.
+- High-quality Deck runs twice under the same runId: first `style-preview`, then `produce` after `approved-style.json`. The role report keeps lifecycle evidence for both invocations.
+- Service-derived assets are `deck.html`, `slides-manifest.json`, screenshots, PPTX, and PDF. Their source remains `courseware-slides.json` plus `approved-style.json`.
+- Review is the final subagent and the coordinator runs the shared validator before moving to `awaiting-teacher-approval`.
 
 1. Confirm the selected Tiku course package, lesson, knowledge node, and question scope.
 2. Create or update the target workspace under the configured asset workspaces root.

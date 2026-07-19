@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "tongcheng.coursewareSourceLock.v1",
+  "runId": "cw-YYYYMMDD-HHMMSS-xxxxxxxx",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "source": "tiku",
+  "identity": {
+    "coursePackageId": "",
+    "lessonDbId": "",
+    "lessonId": "",
+    "lessonTitle": "",
+    "knowledgeIds": []
+  },
+  "tikuContextSha256": "",
+  "upstream": {
+    "hasProductionSlides": false,
+    "productionSlideCount": 0,
+    "productionSource": null,
+    "productionUpdatedAt": null
+  },
+  "previousAssets": [],
+  "snapshotPath": null
+}

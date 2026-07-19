@@ -659,6 +659,11 @@ function createSubagentStatusFrame(event, base) {
         durationMs,
         severity: status === 'failed' ? 'error' : undefined,
         toolName: 'agent',
+        subagentId,
+        subagentType,
+        subagentSuccess: detail.success !== false,
+        subagentUsage: detail.usage || null,
+        subagentTurns: Number.isFinite(Number(detail.turns)) ? Number(detail.turns) : null,
     });
     if (isDone) {
         subagentActivityStarts.delete(activityKey);
@@ -796,6 +801,13 @@ export async function runChatViaGateway(
         });
 
         for await (const event of stream) {
+            if (typeof options?.onGatewayEvent === 'function') {
+                try {
+                    options.onGatewayEvent(event);
+                } catch (error) {
+                    console.warn('[pilotdeck-bridge] onGatewayEvent callback failed:', error?.message || error);
+                }
+            }
             if (event && event.type === 'error') {
                 console.error(
                     '[pilotdeck-bridge] gateway error event:',
@@ -831,6 +843,11 @@ export async function runChatViaGateway(
             }
             for (const frame of gatewayEventToFrames(event, sessionKey, provider)) {
                 writer.send(frame);
+            }
+            if (typeof options?.stopWhenGatewayEvent === 'function' && options.stopWhenGatewayEvent(event)) {
+                await gw.abortTurn({ sessionKey, runId });
+                clearActiveRunIfCurrent(state, runId);
+                break;
             }
         }
 

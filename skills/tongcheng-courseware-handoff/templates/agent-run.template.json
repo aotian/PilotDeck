@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentRun.v2",
+  "runId": "cw-YYYYMMDD-HHMMSS-xxxxxxxx",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "status": "requested",
+  "currentPhase": "requirement",
+  "operationMode": "new-asset",
+  "generationMode": "high-quality",
+  "engine": "pilotdeck",
+  "outputTargets": ["html", "pptx"],
+  "audience": "student",
+  "coordinatorSessionId": null,
+  "target": {
+    "coursePackageId": "",
+    "lessonDbId": "",
+    "lessonId": "",
+    "lessonTitle": "",
+    "knowledgeIds": []
+  },
+  "phases": [
+    { "id": "requirement", "owner": "courseware-requirement", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-requirement.json", "blockers": [], "attempts": 0 },
+    { "id": "outline", "owner": "courseware-outline", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-outline.json", "blockers": [], "attempts": 0 },
+    { "id": "script", "owner": "courseware-script", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-script.json", "blockers": [], "attempts": 0 },
+    { "id": "exercise", "owner": "courseware-exercise", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-exercise.json", "blockers": [], "attempts": 0 },
+    { "id": "deck", "owner": "courseware-deck", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-deck.json", "blockers": [], "attempts": 0 },
+    { "id": "video", "owner": "courseware-video", "required": false, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-video.json", "blockers": [], "attempts": 0 },
+    { "id": "review", "owner": "courseware-review", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": "reports/<runId>/courseware-review.json", "blockers": [], "attempts": 0 },
+    { "id": "teacher-approval", "owner": "teacher", "required": true, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": null, "blockers": [], "attempts": 0 },
+    { "id": "publish", "owner": "tiku", "required": false, "status": "pending", "startedAt": null, "completedAt": null, "reportPath": null, "blockers": [], "attempts": 0 }
+  ],
+  "style": {
+    "approvalRequired": true,
+    "teacherApprovedStyleId": null,
+    "approvedStylePath": null,
+    "previewPaths": []
+  },
+  "visualQuality": {
+    "status": "pending",
+    "reportPath": null,
+    "failedSlideIds": [],
+    "revisedSlideIds": []
+  },
+  "patch": {
+    "patchScope": null,
+    "allowedWrites": [],
+    "targetSlideIds": [],
+    "history": []
+  },
+  "budget": {
+    "status": "within-budget",
+    "limits": { "inputTokens": 700000, "outputTokens": 160000, "modelCalls": 56, "resumes": 6, "revisions": 24 },
+    "usage": { "inputTokens": 0, "outputTokens": 0, "modelCalls": 0, "resumes": 0, "revisions": 0 },
+    "exceeded": [],
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  "degraded": false,
+  "degradedReason": null,
+  "publish": {
+    "allowed": false,
+    "reason": "Teacher approval and Tiku canonical publish are required."
+  }
+}

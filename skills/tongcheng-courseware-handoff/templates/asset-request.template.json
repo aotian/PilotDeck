@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "tongcheng.coursewareAssetRequest.v1",
+  "runId": "cw-YYYYMMDD-HHMMSS-xxxxxxxx",
+  "requestedAt": "2026-01-01T00:00:00.000Z",
+  "operationMode": "audit-only",
+  "source": "tiku",
+  "target": {
+    "coursePackageId": "",
+    "lessonDbId": "",
+    "lessonId": "",
+    "lessonTitle": "",
+    "knowledgeIds": []
+  },
+  "scope": {
+    "lessonOnly": true,
+    "workspacePath": "",
+    "crossLessonWritesAllowed": false
+  },
+  "allowedWrites": [],
+  "forbiddenWrites": [
+    "Teach/Learn production data",
+    "other lesson workspaces",
+    "published courseware without explicit publish approval"
+  ],
+  "publish": {
+    "requested": false,
+    "approvalRequired": true
+  }
+}

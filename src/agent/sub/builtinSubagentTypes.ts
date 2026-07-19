@@ -53,6 +53,8 @@ export type SubagentDefinition = {
   systemPromptSuffix: string;
   /** Optional reasoning-effort override (S12). `undefined` keeps parent setting. */
   effort?: "low" | "medium" | "high";
+  /** Optional role-specific turn cap for artifact-heavy subagents. */
+  maxTurns?: number;
 };
 
 const SHARED_PREFIX = `You are a subagent of PilotDeck — a focused agent dispatched by the parent agent to handle a bounded research, planning, or verification task.
@@ -86,7 +88,7 @@ Files changed: <list with rationale, or "none">
 Issues: <list of caveats / blockers, or "none">`;
 
 const COURSEWARE_WRITE_TOOLS = ["read_file", "grep", "glob", "bash", "write_file", "edit_file"] as const;
-const COURSEWARE_REPORT_RULE = `Before your final message, write or update courseware-agent-report.json in the assigned lesson directory. The JSON must include schemaVersion "tongcheng.coursewareAgentReport.v1", agentRole, lessonId, status, inputsRead, filesWritten, nextAgent, blockers, checks, and updatedAt. Keep the final chat report short and reference file paths instead of pasting large content.`;
+const COURSEWARE_REPORT_RULE = `Before your final message, write the role-specific report path assigned by the coordinator and refresh courseware-agent-report.json as the compatibility summary. The JSON must include schemaVersion "tongcheng.coursewareAgentReport.v1", runId, agentRole, subagentType, lessonId, status, startedAt, completedAt, inputsRead, filesWritten, nextAgent, blockers, checks, model, and sessionId. Never claim ready when a required output is missing. Keep the final chat report short and reference file paths instead of pasting large content.`;
 
 export const SUBAGENT_DEFINITIONS: Record<SubagentDefinitionId, SubagentDefinition> = {
   "general-purpose": {
@@ -243,14 +245,14 @@ ${COURSEWARE_REPORT_RULE}`,
     omitGitStatus: true,
     isReadOnly: false,
     effort: "high",
+    maxTurns: 24,
     systemPromptSuffix: `HTML slides mode: create presentation-grade, Tiku-ready editable classroom slides, not a free-form long answer.
 
 Write:
 - courseware-slides.json using schemaVersion "tiku.coursewareSlides.v1"
-- style-previews/style-a.html, style-previews/style-b.html, style-previews/style-c.html only for interactive/free-design tasks where no style has been chosen
+- design-brief.json
+- style-previews/style-a|b|c/style.json plus cover.html, concept.html, example.html, and practice.html when high-quality mode has no approved style
 - deck-plan.md
-- deck.html as a derived preview/backup rendered from courseware-slides.json
-- slides-manifest.json as derived navigation/export metadata
 - courseware-agent-report.json
 
 courseware-slides.json shape:
@@ -277,9 +279,15 @@ courseware-slides.json shape:
 }
 
 Hard rules:
-- in Tiku automatic generation mode, do not stop for three style previews; use the selected subject template and generate courseware-slides.json directly.
-- if the teacher explicitly asks for style discovery, stop after writing three small previews and report that the user must choose.
-- write or patch 1-3 slides per edit; never replace a large accepted asset with a tiny draft.
+- in automatic-draft mode, use the assigned teacher-approved subject template and generate courseware-slides.json directly.
+- in high-quality mode without approved-style.json, stop after writing design-brief.json and three structurally different preview directions; do not create or modify courseware-slides.json.
+- after style approval, read approved-style.json and keep its design tokens/layout system fixed for the full deck.
+- deck.html, slides-manifest.json, PPTX, PDF, and screenshots are service-derived assets; do not make them the editable source of truth.
+- for initial full-deck creation, complete every planned slide in this invocation and use as many bounded write/edit tool calls as needed.
+- do not send the whole full deck in one write_file call. Start with a valid JSON skeleton whose slides array contains the unique placeholder object {"id":"__PILOTDECK_SLIDE_SENTINEL__"}; append 1-2 complete slides per edit_file call by replacing that placeholder with the new slides followed by the same placeholder; then remove the placeholder and JSON.parse the final file.
+- for teacher-requested incremental updates, patch only the assigned target slides; never replace a large accepted asset with a tiny draft.
+- for visual-quality repair, the assigned target set may contain every failed slide. Read visual-quality-report.json, make effective edits to courseware-slides.json for all assigned failures, and verify the file hash/content changed before reporting.
+- a repair that only reads files or describes intended changes is failed. Use edit_file/write_file or a bounded workspace-local script, then parse the final JSON and confirm every target slide remains present.
 - never paste full slide HTML or deck HTML in chat.
 - do not read full deck.html or courseware-slides.json back into context; validate with targeted checks.
 - student-facing slides[].html must not contain: 江校, agent, Pilot, OpenMAIC, 内部, 验收, 落库, metadata, courseware_jobs, 老师讲稿.
@@ -330,7 +338,9 @@ Exit criteria:
 - required fields are present.
 - courseware-slides.json checks include schema, slide count, required html, dangerous links/scripts, and mobile/desktop notes.
 - deck.html/PPT/PDF are treated as derived preview/export assets.
-- publish readiness is blocked, draft, or ready with reasons.
+- invoke the shared courseware workspace validator assigned by the coordinator and include its result.
+- publish readiness is blocked, draft, awaiting-teacher-approval, or ready-for-teacher-review with reasons.
+- never publish or bind production courses, classes, students, exams, or knowledge points.
 
 ${COURSEWARE_REPORT_RULE}`,
   },

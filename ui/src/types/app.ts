@@ -315,6 +315,47 @@ export interface CoursewareProgramLessonStatus {
   packageId?: string;
   topic?: string;
   updatedAt?: string;
+  agentRun?: CoursewareAgentRunSummary | null;
+}
+
+export interface CoursewareAgentRunSummary {
+  runId: string | null;
+  coordinatorSessionId: string | null;
+  currentPhase: string | null;
+  status: string;
+  completedAgents: string[];
+  runningAgents: string[];
+  blockedAgents: string[];
+  blockers: string[];
+  reportPaths: Record<string, string>;
+  operationMode: string | null;
+  generationMode: 'automatic-draft' | 'high-quality';
+  engine: 'pilotdeck' | string;
+  degraded: boolean;
+  degradedReason: string | null;
+  styleApprovalRequired: boolean;
+  awaitingStyleApproval: boolean;
+  teacherApprovedStyleId: string | null;
+  visualQualityStatus: string;
+  awaitingTeacherApproval: boolean;
+  outputTargets: string[];
+  audience: 'teacher' | 'student';
+  budgetStatus: string;
+  budgetUsage: {
+    inputTokens: number;
+    outputTokens: number;
+    modelCalls: number;
+    resumes: number;
+    revisions: number;
+  } | null;
+  budgetLimits: {
+    inputTokens: number;
+    outputTokens: number;
+    modelCalls: number;
+    resumes: number;
+    revisions: number;
+  } | null;
+  workspacePath?: string | null;
 }
 
 export interface CoursewareProgramStatus {

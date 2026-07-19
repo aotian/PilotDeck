@@ -1048,7 +1048,7 @@ export class AgentLoop {
       subagentDepth: this.config.subagentDepth ?? 0,
       subagent: this.buildSubagentForkApi(input, messages),
       modelMultimodal: this.config.modelMultimodal,
-      maxOutputTokens: this.config.maxOutputTokens,
+      maxOutputTokens: input.maxOutputTokens ?? this.config.maxOutputTokens,
       readFileState: this.readFileState,
       writeSnapshots: this.writeSnapshots,
       fileUpdateNotifier: this.dependencies.fileUpdateNotifier,
@@ -1124,6 +1124,7 @@ export class AgentLoop {
           parentMessages: messages,
           parentConfig: {
             ...this.config,
+            maxOutputTokens: input.maxOutputTokens ?? this.config.maxOutputTokens,
             subagentDepth: depth + 1,
             isSubagent: true,
           },
@@ -1134,6 +1135,7 @@ export class AgentLoop {
           parentTurnId: input.turnId,
           subagentSessionId,
           subagentId,
+          maxTurns: def.maxTurns,
           abortSignal: composedAbort.signal,
           sidechainTranscript: sidechain
             ? {
@@ -1176,6 +1178,8 @@ export class AgentLoop {
             subagentType: def.id,
             success: false,
             durationMs: 0,
+            usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+            turns: 0,
           });
           throw err;
         }
@@ -1205,6 +1209,8 @@ export class AgentLoop {
           subagentType: def.id,
           success: !errored,
           durationMs: report.durationMs,
+          usage: report.usage,
+          turns: report.turns,
         });
 
         return {

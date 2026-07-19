@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, Database, FileText, FolderSearch, Loader2, PackageCheck, RefreshCw, Sparkles, Wand2 } from 'lucide-react';
-import type { CoursewareProgramStatus, Project } from '../../types/app';
+import { Activity, AlertTriangle, CheckCircle2, Database, FileText, FolderSearch, Loader2, PackageCheck, Palette, RefreshCw, ScanSearch, Sparkles, Wand2 } from 'lucide-react';
+import type { CoursewareAgentRunSummary, CoursewareProgramStatus, Project } from '../../types/app';
 import { api } from '../../utils/api';
 import { cn } from '../../lib/utils.js';
 
@@ -21,6 +21,7 @@ type CoursewareProgress = {
     title: string;
     completion: number;
     missing: string[];
+    agentRun?: CoursewareAgentRunSummary | null;
   } | null;
   updatedAt?: string;
 };
@@ -273,6 +274,9 @@ export default function CoursewareProgramV2({
                 style={{ width: `${Math.min(100, Math.max(0, progress.percent))}%` }}
               />
             </div>
+            {progress.activeLesson?.agentRun ? (
+              <AgentRunStatus run={progress.activeLesson.agentRun} />
+            ) : null}
           </section>
         ) : null}
 
@@ -459,4 +463,56 @@ export default function CoursewareProgramV2({
       </div>
     </div>
   );
+}
+
+function AgentRunStatus({ run }: { run: CoursewareAgentRunSummary }) {
+  const modeLabel = run.generationMode === 'high-quality' ? 'high-quality' : 'automatic-draft';
+  const completed = run.completedAgents.map(shortAgentName).join(' / ') || '暂无';
+  const running = run.runningAgents.map(shortAgentName).join(' / ') || '暂无';
+  return (
+    <div className="mt-4 border-t border-orange-200 pt-4 dark:border-orange-900/60">
+      <div className="grid gap-3 text-xs text-neutral-700 dark:text-neutral-300 md:grid-cols-2 xl:grid-cols-4">
+        <div className="min-w-0">
+          <div className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-neutral-100">
+            <Activity className="h-3.5 w-3.5 text-orange-600" />
+            PilotDeck 7-Agent
+          </div>
+          <div className="mt-1 truncate">{modeLabel} · {run.currentPhase || 'requested'}</div>
+        </div>
+        <div className="min-w-0">
+          <div className="font-semibold text-neutral-900 dark:text-neutral-100">角色进度</div>
+          <div className="mt-1 line-clamp-2">完成：{completed}</div>
+          <div className="mt-1 line-clamp-2">运行：{running}</div>
+        </div>
+        <div className="min-w-0">
+          <div className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-neutral-100">
+            <Palette className="h-3.5 w-3.5 text-sky-600" />
+            风格与降级
+          </div>
+          <div className="mt-1">{run.awaitingStyleApproval ? '等待风格确认' : run.teacherApprovedStyleId ? `已选 ${run.teacherApprovedStyleId}` : '无需风格确认'}</div>
+          <div className={cn('mt-1', run.degraded && 'font-semibold text-red-700 dark:text-red-300')}>
+            {run.degraded ? `已降级：${run.degradedReason || '模板草稿'}` : '未降级'}
+          </div>
+        </div>
+        <div className="min-w-0">
+          <div className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-neutral-100">
+            <ScanSearch className="h-3.5 w-3.5 text-emerald-600" />
+            质量与审批
+          </div>
+          <div className="mt-1">视觉检查：{run.visualQualityStatus}</div>
+          <div className="mt-1">{run.awaitingTeacherApproval ? '等待老师审批' : `状态：${run.status}`}</div>
+        </div>
+      </div>
+      {run.blockers.length ? (
+        <div className="mt-3 flex items-start gap-2 border-l-2 border-red-400 pl-3 text-xs text-red-700 dark:text-red-300">
+          <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <span>{run.blockers.join('；')}</span>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function shortAgentName(value: string) {
+  return value.replace(/^courseware-/, '');
 }

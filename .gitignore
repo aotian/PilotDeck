@@ -197,6 +197,7 @@ Auto-Research-Skills/
 /TONGCHENG_NOTES.md
 /tongcheng-run.sh
 /*.png
+/outputs/ai-teacher-training-ab/
 
 # Local agent notes
 CLAUDE.md
