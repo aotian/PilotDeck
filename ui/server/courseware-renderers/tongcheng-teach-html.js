@@ -56,7 +56,8 @@ function validateHtmlAssets(input, teacherPath, studentPath, studentHtml) {
 function deckHtml(input, role) {
     const slides = input.slides.filter((slide) => role === 'teacher' || slide.audience !== 'teacher');
     const pages = slides.map((slide, index) => slideHtml(slide, index, slides.length, role)).join('\n');
-    return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(input.lessonId || '童澄课堂')}</title><style>${css()}</style></head><body data-role="${role}"><div class="deck">${pages}</div><nav><button data-dir="-1" aria-label="上一页">←</button><span id="counter">1 / ${slides.length}</span><button data-dir="1" aria-label="下一页">→</button>${role === 'teacher' ? '<button id="timer">⏱ 15:00</button>' : ''}<button id="full">全屏</button></nav><script>${script()}</script></body></html>`;
+    return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(input.lessonId || '童澄课堂')}</title><style>${css()}.teacher-note{bottom:12%}
+</style></head><body data-role="${role}"><div class="deck">${pages}</div><nav><button data-dir="-1" aria-label="上一页">←</button><span id="counter">1 / ${slides.length}</span><button data-dir="1" aria-label="下一页">→</button>${role === 'teacher' ? '<button id="timer">⏱ 15:00</button>' : ''}<button id="full">全屏</button></nav><script>${script()}</script></body></html>`;
 }
 
 function slideHtml(slide, index, count, role) {
