@@ -5,8 +5,9 @@ import { relativeFiles, writeJson } from './courseware-renderer-utils.js';
 import { renderPilotHtml } from './courseware-renderers/pilot-html.js';
 import { renderCodexArtifact } from './courseware-renderers/codex-artifact.js';
 import { renderAnthropicPptxGenJs } from './courseware-renderers/anthropic-pptxgenjs.js';
+import { renderTongchengTeachHtml } from './courseware-renderers/tongcheng-teach-html.js';
 
-const registry = new Map([['pilot-html', renderPilotHtml], ['codex-artifact', renderCodexArtifact], ['anthropic-pptxgenjs', renderAnthropicPptxGenJs]]);
+const registry = new Map([['pilot-html', renderPilotHtml], ['tongcheng-teach-html', renderTongchengTeachHtml], ['codex-artifact', renderCodexArtifact], ['anthropic-pptxgenjs', renderAnthropicPptxGenJs]]);
 
 export async function renderCourseware({ projectPath, runId, renderer, operationMode = 'reuse-existing', renderers, teacherApproval = false, fullRebuildAuthorized = false, options = {} }) {
     const selected = resolveRenderer(renderer);

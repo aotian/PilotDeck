@@ -29,7 +29,8 @@ export async function renderPptxPreviews(pptxPath, outputDir) {
     const pngs = fs.readdirSync(outputDir).filter((file) => /^slide-\d+\.png$/.test(file)).sort();
     const montage = path.join(outputDir, 'montage.png');
     await makeMontage(pngs.map((file) => path.join(outputDir, file)), montage);
-    return { pdfPath, pngs: pngs.map((file) => path.join(outputDir, file)), montage };
+    fs.rmSync(pdfPath, { force: true });
+    return { pdfPath: null, pngs: pngs.map((file) => path.join(outputDir, file)), montage };
 }
 
 export async function validatePptx(pptxPath, expectedSlides, expectNotes = true) {
