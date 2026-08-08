@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "tongcheng.slidesManifest.v1",
+  "lessonId": "lesson-13",
+  "slideCount": 25,
+  "studentSlideCount": 15,
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "audience": "all",
+      "title": "最终冲刺：把会做变成稳定得分"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "audience": "all",
+      "title": "第13课完成标准"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "audience": "all",
+      "title": "三级知识地图：函数与递归"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "audience": "all",
+      "title": "三级知识地图：字符数组与库函数"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "content",
+      "audience": "all",
+      "title": "三级知识地图：数学函数与类型"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "audience": "all",
+      "title": "三级知识地图：枚举与模拟"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "content",
+      "audience": "all",
+      "title": "三级知识地图：数组、二维与边界"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "content",
+      "audience": "all",
+      "title": "错题清库：四类原因"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "audience": "all",
+      "title": "个人分层：今天只攻最薄弱的一层"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "content",
+      "audience": "all",
+      "title": "例题复盘：完全平方数检查"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "content",
+      "audience": "all",
+      "title": "例题复盘：字符扫描状态表"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "audience": "all",
+      "title": "最终限时卷执行顺序"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "audience": "all",
+      "title": "客观题答题法：写依据，不凭感觉"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "最终客观题 1—4"
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "最终客观题 5—8"
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "最终客观题 9—12"
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "audience": "teacher",
+      "title": "最终6道编程题：按弱项分层清库"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 1"
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 2"
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 3"
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 4"
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 5"
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "最终编程题 6"
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "audience": "all",
+      "title": "考前个人检查卡"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "audience": "all",
+      "title": "课程结束：带走一套稳定得分流程"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "tiku.coursewareSlides.v1",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-13",
+  "courseTitle": "中国电子学会 C/C++ 三级",
+  "lessonLabel": "第13课",
+  "studentVisibility": "student",
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "title": "最终冲刺：把会做变成稳定得分",
+      "html": "<section><h1>最终冲刺：把会做变成稳定得分</h1><p>个人清库 · 全考点复盘 · 最终限时卷 · 考场流程</p><div class=\"flow\"><span>清错题</span><b>→</b><span>稳基础</span><b>→</b><span>测全卷</span><b>→</b><span>带流程</span></div></section>",
+      "notes": "第13课不再扩展新难度，只做三级范围内的稳定化。"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "title": "第13课完成标准",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>知识</h3><p>能口述三级考点地图</p></article><article class=\"card\"><h3>客观题</h3><p>12题限时完成并订正</p></article><article class=\"card\"><h3>编程题</h3><p>6题按个人弱项分层完成</p></article><article class=\"card\"><h3>流程</h3><p>形成自己的检查清单</p></article></div>",
+      "notes": "强调稳定性，不追求超纲题。"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "title": "三级知识地图：函数与递归",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>函数接口</h3><p>声明、定义、调用、返回值</p></article><article class=\"card\"><h3>参数</h3><p>值传递、引用传递、作用域</p></article><article class=\"card\"><h3>递归三问</h3><p>终止、缩小、返回</p></article><article class=\"card\"><h3>调试</h3><p>检查所有返回路径</p></article></div>",
+      "notes": "请学生分别举出一个适合函数和递归的任务。"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "title": "三级知识地图：字符数组与库函数",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>结束标记</h3><p>容量要给\\0留位置</p></article><article class=\"card\"><h3>常用函数</h3><p>strlen、strcpy、strcat、strcmp</p></article><article class=\"card\"><h3>字符判断</h3><p>大小写、数字与类别统计</p></article><article class=\"card\"><h3>安全</h3><p>先验容量，再复制拼接</p></article></div>",
+      "notes": "内容比较必须使用strcmp，不使用==。"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "content",
+      "title": "三级知识地图：数学函数与类型",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>cmath</h3><p>sqrt、pow、abs</p></article><article class=\"card\"><h3>取整</h3><p>floor、ceil、round</p></article><article class=\"card\"><h3>类型</h3><p>整数除法与浮点除法</p></article><article class=\"card\"><h3>验证</h3><p>浮点找候选，整数再核对</p></article></div>",
+      "notes": "只保留三级要求和程序判断常见风险。"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "title": "三级知识地图：枚举与模拟",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>枚举</h3><p>列全候选，逐个验证</p></article><article class=\"card\"><h3>去重</h3><p>用顺序限制减少重复</p></article><article class=\"card\"><h3>模拟</h3><p>事件驱动，按序更新状态</p></article><article class=\"card\"><h3>停止</h3><p>明确终止条件和输出时机</p></article></div>",
+      "notes": "不引入搜索、动态规划等超出本课目标的模型。"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "content",
+      "title": "三级知识地图：数组、二维与边界",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>一维</h3><p>合法下标0到n-1</p></article><article class=\"card\"><h3>二维</h3><p>行列含义不要交换</p></article><article class=\"card\"><h3>相邻格</h3><p>先判坐标，再访问数组</p></article><article class=\"card\"><h3>测试</h3><p>最小、非方阵、边角位置</p></article></div>",
+      "notes": "二维内容用于综合应用，难度不超过GESP四级。"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "content",
+      "title": "错题清库：四类原因",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>知识不清</h3><p>回到定义并做同考点题</p></article><article class=\"card\"><h3>边界遗漏</h3><p>补最小、最大、特殊数据</p></article><article class=\"card\"><h3>实现错误</h3><p>按变量表逐步模拟</p></article><article class=\"card\"><h3>格式错误</h3><p>核对空格、换行和顺序</p></article></div>",
+      "notes": "第12课未闭环清单在此完成。"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "title": "个人分层：今天只攻最薄弱的一层",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>A层</h3><p>函数、类型、循环边界</p></article><article class=\"card\"><h3>B层</h3><p>递归、字符数组、枚举</p></article><article class=\"card\"><h3>C层</h3><p>模拟、二维、综合调试</p></article><article class=\"card\"><h3>升级条件</h3><p>连续两题独立A再升级</p></article></div>",
+      "notes": "不是所有学生都必须按同一顺序做6题。"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "content",
+      "title": "例题复盘：完全平方数检查",
+      "html": "<section><h2>先找候选，再精确验证</h2><pre>int r = (int)sqrt(n);\nbool ok = 1LL * r * r == n;</pre><div class=\"flow\"><span>sqrt找候选</span><b>→</b><span>整数乘法验证</span><b>→</b><span>输出结论</span></div><p>不要把浮点近似直接当作整数结论。</p></section>",
+      "notes": "让学生解释为什么使用1LL。"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "content",
+      "title": "例题复盘：字符扫描状态表",
+      "html": "<section><h2>每读一个字符，只更新相关状态</h2><pre>长度  大写  小写  数字  其他\n 0     0     0     0     0</pre><p>先定义状态含义，再决定每种字符如何更新，最后统一判断。</p></section>",
+      "notes": "可用密码强度题连接字符数组和模拟。"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "title": "最终限时卷执行顺序",
+      "html": "<div class=\"flow\"><span>通读并标难度</span><b>→</b><span>先做确定题</span><b>→</b><span>编程先保基础分</span><b>→</b><span>最后复查</span></div><p>卡住时记录卡点并切换题目，不让一道题吞掉整场时间。</p>",
+      "notes": "课堂按真实考试节奏执行。"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "title": "客观题答题法：写依据，不凭感觉",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>读代码</h3><p>写初值和每步变化</p></article><article class=\"card\"><h3>判边界</h3><p>明确合法范围</p></article><article class=\"card\"><h3>看类型</h3><p>先判断运算类型</p></article><article class=\"card\"><h3>排选项</h3><p>用反例检查结论</p></article></div>",
+      "notes": "进入客观练习前先建立操作流程。"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "title": "最终客观题 1—4",
+      "html": "<section><h2>最终客观题 1—4</h2><ol start=\"1\"><li>模拟法解决问题时，最先应明确什么？</li><li>0上1右2下3左时，顺时针转向可写dir=(dir+1)%4。</li><li>模拟程序只测试普通数据即可，边界状态不影响答案。</li><li>访问n行m列矩阵所有元素，正确循环范围是？</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"1\"><li><b>A</b>：模拟的核心是定义状态、操作和更新顺序。</li><li><b>T</b>：加1并取模形成循环方向。</li><li><b>F</b>：初始即结束、越界、并列等边界常决定正确性。</li><li><b>A</b>：行下标0到n-1，列下标0到m-1。</li></ol></div>",
+      "notes": "提交Tiku后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "5b492780-7aec-40b1-968b-d5cb937de5d7",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "title": "最终客观题 5—8",
+      "html": "<section><h2>最终客观题 5—8</h2><ol start=\"5\"><li>顺时针旋转时，原位置(i,j)常映射到？</li><li>访问相邻格前必须先判断新行列是否在矩阵范围内。</li><li>计算较大整数的精确平方时，可以始终放心地用`pow(x,2)`代替`x*x`。</li><li>表达式`(double)7/2`的值是（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"5\"><li><b>A</b>：新行来自原列，新列由原行反向得到。</li><li><b>T</b>：否则可能数组越界。</li><li><b>F</b>：`pow`使用浮点运算，精确整数运算优先使用整数乘法并注意溢出。</li><li><b>C</b>：先把7转为double，再进行浮点除法。</li></ol></div>",
+      "notes": "提交Tiku后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "b374259a-a397-44bb-925a-8222ebcbaeea",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "5810de39-522a-4ced-bf5d-4da37847f678",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "839217c8-3161-488c-b28e-b2d8652509fd",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "title": "最终客观题 9—12",
+      "html": "<section><h2>最终客观题 9—12</h2><ol start=\"9\"><li>递归函数必须有可达的终止条件，并且每次调用应更接近终止条件。</li><li>函数声明`int f(int x);`能够告诉编译器什么？</li><li>字符数组`char s[]=\"cat\";`的`strlen(s)`是（ ）。</li><li>判断两个C风格字符串内容是否相等，应使用（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"9\"><li><b>T</b>：这是递归能够停止的两个基本条件。</li><li><b>A</b>：声明提供函数签名，使调用处能够通过编译。</li><li><b>B</b>：有效字符3个，结尾\\0不计入长度。</li><li><b>C</b>：strcmp返回0表示内容相等。</li></ol></div>",
+      "notes": "提交Tiku后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "da40e53e-fcaa-4629-a173-e56a3cedaefb",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "de0c711d-b0cc-47e2-9daf-7b718a33db88",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "title": "最终6道编程题：按弱项分层清库",
+      "html": "<section><h2>最终6道编程题</h2><div class=\"flow\"><span>函数</span><b>→</b><span>递归</span><b>→</b><span>字符</span><b>→</b><span>枚举</span><b>→</b><span>模拟</span><b>→</b><span>二维</span></div><p>每题完整题面和评测都从 Learn 跳转进入。</p></section>",
+      "notes": "教师按学生薄弱点安排4—6题。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "title": "最终编程题 1",
+      "html": "<section><h2>最终编程题 1</h2></section><div class=\"oj-card\"><span class=\"level\">基础</span><h3>GESP 2级真题【202412】数位和</h3><p>函数与数位分解。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6&oj_problem_id=%2Fd%2Fgesp%2Fp%2F92\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练函数与数位分解。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/92"
+        }
+      ]
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "title": "最终编程题 2",
+      "html": "<section><h2>最终编程题 2</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>爬楼梯</h3><p>递归终止与状态关系。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=b95299fc-95a9-506b-9743-53c94e0bc7a8&oj_problem_id=%2Fd%2FCPLUS01%2Fp%2FT1204\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练递归终止与状态关系。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "b95299fc-95a9-506b-9743-53c94e0bc7a8",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/CPLUS01/p/T1204"
+        }
+      ]
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "title": "最终编程题 3",
+      "html": "<section><h2>最终编程题 3</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>GESP 3级真题【202512】密码强度</h3><p>字符数组与类别状态。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=3a339f7b-0a77-4cab-9d85-235afea38f7b&oj_problem_id=%2Fd%2Fgesp%2Fp%2F185\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练字符数组与类别状态。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "3a339f7b-0a77-4cab-9d85-235afea38f7b",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/185"
+        }
+      ]
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "title": "最终编程题 4",
+      "html": "<section><h2>最终编程题 4</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>GESP 2级真题【202406】平方之和</h3><p>数学函数与枚举。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7fbac8b5-8c6f-4ac2-9a00-4cb49178615b&oj_problem_id=%2Fd%2Fgesp%2Fp%2F49\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练数学函数与枚举。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "7fbac8b5-8c6f-4ac2-9a00-4cb49178615b",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/49"
+        }
+      ]
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "title": "最终编程题 5",
+      "html": "<section><h2>最终编程题 5</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>GESP 3级真题【202509】数组清零</h3><p>模拟与状态更新。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=2f51853b-e6b1-4ed2-a77d-3a47304e64ba&oj_problem_id=%2Fd%2Fgesp%2Fp%2F163\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练模拟与状态更新。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/163"
+        }
+      ]
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "title": "最终编程题 6",
+      "html": "<section><h2>最终编程题 6</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>GESP 2级真题【202512】黄金格</h3><p>二维坐标与边界。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7984c1c8-6875-586f-b6ac-5ae80403cee8&oj_problem_id=%2Fd%2Fgesp%2Fp%2F179\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练二维坐标与边界。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/179"
+        }
+      ]
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "title": "考前个人检查卡",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>编译</h3><p>头文件、分号、变量名</p></article><article class=\"card\"><h3>数据</h3><p>最小、边界、特殊值</p></article><article class=\"card\"><h3>范围</h3><p>数组、循环、整数溢出</p></article><article class=\"card\"><h3>输出</h3><p>内容、顺序、格式</p></article></div>",
+      "notes": "让每位学生保留一张自己的检查卡。"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "title": "课程结束：带走一套稳定得分流程",
+      "html": "<section><h1>课程结束：带走一套稳定得分流程</h1><div class=\"flow\"><span>读题分类</span><b>→</b><span>写清状态</span><b>→</b><span>边界自测</span><b>→</b><span>提交复查</span></div><p>目标不是做更难，而是在电子学会三级范围内稳定、完整、少失误。</p></section>",
+      "notes": "收集最终成绩与个人待复测清单。"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": "tongcheng.self-study-course.v1",
+  "id": "cie-cpp-level3-lesson-13",
+  "lesson_id": "lesson-13",
+  "title": "第13课：最终冲刺与个人清库",
+  "subject": "C++",
+  "content_status": "authorized",
+  "estimated_minutes": 180,
+  "access": {
+    "student_entry": "learn"
+  },
+  "stages": [
+    {
+      "id": "review",
+      "title": "全考点复盘与个人清库",
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md"
+        }
+      ]
+    },
+    {
+      "id": "objective-practice",
+      "title": "最终12道客观题",
+      "blocks": [
+        {
+          "type": "question_set",
+          "source_table": "quiz_questions",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "id": "oj-practice",
+      "title": "最终6道分层编程题",
+      "blocks": [
+        {
+          "type": "practice",
+          "source_table": "quiz_questions",
+          "kind": "oj",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "question_refs": [
+    {
+      "question_id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "模拟三要素"
+    },
+    {
+      "question_id": "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "方向循环"
+    },
+    {
+      "question_id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "边界测试"
+    },
+    {
+      "question_id": "5b492780-7aec-40b1-968b-d5cb937de5d7",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "二维边界"
+    },
+    {
+      "question_id": "b374259a-a397-44bb-925a-8222ebcbaeea",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "旋转映射"
+    },
+    {
+      "question_id": "5810de39-522a-4ced-bf5d-4da37847f678",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "邻接边界"
+    },
+    {
+      "question_id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "整数精度"
+    },
+    {
+      "question_id": "839217c8-3161-488c-b28e-b2d8652509fd",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "浮点除法"
+    },
+    {
+      "question_id": "da40e53e-fcaa-4629-a173-e56a3cedaefb",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "递归"
+    },
+    {
+      "question_id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "函数声明"
+    },
+    {
+      "question_id": "de0c711d-b0cc-47e2-9daf-7b718a33db88",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "strlen"
+    },
+    {
+      "question_id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "strcmp"
+    },
+    {
+      "question_id": "d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "函数与数位分解",
+      "oj_problem_id": "/d/gesp/p/92"
+    },
+    {
+      "question_id": "b95299fc-95a9-506b-9743-53c94e0bc7a8",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "递归终止与状态关系",
+      "oj_problem_id": "/d/CPLUS01/p/T1204"
+    },
+    {
+      "question_id": "3a339f7b-0a77-4cab-9d85-235afea38f7b",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "字符数组与类别状态",
+      "oj_problem_id": "/d/gesp/p/185"
+    },
+    {
+      "question_id": "7fbac8b5-8c6f-4ac2-9a00-4cb49178615b",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "数学函数与枚举",
+      "oj_problem_id": "/d/gesp/p/49"
+    },
+    {
+      "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "模拟与状态更新",
+      "oj_problem_id": "/d/gesp/p/163"
+    },
+    {
+      "question_id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "二维坐标与边界",
+      "oj_problem_id": "/d/gesp/p/179"
+    }
+  ],
+  "integrations": {
+    "wrong_book": {
+      "enabled": true,
+      "source": "tiku_wrong_book"
+    },
+    "oj": {
+      "enabled": true,
+      "entry": "/oj-do.html"
+    }
+  }
+}

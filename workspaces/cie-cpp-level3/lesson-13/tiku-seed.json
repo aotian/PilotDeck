@@ -1,0 +1,45 @@
+{
+  "schema_version": "tiku.lessonRefs.v1",
+  "lesson": 13,
+  "source_table": "quiz_questions",
+  "reuse_only": true,
+  "objective_questions": [
+    {
+      "id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5"
+    },
+    {
+      "id": "4329edb0-51b9-4dae-80f0-beb41d4015ea"
+    },
+    {
+      "id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035"
+    },
+    {
+      "id": "5b492780-7aec-40b1-968b-d5cb937de5d7"
+    },
+    {
+      "id": "b374259a-a397-44bb-925a-8222ebcbaeea"
+    },
+    {
+      "id": "5810de39-522a-4ced-bf5d-4da37847f678"
+    },
+    {
+      "id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc"
+    },
+    {
+      "id": "839217c8-3161-488c-b28e-b2d8652509fd"
+    },
+    {
+      "id": "da40e53e-fcaa-4629-a173-e56a3cedaefb"
+    },
+    {
+      "id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96"
+    },
+    {
+      "id": "de0c711d-b0cc-47e2-9daf-7b718a33db88"
+    },
+    {
+      "id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9"
+    }
+  ],
+  "note": "第13课仅复用Tiku既有题目，不重复创建题目。"
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "tongcheng.generatorHandoff.v1",
+  "status": "validated-not-published",
+  "engine": "pilotdeck",
+  "renderer": "tongcheng-teach-html",
+  "runId": "cie3-lesson-13-pilot-migration-v1",
+  "sourceOfTruth": "courseware-slides.json",
+  "outputs": {
+    "html": "deck.html",
+    "teacherHtml": "teacher-deck.html",
+    "studentHtml": "student-deck.html",
+    "pptx": "courseware.pptx"
+  },
+  "publishAllowed": false
+}
