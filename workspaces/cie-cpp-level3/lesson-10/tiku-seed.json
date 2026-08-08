@@ -1,0 +1,576 @@
+{
+  "schema_version": "tongcheng.tiku-seed.v1",
+  "lesson": 10,
+  "source_table": "quiz_questions",
+  "objective_questions": [
+    {
+      "id": "5b492780-7aec-40b1-968b-d5cb937de5d7",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "访问n行m列矩阵所有元素，正确循环范围是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "i<n且j<m"
+        },
+        {
+          "label": "B",
+          "text": "i<=n且j<=m"
+        },
+        {
+          "label": "C",
+          "text": "i<m且j<n"
+        },
+        {
+          "label": "D",
+          "text": "只需一层循环"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "行下标0到n-1，列下标0到m-1。",
+      "analysis": "行下标0到n-1，列下标0到m-1。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "二维边界"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "二维边界",
+      "knowledge_points": [
+        "二维边界"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "959f1af7-d61f-468c-8c77-2299307227ed",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "矩阵a[i][j]中，i通常表示行下标，j表示列下标。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "先行后列是常用约定。",
+      "analysis": "先行后列是常用约定。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "行列下标"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "行列下标",
+      "knowledge_points": [
+        "行列下标"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "8a8b9f5c-1829-4e9c-8195-1504756075d2",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "n×m矩阵顺时针旋转后，新矩阵尺寸是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "n×m"
+        },
+        {
+          "label": "B",
+          "text": "m×n"
+        },
+        {
+          "label": "C",
+          "text": "n×n"
+        },
+        {
+          "label": "D",
+          "text": "m×m"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "行列数量交换。",
+      "analysis": "行列数量交换。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "旋转尺寸"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "旋转尺寸",
+      "knowledge_points": [
+        "旋转尺寸"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "b374259a-a397-44bb-925a-8222ebcbaeea",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "顺时针旋转时，原位置(i,j)常映射到？",
+      "options": [
+        {
+          "label": "A",
+          "text": "(j,n-1-i)"
+        },
+        {
+          "label": "B",
+          "text": "(m-1-j,i)"
+        },
+        {
+          "label": "C",
+          "text": "(i,j)"
+        },
+        {
+          "label": "D",
+          "text": "(n-1-i,m-1-j)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "新行来自原列，新列由原行反向得到。",
+      "analysis": "新行来自原列，新列由原行反向得到。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "旋转映射"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "旋转映射",
+      "knowledge_points": [
+        "旋转映射"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "fe4b633c-2fc2-49cb-83bc-12993e2a7c82",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "转置只交换行列，不等同于顺时针旋转。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "顺时针旋转还包含一个方向翻转。",
+      "analysis": "顺时针旋转还包含一个方向翻转。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "转置与旋转"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "转置与旋转",
+      "knowledge_points": [
+        "转置与旋转"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "3341294b-42f9-4add-b53a-27d92416e07c",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "统计上下左右相邻格时，最多检查几个方向？",
+      "options": [
+        {
+          "label": "A",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "text": "8"
+        },
+        {
+          "label": "D",
+          "text": "9"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "这里只统计四邻域。",
+      "analysis": "这里只统计四邻域。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "四邻域"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "四邻域",
+      "knowledge_points": [
+        "四邻域"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "7fdd3cf3-fc4e-477c-aa34-220488777284",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "统计八邻域时，偏移量di、dj通常取？",
+      "options": [
+        {
+          "label": "A",
+          "text": "0到1"
+        },
+        {
+          "label": "B",
+          "text": "-1到1并排除(0,0)"
+        },
+        {
+          "label": "C",
+          "text": "-2到2"
+        },
+        {
+          "label": "D",
+          "text": "只取正数"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "3×3范围除去中心格。",
+      "analysis": "3×3范围除去中心格。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "八邻域"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "八邻域",
+      "knowledge_points": [
+        "八邻域"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "5810de39-522a-4ced-bf5d-4da37847f678",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "访问相邻格前必须先判断新行列是否在矩阵范围内。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "否则可能数组越界。",
+      "analysis": "否则可能数组越界。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "邻接边界"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "邻接边界",
+      "knowledge_points": [
+        "邻接边界"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "520fea73-de81-4c84-9782-1e3b0143e9ca",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "输出字符图形时，角同时属于两条边，应当？",
+      "options": [
+        {
+          "label": "A",
+          "text": "最后判断角"
+        },
+        {
+          "label": "B",
+          "text": "优先判断角"
+        },
+        {
+          "label": "C",
+          "text": "忽略角"
+        },
+        {
+          "label": "D",
+          "text": "随机判断"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "特殊位置优先可避免条件冲突。",
+      "analysis": "特殊位置优先可避免条件冲突。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "位置分类"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "位置分类",
+      "knowledge_points": [
+        "位置分类"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "f52b6b0b-3b9a-49a5-8b31-d383b0a34d08",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "矩阵变换需要读取旧值并写新位置时，最稳妥的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "原地随意覆盖"
+        },
+        {
+          "label": "B",
+          "text": "使用新矩阵"
+        },
+        {
+          "label": "C",
+          "text": "删除循环"
+        },
+        {
+          "label": "D",
+          "text": "只改对角线"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "新旧矩阵分离避免覆盖未读取数据。",
+      "analysis": "新旧矩阵分离避免覆盖未读取数据。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "新旧矩阵"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "新旧矩阵",
+      "knowledge_points": [
+        "新旧矩阵"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "cc50f087-2349-4b82-982b-a0bd5129945c",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "矩阵题测试数据应包含1行、1列和非方阵。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "这些数据能暴露行列混淆。",
+      "analysis": "这些数据能暴露行列混淆。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "边界测试"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "边界测试",
+      "knowledge_points": [
+        "边界测试"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "0a5bd2b4-31ab-404c-83b1-6e2063219c1b",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "调试矩阵程序最有效的方法之一是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只看总和"
+        },
+        {
+          "label": "B",
+          "text": "给每格写坐标并手算映射"
+        },
+        {
+          "label": "C",
+          "text": "去掉边界判断"
+        },
+        {
+          "label": "D",
+          "text": "所有值设相同"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "坐标不同能看出方向和映射错误。",
+      "analysis": "坐标不同能看出方向和映射错误。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第10课",
+        "矩阵",
+        "坐标调试"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "坐标调试",
+      "knowledge_points": [
+        "坐标调试"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 10,
+        "content_status": "authorized"
+      }
+    }
+  ],
+  "oj_questions": []
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "tongcheng.coursewareRendererVisualQa.v1",
+  "runId": "cie3-lesson-10-pilot-migration-v1",
+  "renderer": "tongcheng-teach-html",
+  "status": "awaiting-human-review",
+  "slideCount": 25,
+  "previewGenerated": true,
+  "montage": "/Users/tongcheng/Projects/PilotDeck/workspaces/cie-cpp-level3/lesson-10/outputs/tongcheng-teach-html/html-previews/montage.png",
+  "warnings": [
+    "Programmatic file checks passed; visual quality still requires montage review."
+  ],
+  "checkedAt": "2026-08-08T06:45:58.939Z"
+}

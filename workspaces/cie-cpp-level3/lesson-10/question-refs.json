@@ -1,0 +1,61 @@
+{
+  "lesson": 10,
+  "objective": [
+    "5b492780-7aec-40b1-968b-d5cb937de5d7",
+    "959f1af7-d61f-468c-8c77-2299307227ed",
+    "8a8b9f5c-1829-4e9c-8195-1504756075d2",
+    "b374259a-a397-44bb-925a-8222ebcbaeea",
+    "fe4b633c-2fc2-49cb-83bc-12993e2a7c82",
+    "3341294b-42f9-4add-b53a-27d92416e07c",
+    "7fdd3cf3-fc4e-477c-aa34-220488777284",
+    "5810de39-522a-4ced-bf5d-4da37847f678",
+    "520fea73-de81-4c84-9782-1e3b0143e9ca",
+    "f52b6b0b-3b9a-49a5-8b31-d383b0a34d08",
+    "cc50f087-2349-4b82-982b-a0bd5129945c",
+    "0a5bd2b4-31ab-404c-83b1-6e2063219c1b"
+  ],
+  "oj": [
+    {
+      "id": "b6ac8295-d488-510a-881c-0fff1d17fb03",
+      "pid": "/d/gesp/p/83",
+      "title": "GESP 2级真题【202503】等差矩阵",
+      "level": "基础热身",
+      "knowledge": "二维规律与输出"
+    },
+    {
+      "id": "25cfc92e-acd2-47df-aca2-2b09a926b6ab",
+      "pid": "d/gesp/p/42",
+      "title": "GESP 2级真题【202403】小杨的日字矩阵",
+      "level": "基础",
+      "knowledge": "位置规律"
+    },
+    {
+      "id": "b8c099a4-7048-4ad1-a95a-adc9397aa63f",
+      "pid": "d/gesp/p/28",
+      "title": "GESP 2级真题【202312】小杨的H字阵",
+      "level": "基础",
+      "knowledge": "行列条件"
+    },
+    {
+      "id": "84e8bbdd-5b87-4343-acfa-e270988cfe08",
+      "pid": "d/gesp/p/162",
+      "title": "GESP 2级真题【202509】菱形",
+      "level": "标准",
+      "knowledge": "中心坐标与距离"
+    },
+    {
+      "id": "308bc607-9c95-476e-9b20-8b66cc7cfd03",
+      "pid": "d/gesp/p/99",
+      "title": "GESP 4级真题【202506】画布裁剪",
+      "level": "提高",
+      "knowledge": "矩阵区域与变换"
+    },
+    {
+      "id": "bd72f678-fe7a-49a1-801b-7f5970f76185",
+      "pid": "d/gesp/p/272",
+      "title": "GESP 4级真题【202606】扫雷",
+      "level": "提高",
+      "knowledge": "八邻域统计"
+    }
+  ]
+}
