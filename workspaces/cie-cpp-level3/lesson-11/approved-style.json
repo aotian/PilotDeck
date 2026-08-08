@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "pilotdeck.approvedStyle.v1",
+  "theme": "tongcheng-orange",
+  "teacherToolbarSafeArea": "15%",
+  "studentAnswerVisibility": "hidden"
+}

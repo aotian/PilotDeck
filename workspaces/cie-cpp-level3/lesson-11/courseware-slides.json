@@ -1,0 +1,314 @@
+{
+  "schemaVersion": "tiku.coursewareSlides.v1",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-11",
+  "studentVisibility": "student",
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "title": "三级模考一：先补缺，再整卷",
+      "html": "<section><h1>三级模考一：先补缺，再整卷</h1><p>数学库函数 · 类型转换 · 全考点复习 · 独立编程</p><div class=\"flow\"><span>复习</span><b>→</b><span>模考</span><b>→</b><span>订正</span></div></section>",
+      "notes": "先让学生看清今天要复习和检测什么。"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "title": "学生复习地图",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>函数与参数</h3><p>定义、调用、值与引用</p></article><article class=\"card\"><h3>递归与字符数组</h3><p>终止、返回、四个库函数</p></article><article class=\"card\"><h3>枚举与模拟</h3><p>候选、状态、终止</p></article><article class=\"card\"><h3>矩阵与边界</h3><p>行列、映射、相邻</p></article></div>",
+      "notes": "学生逐项标记会、易错、不会。"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "title": "本次模考复习清单",
+      "html": "<section><h2>本次模考复习清单</h2><ol><li>函数：输入、输出、参数与返回值</li><li>递归：终止条件、规模缩小、返回关系</li><li>字符数组：\\0与strlen/strcpy/strcat/strcmp</li><li>算法：枚举候选、模拟状态、二维边界</li><li>新增补缺：cmath与类型转换</li></ol></section>",
+      "notes": "学生端必须明确列出复习内容。"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "title": "先给自己做一次诊断",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>A 熟练</h3><p>能独立写并调试</p></article><article class=\"card\"><h3>B 提示后会</h3><p>24小时内复写</p></article><article class=\"card\"><h3>C 看过答案</h3><p>关闭答案重写</p></article><article class=\"card\"><h3>D 尚未完成</h3><p>降阶后再回原题</p></article></div>",
+      "notes": "只记录事实，不用分数掩盖能力。"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "code",
+      "title": "数学库函数从头文件开始",
+      "html": "<section><h2>数学库函数从头文件开始</h2><pre>#include &lt;cmath&gt;\ndouble a=sqrt(81);\ndouble b=pow(2,5);</pre><p>先确认定义域、返回类型和是否需要精确整数运算。</p></section>",
+      "notes": "补齐三级明确考点。"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "title": "六个常用数学函数",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>sqrt(x)</h3><p>平方根</p></article><article class=\"card\"><h3>pow(a,b)</h3><p>a的b次方</p></article><article class=\"card\"><h3>abs(x)</h3><p>绝对值</p></article><article class=\"card\"><h3>floor/ceil/round</h3><p>三种取整</p></article></div>",
+      "notes": "每个函数口算一个例子。"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "code",
+      "title": "sqrt：平方根与边界",
+      "html": "<section><h2>sqrt：平方根与边界</h2><pre>int r=(int)sqrt(n);\nbool square=(1LL*r*r==n);</pre><p>平方根返回浮点数；验证完全平方数时再用整数乘法核对。</p></section>",
+      "notes": "提醒1LL避免乘法溢出。"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "code",
+      "title": "pow：方便，但不是万能整数运算",
+      "html": "<section><h2>pow：方便，但不是万能整数运算</h2><pre>double x=pow(2,10);\nlong long y=1LL*n*n;</pre><p>需要精确整数平方时优先整数乘法；还要检查数据范围。</p></section>",
+      "notes": "不要把pow误教成所有幂运算的唯一方案。"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "title": "floor、ceil、round不要混",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>floor(3.8)=3</h3><p>向下取整</p></article><article class=\"card\"><h3>ceil(3.2)=4</h3><p>向上取整</p></article><article class=\"card\"><h3>round(3.5)=4</h3><p>四舍五入</p></article><article class=\"card\"><h3>int(3.9)=3</h3><p>直接截断</p></article></div>",
+      "notes": "用负数再追问一次方向。"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "code",
+      "title": "abs：距离问题的常用工具",
+      "html": "<section><h2>abs：距离问题的常用工具</h2><pre>int d=abs(x1-x2)+abs(y1-y2);</pre><p>绝对值常用于数轴距离、坐标差和误差判断。</p></section>",
+      "notes": "连接矩阵与坐标题。"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "code",
+      "title": "类型转换决定除法结果",
+      "html": "<section><h2>类型转换决定除法结果</h2><pre>7/2 == 3\n(double)7/2 == 3.5</pre><p>先看参与运算的类型，再判断结果；浮点转整数会截去小数部分。</p></section>",
+      "notes": "补齐二级累计基础。"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "title": "整卷程序阅读检查顺序",
+      "html": "<div class=\"flow\"><span>看类型</span><b>→</b><span>看边界</span><b>→</b><span>跟变量</span><b>→</b><span>验输出</span></div><p>遇到函数调用先写实参、形参、返回值；遇到循环先写合法范围。</p>",
+      "notes": "形成可重复的检查动作。"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "title": "例题：完全平方数判断",
+      "html": "<section><h2>例题：完全平方数判断</h2><pre>int r=(int)sqrt(n);\nif(1LL*r*r==n) cout&lt;&lt;\"YES\";</pre><p>步骤：求近似平方根 → 转成整数候选 → 用整数乘法验证。</p></section>",
+      "notes": "学生用n=16、15、1000000验证。"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "title": "模考客观题 1—4",
+      "html": "<section><h2>模考客观题 1—4</h2><ol start=\"1\"><li>`sqrt(81)`的返回结果是（ ）。</li><li>表达式`pow(2,5)`的值是（ ）。</li><li>计算较大整数的精确平方时，可以始终放心地用`pow(x,2)`代替`x*x`。</li><li>`abs(-7)`的值是（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"1\"><li><b>A</b>：平方根为9，`sqrt`返回浮点类型。</li><li><b>C</b>：2的5次方是32。</li><li><b>F</b>：`pow`使用浮点运算，精确整数运算优先使用整数乘法并注意溢出。</li><li><b>C</b>：绝对值表示到0的距离。</li></ol></div>",
+      "notes": "独立完成后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "64332bad-9597-486a-b1bf-3e03074c2296",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "e3aabbf8-fe0f-4acb-8751-3153c5d25c5b",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "d6d6b701-e99e-4d94-aad3-1bcfebb404f1",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "title": "模考客观题 5—8",
+      "html": "<section><h2>模考客观题 5—8</h2><ol start=\"5\"><li>`floor(3.8)`的结果是（ ）。</li><li>`ceil(3.2)`的结果是（ ）。</li><li>`round(3.5)`的结果是（ ）。</li><li>执行`int x=3.9;`后，x的值是（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"5\"><li><b>A</b>：floor向下取整。</li><li><b>B</b>：ceil向上取整。</li><li><b>B</b>：正数3.5四舍五入为4。</li><li><b>A</b>：浮点数转整数时截去小数部分。</li></ol></div>",
+      "notes": "独立完成后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "c0ce69d3-bd9c-4fc0-82bc-bed686587352",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "52fc6efc-4e80-46e5-845f-e205aa24497a",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "b3933034-4799-4cc3-ae46-113e35dd5013",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "d0c6888f-f32d-400b-8ce1-d7b183aeae21",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "title": "模考客观题 9—12",
+      "html": "<section><h2>模考客观题 9—12</h2><ol start=\"9\"><li>表达式`(double)7/2`的值是（ ）。</li><li>递归函数必须有可达的终止条件，并且每次调用应更接近终止条件。</li><li>比较两个C风格字符串字典序，应优先使用（ ）。</li><li>候选数量有限并逐个检查是否合法，主要属于（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"9\"><li><b>C</b>：先把7转为double，再进行浮点除法。</li><li><b>T</b>：这是递归能够停止的两个基本条件。</li><li><b>D</b>：strcmp用于按字典序比较字符数组。</li><li><b>B</b>：枚举法列出候选并逐一验证。</li></ol></div>",
+      "notes": "独立完成后再点击显示答案。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "839217c8-3161-488c-b28e-b2d8652509fd",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "da40e53e-fcaa-4629-a173-e56a3cedaefb",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "e8e90fcd-ebe4-4e92-810e-0880e9a6b2be",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "9433d7f3-6dd8-401f-9cfc-941a2dfa2116",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "title": "6道编程题：覆盖六个核心模块",
+      "html": "<section><h2>6道编程题：覆盖六个核心模块</h2><div class=\"flow\"><span>函数</span><b>→</b><span>递归</span><b>→</b><span>字符串</span><b>→</b><span>枚举/模拟/矩阵</span></div></section>",
+      "notes": "整卷练习不展示完整题面，只跳转Learn。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "title": "模考编程题 1",
+      "html": "<section><h2>模考编程题 1</h2></section><div class=\"oj-card\"><span class=\"level\">基础</span><h3>GESP 2级真题【202412】数位和</h3><p>函数与数位分解。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6&oj_problem_id=%2Fd%2Fgesp%2Fp%2F92\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练函数与数位分解。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/92"
+        }
+      ]
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "title": "模考编程题 2",
+      "html": "<section><h2>模考编程题 2</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>菲波那契数列</h3><p>递归终止与返回。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=bc77cf56-6591-5de4-a2a3-483453c423a6&oj_problem_id=%2Fd%2FCPLUS01%2Fp%2FT1201\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练递归终止与返回。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "bc77cf56-6591-5de4-a2a3-483453c423a6",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/CPLUS01/p/T1201"
+        }
+      ]
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "title": "模考编程题 3",
+      "html": "<section><h2>模考编程题 3</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>字符串移位包含问题</h3><p>字符串与循环移动。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7f897ebd-5748-47f4-9723-c38b991bef1e&oj_problem_id=%2Fd%2Ffxswfz%2Fp%2FP406\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练字符串与循环移动。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "7f897ebd-5748-47f4-9723-c38b991bef1e",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/fxswfz/p/P406"
+        }
+      ]
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "title": "模考编程题 4",
+      "html": "<section><h2>模考编程题 4</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>GESP 2级真题【202406】平方之和</h3><p>数学函数与枚举。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7fbac8b5-8c6f-4ac2-9a00-4cb49178615b&oj_problem_id=%2Fd%2Fgesp%2Fp%2F49\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练数学函数与枚举。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "7fbac8b5-8c6f-4ac2-9a00-4cb49178615b",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/49"
+        }
+      ]
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "title": "模考编程题 5",
+      "html": "<section><h2>模考编程题 5</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>GESP 3级真题【202509】数组清零</h3><p>模拟与状态更新。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=2f51853b-e6b1-4ed2-a77d-3a47304e64ba&oj_problem_id=d%2Fgesp%2Fp%2F163\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练模拟与状态更新。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+          "source": "quiz_questions",
+          "oj_problem_id": "d/gesp/p/163"
+        }
+      ]
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "title": "模考编程题 6",
+      "html": "<section><h2>模考编程题 6</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>GESP 2级真题【202503】等差矩阵</h3><p>二维规律与输出。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=b6ac8295-d488-510a-881c-0fff1d17fb03&oj_problem_id=%2Fd%2Fgesp%2Fp%2F83\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "训练二维规律与输出。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "b6ac8295-d488-510a-881c-0fff1d17fb03",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/83"
+        }
+      ]
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "title": "模考订正：不要只抄正确答案",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>知识错误</h3><p>补定义与反例</p></article><article class=\"card\"><h3>边界错误</h3><p>补最小与极值数据</p></article><article class=\"card\"><h3>实现错误</h3><p>关闭答案重写</p></article><article class=\"card\"><h3>非A题</h3><p>进入24小时复写</p></article></div>",
+      "notes": "登记错因与复测日期。"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "title": "复习不是再看一遍，是再独立做对",
+      "html": "<section><h1>复习不是再看一遍，是再独立做对</h1><div class=\"flow\"><span>知道考点</span><b>＋</b><span>完成题目</span><b>＋</b><span>订正复写</span></div><p>第12课进行第二次模考与最终补缺。</p></section>",
+      "notes": "保留本次非A清单。"
+    }
+  ]
+}

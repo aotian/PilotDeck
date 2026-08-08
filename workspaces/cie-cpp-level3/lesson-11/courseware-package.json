@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "tiku.courseAsset.v1",
+  "packageId": "cie3-lesson-11-pilotdeck-final",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-11",
+  "title": "第11课：三级模考一与系统复习",
+  "subject": "cpp",
+  "gradeLevel": "中国电子学会 C/C++ 三级",
+  "status": "ready-for-publish",
+  "sourceOfTruth": "courseware-slides.json",
+  "renderer": "tongcheng-teach-html",
+  "counts": {
+    "objective": 12,
+    "programming": 6,
+    "teacherSlides": 25,
+    "studentSlides": 15
+  },
+  "derivedAssets": [
+    "deck.html",
+    "teacher-deck.html",
+    "student-deck.html",
+    "courseware.pptx"
+  ]
+}

@@ -1,0 +1,591 @@
+{
+  "schema_version": "tongcheng.tiku-seed.v1",
+  "lesson": 11,
+  "source_table": "quiz_questions",
+  "objective_questions": [
+    {
+      "id": "64332bad-9597-486a-b1bf-3e03074c2296",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "`sqrt(81)`的返回结果是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "9"
+        },
+        {
+          "label": "B",
+          "text": "8"
+        },
+        {
+          "label": "C",
+          "text": "40.5"
+        },
+        {
+          "label": "D",
+          "text": "81"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "平方根为9，`sqrt`返回浮点类型。",
+      "analysis": "平方根为9，`sqrt`返回浮点类型。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "sqrt"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "sqrt",
+      "knowledge_points": [
+        "sqrt"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "e3aabbf8-fe0f-4acb-8751-3153c5d25c5b",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "表达式`pow(2,5)`的值是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "10"
+        },
+        {
+          "label": "B",
+          "text": "25"
+        },
+        {
+          "label": "C",
+          "text": "32"
+        },
+        {
+          "label": "D",
+          "text": "64"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "2的5次方是32。",
+      "analysis": "2的5次方是32。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "pow"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "pow",
+      "knowledge_points": [
+        "pow"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "计算较大整数的精确平方时，可以始终放心地用`pow(x,2)`代替`x*x`。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "F",
+      "explanation": "`pow`使用浮点运算，精确整数运算优先使用整数乘法并注意溢出。",
+      "analysis": "`pow`使用浮点运算，精确整数运算优先使用整数乘法并注意溢出。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "整数精度"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "整数精度",
+      "knowledge_points": [
+        "整数精度"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "d6d6b701-e99e-4d94-aad3-1bcfebb404f1",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "`abs(-7)`的值是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "-7"
+        },
+        {
+          "label": "B",
+          "text": "0"
+        },
+        {
+          "label": "C",
+          "text": "7"
+        },
+        {
+          "label": "D",
+          "text": "49"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "绝对值表示到0的距离。",
+      "analysis": "绝对值表示到0的距离。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "abs"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "abs",
+      "knowledge_points": [
+        "abs"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "c0ce69d3-bd9c-4fc0-82bc-bed686587352",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "`floor(3.8)`的结果是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "3"
+        },
+        {
+          "label": "B",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "text": "3.8"
+        },
+        {
+          "label": "D",
+          "text": "2"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "floor向下取整。",
+      "analysis": "floor向下取整。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "floor"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "floor",
+      "knowledge_points": [
+        "floor"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "52fc6efc-4e80-46e5-845f-e205aa24497a",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "`ceil(3.2)`的结果是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "3"
+        },
+        {
+          "label": "B",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "text": "3.2"
+        },
+        {
+          "label": "D",
+          "text": "5"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "ceil向上取整。",
+      "analysis": "ceil向上取整。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "ceil"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "ceil",
+      "knowledge_points": [
+        "ceil"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "b3933034-4799-4cc3-ae46-113e35dd5013",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "`round(3.5)`的结果是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "3"
+        },
+        {
+          "label": "B",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "text": "3.5"
+        },
+        {
+          "label": "D",
+          "text": "5"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "正数3.5四舍五入为4。",
+      "analysis": "正数3.5四舍五入为4。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "round"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "round",
+      "knowledge_points": [
+        "round"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "d0c6888f-f32d-400b-8ce1-d7b183aeae21",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "执行`int x=3.9;`后，x的值是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "3"
+        },
+        {
+          "label": "B",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "text": "3.9"
+        },
+        {
+          "label": "D",
+          "text": "编译失败"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "浮点数转整数时截去小数部分。",
+      "analysis": "浮点数转整数时截去小数部分。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "类型转换"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "类型转换",
+      "knowledge_points": [
+        "类型转换"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "839217c8-3161-488c-b28e-b2d8652509fd",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "表达式`(double)7/2`的值是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "3"
+        },
+        {
+          "label": "B",
+          "text": "3.0"
+        },
+        {
+          "label": "C",
+          "text": "3.5"
+        },
+        {
+          "label": "D",
+          "text": "4"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "先把7转为double，再进行浮点除法。",
+      "analysis": "先把7转为double，再进行浮点除法。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "浮点除法"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "浮点除法",
+      "knowledge_points": [
+        "浮点除法"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "da40e53e-fcaa-4629-a173-e56a3cedaefb",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "递归函数必须有可达的终止条件，并且每次调用应更接近终止条件。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "这是递归能够停止的两个基本条件。",
+      "analysis": "这是递归能够停止的两个基本条件。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "递归"
+      ],
+      "difficulty": 3,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "递归",
+      "knowledge_points": [
+        "递归"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "e8e90fcd-ebe4-4e92-810e-0880e9a6b2be",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "比较两个C风格字符串字典序，应优先使用（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "strlen"
+        },
+        {
+          "label": "B",
+          "text": "strcpy"
+        },
+        {
+          "label": "C",
+          "text": "strcat"
+        },
+        {
+          "label": "D",
+          "text": "strcmp"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "strcmp用于按字典序比较字符数组。",
+      "analysis": "strcmp用于按字典序比较字符数组。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "字符数组函数"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "字符数组函数",
+      "knowledge_points": [
+        "字符数组函数"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "9433d7f3-6dd8-401f-9cfc-941a2dfa2116",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "候选数量有限并逐个检查是否合法，主要属于（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "模拟法"
+        },
+        {
+          "label": "B",
+          "text": "枚举法"
+        },
+        {
+          "label": "C",
+          "text": "递归法"
+        },
+        {
+          "label": "D",
+          "text": "排序法"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "枚举法列出候选并逐一验证。",
+      "analysis": "枚举法列出候选并逐一验证。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第11课",
+        "模考一",
+        "枚举法"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "枚举法",
+      "knowledge_points": [
+        "枚举法"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 11,
+        "content_status": "authorized"
+      }
+    }
+  ]
+}

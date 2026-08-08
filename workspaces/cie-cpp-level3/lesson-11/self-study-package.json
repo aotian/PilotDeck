@@ -1,0 +1,191 @@
+{
+  "schema_version": "tongcheng.self-study-course.v1",
+  "id": "cie-cpp-level3-lesson-11",
+  "lesson_id": "lesson-11",
+  "title": "第11课：三级模考一与系统复习",
+  "subject": "C++",
+  "content_status": "authorized",
+  "estimated_minutes": 180,
+  "access": {
+    "student_entry": "learn"
+  },
+  "stages": [
+    {
+      "id": "review-map",
+      "title": "三级知识复习地图",
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md"
+        }
+      ]
+    },
+    {
+      "id": "objective-practice",
+      "title": "12道客观模考",
+      "blocks": [
+        {
+          "type": "question_set",
+          "source_table": "quiz_questions",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "id": "oj-practice",
+      "title": "6道编程模考",
+      "blocks": [
+        {
+          "type": "practice",
+          "source_table": "quiz_questions",
+          "kind": "oj",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "question_refs": [
+    {
+      "question_id": "64332bad-9597-486a-b1bf-3e03074c2296",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "sqrt"
+    },
+    {
+      "question_id": "e3aabbf8-fe0f-4acb-8751-3153c5d25c5b",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "pow"
+    },
+    {
+      "question_id": "da4ebdca-c9c0-4c1c-837e-b640b3b567dc",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "整数精度"
+    },
+    {
+      "question_id": "d6d6b701-e99e-4d94-aad3-1bcfebb404f1",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "abs"
+    },
+    {
+      "question_id": "c0ce69d3-bd9c-4fc0-82bc-bed686587352",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "floor"
+    },
+    {
+      "question_id": "52fc6efc-4e80-46e5-845f-e205aa24497a",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "ceil"
+    },
+    {
+      "question_id": "b3933034-4799-4cc3-ae46-113e35dd5013",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "round"
+    },
+    {
+      "question_id": "d0c6888f-f32d-400b-8ce1-d7b183aeae21",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "类型转换"
+    },
+    {
+      "question_id": "839217c8-3161-488c-b28e-b2d8652509fd",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "浮点除法"
+    },
+    {
+      "question_id": "da40e53e-fcaa-4629-a173-e56a3cedaefb",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "递归"
+    },
+    {
+      "question_id": "e8e90fcd-ebe4-4e92-810e-0880e9a6b2be",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "字符数组函数"
+    },
+    {
+      "question_id": "9433d7f3-6dd8-401f-9cfc-941a2dfa2116",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "枚举法"
+    },
+    {
+      "question_id": "d08c75dc-7cce-5f1b-bb0a-0ee6aadd57f6",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "函数与数位分解",
+      "oj_problem_id": "/d/gesp/p/92"
+    },
+    {
+      "question_id": "bc77cf56-6591-5de4-a2a3-483453c423a6",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "递归终止与返回",
+      "oj_problem_id": "/d/CPLUS01/p/T1201"
+    },
+    {
+      "question_id": "7f897ebd-5748-47f4-9723-c38b991bef1e",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "字符串与循环移动",
+      "oj_problem_id": "/d/fxswfz/p/P406"
+    },
+    {
+      "question_id": "7fbac8b5-8c6f-4ac2-9a00-4cb49178615b",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "数学函数与枚举",
+      "oj_problem_id": "/d/gesp/p/49"
+    },
+    {
+      "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "模拟与状态更新",
+      "oj_problem_id": "d/gesp/p/163"
+    },
+    {
+      "question_id": "b6ac8295-d488-510a-881c-0fff1d17fb03",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "二维规律与输出",
+      "oj_problem_id": "/d/gesp/p/83"
+    }
+  ],
+  "integrations": {
+    "wrong_book": {
+      "enabled": true,
+      "source": "tiku_wrong_book"
+    },
+    "oj": {
+      "enabled": true,
+      "entry": "/oj-do.html"
+    }
+  }
+}

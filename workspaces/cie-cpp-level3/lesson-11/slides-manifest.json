@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "tongcheng.slidesManifest.v1",
+  "lessonId": "lesson-11",
+  "slideCount": 25,
+  "studentSlideCount": 15,
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "audience": "all",
+      "title": "三级模考一：先补缺，再整卷"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "audience": "all",
+      "title": "学生复习地图"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "audience": "all",
+      "title": "本次模考复习清单"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "audience": "all",
+      "title": "先给自己做一次诊断"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "code",
+      "audience": "all",
+      "title": "数学库函数从头文件开始"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "audience": "all",
+      "title": "六个常用数学函数"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "code",
+      "audience": "all",
+      "title": "sqrt：平方根与边界"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "code",
+      "audience": "all",
+      "title": "pow：方便，但不是万能整数运算"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "audience": "all",
+      "title": "floor、ceil、round不要混"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "code",
+      "audience": "all",
+      "title": "abs：距离问题的常用工具"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "code",
+      "audience": "all",
+      "title": "类型转换决定除法结果"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "audience": "all",
+      "title": "整卷程序阅读检查顺序"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "audience": "all",
+      "title": "例题：完全平方数判断"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考客观题 1—4"
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考客观题 5—8"
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考客观题 9—12"
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "audience": "teacher",
+      "title": "6道编程题：覆盖六个核心模块"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 1"
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 2"
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 3"
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 4"
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 5"
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考编程题 6"
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "audience": "all",
+      "title": "模考订正：不要只抄正确答案"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "audience": "all",
+      "title": "复习不是再看一遍，是再独立做对"
+    }
+  ]
+}
