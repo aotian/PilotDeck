@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "tongcheng.coursewareSlidesManifest.v1",
+  "lessonId": "lesson-10",
+  "slideCount": 25,
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "title": "矩阵与规律：把位置关系写成下标",
+      "audience": "all"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "title": "本课达标线",
+      "audience": "all"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "title": "二维数组是一张坐标表",
+      "audience": "all"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "title": "三类矩阵题",
+      "audience": "all"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "code",
+      "title": "非方阵最能暴露行列错误",
+      "audience": "all"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "title": "位置分类：先特殊后一般",
+      "audience": "all"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "code",
+      "title": "转置：交换行列",
+      "audience": "all"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "code",
+      "title": "顺时针旋转：新行来自原列",
+      "audience": "all"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "title": "旋转映射的四角检查",
+      "audience": "all"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "code",
+      "title": "四邻域：方向数组",
+      "audience": "all"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "code",
+      "title": "八邻域：3×3去掉中心",
+      "audience": "all"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "title": "新旧矩阵要分开",
+      "audience": "all"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "title": "例题：手算2×3顺时针旋转",
+      "audience": "all"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "title": "随堂练习 1—4",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "title": "随堂练习 5—8",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "title": "随堂练习 9—12",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "title": "6道编程题作战流程",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "title": "编程挑战 1",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "title": "编程挑战 2",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "title": "编程挑战 3",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "title": "编程挑战 4",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "title": "编程挑战 5",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "title": "编程挑战 6",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "title": "矩阵调试清单",
+      "audience": "all"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "title": "先画坐标，再写循环",
+      "audience": "all"
+    }
+  ]
+}

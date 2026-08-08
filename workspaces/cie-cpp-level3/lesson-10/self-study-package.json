@@ -1,0 +1,191 @@
+{
+  "schema_version": "tongcheng.self-study-course.v1",
+  "id": "cie-cpp-level3-lesson-10",
+  "lesson_id": "lesson-10",
+  "title": "第10课：矩阵与规律",
+  "subject": "C++",
+  "content_status": "authorized",
+  "estimated_minutes": 120,
+  "access": {
+    "student_entry": "learn"
+  },
+  "stages": [
+    {
+      "id": "knowledge-core",
+      "title": "矩阵与规律",
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md"
+        }
+      ]
+    },
+    {
+      "id": "objective-practice",
+      "title": "12题练习",
+      "blocks": [
+        {
+          "type": "question_set",
+          "source_table": "quiz_questions",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "id": "oj-practice",
+      "title": "6道编程专项",
+      "blocks": [
+        {
+          "type": "practice",
+          "source_table": "quiz_questions",
+          "kind": "oj",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "question_refs": [
+    {
+      "question_id": "5b492780-7aec-40b1-968b-d5cb937de5d7",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "二维边界"
+    },
+    {
+      "question_id": "959f1af7-d61f-468c-8c77-2299307227ed",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "行列下标"
+    },
+    {
+      "question_id": "8a8b9f5c-1829-4e9c-8195-1504756075d2",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "旋转尺寸"
+    },
+    {
+      "question_id": "b374259a-a397-44bb-925a-8222ebcbaeea",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "旋转映射"
+    },
+    {
+      "question_id": "fe4b633c-2fc2-49cb-83bc-12993e2a7c82",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "转置与旋转"
+    },
+    {
+      "question_id": "3341294b-42f9-4add-b53a-27d92416e07c",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "四邻域"
+    },
+    {
+      "question_id": "7fdd3cf3-fc4e-477c-aa34-220488777284",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "八邻域"
+    },
+    {
+      "question_id": "5810de39-522a-4ced-bf5d-4da37847f678",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "邻接边界"
+    },
+    {
+      "question_id": "520fea73-de81-4c84-9782-1e3b0143e9ca",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "位置分类"
+    },
+    {
+      "question_id": "f52b6b0b-3b9a-49a5-8b31-d383b0a34d08",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "新旧矩阵"
+    },
+    {
+      "question_id": "cc50f087-2349-4b82-982b-a0bd5129945c",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "边界测试"
+    },
+    {
+      "question_id": "0a5bd2b4-31ab-404c-83b1-6e2063219c1b",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "坐标调试"
+    },
+    {
+      "question_id": "b6ac8295-d488-510a-881c-0fff1d17fb03",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "二维规律与输出",
+      "oj_problem_id": "/d/gesp/p/83"
+    },
+    {
+      "question_id": "25cfc92e-acd2-47df-aca2-2b09a926b6ab",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "位置规律",
+      "oj_problem_id": "/d/gesp/p/42"
+    },
+    {
+      "question_id": "b8c099a4-7048-4ad1-a95a-adc9397aa63f",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "行列条件",
+      "oj_problem_id": "/d/gesp/p/28"
+    },
+    {
+      "question_id": "84e8bbdd-5b87-4343-acfa-e270988cfe08",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "中心坐标与距离",
+      "oj_problem_id": "/d/gesp/p/162"
+    },
+    {
+      "question_id": "308bc607-9c95-476e-9b20-8b66cc7cfd03",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "矩阵区域与变换",
+      "oj_problem_id": "/d/gesp/p/99"
+    },
+    {
+      "question_id": "bd72f678-fe7a-49a1-801b-7f5970f76185",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "八邻域统计",
+      "oj_problem_id": "/d/gesp/p/272"
+    }
+  ],
+  "integrations": {
+    "wrong_book": {
+      "enabled": true,
+      "source": "tiku_wrong_book"
+    },
+    "oj": {
+      "enabled": true,
+      "entry": "/oj-do.html"
+    }
+  }
+}
