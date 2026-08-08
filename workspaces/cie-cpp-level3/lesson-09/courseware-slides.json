@@ -3,6 +3,8 @@
   "coursePackageId": "cie-cpp-level3",
   "lessonDbId": null,
   "lessonId": "lesson-09",
+  "courseTitle": "中国电子学会 C/C++ 三级",
+  "lessonLabel": "第09课",
   "studentVisibility": "student",
   "slides": [
     {

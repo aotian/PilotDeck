@@ -2,6 +2,8 @@
   "schemaVersion": "tiku.coursewareSlides.v1",
   "coursePackageId": "cie-cpp-level3",
   "lessonId": "lesson-10",
+  "courseTitle": "中国电子学会 C/C++ 三级",
+  "lessonLabel": "第10课",
   "studentVisibility": "student",
   "slides": [
     {
