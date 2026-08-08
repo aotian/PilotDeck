@@ -1,0 +1,315 @@
+{
+  "schemaVersion": "tiku.coursewareSlides.v1",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonDbId": null,
+  "lessonId": "lesson-09",
+  "studentVisibility": "student",
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "title": "模拟法：让状态按规则一步步变化",
+      "html": "<section><h1>模拟法：让状态按规则一步步变化</h1><p>得分 · 坐标 · 方向 · 多状态</p><div class=\"flow\"><span>定义状态</span><b>→</b><span>执行操作</span><b>→</b><span>判断结束</span></div></section>",
+      "notes": "用棋子移动或记分牌导入。"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "title": "本课达标线",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>状态说清</h3><p>指出每个变量表示什么</p></article><article class=\"card\"><h3>更新有序</h3><p>按题目顺序改变状态</p></article><article class=\"card\"><h3>边界不漏</h3><p>处理起点、终点与越界</p></article><article class=\"card\"><h3>独立完成</h3><p>知识竞赛/移动坐标达到A</p></article></div>",
+      "notes": "只讲学生能做到什么。"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "title": "什么是模拟法",
+      "html": "<section><h2>什么是模拟法</h2><div class=\"grid\"><article class=\"card\"><h3>状态</h3><p>当前全部关键信息</p></article><article class=\"card\"><h3>规则</h3><p>一次输入如何改变状态</p></article><article class=\"card\"><h3>终止</h3><p>何时停止并输出</p></article><article class=\"card\"><h3>轨迹</h3><p>初态到终态的变化序列</p></article></div><p><strong>核心：</strong>不猜答案，忠实执行规则。</p></section>",
+      "notes": "对比枚举与模拟。"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "steps",
+      "title": "模拟三问",
+      "html": "<section><h2>动手前先回答三问</h2><div class=\"flow\"><span>现在是什么状态？</span><b>→</b><span>本步做什么？</span><b>→</b><span>何时结束？</span></div></section>",
+      "notes": "板书状态—操作—终止。"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "content",
+      "title": "状态表：最可靠的草稿",
+      "html": "<section><h2>状态表：最可靠的草稿</h2><pre>step input row col dir score\n0    -     2   3   0   0\n1    R     2   3   1   0\n2    F     2   4   1   1</pre><p>每行记录一次操作后的状态，第一处不同就是错误起点。</p></section>",
+      "notes": "让学生补下一行。"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "code",
+      "title": "得分模拟：更新后立刻判定",
+      "html": "<section><h2>得分模拟：更新后立刻判定</h2><pre>if (winner == 'A') ++scoreA;\nelse ++scoreB;\nif (scoreA &gt;= target &amp;&amp; scoreA-scoreB &gt;= 2) finished=true;</pre><p>先加分，再检查“至少”和“领先”。</p></section>",
+      "notes": "用10:10、11:10、12:10追问。"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "content",
+      "title": "坐标先约定，再更新",
+      "html": "<section><h2>坐标先约定，再更新</h2><div class=\"grid\"><article class=\"card\"><h3>行列坐标</h3><p>row向下、col向右增加</p></article><article class=\"card\"><h3>平面坐标</h3><p>x向右、y向上增加</p></article><article class=\"card\"><h3>题面优先</h3><p>严格按题意约定</p></article><article class=\"card\"><h3>单步测试</h3><p>手算向上和向右各一步</p></article></div></section>",
+      "notes": "强调坐标约定不同。"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "code",
+      "title": "方向数组：四个方向统一写",
+      "html": "<section><h2>方向数组：四个方向统一写</h2><pre>int dr[4]={-1,0,1,0};\nint dc[4]={0,1,0,-1};\nrow+=dr[dir]; col+=dc[dir];</pre><p>0上1右2下3左；顺时针：<code>dir=(dir+1)%4</code>。</p></section>",
+      "notes": "学生口述方向编号。"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "code",
+      "title": "边界判断要在正确时机",
+      "html": "<section><h2>边界判断要在正确时机</h2><pre>int nr=row+dr[dir], nc=col+dc[dir];\nif(0&lt;=nr &amp;&amp; nr&lt;n &amp;&amp; 0&lt;=nc &amp;&amp; nc&lt;m){\n  row=nr; col=nc;\n}</pre><p>先算候选，再判断，最后移动。</p></section>",
+      "notes": "对比先移动再撤销。"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "content",
+      "title": "位置分类：特殊情况优先",
+      "html": "<section><h2>位置分类：特殊情况优先</h2><div class=\"flow\"><span>四个角</span><b>→</b><span>四条边</span><b>→</b><span>中间区域</span></div><p>角同时属于两条边，所以优先判断角。</p></section>",
+      "notes": "用画画题验证。"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "content",
+      "title": "多状态：新旧状态不要混",
+      "html": "<section><h2>多状态：新旧状态不要混</h2><div class=\"grid\"><article class=\"card\"><h3>原地更新</h3><p>后续可能读到本轮新值</p></article><article class=\"card\"><h3>临时变量</h3><p>先算next再覆盖current</p></article><article class=\"card\"><h3>新数组</h3><p>整轮读old写next</p></article><article class=\"card\"><h3>不变量</h3><p>每轮结束必须保持的事实</p></article></div></section>",
+      "notes": "数组清零重点追问。"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "code",
+      "title": "数组清零：每轮三个动作",
+      "html": "<section><h2>数组清零：每轮三个动作</h2><pre>while(!allZero){\n  findRightmostMaximum();\n  findMinimumPositive();\n  a[maxPos]-=minPositive; ++operations;\n}</pre><p>每轮都要重新寻找。</p></section>",
+      "notes": "用[2,3,4]手算两轮。"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "title": "例题：知识竞赛记分牌",
+      "html": "<section><h2>例题：知识竞赛记分牌</h2><div class=\"grid\"><article class=\"card\"><h3>状态</h3><p>A分、B分、当前题号</p></article><article class=\"card\"><h3>输入</h3><p>答对方或无人得分</p></article><article class=\"card\"><h3>更新</h3><p>按规则增加或扣除</p></article><article class=\"card\"><h3>终止</h3><p>题目用完或提前获胜</p></article></div><p>每读一个事件，只完成一次状态转移。</p></section>",
+      "notes": "先画状态表。"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "title": "随堂练习 1—4",
+      "html": "<section><h2>随堂练习 1—4</h2><ol start=\"1\"><li>模拟法解决问题时，最先应明确什么？</li><li>只要程序按题意逐步执行，就不需要检查状态更新的先后顺序。</li><li>按行列坐标约定，点(row,col)向右移动1格应如何更新？</li><li>dx={-1,0,1,0}、dy={0,1,0,-1}中，下标1表示？</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"1\"><li><b>A</b>：模拟的核心是定义状态、操作和更新顺序。</li><li><b>F</b>：同一轮中先后顺序可能改变后续读取到的状态。</li><li><b>C</b>：向右移动使列号增加。</li><li><b>B</b>：变化量是(0,1)，表示向右。</li></ol></div>",
+      "notes": "先作答再显示。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "707b5f69-686a-4ae2-999e-1c8389552deb",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "d5b11490-2a81-400a-a73b-9b1919cff8c1",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "5d729830-635b-474f-9adb-ef5b1cfbd1ce",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "title": "随堂练习 5—8",
+      "html": "<section><h2>随堂练习 5—8</h2><ol start=\"5\"><li>0上1右2下3左时，顺时针转向可写dir=(dir+1)%4。</li><li>模拟比赛得分时，一方得1分后最稳妥的操作是？</li><li>while(!finished)中的finished最适合表示？</li><li>多个最大值并列且要求取下标最大者时，扫描可用&gt;=更新位置。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"5\"><li><b>T</b>：加1并取模形成循环方向。</li><li><b>B</b>：状态更新后应立即检查终止条件。</li><li><b>C</b>：它是控制模拟终止的状态标记。</li><li><b>T</b>：相等时更新可留下最靠后的下标。</li></ol></div>",
+      "notes": "先作答再显示。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "9f1694e2-f743-4c0c-bc35-5a859c208e0b",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "a51e42d8-44c9-4c5d-8d0b-99c57bda3168",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "8868c299-cc58-4c41-b571-58a1d09efb53",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "title": "随堂练习 9—12",
+      "html": "<section><h2>随堂练习 9—12</h2><ol start=\"9\"><li>字符图形中角、边、中间区域的合理判断顺序是？</li><li>每轮读取旧状态并统一生成新状态，最安全的是？</li><li>模拟程序只测试普通数据即可，边界状态不影响答案。</li><li>检查模拟程序最有效的手工方法是？</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"9\"><li><b>B</b>：角同时属于两条边，必须优先判断。</li><li><b>B</b>：新旧状态分离避免本轮污染。</li><li><b>F</b>：初始即结束、越界、并列等边界常决定正确性。</li><li><b>B</b>：状态表能定位第一处错误。</li></ol></div>",
+      "notes": "先作答再显示。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "f6f05580-b0ea-442e-b09c-bcf8c43b1723",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "66cbc606-14dc-428a-b3eb-a553a34f19a1",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+          "source": "quiz_questions"
+        },
+        {
+          "question_id": "f4582c51-7ca1-46bd-9b58-0ca6f225add4",
+          "source": "quiz_questions"
+        }
+      ]
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "title": "6道编程题统一作战流程",
+      "html": "<section><h2>6道编程题统一作战流程</h2><div class=\"flow\"><span>写状态表</span><b>→</b><span>翻译规则</span><b>→</b><span>单步验证</span><b>→</b><span>补边界</span></div></section>",
+      "notes": "编程前口述状态与终止。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "title": "编程挑战 1",
+      "html": "<section><h2>编程挑战 1</h2></section><div class=\"oj-card\"><span class=\"level\">基础热身</span><h3>GESP C++2级真题【202603】画画</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=e02fe56f-113e-48b2-8344-40472119dfe9&amp;oj_problem_id=d%2Fgesp%2Fp%2F215\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练位置分类与字符图形输出。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "e02fe56f-113e-48b2-8344-40472119dfe9",
+          "source": "quiz_questions",
+          "oj_problem_id": "d/gesp/p/215"
+        }
+      ]
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "title": "编程挑战 2",
+      "html": "<section><h2>编程挑战 2</h2></section><div class=\"oj-card\"><span class=\"level\">基础</span><h3>GESP 2级真题【202403】小杨的日字矩阵</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=25cfc92e-acd2-47df-aca2-2b09a926b6ab&amp;oj_problem_id=d%2Fgesp%2Fp%2F42\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练二维位置规律与输出。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "25cfc92e-acd2-47df-aca2-2b09a926b6ab",
+          "source": "quiz_questions",
+          "oj_problem_id": "d/gesp/p/42"
+        }
+      ]
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "title": "编程挑战 3",
+      "html": "<section><h2>编程挑战 3</h2></section><div class=\"oj-card\"><span class=\"level\">基础</span><h3>GESP 2级真题【202312】小杨的H字阵</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=b8c099a4-7048-4ad1-a95a-adc9397aa63f&amp;oj_problem_id=d%2Fgesp%2Fp%2F28\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练行列条件与图形模拟。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "b8c099a4-7048-4ad1-a95a-adc9397aa63f",
+          "source": "quiz_questions",
+          "oj_problem_id": "d/gesp/p/28"
+        }
+      ]
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "title": "编程挑战 4",
+      "html": "<section><h2>编程挑战 4</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>【NOIP 2003 普及组】乒乓球</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=f694fb49-f66f-4183-88f4-29e9302b975c&amp;oj_problem_id=%2Fd%2FCPLUS01%2Fp%2F334\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练得分规则与阶段状态。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "f694fb49-f66f-4183-88f4-29e9302b975c",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/CPLUS01/p/334"
+        }
+      ]
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "title": "编程挑战 5",
+      "html": "<section><h2>编程挑战 5</h2></section><div class=\"oj-card\"><span class=\"level\">标准提高</span><h3>GESP 3级真题【202509】数组清零</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=2f51853b-e6b1-4ed2-a77d-3a47304e64ba&amp;oj_problem_id=d%2Fgesp%2Fp%2F163\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练多状态更新与循环不变量。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+          "source": "quiz_questions",
+          "oj_problem_id": "d/gesp/p/163"
+        }
+      ]
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "title": "编程挑战 6",
+      "html": "<section><h2>编程挑战 6</h2></section><div class=\"oj-card\"><span class=\"level\">挑战</span><h3>GESP 2级真题【202512】黄金格</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7984c1c8-6875-586f-b6ac-5ae80403cee8&amp;oj_problem_id=%2Fd%2Fgesp%2Fp%2F179\" target=\"_top\">进入 Learn 练习 →</a></div>",
+      "notes": "真实Tiku题目；训练二维坐标与条件判断。",
+      "audience": "teacher",
+      "questionRefs": [
+        {
+          "question_id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+          "source": "quiz_questions",
+          "oj_problem_id": "/d/gesp/p/179"
+        }
+      ]
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "title": "模拟调试清单",
+      "html": "<section><h2>模拟调试清单</h2><div class=\"grid\"><article class=\"card\"><h3>漏状态</h3><p>遗漏分数方向或阶段</p></article><article class=\"card\"><h3>顺序错</h3><p>本轮更新污染后续</p></article><article class=\"card\"><h3>边界错</h3><p>第一步最后一步越界</p></article><article class=\"card\"><h3>终止错</h3><p>少一轮多一轮死循环</p></article></div></section>",
+      "notes": "给非A程序贴错误标签。"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "title": "每一步都正确，最终状态才可信",
+      "html": "<section><h1>每一步都正确，最终状态才可信</h1><div class=\"flow\"><span>状态完整</span><b>＋</b><span>更新有序</span><b>＋</b><span>边界准确</span></div><p>下一课进入矩阵与规律。</p></section>",
+      "notes": "记录四类薄弱项。"
+    }
+  ]
+}

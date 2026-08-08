@@ -1,0 +1,213 @@
+{
+  "schema_version": "tongcheng.self-study-course.v1",
+  "id": "cie-cpp-level3-lesson-09",
+  "lesson_id": "lesson-09",
+  "title": "第9课：模拟法",
+  "subject": "C++",
+  "content_status": "authorized",
+  "estimated_minutes": 120,
+  "access": {
+    "teacher_preview": "free",
+    "student_mode": "sequential",
+    "student_entry": "learn"
+  },
+  "stages": [
+    {
+      "id": "knowledge-core",
+      "title": "模拟法",
+      "duration_minutes": 35,
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md"
+        }
+      ]
+    },
+    {
+      "id": "worked-examples",
+      "title": "知识竞赛记分牌",
+      "duration_minutes": 20,
+      "blocks": [
+        {
+          "type": "practice",
+          "content_ref": "courseware-slides.json#slide-13"
+        }
+      ]
+    },
+    {
+      "id": "objective-practice",
+      "title": "12题练习",
+      "duration_minutes": 20,
+      "blocks": [
+        {
+          "type": "question_set",
+          "source_table": "quiz_questions",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "id": "oj-practice",
+      "title": "6道编程专项",
+      "duration_minutes": 40,
+      "blocks": [
+        {
+          "type": "practice",
+          "source_table": "quiz_questions",
+          "kind": "oj",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "questions": [],
+  "question_refs": [
+    {
+      "question_id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "模拟三要素"
+    },
+    {
+      "question_id": "707b5f69-686a-4ae2-999e-1c8389552deb",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "更新顺序"
+    },
+    {
+      "question_id": "d5b11490-2a81-400a-a73b-9b1919cff8c1",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "坐标更新"
+    },
+    {
+      "question_id": "5d729830-635b-474f-9adb-ef5b1cfbd1ce",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "方向数组"
+    },
+    {
+      "question_id": "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "方向循环"
+    },
+    {
+      "question_id": "9f1694e2-f743-4c0c-bc35-5a859c208e0b",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "得分模拟"
+    },
+    {
+      "question_id": "a51e42d8-44c9-4c5d-8d0b-99c57bda3168",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "终止状态"
+    },
+    {
+      "question_id": "8868c299-cc58-4c41-b571-58a1d09efb53",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "并列规则"
+    },
+    {
+      "question_id": "f6f05580-b0ea-442e-b09c-bcf8c43b1723",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "位置分类"
+    },
+    {
+      "question_id": "66cbc606-14dc-428a-b3eb-a553a34f19a1",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "新旧状态"
+    },
+    {
+      "question_id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "边界测试"
+    },
+    {
+      "question_id": "f4582c51-7ca1-46bd-9b58-0ca6f225add4",
+      "stage": "objective-practice",
+      "source_table": "quiz_questions",
+      "kind": "objective",
+      "knowledge": "状态表调试"
+    },
+    {
+      "question_id": "e02fe56f-113e-48b2-8344-40472119dfe9",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "位置分类与字符图形输出",
+      "oj_problem_id": "d/gesp/p/215"
+    },
+    {
+      "question_id": "25cfc92e-acd2-47df-aca2-2b09a926b6ab",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "二维位置规律与输出",
+      "oj_problem_id": "d/gesp/p/42"
+    },
+    {
+      "question_id": "b8c099a4-7048-4ad1-a95a-adc9397aa63f",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "行列条件与图形模拟",
+      "oj_problem_id": "d/gesp/p/28"
+    },
+    {
+      "question_id": "f694fb49-f66f-4183-88f4-29e9302b975c",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "得分规则与阶段状态",
+      "oj_problem_id": "/d/CPLUS01/p/334"
+    },
+    {
+      "question_id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "多状态更新与循环不变量",
+      "oj_problem_id": "d/gesp/p/163"
+    },
+    {
+      "question_id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+      "stage": "oj-practice",
+      "source_table": "quiz_questions",
+      "kind": "oj",
+      "knowledge": "二维坐标与条件判断",
+      "oj_problem_id": "/d/gesp/p/179"
+    }
+  ],
+  "integrations": {
+    "progress": {
+      "enabled": true,
+      "source": "learn_lesson_progress"
+    },
+    "wrong_book": {
+      "enabled": true,
+      "source": "tiku_wrong_book"
+    },
+    "oj": {
+      "enabled": true,
+      "entry": "/oj-do.html",
+      "source_table": "quiz_questions"
+    }
+  }
+}

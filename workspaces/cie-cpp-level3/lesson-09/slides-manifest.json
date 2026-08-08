@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "tongcheng.coursewareSlidesManifest.v1",
+  "lessonId": "lesson-09",
+  "slideCount": 25,
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "title": "模拟法：让状态按规则一步步变化",
+      "audience": "all"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "title": "本课达标线",
+      "audience": "all"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "title": "什么是模拟法",
+      "audience": "all"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "steps",
+      "title": "模拟三问",
+      "audience": "all"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "content",
+      "title": "状态表：最可靠的草稿",
+      "audience": "all"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "code",
+      "title": "得分模拟：更新后立刻判定",
+      "audience": "all"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "content",
+      "title": "坐标先约定，再更新",
+      "audience": "all"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "code",
+      "title": "方向数组：四个方向统一写",
+      "audience": "all"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "code",
+      "title": "边界判断要在正确时机",
+      "audience": "all"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "content",
+      "title": "位置分类：特殊情况优先",
+      "audience": "all"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "content",
+      "title": "多状态：新旧状态不要混",
+      "audience": "all"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "code",
+      "title": "数组清零：每轮三个动作",
+      "audience": "all"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "title": "例题：知识竞赛记分牌",
+      "audience": "all"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "title": "随堂练习 1—4",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "title": "随堂练习 5—8",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "title": "随堂练习 9—12",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "title": "6道编程题统一作战流程",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "title": "编程挑战 1",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "title": "编程挑战 2",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "title": "编程挑战 3",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "title": "编程挑战 4",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "title": "编程挑战 5",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "title": "编程挑战 6",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "title": "模拟调试清单",
+      "audience": "all"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "title": "每一步都正确，最终状态才可信",
+      "audience": "all"
+    }
+  ]
+}

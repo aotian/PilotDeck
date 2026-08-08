@@ -1,0 +1,62 @@
+{
+  "schema_version": "tongcheng.tiku-question-refs.v1",
+  "lesson": 9,
+  "objective": [
+    "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+    "707b5f69-686a-4ae2-999e-1c8389552deb",
+    "d5b11490-2a81-400a-a73b-9b1919cff8c1",
+    "5d729830-635b-474f-9adb-ef5b1cfbd1ce",
+    "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+    "9f1694e2-f743-4c0c-bc35-5a859c208e0b",
+    "a51e42d8-44c9-4c5d-8d0b-99c57bda3168",
+    "8868c299-cc58-4c41-b571-58a1d09efb53",
+    "f6f05580-b0ea-442e-b09c-bcf8c43b1723",
+    "66cbc606-14dc-428a-b3eb-a553a34f19a1",
+    "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+    "f4582c51-7ca1-46bd-9b58-0ca6f225add4"
+  ],
+  "oj": [
+    {
+      "id": "e02fe56f-113e-48b2-8344-40472119dfe9",
+      "pid": "d/gesp/p/215",
+      "title": "GESP C++2级真题【202603】画画",
+      "level": "基础热身",
+      "knowledge": "位置分类与字符图形输出"
+    },
+    {
+      "id": "25cfc92e-acd2-47df-aca2-2b09a926b6ab",
+      "pid": "d/gesp/p/42",
+      "title": "GESP 2级真题【202403】小杨的日字矩阵",
+      "level": "基础",
+      "knowledge": "二维位置规律与输出"
+    },
+    {
+      "id": "b8c099a4-7048-4ad1-a95a-adc9397aa63f",
+      "pid": "d/gesp/p/28",
+      "title": "GESP 2级真题【202312】小杨的H字阵",
+      "level": "基础",
+      "knowledge": "行列条件与图形模拟"
+    },
+    {
+      "id": "f694fb49-f66f-4183-88f4-29e9302b975c",
+      "pid": "/d/CPLUS01/p/334",
+      "title": "【NOIP 2003 普及组】乒乓球",
+      "level": "标准",
+      "knowledge": "得分规则与阶段状态"
+    },
+    {
+      "id": "2f51853b-e6b1-4ed2-a77d-3a47304e64ba",
+      "pid": "d/gesp/p/163",
+      "title": "GESP 3级真题【202509】数组清零",
+      "level": "标准提高",
+      "knowledge": "多状态更新与循环不变量"
+    },
+    {
+      "id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+      "pid": "/d/gesp/p/179",
+      "title": "GESP 2级真题【202512】黄金格",
+      "level": "挑战",
+      "knowledge": "二维坐标与条件判断"
+    }
+  ]
+}

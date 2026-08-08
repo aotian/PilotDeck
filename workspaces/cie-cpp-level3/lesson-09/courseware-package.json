@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "tiku.courseAsset.v1",
+  "packageId": "cie3-lesson-09-pilotdeck-final",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-09",
+  "title": "第9课：模拟法",
+  "subject": "cpp",
+  "gradeLevel": "中国电子学会 C/C++ 三级",
+  "status": "ready-for-publish",
+  "sourceOfTruth": "courseware-slides.json",
+  "renderer": "tongcheng-teach-html",
+  "counts": {
+    "objective": 12,
+    "programming": 6,
+    "teacherSlides": 25,
+    "studentSlides": 15
+  },
+  "derivedAssets": [
+    "deck.html",
+    "teacher-deck.html",
+    "student-deck.html",
+    "courseware.pptx"
+  ],
+  "entryPolicy": "students_enter_from_learn_class",
+  "teacherEntry": "https://teach.tongchengweilai.com",
+  "studentEntry": "https://learn.tongchengweilai.com"
+}

@@ -1,0 +1,624 @@
+{
+  "schema_version": "tongcheng.tiku-seed.v1",
+  "lesson": 9,
+  "source_table": "quiz_questions",
+  "objective_questions": [
+    {
+      "id": "aefd9b4b-08a1-4449-8720-e60b11eeaec5",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "模拟法解决问题时，最先应明确什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "每一步状态如何变化"
+        },
+        {
+          "label": "B",
+          "text": "变量名必须很短"
+        },
+        {
+          "label": "C",
+          "text": "一定使用二维数组"
+        },
+        {
+          "label": "D",
+          "text": "先写输出语句"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "模拟的核心是定义状态、操作和更新顺序。",
+      "analysis": "模拟的核心是定义状态、操作和更新顺序。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "模拟三要素",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "模拟三要素",
+      "knowledge_points": [
+        "模拟三要素"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "707b5f69-686a-4ae2-999e-1c8389552deb",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "只要程序按题意逐步执行，就不需要检查状态更新的先后顺序。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "F",
+      "explanation": "同一轮中先后顺序可能改变后续读取到的状态。",
+      "analysis": "同一轮中先后顺序可能改变后续读取到的状态。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "更新顺序",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "更新顺序",
+      "knowledge_points": [
+        "更新顺序"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "d5b11490-2a81-400a-a73b-9b1919cff8c1",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "按行列坐标约定，点(row,col)向右移动1格应如何更新？",
+      "options": [
+        {
+          "label": "A",
+          "text": "row+1"
+        },
+        {
+          "label": "B",
+          "text": "row-1"
+        },
+        {
+          "label": "C",
+          "text": "col+1"
+        },
+        {
+          "label": "D",
+          "text": "col-1"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "向右移动使列号增加。",
+      "analysis": "向右移动使列号增加。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "坐标更新",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "坐标更新",
+      "knowledge_points": [
+        "坐标更新"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "5d729830-635b-474f-9adb-ef5b1cfbd1ce",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "dx={-1,0,1,0}、dy={0,1,0,-1}中，下标1表示？",
+      "options": [
+        {
+          "label": "A",
+          "text": "上"
+        },
+        {
+          "label": "B",
+          "text": "右"
+        },
+        {
+          "label": "C",
+          "text": "下"
+        },
+        {
+          "label": "D",
+          "text": "左"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "变化量是(0,1)，表示向右。",
+      "analysis": "变化量是(0,1)，表示向右。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "方向数组",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "方向数组",
+      "knowledge_points": [
+        "方向数组"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "4329edb0-51b9-4dae-80f0-beb41d4015ea",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "0上1右2下3左时，顺时针转向可写dir=(dir+1)%4。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "加1并取模形成循环方向。",
+      "analysis": "加1并取模形成循环方向。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "方向循环",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "方向循环",
+      "knowledge_points": [
+        "方向循环"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "9f1694e2-f743-4c0c-bc35-5a859c208e0b",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "模拟比赛得分时，一方得1分后最稳妥的操作是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只更新总分"
+        },
+        {
+          "label": "B",
+          "text": "更新后立即判断本局是否结束"
+        },
+        {
+          "label": "C",
+          "text": "所有输入结束后再判断"
+        },
+        {
+          "label": "D",
+          "text": "清空分数"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "状态更新后应立即检查终止条件。",
+      "analysis": "状态更新后应立即检查终止条件。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "得分模拟",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "得分模拟",
+      "knowledge_points": [
+        "得分模拟"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "a51e42d8-44c9-4c5d-8d0b-99c57bda3168",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "while(!finished)中的finished最适合表示？",
+      "options": [
+        {
+          "label": "A",
+          "text": "当前坐标"
+        },
+        {
+          "label": "B",
+          "text": "循环次数"
+        },
+        {
+          "label": "C",
+          "text": "是否达到终止状态"
+        },
+        {
+          "label": "D",
+          "text": "输入规模"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "它是控制模拟终止的状态标记。",
+      "analysis": "它是控制模拟终止的状态标记。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "终止状态",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "终止状态",
+      "knowledge_points": [
+        "终止状态"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "8868c299-cc58-4c41-b571-58a1d09efb53",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "多个最大值并列且要求取下标最大者时，扫描可用>=更新位置。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "相等时更新可留下最靠后的下标。",
+      "analysis": "相等时更新可留下最靠后的下标。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "并列规则",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "并列规则",
+      "knowledge_points": [
+        "并列规则"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "f6f05580-b0ea-442e-b09c-bcf8c43b1723",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "字符图形中角、边、中间区域的合理判断顺序是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "中间区域边角"
+        },
+        {
+          "label": "B",
+          "text": "角边中间区域"
+        },
+        {
+          "label": "C",
+          "text": "边中间区域角"
+        },
+        {
+          "label": "D",
+          "text": "顺序无关"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "角同时属于两条边，必须优先判断。",
+      "analysis": "角同时属于两条边，必须优先判断。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "位置分类",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "位置分类",
+      "knowledge_points": [
+        "位置分类"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "66cbc606-14dc-428a-b3eb-a553a34f19a1",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "每轮读取旧状态并统一生成新状态，最安全的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "随意原地修改"
+        },
+        {
+          "label": "B",
+          "text": "临时变量或新数组"
+        },
+        {
+          "label": "C",
+          "text": "删除循环"
+        },
+        {
+          "label": "D",
+          "text": "只更新首项"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "新旧状态分离避免本轮污染。",
+      "analysis": "新旧状态分离避免本轮污染。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "新旧状态",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "新旧状态",
+      "knowledge_points": [
+        "新旧状态"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "1b04e6a2-7883-44e9-bbc7-c1eb41bd0035",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "模拟程序只测试普通数据即可，边界状态不影响答案。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "F",
+      "explanation": "初始即结束、越界、并列等边界常决定正确性。",
+      "analysis": "初始即结束、越界、并列等边界常决定正确性。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "边界测试",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "边界测试",
+      "knowledge_points": [
+        "边界测试"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    },
+    {
+      "id": "f4582c51-7ca1-46bd-9b58-0ca6f225add4",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "检查模拟程序最有效的手工方法是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只看最终答案"
+        },
+        {
+          "label": "B",
+          "text": "列状态表逐轮记录"
+        },
+        {
+          "label": "C",
+          "text": "删掉判断"
+        },
+        {
+          "label": "D",
+          "text": "变量全设0"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "状态表能定位第一处错误。",
+      "analysis": "状态表能定位第一处错误。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第9课",
+        "模拟法",
+        "状态表调试",
+        "cie-cpp-level3"
+      ],
+      "difficulty": 2,
+      "knowledge_id": null,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "状态表调试",
+      "knowledge_points": [
+        "状态表调试"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "source_type": "course_authorized_original",
+        "lesson_number": 9,
+        "content_status": "authorized",
+        "contract_version": 1
+      }
+    }
+  ],
+  "oj_questions": []
+}
