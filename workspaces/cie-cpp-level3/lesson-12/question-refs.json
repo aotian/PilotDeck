@@ -1,0 +1,61 @@
+{
+  "lesson": 12,
+  "objective": [
+    "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
+    "cb4dbbf3-7604-4876-aef6-acbb39f39e47",
+    "e8d491d8-f3f5-4386-90d0-cf311b839462",
+    "de0c711d-b0cc-47e2-9daf-7b718a33db88",
+    "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
+    "a6fa70f5-bb7d-4ccc-b992-7ea2ef8bf081",
+    "a7ae385e-42c3-4faf-9057-b33473c4ce2d",
+    "cdc53e47-6818-42c5-aafc-358f8b764868",
+    "0a90e193-b56b-4598-81d2-d74456bc06bf",
+    "1c0ad947-683b-4ed1-81f0-a467d36c41e8",
+    "8baf798f-38cd-44c7-9d77-7371ae75ee2f",
+    "eeb160dc-add9-4222-8698-acac8bdef865"
+  ],
+  "oj": [
+    {
+      "id": "767bef72-e044-5584-ab1f-aa5b52f54ac6",
+      "pid": "/d/gesp/p/38",
+      "title": "GESP 1级真题【202403】找因数",
+      "level": "基础",
+      "knowledge": "函数封装与整除判断"
+    },
+    {
+      "id": "b95299fc-95a9-506b-9743-53c94e0bc7a8",
+      "pid": "/d/CPLUS01/p/T1204",
+      "title": "爬楼梯",
+      "level": "标准",
+      "knowledge": "递归终止与状态关系"
+    },
+    {
+      "id": "3a339f7b-0a77-4cab-9d85-235afea38f7b",
+      "pid": "/d/gesp/p/185",
+      "title": "GESP 3级真题【202512】密码强度",
+      "level": "标准",
+      "knowledge": "字符数组与类别状态"
+    },
+    {
+      "id": "cf2cf27d-8c90-4179-b696-10c9ab4eeb93",
+      "pid": "d/gesp/p/125",
+      "title": "GESP 2级真题【202506】数三角形",
+      "level": "标准",
+      "knowledge": "枚举范围与去重"
+    },
+    {
+      "id": "f694fb49-f66f-4183-88f4-29e9302b975c",
+      "pid": "/d/CPLUS01/p/334",
+      "title": "【NOIP 2003 普及组】乒乓球",
+      "level": "综合",
+      "knowledge": "模拟状态与终止"
+    },
+    {
+      "id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
+      "pid": "/d/gesp/p/179",
+      "title": "GESP 2级真题【202512】黄金格",
+      "level": "综合",
+      "knowledge": "二维坐标与边界"
+    }
+  ]
+}
