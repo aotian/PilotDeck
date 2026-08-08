@@ -55,17 +55,20 @@ function validateHtmlAssets(input, teacherPath, studentPath, studentHtml) {
 
 function deckHtml(input, role) {
     const slides = input.slides.filter((slide) => role === 'teacher' || slide.audience !== 'teacher');
-    const pages = slides.map((slide, index) => slideHtml(slide, index, slides.length, role)).join('\n');
+    const pages = slides.map((slide, index) => slideHtml(slide, index, slides.length, role, input)).join('\n');
     return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(input.lessonId || '童澄课堂')}</title><style>${css()}body[data-role="teacher"]{--teach-toolbar-safe:15%}body[data-role="teacher"] .slide main{height:calc(100% - var(--teach-toolbar-safe))}body[data-role="teacher"] .teacher-note{bottom:0}body[data-role="teacher"] nav{bottom:calc(var(--teach-toolbar-safe) + 1%)}body[data-role="teacher"] .slide[data-id="slide-01"] h1{margin-top:7%}body[data-role="teacher"] .slide[data-id="slide-01"] .flow{margin-top:1.5%}
 </style></head><body data-role="${role}"><div class="deck">${pages}</div><nav><button data-dir="-1" aria-label="上一页">←</button><span id="counter">1 / ${slides.length}</span><button data-dir="1" aria-label="下一页">→</button>${role === 'teacher' ? '<button id="timer">⏱ 15:00</button>' : ''}<button id="full">全屏</button></nav><script>${script()}</script></body></html>`;
 }
 
-function slideHtml(slide, index, count, role) {
+function slideHtml(slide, index, count, role, input) {
     const answer = role === 'teacher' && slide.answer
         ? `<button class="answer-toggle" aria-expanded="false">点击显示答案</button><div class="answer-panel" hidden>${slide.answer}</div>` : '';
     const note = role === 'teacher' && slide.notes ? `<aside class="teacher-note"><b>教师提示</b>${esc(slide.notes)}</aside>` : '';
     const oj = slide.oj ? `<div class="oj-card"><span class="level">${esc(slide.oj.level || '课堂练习')}</span><h3>${esc(slide.oj.title)}</h3><p>完整题面、样例和在线评测请在 Learn 中打开。</p><a class="oj-link" href="${attr(slide.oj.learnUrl)}" target="_top">进入 Learn 练习 →</a></div>` : '';
-    return `<section class="slide${index === 0 ? ' active' : ''}" data-index="${index}" data-id="${attr(slide.id)}"><header><span>中国电子学会 C/C++ 三级 · 08</span><span>${index + 1} / ${count}</span></header><main>${slide.html || ''}${oj}${answer}${note}</main><footer><span>童澄未来 · 真题考点驱动 · 练习闭环</span><span>← → 翻页</span></footer></section>`;
+    const courseTitle = input.courseTitle || '中国电子学会 C/C++ 三级';
+    const lessonNumber = String(input.lessonId || '').match(/lesson-(\d+)/i)?.[1];
+    const lessonLabel = input.lessonLabel || (lessonNumber ? `第${Number(lessonNumber)}课` : input.lessonId || '');
+    return `<section class="slide${index === 0 ? ' active' : ''}" data-index="${index}" data-id="${attr(slide.id)}"><header><span>${esc(courseTitle)} · ${esc(lessonLabel)}</span><span>${index + 1} / ${count}</span></header><main>${slide.html || ''}${oj}${answer}${note}</main><footer><span>童澄未来 · 真题考点驱动 · 练习闭环</span><span>← → 翻页</span></footer></section>`;
 }
 
 function css() { return `

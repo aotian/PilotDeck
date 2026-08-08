@@ -5,12 +5,12 @@
   "renderer": "tongcheng-teach-html",
   "checks": {
     "rendererValidation": "pass",
-    "teacherSlides": 25,
-    "studentSlides": 15,
+    "teacherSlides": 30,
+    "studentSlides": 25,
     "studentAnswers": 0,
     "studentTeacherNotes": 0,
     "editablePptx": true
   },
   "publishAllowed": false,
-  "generatedAt": "2026-08-08T08:09:06.126Z"
+  "generatedAt": "2026-08-08T11:28:45.768Z"
 }

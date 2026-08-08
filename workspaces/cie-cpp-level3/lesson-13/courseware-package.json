@@ -3,22 +3,26 @@
   "packageId": "cie3-lesson-13-pilotdeck-final",
   "coursePackageId": "cie-cpp-level3",
   "lessonId": "lesson-13",
-  "title": "第13课：最终冲刺与个人清库",
+  "title": "第13课：三级全真模拟二：最终清库与稳定得分",
   "subject": "cpp",
   "gradeLevel": "中国电子学会 C/C++ 三级",
   "status": "ready-for-publish",
   "sourceOfTruth": "courseware-slides.json",
   "renderer": "tongcheng-teach-html",
   "counts": {
-    "objective": 12,
-    "programming": 6,
-    "teacherSlides": 25,
-    "studentSlides": 15
+    "fullMockPapers": 1,
+    "fullMockQuestions": 22,
+    "choice": 10,
+    "judge": 10,
+    "programming": 2,
+    "teacherSlides": 30,
+    "studentSlides": 25
   },
   "derivedAssets": [
     "deck.html",
     "teacher-deck.html",
     "student-deck.html",
     "courseware.pptx"
-  ]
+  ],
+  "examId": "baef99d1-efae-4097-8103-cf4ded3ce8a1"
 }

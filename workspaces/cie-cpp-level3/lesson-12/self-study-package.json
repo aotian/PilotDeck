@@ -2,38 +2,133 @@
   "schema_version": "tongcheng.self-study-course.v1",
   "id": "cie-cpp-level3-lesson-12",
   "lesson_id": "lesson-12",
-  "title": "第12课：三级模考二与最终补缺",
+  "title": "第12课：三级全真模拟一：系统复习与整卷检测",
   "subject": "C++",
+  "series": "中国电子学会C++三级冲优秀课程",
   "content_status": "authorized",
-  "estimated_minutes": 180,
+  "estimated_minutes": 120,
   "access": {
+    "teacher_preview": "free",
+    "student_mode": "sequential",
     "student_entry": "learn"
   },
   "stages": [
     {
-      "id": "review",
-      "title": "非A复测与知识清单",
+      "id": "goal-check",
+      "title": "目标与整卷规则",
+      "duration_minutes": 10,
+      "blocks": [
+        {
+          "type": "tutor",
+          "content_ref": "student-topic-content.md#七全真模拟卷"
+        }
+      ],
+      "completion": {
+        "evidence": [
+          "lesson_main"
+        ]
+      }
+    },
+    {
+      "id": "board-notes",
+      "title": "函数、参数与递归板书",
+      "duration_minutes": 20,
       "blocks": [
         {
           "type": "reading",
-          "content_ref": "student-topic-content.md"
+          "content_ref": "student-topic-content.md#一函数板书"
+        },
+        {
+          "type": "instruction",
+          "mode": "trace_and_explain"
         }
-      ]
+      ],
+      "completion": {
+        "evidence": [
+          "lesson_main"
+        ]
+      }
+    },
+    {
+      "id": "libraries",
+      "title": "字符数组与常用函数板书",
+      "duration_minutes": 15,
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md#三字符数组与常用函数"
+        },
+        {
+          "type": "instruction",
+          "mode": "function_table_recall"
+        }
+      ],
+      "completion": {
+        "evidence": [
+          "lesson_main"
+        ]
+      }
+    },
+    {
+      "id": "algorithms",
+      "title": "数组、枚举与模拟板书",
+      "duration_minutes": 15,
+      "blocks": [
+        {
+          "type": "reading",
+          "content_ref": "student-topic-content.md#五数组枚举与模拟"
+        },
+        {
+          "type": "instruction",
+          "mode": "boundary_checklist"
+        }
+      ],
+      "completion": {
+        "evidence": [
+          "lesson_main"
+        ]
+      }
+    },
+    {
+      "id": "full-mock",
+      "title": "全真模拟卷（一）",
+      "duration_minutes": 35,
+      "blocks": [
+        {
+          "type": "assessment",
+          "source": "final_assessment",
+          "exam_id": "37dbffac-ac52-4405-8d9a-f96bfd6abd8a",
+          "count": 22
+        }
+      ],
+      "completion": {
+        "evidence": [
+          "final_assessment",
+          "question_bank"
+        ]
+      }
     },
     {
       "id": "objective-practice",
-      "title": "第二套12道客观题",
+      "title": "客观题错因订正",
+      "duration_minutes": 10,
       "blocks": [
         {
           "type": "question_set",
           "source_table": "quiz_questions",
           "count": 12
         }
-      ]
+      ],
+      "completion": {
+        "evidence": [
+          "question_bank"
+        ]
+      }
     },
     {
       "id": "oj-practice",
-      "title": "第二套6道编程题",
+      "title": "编程题评测与复测",
+      "duration_minutes": 10,
       "blocks": [
         {
           "type": "practice",
@@ -41,93 +136,125 @@
           "kind": "oj",
           "count": 6
         }
-      ]
+      ],
+      "completion": {
+        "evidence": [
+          "question_bank",
+          "final_assessment"
+        ]
+      }
+    },
+    {
+      "id": "exit-review",
+      "title": "次日与七日复习安排",
+      "duration_minutes": 5,
+      "blocks": [
+        {
+          "type": "assessment",
+          "mode": "exit_ticket"
+        },
+        {
+          "type": "memorization",
+          "review_schedule": [
+            "day1",
+            "day7"
+          ]
+        }
+      ],
+      "completion": {
+        "evidence": [
+          "final_assessment",
+          "memorization"
+        ]
+      }
     }
   ],
+  "questions": [],
+  "exam_id": "37dbffac-ac52-4405-8d9a-f96bfd6abd8a",
   "question_refs": [
     {
       "question_id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "函数声明"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "cb4dbbf3-7604-4876-aef6-acbb39f39e47",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "引用传递"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "e8d491d8-f3f5-4386-90d0-cf311b839462",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "递归"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "de0c711d-b0cc-47e2-9daf-7b718a33db88",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "strlen"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "strcmp"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "a6fa70f5-bb7d-4ccc-b992-7ea2ef8bf081",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "数学库函数"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "a7ae385e-42c3-4faf-9057-b33473c4ce2d",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "枚举法"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "cdc53e47-6818-42c5-aafc-358f8b764868",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "模拟法"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "0a90e193-b56b-4598-81d2-d74456bc06bf",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "二维边界"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "1c0ad947-683b-4ed1-81f0-a467d36c41e8",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "类型转换"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "8baf798f-38cd-44c7-9d77-7371ae75ee2f",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "数组边界"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "eeb160dc-add9-4222-8698-acac8bdef865",
       "stage": "objective-practice",
       "source_table": "quiz_questions",
       "kind": "objective",
-      "knowledge": "调试检查"
+      "knowledge": "电子学会C++三级综合复习"
     },
     {
       "question_id": "767bef72-e044-5584-ab1f-aa5b52f54ac6",
@@ -179,13 +306,28 @@
     }
   ],
   "integrations": {
+    "progress": {
+      "enabled": true,
+      "source": "learn_lesson_progress"
+    },
     "wrong_book": {
       "enabled": true,
       "source": "tiku_wrong_book"
     },
+    "reviews": {
+      "day1": true,
+      "day7": true
+    },
     "oj": {
       "enabled": true,
-      "entry": "/oj-do.html"
+      "entry": "/oj-do.html",
+      "source_table": "quiz_questions"
     }
-  }
+  },
+  "teacher_attention_rules": [
+    "整卷未提交",
+    "编程题未取得评测状态",
+    "同类错误连续出现3次",
+    "模拟卷得分低于60分"
+  ]
 }

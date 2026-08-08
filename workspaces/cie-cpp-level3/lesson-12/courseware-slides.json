@@ -10,307 +10,246 @@
       "id": "slide-01",
       "order": 1,
       "type": "cover",
-      "title": "三级模考二：最后一次完整检查",
-      "html": "<section><h1>三级模考二：最后一次完整检查</h1><p>非A复测 · 全考点快查 · 第二套模考 · 最终补缺</p><div class=\"flow\"><span>复测</span><b>→</b><span>模考</span><b>→</b><span>清库</span></div></section>",
-      "notes": "本课目标是发现并消除最后的不稳定。"
+      "title": "三级全真模拟一：系统复习与整卷检测",
+      "html": "<section><h1>三级全真模拟一：系统复习与整卷检测</h1><p>先用板书知识卡补齐概念，再完成第一套整卷，建立真实基线。</p><div class=\"flow\"><span>知识板书</span><b>→</b><span>例题复盘</span><b>→</b><span>120分钟整卷</span><b>→</b><span>错题清库</span></div></section>",
+      "notes": "本课不讲超纲新知识。"
     },
     {
       "id": "slide-02",
       "order": 2,
       "type": "content",
-      "title": "先复测第11课非A题",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>关闭答案</h3><p>从空白文件开始</p></article><article class=\"card\"><h3>限时完成</h3><p>记录分析与调试时间</p></article><article class=\"card\"><h3>自造数据</h3><p>最小、边界、特殊</p></article><article class=\"card\"><h3>重新定级</h3><p>只有独立通过才是A</p></article></div>",
-      "notes": "复测不是重新看讲解。"
+      "title": "这不是提纲课：每个知识点要写清四件事",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>定义</h3><p>它是什么、解决什么问题</p></article><article class=\"card\"><h3>语法</h3><p>标准写法与参数含义</p></article><article class=\"card\"><h3>例子</h3><p>变量怎样变化、结果怎样得到</p></article><article class=\"card\"><h3>易错</h3><p>边界、类型、返回和格式</p></article></div>",
+      "notes": "学生可截屏或抄写为考前笔记。"
     },
     {
       "id": "slide-03",
       "order": 3,
       "type": "content",
-      "title": "三级全考点最后清单",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>函数</h3><p>定义、调用、参数、返回</p></article><article class=\"card\"><h3>递归</h3><p>终止、缩小、返回</p></article><article class=\"card\"><h3>库函数</h3><p>字符数组与cmath</p></article><article class=\"card\"><h3>算法</h3><p>枚举、模拟、完整程序</p></article></div>",
-      "notes": "逐项勾选，不把二维数组误当成三级新增点。"
+      "title": "整卷结构与计分",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>选择题 10道</h3><p>每题2分，共20分</p></article><article class=\"card\"><h3>判断题 10道</h3><p>每题2分，共20分</p></article><article class=\"card\"><h3>编程题 2道</h3><p>每题30分，共60分</p></article><article class=\"card\"><h3>考试时间</h3><p>120分钟，总分100分</p></article></div><p>课程采用总纲确定的10选择＋10判断＋2编程结构；当次正式考试以准考证与通知为准。</p>",
+      "notes": "先建立时间预算。"
     },
     {
       "id": "slide-04",
       "order": 4,
       "type": "content",
-      "title": "两次模考对照表",
-      "html": "<section><h2>两次模考对照表</h2><pre>项目       模考一  模考二\n客观正确数   __     __\n编程A数量    __     __\n边界错误数   __     __\n超时题数     __     __</pre><p>分数提高不等于能力稳定，还要看错误类型是否减少。</p></section>",
-      "notes": "学生现场填写。"
+      "title": "函数：定义、声明与调用",
+      "html": "<section><pre>返回类型 函数名(参数表);          // 声明\n返回类型 函数名(参数表) { ... }  // 定义\n结果变量 = 函数名(实参);         // 调用</pre><p><b>定义：</b>函数是完成一个明确任务、可以重复调用的代码块。调用前，编译器必须已经看见声明或完整定义。</p></section>",
+      "notes": "让学生指出返回类型、函数名、形参和实参。"
     },
     {
       "id": "slide-05",
       "order": 5,
       "type": "content",
-      "title": "函数与参数：四个检查点",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>声明</h3><p>调用前是否可见</p></article><article class=\"card\"><h3>参数</h3><p>值还是引用</p></article><article class=\"card\"><h3>返回</h3><p>所有路径都有结果</p></article><article class=\"card\"><h3>职责</h3><p>一个函数做一件事</p></article></div>",
-      "notes": "函数题最后快查。"
+      "title": "函数参数：值传递与引用传递",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>值传递 int x</h3><p>把实参的值复制给形参；函数内修改x，不改变原变量</p></article><article class=\"card\"><h3>引用传递 int &x</h3><p>形参是实参的别名；修改x会直接修改原变量</p></article><article class=\"card\"><h3>何时用引用</h3><p>交换数据、返回多个结果、避免复制大对象</p></article><article class=\"card\"><h3>风险</h3><p>引用会产生副作用，调用前要知道哪些变量可能改变</p></article></div><pre>void swap2(int &a, int &b) { int t=a; a=b; b=t; }</pre>",
+      "notes": "引用符号写在形参类型后。"
     },
     {
       "id": "slide-06",
       "order": 6,
       "type": "content",
-      "title": "递归：三问必须同时回答",
-      "html": "<div class=\"flow\"><span>何时停止</span><b>→</b><span>怎样变小</span><b>→</b><span>怎样返回</span></div><p>任何一问答不清，都先不要写递归代码。</p>",
-      "notes": "学生口述一个递归过程。"
+      "title": "返回值、作用域与函数重载",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>return</h3><p>结束本次函数调用，并把结果交回调用处</p></article><article class=\"card\"><h3>返回路径</h3><p>非void函数的所有可能路径都应返回合法值</p></article><article class=\"card\"><h3>局部变量</h3><p>只在所在代码块内有效，离开作用域即失效</p></article><article class=\"card\"><h3>函数重载</h3><p>同名函数的参数列表必须不同，不能只靠返回类型区分</p></article></div>",
+      "notes": "程序阅读题常从调用顺序和作用域设陷阱。"
     },
     {
       "id": "slide-07",
       "order": 7,
       "type": "content",
-      "title": "字符数组：先看容量和结束标记",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>容量</h3><p>必须留出\\0</p></article><article class=\"card\"><h3>长度</h3><p>strlen不含\\0</p></article><article class=\"card\"><h3>写入</h3><p>复制与拼接先验容量</p></article><article class=\"card\"><h3>比较</h3><p>strcmp返回0才相等</p></article></div>",
-      "notes": "防止用==比较字符数组内容。"
+      "title": "递归：函数直接或间接调用自己",
+      "html": "<section><p><b>递归适用：</b>大问题可以变成结构相同、规模更小的问题。</p><div class=\"flow\"><span>终止条件</span><b>→</b><span>规模严格缩小</span><b>→</b><span>利用子问题结果返回</span></div><pre>int sum(int n) {\n  if (n == 0) return 0;\n  return n + sum(n - 1);\n}</pre></section>",
+      "notes": "三项缺一不可。"
     },
     {
       "id": "slide-08",
       "order": 8,
       "type": "content",
-      "title": "数学函数：会用也要会判断风险",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>sqrt</h3><p>候选后整数验证</p></article><article class=\"card\"><h3>pow</h3><p>注意浮点精度</p></article><article class=\"card\"><h3>abs</h3><p>距离与差值</p></article><article class=\"card\"><h3>取整</h3><p>floor/ceil/round</p></article></div>",
-      "notes": "复测第11课新增内容。"
+      "title": "递归追踪：向下调用，向上返回",
+      "html": "<section><pre>sum(3)\n= 3 + sum(2)\n= 3 + 2 + sum(1)\n= 3 + 2 + 1 + sum(0)\n= 3 + 2 + 1 + 0 = 6</pre><p>调用时先暂停当前层；最小问题得到结果后，才逐层恢复并计算。</p></section>",
+      "notes": "要求学生画出sum(4)调用链。"
     },
     {
       "id": "slide-09",
       "order": 9,
       "type": "content",
-      "title": "枚举与模拟：先判断模型",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>枚举</h3><p>候选有限，逐个验证</p></article><article class=\"card\"><h3>模拟</h3><p>事件驱动，更新状态</p></article><article class=\"card\"><h3>共同点</h3><p>边界和顺序都重要</p></article><article class=\"card\"><h3>区别</h3><p>候选空间 vs 过程状态</p></article></div>",
-      "notes": "给题目贴模型标签。"
+      "title": "字符数组：容量、长度和结束标记",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>定义</h3><p>char数组用连续字符保存C风格字符串</p></article><article class=\"card\"><h3>结束标记</h3><p>字符串末尾必须有\\0</p></article><article class=\"card\"><h3>容量</h3><p>char s[10]最多安全保存9个可见字符</p></article><article class=\"card\"><h3>长度</h3><p>strlen只数\\0之前的字符，不包含\\0</p></article></div><pre>char s[6] = \"hello\";  // 5个字符 + 1个\\0</pre>",
+      "notes": "区分数组容量和当前字符串长度。"
     },
     {
       "id": "slide-10",
       "order": 10,
       "type": "content",
-      "title": "二维题：行列和边界最后核对",
-      "html": "<div class=\"flow\"><span>确认n行m列</span><b>→</b><span>写合法下标</span><b>→</b><span>测非方阵</span></div><p>涉及相邻格时，先判断新坐标合法，再访问数组。</p>",
-      "notes": "避免i、j写反。"
+      "title": "常用字符串函数：必须会写函数原型和条件",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>strlen(s)</h3><p>返回有效字符个数，不含\\0</p></article><article class=\"card\"><h3>strcpy(dst, src)</h3><p>复制src到dst；dst容量必须足够</p></article><article class=\"card\"><h3>strcat(dst, src)</h3><p>把src接到dst末尾；容量≥两串长度+1</p></article><article class=\"card\"><h3>strcmp(a, b)</h3><p>返回0表示内容相等；负/正表示字典序</p></article></div><pre>#include &lt;cstring&gt;</pre>",
+      "notes": "这是学生板书必记页。"
     },
     {
       "id": "slide-11",
       "order": 11,
       "type": "content",
-      "title": "程序阅读：不要跳着猜",
-      "html": "<div class=\"flow\"><span>标变量类型</span><b>→</b><span>写初值</span><b>→</b><span>逐步更新</span><b>→</b><span>确认输出</span></div>",
-      "notes": "复杂代码先拆成小表格。"
+      "title": "字符分类与大小写转换",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>isdigit(ch)</h3><p>是否为数字字符0—9</p></article><article class=\"card\"><h3>isalpha(ch)</h3><p>是否为英文字母</p></article><article class=\"card\"><h3>islower / isupper</h3><p>判断小写/大写字母</p></article><article class=\"card\"><h3>tolower / toupper</h3><p>转换大小写并返回转换后的字符</p></article></div><pre>#include &lt;cctype&gt;\nif (isdigit((unsigned char)ch)) digits++;</pre>",
+      "notes": "字符函数处理负char时先转unsigned char更稳妥。"
     },
     {
       "id": "slide-12",
       "order": 12,
       "type": "content",
-      "title": "提交前六项检查",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>输入</h3><p>数量与类型</p></article><article class=\"card\"><h3>边界</h3><p>0、1、最大值</p></article><article class=\"card\"><h3>初始化</h3><p>计数与状态</p></article><article class=\"card\"><h3>输出</h3><p>空格、换行、顺序</p></article></div>",
-      "notes": "另外检查溢出与数组范围。"
+      "title": "cmath常用函数与整数验证",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>sqrt(x)</h3><p>平方根，返回浮点结果</p></article><article class=\"card\"><h3>pow(a,b)</h3><p>a的b次幂，返回浮点结果</p></article><article class=\"card\"><h3>floor / ceil</h3><p>向下取整 / 向上取整</p></article><article class=\"card\"><h3>round / abs</h3><p>四舍五入 / 绝对值</p></article></div><pre>int r=(int)sqrt(n);\nbool square = 1LL*r*r == n;</pre><p>浮点函数用于找候选，整数运算用于精确验证。</p>",
+      "notes": "解释1LL用于避免int乘法溢出。"
     },
     {
       "id": "slide-13",
       "order": 13,
       "type": "content",
-      "title": "例题：先分类，再选择模型",
-      "html": "<section><h2>例题：先分类，再选择模型</h2><p>题目要求“从1到n寻找所有满足条件的数”——候选有限，采用枚举；题目要求“按指令逐步移动坐标”——事件改变状态，采用模拟。</p><div class=\"flow\"><span>看任务动词</span><b>→</b><span>找候选或状态</span><b>→</b><span>决定模型</span></div></section>",
-      "notes": "让学生再举一个例子。"
+      "title": "一维数组：合法下标与初始化",
+      "html": "<section><pre>int a[100] = {};        // 全部初始化为0\nfor (int i=0; i&lt;n; ++i) cin &gt;&gt; a[i];</pre><p><b>合法下标：</b>长度为n时只能访问0到n-1。循环条件写成i&lt;n，不是i&lt;=n。</p><p>最值初始化可用第一个有效元素，避免用0导致全负数据错误。</p></section>",
+      "notes": "数组越界可能编译通过但运行结果不可靠。"
     },
     {
       "id": "slide-14",
       "order": 14,
-      "type": "questions",
-      "title": "模考二客观题 1—4",
-      "html": "<section><h2>模考二客观题 1—4</h2><ol start=\"1\"><li>函数声明`int f(int x);`能够告诉编译器什么？</li><li>引用参数可以让函数直接修改调用者传入的变量。</li><li>递归函数`f(n)`要可靠结束，最重要的是（ ）。</li><li>字符数组`char s[]=\"cat\";`的`strlen(s)`是（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"1\"><li><b>A</b>：声明提供函数签名，使调用处能够通过编译。</li><li><b>T</b>：引用形参是实参对象的别名。</li><li><b>B</b>：终止条件与规模缩小缺一不可。</li><li><b>B</b>：有效字符3个，结尾\\0不计入长度。</li></ol></div>",
-      "notes": "独立完成并提交后再揭示。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "cb4dbbf3-7604-4876-aef6-acbb39f39e47",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "e8d491d8-f3f5-4386-90d0-cf311b839462",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "de0c711d-b0cc-47e2-9daf-7b718a33db88",
-          "source": "quiz_questions"
-        }
-      ]
+      "type": "content",
+      "title": "二维数组：先行后列，先判断再访问",
+      "html": "<section><pre>for (int i=0; i&lt;n; ++i)       // n行\n  for (int j=0; j&lt;m; ++j)     // m列\n    visit(a[i][j]);</pre><p>访问相邻格(nr,nc)前必须检查：0≤nr&lt;n 且 0≤nc&lt;m。测试时一定加入非方阵，防止把n、m写反。</p></section>",
+      "notes": "边角位置最容易暴露错误。"
     },
     {
       "id": "slide-15",
       "order": 15,
-      "type": "questions",
-      "title": "模考二客观题 5—8",
-      "html": "<section><h2>模考二客观题 5—8</h2><ol start=\"5\"><li>判断两个C风格字符串内容是否相等，应使用（ ）。</li><li>判断整数n是否为完全平方数，较稳妥的方法是（ ）。</li><li>枚举法解决问题时，第一步通常是（ ）。</li><li>模拟题中，同一事件涉及多个状态时，更新顺序可能影响结果。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"5\"><li><b>C</b>：strcmp返回0表示内容相等。</li><li><b>B</b>：浮点结果用于找候选，整数乘法用于精确验证。</li><li><b>B</b>：先保证候选范围完整且不过大。</li><li><b>T</b>：后续更新可能依赖旧状态或新状态。</li></ol></div>",
-      "notes": "独立完成并提交后再揭示。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "a6fa70f5-bb7d-4ccc-b992-7ea2ef8bf081",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "a7ae385e-42c3-4faf-9057-b33473c4ce2d",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "cdc53e47-6818-42c5-aafc-358f8b764868",
-          "source": "quiz_questions"
-        }
-      ]
+      "type": "content",
+      "title": "枚举法：列出所有候选并逐个验证",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>适用条件</h3><p>候选数量有限，可以完整检查</p></article><article class=\"card\"><h3>第一步</h3><p>确定不重不漏的枚举范围</p></article><article class=\"card\"><h3>第二步</h3><p>为每个候选写正确判定条件</p></article><article class=\"card\"><h3>去重</h3><p>通过i&lt;j或i&lt;j&lt;k限制顺序</p></article></div><pre>for(int i=1;i&lt;=n;i++) if(check(i)) ...;</pre>",
+      "notes": "估算循环次数，避免无意义的高层循环。"
     },
     {
       "id": "slide-16",
       "order": 16,
-      "type": "questions",
-      "title": "模考二客观题 9—12",
-      "html": "<section><h2>模考二客观题 9—12</h2><ol start=\"9\"><li>访问n行m列矩阵，合法下标是（ ）。</li><li>表达式`5/2`与`(double)5/2`的结果分别是（ ）。</li><li>循环`for(int i=0;i<=n;i++) a[i]=0;`中，若数组长度为n，错误是（ ）。</li><li>提交程序前最有效的检查组合是（ ）。</li></ol></section><button class=\"answer-toggle\" aria-expanded=\"false\">点击显示答案</button><div class=\"answer-panel\" hidden><ol start=\"9\"><li><b>A</b>：行下标小于n，列下标小于m。</li><li><b>A</b>：前者是整数除法，后者是浮点除法。</li><li><b>B</b>：合法下标为0到n-1。</li><li><b>B</b>：不同类型数据能暴露不同错误。</li></ol></div>",
-      "notes": "独立完成并提交后再揭示。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "0a90e193-b56b-4598-81d2-d74456bc06bf",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "1c0ad947-683b-4ed1-81f0-a467d36c41e8",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "8baf798f-38cd-44c7-9d77-7371ae75ee2f",
-          "source": "quiz_questions"
-        },
-        {
-          "question_id": "eeb160dc-add9-4222-8698-acac8bdef865",
-          "source": "quiz_questions"
-        }
-      ]
+      "type": "content",
+      "title": "模拟法：把题目规则翻译成状态更新",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>状态</h3><p>描述当前局面所需的最少变量</p></article><article class=\"card\"><h3>事件</h3><p>每读入一个操作，发生什么变化</p></article><article class=\"card\"><h3>顺序</h3><p>后一步用旧状态还是新状态</p></article><article class=\"card\"><h3>终止</h3><p>何时停止，停止前后是否还要输出</p></article></div><p>建议先画状态表：步骤、输入、旧状态、新状态、输出。</p>",
+      "notes": "模拟题不是照抄文字，要先定义状态。"
     },
     {
       "id": "slide-17",
       "order": 17,
-      "type": "steps",
-      "title": "第二套6道编程题",
-      "html": "<section><h2>第二套6道编程题</h2><div class=\"flow\"><span>函数</span><b>→</b><span>递归</span><b>→</b><span>字符数组</span><b>→</b><span>枚举/模拟/二维</span></div></section>",
-      "notes": "与第11课题目不重复。",
-      "audience": "teacher"
+      "type": "content",
+      "title": "字符串扫描：一次循环维护多个计数",
+      "html": "<section><pre>for (int i=0; s[i]!='\\0'; ++i) {\n  char ch=s[i];\n  if (isdigit((unsigned char)ch)) digit++;\n  else if (isupper((unsigned char)ch)) upper++;\n  else if (islower((unsigned char)ch)) lower++;\n}</pre><p>分类条件通常互斥时使用if—else if，避免同一字符被重复统计。</p></section>",
+      "notes": "连接密码强度等真实题型。"
     },
     {
       "id": "slide-18",
       "order": 18,
-      "type": "oj",
-      "title": "模考二编程题 1",
-      "html": "<section><h2>模考二编程题 1</h2></section><div class=\"oj-card\"><span class=\"level\">基础</span><h3>GESP 1级真题【202403】找因数</h3><p>函数封装与整除判断。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=767bef72-e044-5584-ab1f-aa5b52f54ac6&oj_problem_id=%2Fd%2Fgesp%2Fp%2F38\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练函数封装与整除判断。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "767bef72-e044-5584-ab1f-aa5b52f54ac6",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/gesp/p/38"
-        }
-      ]
+      "type": "content",
+      "title": "输入输出：空格也属于数据",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>cin >> s</h3><p>读取到空白字符前停止</p></article><article class=\"card\"><h3>cin.getline(s,n)</h3><p>读取一整行，可包含空格</p></article><article class=\"card\"><h3>忽略残留换行</h3><p>混用cin和getline时先处理输入缓冲区</p></article><article class=\"card\"><h3>输出格式</h3><p>空格、换行、顺序都属于答案</p></article></div>",
+      "notes": "程序正确但格式不符也可能不得分。"
     },
     {
       "id": "slide-19",
       "order": 19,
-      "type": "oj",
-      "title": "模考二编程题 2",
-      "html": "<section><h2>模考二编程题 2</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>爬楼梯</h3><p>递归终止与状态关系。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=b95299fc-95a9-506b-9743-53c94e0bc7a8&oj_problem_id=%2Fd%2FCPLUS01%2Fp%2FT1204\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练递归终止与状态关系。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "b95299fc-95a9-506b-9743-53c94e0bc7a8",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/CPLUS01/p/T1204"
-        }
-      ]
+      "type": "content",
+      "title": "整数类型、除法和溢出",
+      "html": "<section><pre>5 / 2          // 2，整数除法\n(double)5 / 2  // 2.5，浮点除法\n1LL * a * b    // 先提升为long long再乘</pre><p>看到乘法、累加、平方和时先估算最大值；需要时使用long long。</p></section>",
+      "notes": "类型是在运算发生前决定的。"
     },
     {
       "id": "slide-20",
       "order": 20,
-      "type": "oj",
-      "title": "模考二编程题 3",
-      "html": "<section><h2>模考二编程题 3</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>GESP 3级真题【202512】密码强度</h3><p>字符数组与类别状态。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=3a339f7b-0a77-4cab-9d85-235afea38f7b&oj_problem_id=%2Fd%2Fgesp%2Fp%2F185\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练字符数组与类别状态。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "3a339f7b-0a77-4cab-9d85-235afea38f7b",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/gesp/p/185"
-        }
-      ]
+      "type": "content",
+      "title": "程序阅读：四步追踪法",
+      "html": "<div class=\"flow\"><span>标变量类型</span><b>→</b><span>写初值</span><b>→</b><span>逐句更新</span><b>→</b><span>确认输出时机</span></div><p>循环和递归都不要凭感觉猜结果。循环写迭代表；递归写调用与返回链。</p>",
+      "notes": "选择题也要留下推理痕迹。"
     },
     {
       "id": "slide-21",
       "order": 21,
-      "type": "oj",
-      "title": "模考二编程题 4",
-      "html": "<section><h2>模考二编程题 4</h2></section><div class=\"oj-card\"><span class=\"level\">标准</span><h3>GESP 2级真题【202506】数三角形</h3><p>枚举范围与去重。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=cf2cf27d-8c90-4179-b696-10c9ab4eeb93&oj_problem_id=%2Fd%2Fgesp%2Fp%2F125\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练枚举范围与去重。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "cf2cf27d-8c90-4179-b696-10c9ab4eeb93",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/gesp/p/125"
-        }
-      ]
+      "type": "content",
+      "title": "提交前测试：至少覆盖五类数据",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>最小</h3><p>n=0或n=1，空串或单字符</p></article><article class=\"card\"><h3>普通</h3><p>符合题意的典型数据</p></article><article class=\"card\"><h3>边界</h3><p>数组末端、最大输入</p></article><article class=\"card\"><h3>特殊</h3><p>全相同、全负、无答案、多个答案</p></article></div><p>再补一个随机小数据，手算后与程序对照。</p>",
+      "notes": "只测样例不等于完成测试。"
     },
     {
       "id": "slide-22",
       "order": 22,
-      "type": "oj",
-      "title": "模考二编程题 5",
-      "html": "<section><h2>模考二编程题 5</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>【NOIP 2003 普及组】乒乓球</h3><p>模拟状态与终止。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=f694fb49-f66f-4183-88f4-29e9302b975c&oj_problem_id=%2Fd%2FCPLUS01%2Fp%2F334\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练模拟状态与终止。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "f694fb49-f66f-4183-88f4-29e9302b975c",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/CPLUS01/p/334"
-        }
-      ]
+      "type": "content",
+      "title": "常见错误诊断表",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>编译错误</h3><p>头文件、分号、括号、函数声明</p></article><article class=\"card\"><h3>运行错误</h3><p>越界、除0、递归不终止</p></article><article class=\"card\"><h3>答案错误</h3><p>初始化、条件、更新顺序、类型</p></article><article class=\"card\"><h3>格式错误</h3><p>空格、换行、大小写、输出次数</p></article></div>",
+      "notes": "错题必须按原因分类。"
     },
     {
       "id": "slide-23",
       "order": 23,
-      "type": "oj",
-      "title": "模考二编程题 6",
-      "html": "<section><h2>模考二编程题 6</h2></section><div class=\"oj-card\"><span class=\"level\">综合</span><h3>GESP 2级真题【202512】黄金格</h3><p>二维坐标与边界。完整题面与评测请在Learn打开。</p><a class=\"oj-link\" href=\"https://learn.tongchengweilai.com/oj-do.html?question_id=7984c1c8-6875-586f-b6ac-5ae80403cee8&oj_problem_id=%2Fd%2Fgesp%2Fp%2F179\" target=\"_top\">进入 Learn 练习 →</a></div>",
-      "notes": "训练二维坐标与边界。",
-      "audience": "teacher",
-      "questionRefs": [
-        {
-          "question_id": "7984c1c8-6875-586f-b6ac-5ae80403cee8",
-          "source": "quiz_questions",
-          "oj_problem_id": "/d/gesp/p/179"
-        }
-      ]
+      "type": "content",
+      "title": "开始全真模拟卷（一）",
+      "html": "<section><h2>现在进入120分钟整卷</h2><div class=\"grid\"><article class=\"card\"><h3>题型</h3><p>10选择＋10判断＋2编程</p></article><article class=\"card\"><h3>总分</h3><p>100分；客观40分，编程60分</p></article><article class=\"card\"><h3>作答要求</h3><p>关闭笔记，独立完成，记录卡点</p></article><article class=\"card\"><h3>提交后</h3><p>按四类错因整理错题</p></article></div><a class=\"exam-link\" style=\"border:0;border-radius:999px;background:#f97316;color:white;font-weight:700;padding:.7em 1.15em;font-size:18px;text-decoration:none;display:inline-block;margin-top:1em\" href=\"https://learn.tongchengweilai.com/exam-do.html?id=37dbffac-ac52-4405-8d9a-f96bfd6abd8a&mode=practice&paper=1\" target=\"_top\">进入 Learn 整卷模拟 →</a></section>",
+      "notes": "正式学生入口也会在Learn页面显示“开始整卷练习”。"
     },
     {
       "id": "slide-24",
       "order": 24,
       "type": "content",
-      "title": "考前未闭环清单",
-      "html": "<div class=\"grid\"><article class=\"card\"><h3>题目</h3><p>记录题目编号或标题</p></article><article class=\"card\"><h3>错因</h3><p>知识、边界、实现、格式</p></article><article class=\"card\"><h3>复写时间</h3><p>24小时内完成</p></article><article class=\"card\"><h3>移出条件</h3><p>原题与变式均A</p></article></div>",
-      "notes": "这张清单带入第13课。"
+      "title": "整卷完成后的复盘单",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>知识错误</h3><p>不知道定义或函数含义</p></article><article class=\"card\"><h3>边界错误</h3><p>范围、下标、终止条件遗漏</p></article><article class=\"card\"><h3>实现错误</h3><p>状态、顺序、变量更新错误</p></article><article class=\"card\"><h3>格式错误</h3><p>输入输出和提交要求不符</p></article></div><p>每道非A题写：题号、错因、正确规则、24小时复测时间。</p>",
+      "notes": "不得只抄正确答案。"
     },
     {
       "id": "slide-25",
       "order": 25,
       "type": "close",
-      "title": "最后留下的不是答案，是检查流程",
-      "html": "<section><h1>最后留下的不是答案，是检查流程</h1><div class=\"flow\"><span>读题分类</span><b>→</b><span>独立完成</span><b>→</b><span>边界自测</span><b>→</b><span>提交复查</span></div><p>第13课只处理个人薄弱点与考试流程。</p></section>",
-      "notes": "保存两次模考对照表。"
+      "title": "本课完成标准",
+      "html": "<section><h1>完成整卷，不等于完成复习</h1><div class=\"flow\"><span>22题全部提交</span><b>→</b><span>编程题真实评测</span><b>→</b><span>错因分类</span><b>→</b><span>非A题复测</span></div><p>把第一套结果作为真实基线，带入第13课。</p></section>",
+      "notes": "保存成绩与复测证据。"
+    },
+    {
+      "id": "slide-26",
+      "order": 26,
+      "type": "content",
+      "title": "教师讲评：客观题只讲错误集中点",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>函数/递归</h3><p>先追调用与返回，再判断结果</p></article><article class=\"card\"><h3>库函数</h3><p>先确认头文件、返回值和容量条件</p></article><article class=\"card\"><h3>枚举/模拟</h3><p>先说清候选或状态</p></article><article class=\"card\"><h3>数组边界</h3><p>用最小和末端数据现场反证</p></article></div>",
+      "notes": "不逐题报答案，按错误类型讲评。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-27",
+      "order": 27,
+      "type": "content",
+      "title": "教师讲评：编程题评分证据",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>30分题1</h3><p>读题、建模、边界、代码、评测</p></article><article class=\"card\"><h3>30分题2</h3><p>先保可得分部分，再完善特殊数据</p></article><article class=\"card\"><h3>A标准</h3><p>独立完成且OJ通过</p></article><article class=\"card\"><h3>非A处理</h3><p>记录提示级别，24小时内复测</p></article></div>",
+      "notes": "编程得分必须来自真实OJ状态。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-28",
+      "order": 28,
+      "type": "content",
+      "title": "教师讲评：两卷对照",
+      "html": "<section><pre>指标          模拟一   模拟二\n客观正确数      __      __\n编程通过数      __      __\n边界错误数      __      __\n完成用时        __      __</pre><p>关注错误类型是否减少，不只比较总分。</p></section>",
+      "notes": "第13课使用两卷对照；第12课先建立基线。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-29",
+      "order": 29,
+      "type": "content",
+      "title": "教师分层补给",
+      "html": "<div class=\"grid\"><article class=\"card\"><h3>基础层</h3><p>函数、循环、数组下标、输入输出</p></article><article class=\"card\"><h3>标准层</h3><p>递归、字符数组、枚举与模拟</p></article><article class=\"card\"><h3>冲优层</h3><p>二维边界、综合调试、满分检查</p></article><article class=\"card\"><h3>升级条件</h3><p>连续两道同类题独立A</p></article></div>",
+      "notes": "补给题来自Tiku，不回退旧Teach problems。",
+      "audience": "teacher"
+    },
+    {
+      "id": "slide-30",
+      "order": 30,
+      "type": "close",
+      "title": "教师收课：把分数变成下一步行动",
+      "html": "<section><h1>成绩只是结果，错因才决定下一步</h1><div class=\"flow\"><span>收成绩</span><b>→</b><span>看证据</span><b>→</b><span>分错因</span><b>→</b><span>定复测</span></div></section>",
+      "notes": "确认每位学生都有明确的复测题目与时间。",
+      "audience": "teacher"
     }
   ]
 }
