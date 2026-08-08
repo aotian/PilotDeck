@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "tongcheng.slidesManifest.v1",
+  "lessonId": "lesson-12",
+  "slideCount": 25,
+  "studentSlideCount": 15,
+  "slides": [
+    {
+      "id": "slide-01",
+      "order": 1,
+      "type": "cover",
+      "audience": "all",
+      "title": "三级模考二：最后一次完整检查"
+    },
+    {
+      "id": "slide-02",
+      "order": 2,
+      "type": "content",
+      "audience": "all",
+      "title": "先复测第11课非A题"
+    },
+    {
+      "id": "slide-03",
+      "order": 3,
+      "type": "content",
+      "audience": "all",
+      "title": "三级全考点最后清单"
+    },
+    {
+      "id": "slide-04",
+      "order": 4,
+      "type": "content",
+      "audience": "all",
+      "title": "两次模考对照表"
+    },
+    {
+      "id": "slide-05",
+      "order": 5,
+      "type": "content",
+      "audience": "all",
+      "title": "函数与参数：四个检查点"
+    },
+    {
+      "id": "slide-06",
+      "order": 6,
+      "type": "content",
+      "audience": "all",
+      "title": "递归：三问必须同时回答"
+    },
+    {
+      "id": "slide-07",
+      "order": 7,
+      "type": "content",
+      "audience": "all",
+      "title": "字符数组：先看容量和结束标记"
+    },
+    {
+      "id": "slide-08",
+      "order": 8,
+      "type": "content",
+      "audience": "all",
+      "title": "数学函数：会用也要会判断风险"
+    },
+    {
+      "id": "slide-09",
+      "order": 9,
+      "type": "content",
+      "audience": "all",
+      "title": "枚举与模拟：先判断模型"
+    },
+    {
+      "id": "slide-10",
+      "order": 10,
+      "type": "content",
+      "audience": "all",
+      "title": "二维题：行列和边界最后核对"
+    },
+    {
+      "id": "slide-11",
+      "order": 11,
+      "type": "content",
+      "audience": "all",
+      "title": "程序阅读：不要跳着猜"
+    },
+    {
+      "id": "slide-12",
+      "order": 12,
+      "type": "content",
+      "audience": "all",
+      "title": "提交前六项检查"
+    },
+    {
+      "id": "slide-13",
+      "order": 13,
+      "type": "content",
+      "audience": "all",
+      "title": "例题：先分类，再选择模型"
+    },
+    {
+      "id": "slide-14",
+      "order": 14,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考二客观题 1—4"
+    },
+    {
+      "id": "slide-15",
+      "order": 15,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考二客观题 5—8"
+    },
+    {
+      "id": "slide-16",
+      "order": 16,
+      "type": "questions",
+      "audience": "teacher",
+      "title": "模考二客观题 9—12"
+    },
+    {
+      "id": "slide-17",
+      "order": 17,
+      "type": "steps",
+      "audience": "teacher",
+      "title": "第二套6道编程题"
+    },
+    {
+      "id": "slide-18",
+      "order": 18,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 1"
+    },
+    {
+      "id": "slide-19",
+      "order": 19,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 2"
+    },
+    {
+      "id": "slide-20",
+      "order": 20,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 3"
+    },
+    {
+      "id": "slide-21",
+      "order": 21,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 4"
+    },
+    {
+      "id": "slide-22",
+      "order": 22,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 5"
+    },
+    {
+      "id": "slide-23",
+      "order": 23,
+      "type": "oj",
+      "audience": "teacher",
+      "title": "模考二编程题 6"
+    },
+    {
+      "id": "slide-24",
+      "order": 24,
+      "type": "content",
+      "audience": "all",
+      "title": "考前未闭环清单"
+    },
+    {
+      "id": "slide-25",
+      "order": 25,
+      "type": "close",
+      "audience": "all",
+      "title": "最后留下的不是答案，是检查流程"
+    }
+  ]
+}

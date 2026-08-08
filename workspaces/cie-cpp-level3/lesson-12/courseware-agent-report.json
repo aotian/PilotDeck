@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "lessonId": "lesson-12",
+  "status": "validated-not-published",
+  "renderer": "tongcheng-teach-html",
+  "checks": {
+    "rendererValidation": "pass",
+    "teacherSlides": 25,
+    "studentSlides": 15,
+    "studentAnswers": 0,
+    "studentTeacherNotes": 0,
+    "editablePptx": true
+  },
+  "publishAllowed": false,
+  "generatedAt": "2026-08-08T07:41:11.664Z"
+}

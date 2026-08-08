@@ -1,0 +1,591 @@
+{
+  "schema_version": "tongcheng.tiku-seed.v1",
+  "lesson": 12,
+  "source_table": "quiz_questions",
+  "objective_questions": [
+    {
+      "id": "338d87ec-9c14-4570-a0ba-e9ebb3a0dc96",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "函数声明`int f(int x);`能够告诉编译器什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "函数名、返回类型和参数类型"
+        },
+        {
+          "label": "B",
+          "text": "函数运行结果"
+        },
+        {
+          "label": "C",
+          "text": "变量x的最终值"
+        },
+        {
+          "label": "D",
+          "text": "循环次数"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "声明提供函数签名，使调用处能够通过编译。",
+      "analysis": "声明提供函数签名，使调用处能够通过编译。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "函数声明"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "函数声明",
+      "knowledge_points": [
+        "函数声明"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "cb4dbbf3-7604-4876-aef6-acbb39f39e47",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "引用参数可以让函数直接修改调用者传入的变量。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "引用形参是实参对象的别名。",
+      "analysis": "引用形参是实参对象的别名。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "引用传递"
+      ],
+      "difficulty": 2,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "引用传递",
+      "knowledge_points": [
+        "引用传递"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "e8d491d8-f3f5-4386-90d0-cf311b839462",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "递归函数`f(n)`要可靠结束，最重要的是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "只写return"
+        },
+        {
+          "label": "B",
+          "text": "有可达终止条件且参数趋近终止"
+        },
+        {
+          "label": "C",
+          "text": "使用全局变量"
+        },
+        {
+          "label": "D",
+          "text": "调用两次自身"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "终止条件与规模缩小缺一不可。",
+      "analysis": "终止条件与规模缩小缺一不可。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "递归"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "递归",
+      "knowledge_points": [
+        "递归"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "de0c711d-b0cc-47e2-9daf-7b718a33db88",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "字符数组`char s[]=\"cat\";`的`strlen(s)`是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "text": "3"
+        },
+        {
+          "label": "C",
+          "text": "4"
+        },
+        {
+          "label": "D",
+          "text": "不确定"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "有效字符3个，结尾\\0不计入长度。",
+      "analysis": "有效字符3个，结尾\\0不计入长度。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "strlen"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "strlen",
+      "knowledge_points": [
+        "strlen"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "39af794a-39af-4f7f-87ee-0d367d2e6cb9",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "判断两个C风格字符串内容是否相等，应使用（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "s1==s2"
+        },
+        {
+          "label": "B",
+          "text": "strlen"
+        },
+        {
+          "label": "C",
+          "text": "strcmp(s1,s2)==0"
+        },
+        {
+          "label": "D",
+          "text": "strcat"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "strcmp返回0表示内容相等。",
+      "analysis": "strcmp返回0表示内容相等。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "strcmp"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "strcmp",
+      "knowledge_points": [
+        "strcmp"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "a6fa70f5-bb7d-4ccc-b992-7ea2ef8bf081",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "判断整数n是否为完全平方数，较稳妥的方法是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "只比较sqrt(n)==n"
+        },
+        {
+          "label": "B",
+          "text": "取r=(int)sqrt(n)，再验证1LL*r*r==n"
+        },
+        {
+          "label": "C",
+          "text": "只用pow(n,2)"
+        },
+        {
+          "label": "D",
+          "text": "把n转成char"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "浮点结果用于找候选，整数乘法用于精确验证。",
+      "analysis": "浮点结果用于找候选，整数乘法用于精确验证。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "数学库函数"
+      ],
+      "difficulty": 2,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "数学库函数",
+      "knowledge_points": [
+        "数学库函数"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "a7ae385e-42c3-4faf-9057-b33473c4ce2d",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "枚举法解决问题时，第一步通常是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "直接输出"
+        },
+        {
+          "label": "B",
+          "text": "确定候选范围"
+        },
+        {
+          "label": "C",
+          "text": "递归调用"
+        },
+        {
+          "label": "D",
+          "text": "排序全部数据"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "先保证候选范围完整且不过大。",
+      "analysis": "先保证候选范围完整且不过大。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "枚举法"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "枚举法",
+      "knowledge_points": [
+        "枚举法"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "cdc53e47-6818-42c5-aafc-358f8b764868",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "模拟题中，同一事件涉及多个状态时，更新顺序可能影响结果。",
+      "options": [
+        {
+          "label": "T",
+          "text": "正确"
+        },
+        {
+          "label": "F",
+          "text": "错误"
+        }
+      ],
+      "correct_option": "T",
+      "explanation": "后续更新可能依赖旧状态或新状态。",
+      "analysis": "后续更新可能依赖旧状态或新状态。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "模拟法"
+      ],
+      "difficulty": 3,
+      "type": "judge",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "模拟法",
+      "knowledge_points": [
+        "模拟法"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "0a90e193-b56b-4598-81d2-d74456bc06bf",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "访问n行m列矩阵，合法下标是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "0≤i<n且0≤j<m"
+        },
+        {
+          "label": "B",
+          "text": "0≤i≤n且0≤j≤m"
+        },
+        {
+          "label": "C",
+          "text": "0≤i<m且0≤j<n"
+        },
+        {
+          "label": "D",
+          "text": "i、j任意"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "行下标小于n，列下标小于m。",
+      "analysis": "行下标小于n，列下标小于m。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "二维边界"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "二维边界",
+      "knowledge_points": [
+        "二维边界"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "1c0ad947-683b-4ed1-81f0-a467d36c41e8",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "表达式`5/2`与`(double)5/2`的结果分别是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "2和2.5"
+        },
+        {
+          "label": "B",
+          "text": "2.5和2"
+        },
+        {
+          "label": "C",
+          "text": "2和2"
+        },
+        {
+          "label": "D",
+          "text": "3和2.5"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "前者是整数除法，后者是浮点除法。",
+      "analysis": "前者是整数除法，后者是浮点除法。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "类型转换"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "类型转换",
+      "knowledge_points": [
+        "类型转换"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "8baf798f-38cd-44c7-9d77-7371ae75ee2f",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "循环`for(int i=0;i<=n;i++) a[i]=0;`中，若数组长度为n，错误是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "少执行一次"
+        },
+        {
+          "label": "B",
+          "text": "访问了a[n]"
+        },
+        {
+          "label": "C",
+          "text": "不能赋值0"
+        },
+        {
+          "label": "D",
+          "text": "i必须从1开始"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "合法下标为0到n-1。",
+      "analysis": "合法下标为0到n-1。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "数组边界"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "数组边界",
+      "knowledge_points": [
+        "数组边界"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    },
+    {
+      "id": "eeb160dc-add9-4222-8698-acac8bdef865",
+      "stage": "初中",
+      "grade": "中国电子学会三级",
+      "term": "秋季",
+      "subject": "编程",
+      "content": "提交程序前最有效的检查组合是（ ）。",
+      "options": [
+        {
+          "label": "A",
+          "text": "只测样例"
+        },
+        {
+          "label": "B",
+          "text": "最小数据、边界数据、特殊数据和样例"
+        },
+        {
+          "label": "C",
+          "text": "只看代码缩进"
+        },
+        {
+          "label": "D",
+          "text": "删除所有注释"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "不同类型数据能暴露不同错误。",
+      "analysis": "不同类型数据能暴露不同错误。",
+      "tags": [
+        "中国电子学会",
+        "C++三级",
+        "第12课",
+        "模考二",
+        "调试检查"
+      ],
+      "difficulty": 3,
+      "type": "choice",
+      "oj_problem_id": null,
+      "images": [],
+      "knowledge_point": "调试检查",
+      "knowledge_points": [
+        "调试检查"
+      ],
+      "parts": [],
+      "question_payload": {
+        "course_key": "cie-cpp-level3",
+        "lesson_number": 12,
+        "content_status": "authorized"
+      }
+    }
+  ]
+}
