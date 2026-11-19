@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { JSDOM } from 'jsdom';
 
-export const COURSEWARE_RENDERERS = ['pilot-html', 'codex-artifact', 'anthropic-pptxgenjs', 'compare'];
+export const COURSEWARE_RENDERERS = ['pilot-html', 'tongcheng-teach-html', 'codex-artifact', 'anthropic-pptxgenjs', 'compare'];
 export const STUDENT_FORBIDDEN_TERMS = /PilotDeck|OpenMAIC|\bagent\b|prompt|内部教研|老师讲稿|教师讲法|验收|落库|runId|question[_ -]?id|knowledge[_ -]?id/i;
 
 export function stableJson(value) {
@@ -36,14 +36,19 @@ export function buildRendererInput({ projectPath, runId, outputDir, operationMod
     const questionRefs = fs.existsSync(questionRefsPath) ? readJson(questionRefsPath) : collectQuestionRefs(source);
     const teacherScriptPath = path.join(projectPath, 'teacher-script.md');
     const teacherScript = fs.existsSync(teacherScriptPath) ? fs.readFileSync(teacherScriptPath, 'utf8') : '';
+    const selfStudyPackagePath = path.join(projectPath, 'self-study-package.json');
+    const selfStudyPackage = fs.existsSync(selfStudyPackagePath) ? readJson(selfStudyPackagePath) : null;
     return {
         schemaVersion: 'tongcheng.coursewareRendererInput.v1', runId,
         coursePackageId: source.coursePackageId || null, lessonDbId: source.lessonDbId || null,
-        lessonId: source.lessonId || null, sourceOfTruth: 'courseware-slides.json',
+        lessonId: source.lessonId || null, title: source.title || null,
+        courseTitle: source.courseTitle || source.series || null,
+        lessonLabel: source.lessonLabel || source.lessonId || null,
+        sourceOfTruth: 'courseware-slides.json',
         approvedStyleId: style?.teacherApprovedStyleId || null,
         approvedStyle: style, slideCount: slides.length, slides,
         teacherNotes: { script: teacherScript, slides: slides.map((slide) => ({ slideId: String(slide.id), notes: String(slide.notes || '') })) },
-        studentVisibility: source.studentVisibility || 'student', questionRefs,
+        studentVisibility: source.studentVisibility || 'student', questionRefs, selfStudyPackage,
         outputDir: outputDir || path.join(projectPath, 'outputs'), operationMode,
         sourceHash: hashJson(source), styleHash: hashJson(style || {}),
     };

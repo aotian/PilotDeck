@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "agentRole": "requirement",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-01..lesson-03",
+  "lessonIds": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03"
+  ],
+  "runId": "cie3-pd-20260802-001",
+  "operationMode": "full-rebuild",
+  "status": "ready",
+  "inputsRead": [
+    "workspaces/cie-cpp-level3/program-requirements.md",
+    "workspaces/cie-cpp-level3/lessons/lesson-01/asset-request.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-01/source-lock.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-02/asset-request.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-02/source-lock.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-03/asset-request.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-03/source-lock.json",
+    "/Users/tongcheng/.codex/attachments/6d20689f-a625-4c6d-b5d3-a884542b0dd4/pasted-text.txt",
+    "skills/tongcheng-courseware-handoff/courseware-production-workflow-v2.md",
+    "skills/tongcheng-courseware-handoff/courseware-agent-protocol.md"
+  ],
+  "filesWritten": [
+    "workspaces/cie-cpp-level3/lessons/lesson-01/brief.md",
+    "workspaces/cie-cpp-level3/lessons/lesson-02/brief.md",
+    "workspaces/cie-cpp-level3/lessons/lesson-03/brief.md",
+    "reports/cie3-pd-20260802-001/courseware-requirement.json"
+  ],
+  "nextAgent": "outline",
+  "blockers": [
+    "三课均缺少来自真实 Tiku API 或教师批准导出的 tiku-context.json，尚无可保留的正式 question_id 与 knowledge_id；后续题目只能先作为候选稿。",
+    "尚未提供经登录态核验的 HydroOJ oj_problem_id，不能把编程题声明为已绑定、可从 Learn 正式作答。",
+    "官方 2025 修订版考纲原文与指定第三方真题页面尚未作为带指纹源材料锁定；正式题目映射、真题复现和发布前必须补做来源核验。"
+  ],
+  "checks": [
+    {
+      "name": "write-scope",
+      "status": "pass",
+      "detail": "仅新增三课 brief.md 与本角色不可覆盖报告；未写大纲、题目、slides 或派生资产。"
+    },
+    {
+      "name": "duration-and-practice-ratio",
+      "status": "pass",
+      "detail": "每课均明确 180 分钟；练习、编程、复测和订正 125 分钟，约占 69%。"
+    },
+    {
+      "name": "exercise-load",
+      "status": "pass",
+      "detail": "每课明确 10-15 道客观/填空、4-6 道课堂编程、2-3 道课后编程作业及至少 1 道限时独立题。"
+    },
+    {
+      "name": "mastery-loop",
+      "status": "pass",
+      "detail": "三课均明确 A/B/C/D 判定及 24 小时复写、下节复测、一周变式闭环。"
+    },
+    {
+      "name": "delivery-targets",
+      "status": "pass",
+      "detail": "三课均要求 PilotDeck 以 courseware-slides.json 为主源，派生童澄橙色交互 HTML、16:9 PPTX 与 PDF。"
+    },
+    {
+      "name": "source-boundary",
+      "status": "pass",
+      "detail": "明确区分官方考纲、第三方收录真题、GESP 补充题、Tiku 与 HydroOJ 身份。"
+    }
+  ],
+  "updatedAt": "2026-08-01T23:35:19.000Z"
+}

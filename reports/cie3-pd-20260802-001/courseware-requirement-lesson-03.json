@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "tongcheng.coursewareAgentReport.v1",
+  "agentRole": "requirement",
+  "runId": "cie3-pd-20260802-001",
+  "coursePackageId": "cie-cpp-level3",
+  "lessonId": "lesson-03",
+  "status": "ready",
+  "inputsRead": [
+    "workspaces/cie-cpp-level3/program-requirements.md",
+    "workspaces/cie-cpp-level3/lessons/lesson-03/asset-request.json",
+    "workspaces/cie-cpp-level3/lessons/lesson-03/source-lock.json",
+    "/Users/tongcheng/.codex/attachments/6d20689f-a625-4c6d-b5d3-a884542b0dd4/pasted-text.txt",
+    "skills/tongcheng-courseware-handoff/courseware-production-workflow-v2.md",
+    "skills/tongcheng-courseware-handoff/courseware-agent-protocol.md"
+  ],
+  "filesWritten": [
+    "workspaces/cie-cpp-level3/lessons/lesson-03/brief.md",
+    "reports/cie3-pd-20260802-001/courseware-requirement-lesson-03.json"
+  ],
+  "nextAgent": "outline",
+  "blockers": [
+    "缺少真实 Tiku tiku-context.json 及正式 question_id/knowledge_id；后续题目只能先作为候选稿。",
+    "缺少经登录态核验的 HydroOJ oj_problem_id；不能声明编程题已绑定 Learn。",
+    "官方考纲原文及指定第三方真题尚未以带指纹源材料锁定；正式映射前必须核验。"
+  ],
+  "checks": [
+    {
+      "name": "requirements-complete",
+      "status": "pass",
+      "detail": "已明确 180 分钟、10-15 道客观/填空、4-6 道课堂编程、2-3 道作业、A/B/C/D 闭环及参数传递专题边界。"
+    },
+    {
+      "name": "delivery-targets",
+      "status": "pass",
+      "detail": "已明确童澄橙色 PilotDeck 交互 HTML、16:9 PPTX 与 PDF。"
+    },
+    {
+      "name": "write-scope",
+      "status": "pass",
+      "detail": "仅写 lesson-03/brief.md 与本角色报告。"
+    }
+  ],
+  "updatedAt": "2026-08-01T23:35:19.000Z"
+}

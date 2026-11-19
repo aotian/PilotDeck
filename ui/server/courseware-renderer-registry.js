@@ -5,8 +5,9 @@ import { relativeFiles, writeJson } from './courseware-renderer-utils.js';
 import { renderPilotHtml } from './courseware-renderers/pilot-html.js';
 import { renderCodexArtifact } from './courseware-renderers/codex-artifact.js';
 import { renderAnthropicPptxGenJs } from './courseware-renderers/anthropic-pptxgenjs.js';
+import { renderTongchengTeachHtml } from './courseware-renderers/tongcheng-teach-html.js';
 
-const registry = new Map([['pilot-html', renderPilotHtml], ['codex-artifact', renderCodexArtifact], ['anthropic-pptxgenjs', renderAnthropicPptxGenJs]]);
+const registry = new Map([['pilot-html', renderPilotHtml], ['tongcheng-teach-html', renderTongchengTeachHtml], ['codex-artifact', renderCodexArtifact], ['anthropic-pptxgenjs', renderAnthropicPptxGenJs]]);
 
 export async function renderCourseware({ projectPath, runId, renderer, operationMode = 'reuse-existing', renderers, teacherApproval = false, fullRebuildAuthorized = false, options = {} }) {
     const selected = resolveRenderer(renderer);
@@ -59,5 +60,5 @@ function reportFor(input,renderer,result,started,finalRoot=path.join(path.dirnam
     const stableMontage=montage&&path.join(finalRoot,path.relative(stageRoot,montage));
     return { schemaVersion:'tongcheng.coursewareRendererReport.v1',renderer,rendererVersion:'1.0.1',runId:input.runId,sourceHash:input.sourceHash,styleHash:input.styleHash,outputFiles:relativeFiles(stageRoot),slideCount:input.slideCount,editable:result.editable,generatedAt:new Date().toISOString(),durationMs:Date.now()-started,status:result.validation?.status==='pass'?'ready-for-teacher-review':'blocked',validation:result.validation,visualQa:{status:result.previews?'awaiting-human-review':'blocked',montage:stableMontage},warnings:result.warnings||[],blockers:result.validation?.blockers||[],questionRefsHash:hashJson(input.questionRefs),teacherApprovalRequired:true,publishAllowed:false};
 }
-function snapshotInputs(projectPath,runId){const dir=path.join(projectPath,'.renderer-snapshots',runId);fs.mkdirSync(dir,{recursive:true});for(const f of ['courseware-slides.json','approved-style.json','question-refs.json']){const src=path.join(projectPath,f);if(fs.existsSync(src))fs.copyFileSync(src,path.join(dir,f));}}
+function snapshotInputs(projectPath,runId){const dir=path.join(projectPath,'.renderer-snapshots',runId);fs.mkdirSync(dir,{recursive:true});for(const f of ['courseware-slides.json','approved-style.json','question-refs.json','self-study-package.json']){const src=path.join(projectPath,f);if(fs.existsSync(src))fs.copyFileSync(src,path.join(dir,f));}}
 function humanComparison(c){return `# Renderer comparison\n\nRun: ${c.runId}\n\n| Renderer | Status | Slides | Editable | Duration | Blockers |\n|---|---:|---:|---:|---:|---|\n${c.results.map(r=>`| ${r.renderer} | ${r.status} | ${r.slideCount||'-'} | ${r.editable??'-'} | ${r.durationMs||'-'} ms | ${(r.blockers||[]).join('; ')} |`).join('\n')}\n\nNo renderer is selected automatically. Teacher approval is required.\n`;}
